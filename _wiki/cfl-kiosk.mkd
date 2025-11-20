@@ -17,7 +17,7 @@ Currently, the kiosk is relatively non-interactive TV with a raspberry pi 2b+ at
 Specs# 
 * Raspberry Pi running a linux system (see below) connecting to the TV via HDMI and the network via USB-wifiAP& antenna (I believe built-in wifi is broken on this 2b+ but everything else works great!)
 * Default user/pass  for raspberry pis:  pi/raspberry
-* Full page OS running on a raspberry pi 2b+,  FullPageOS is available on the rpi-installer for this version, but not all versions of the RPI hardware https://github.com/guysoft/FullPageOS
+* [FullPageOS](https://github.com/guysoft/FullPageOS) running on a raspberry pi 2b+, FullPageOS is available on the rpi-installer for this version, but not all versions of the RPI hardware
 * system is configured to connect to idea fab labs WifiAP with hostname 'cflkiosk' so ping cflkiosk.local when connected to Idea Fab Labs AP to find the IP, right now (11/10/25), the assigned IP is 192.168.1.84  
 * Control any other pages (for a presentation) using a vnc client. 
 
@@ -28,8 +28,8 @@ Specs#
 - Control any other pages (for a presentation) using a VNC client. Still need to figure that one out.
 
 ## TODOS
-- TODO need to double check ssh credentials 
-- TODO Still need to figure that one out, the vnc client can connect to the machine (needed to point the vnc client to the IP because MDNS isn't working reliably for me), and updating the URL to show a rotating set of pages with timeouts is an exercise left to the reader
+1. TODO need to double check ssh credentials 
+2. TODO Still need to figure that one out, the vnc client can connect to the machine (needed to point the vnc client to the IP because MDNS isn't working reliably for me), and updating the URL to show a rotating set of pages with timeouts is an exercise left to the reader
 
 
 
