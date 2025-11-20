@@ -1,6 +1,6 @@
 ---
 layout: default
-title: How to Contribute
+title: README
 ---
 
 # How to Contribute
