@@ -5,6 +5,8 @@ title: README
 
 # How to Contribute
 
+Repository: [https://github.com/ChicoFabLab/chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
+
 ## If you're in the ChicoFabLab organization
 
 You can directly commit markdown files:
