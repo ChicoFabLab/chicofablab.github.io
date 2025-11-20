@@ -1,0 +1,26 @@
+title: CFL Wiki
+baseurl: ""
+url: "https://chicofl.org"
+
+markdown: kramdown
+permalink: pretty
+
+collections:
+  wiki:
+    output: true
+    permalink: /wiki/:name
+
+defaults:
+  - scope:
+      path: ""
+      type: "wiki"
+    values:
+      layout: "default"
+
+gems:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock

@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<h2>wiki pages</h2>
+
+{% if site.wiki.size > 0 %}
+<ul>
+{% for page in site.wiki %}
+<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>no pages yet - <a href="/how-to-contribute">see how to add one</a></p>
+{% endif %}
