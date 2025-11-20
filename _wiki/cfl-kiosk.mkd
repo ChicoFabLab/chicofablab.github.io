@@ -4,7 +4,7 @@ title: CFL Kiosk
 
 # CFL has a **Kiosk** display to update members and visitors about the status and projects in the space.
 ## cflkiosk
-[![cfl-kiosk](img/cfl-kiosk.jpg)]
+[![cfl-kiosk](../assets/img/cfl-kiosk.jpg)]
 
 Vision and Goals: 
 The kiosk should eventually be able to interactively show:
