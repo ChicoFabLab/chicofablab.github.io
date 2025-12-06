@@ -149,7 +149,7 @@ curl http://localhost:8090/api/health
 
 ## Repository
 
-https://github.com/ChicoFabLab/tasksdashboard
+[https://github.com/ChicoFabLab/tasksdashboard](https://github.com/ChicoFabLab/tasksdashboard)
 
 ## License
 
