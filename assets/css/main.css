@@ -730,7 +730,34 @@ footer p {
 
 /* =====================================================================
    FUN BUTTON VARIANTS
-   Animated, playful button styles for when you want to go wild!
+   =====================================================================
+
+   PURPOSE: 30+ animated, playful button styles using pure CSS
+
+   USAGE: Add class to any .cfl-btn element
+     <button class="cfl-btn cfl-btn--rainbow cfl-btn--md">Rainbow</button>
+
+   CATEGORIES:
+     🌈 Gradient:  --rainbow, --holo, --mood, --gradient-border
+     🎾 Bouncy:    --bouncy, --wiggle, --liquid, --rubber, --spin
+     🧘 Organic:   --breathe, --heartbeat, --bubble, --water, --lava
+     🔥 Elements:  --fire, --ice, --electric, --aurora
+     ⚡ Neon:      --neon, --neon-pink, --pulse, --disco
+     👾 Retro:     --glitch, --vhs, --static, --cyber, --soundwave
+     🎮 3D:        --3d, --3d-red, --pixel, --flip, --sticker
+     📝 Texture:   --paper, --chalk, --glass
+     ✨ Effects:   --confetti, --portal, --meteor, --loading, --magnetic
+     🎰 Themed:    --casino, --dna, --magnet, --emoji, --typewriter
+     👁️ Horror:    --eldritch
+
+   DARK BACKGROUND RECOMMENDED:
+     --neon, --neon-pink, --glitch, --vhs, --static, --cyber,
+     --soundwave, --aurora, --eldritch
+
+   ACCESSIBILITY:
+     All animations respect @media (prefers-reduced-motion: reduce)
+
+   DOCUMENTATION: See docs/FUN-BUTTONS.md for full reference
    ===================================================================== */
 
 /* --- RAINBOW GRADIENT --- */
@@ -2306,6 +2333,20 @@ body.eldritch-mode .eldritch-tentacle {
 
 /* =====================================================================
    KONAMI CODE RAINBOW MODE
+   =====================================================================
+
+   PURPOSE: Visual effects for when user enters ↑↑↓↓←→←→BA
+
+   TRIGGERED BY: JavaScript adds body.konami-mode class
+
+   EFFECTS:
+     - Entire page cycles through hue-rotate filter (0.5s loop)
+     - All elements gently pulse scale
+     - Buttons wiggle left/right
+
+   DURATION: 10 seconds (removed by JavaScript timer)
+
+   SEE: docs/EASTER-EGGS.md
    ===================================================================== */
 
 body.konami-mode {
@@ -2337,39 +2378,174 @@ body.konami-mode .cfl-btn {
 
 /* =====================================================================
    ACHIEVEMENT PANEL
+   =====================================================================
+
+   PURPOSE: Floating UI for displaying user achievements
+
+   COMPONENTS:
+     .cfl-achievements-btn     - Gold trophy button (bottom-right)
+     .cfl-achievements-panel   - Sliding panel with achievement list
+     .cfl-achievement          - Individual achievement row
+     .cfl-achievement--locked  - Grayed out, description hidden
+     .cfl-achievement--unlocked - Gold highlight, full info shown
+
+   POSITIONING:
+     Button: fixed, bottom: 100px, right: 20px
+     Panel:  fixed, bottom: 160px, right: 20px
+
+   ANIMATIONS:
+     - Button has hover scale + rotate
+     - Panel slides up with opacity transition
+     - New achievement dot pulses
+
+   RESPONSIVE: Panel goes full-width on mobile (< 768px)
+
+   SEE: docs/ACHIEVEMENTS.md
    ===================================================================== */
 
-.cfl-achievements-btn {
+/* =====================================================================
+   UNIFIED FLOATING ACTION BAR
+   =====================================================================
+
+   Consolidates all floating buttons into one expandable horizontal bar.
+   Main FAB (+) expands to show: Settings, Achievements, Sound toggle
+
+   ===================================================================== */
+
+.cfl-fab-bar {
     position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ffd700, #ff8c00);
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-    z-index: 9990;
-    transition: all 0.3s ease;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.cfl-achievements-btn:hover {
-    transform: scale(1.1) rotate(10deg);
+.cfl-fab-bar__main {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent, #e63946), #c62d3a);
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cfl-fab-bar__main:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+}
+
+.cfl-fab-bar__main-icon {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: block;
+}
+
+.cfl-fab-bar--open .cfl-fab-bar__main-icon {
+    transform: rotate(45deg);
+}
+
+.cfl-fab-bar__items {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cfl-fab-bar--open .cfl-fab-bar__items {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.cfl-fab-bar__item {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cfl-fab-bar__item:hover {
+    transform: scale(1.1);
+    border-color: var(--accent);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+.cfl-fab-bar__item--achievements {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border: none;
+}
+
+.cfl-fab-bar__item--achievements:hover {
     box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
 }
 
-.cfl-achievements-btn[data-new]::after {
+.cfl-fab-bar__item--sound[data-enabled="false"] {
+    opacity: 0.5;
+}
+
+.cfl-fab-bar__item[data-new]::after {
     content: '';
     position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 15px;
-    height: 15px;
+    top: -3px;
+    right: -3px;
+    width: 12px;
+    height: 12px;
     background: #e63946;
     border-radius: 50%;
     animation: pulse-dot 1s ease-in-out infinite;
+}
+
+/* Stagger animation for items */
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(1) { transition-delay: 0s; }
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(2) { transition-delay: 0.05s; }
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(3) { transition-delay: 0.1s; }
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(4) { transition-delay: 0.15s; }
+
+/* Tooltip labels */
+.cfl-fab-bar__label {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-ui);
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.cfl-fab-bar__item:hover .cfl-fab-bar__label {
+    opacity: 1;
 }
 
 @keyframes pulse-dot {
@@ -2377,10 +2553,33 @@ body.konami-mode .cfl-btn {
     50% { transform: scale(1.3); opacity: 0.7; }
 }
 
+/* Hide old standalone buttons - they're now in the FAB bar */
+.cfl-achievements-btn,
+.cfl-sound-toggle {
+    display: none !important;
+}
+
+/* Hide the old settings FAB - now triggered from unified FAB bar */
+.cfl-settings__fab,
+.cfl-settings__dismiss {
+    display: none !important;
+}
+
+/* Reposition settings widget to work with unified FAB bar */
+.cfl-settings {
+    bottom: 80px !important;
+    right: 1rem !important;
+}
+
+/* But keep the orbit and panels visible when open */
+.cfl-settings--open .cfl-settings__orbit {
+    display: block;
+}
+
 .cfl-achievements-panel {
     position: fixed;
-    bottom: 160px;
-    right: 20px;
+    bottom: 80px;
+    right: 1rem;
     width: 350px;
     max-height: 60vh;
     background: var(--bg);
@@ -2494,6 +2693,17 @@ body.konami-mode .cfl-btn {
 
 /* =====================================================================
    SOUND TOGGLE BUTTON
+   =====================================================================
+
+   PURPOSE: Floating button to enable/disable sound effects
+
+   POSITIONING: Fixed, bottom: 100px, right: 80px (left of trophy button)
+
+   STATES:
+     data-enabled="true"  - Full opacity, 🔊 icon
+     data-enabled="false" - 50% opacity, 🔇 icon
+
+   SEE: docs/SOUND-SYSTEM.md
    ===================================================================== */
 
 .cfl-sound-toggle {
@@ -2525,6 +2735,20 @@ body.konami-mode .cfl-btn {
 
 /* =====================================================================
    EASTER EGG HIDDEN BUTTONS
+   =====================================================================
+
+   PURPOSE: Styles for collectible hidden emoji around the page
+
+   BEHAVIOR:
+     - Nearly invisible (10% opacity) by default
+     - Become visible on hover (100% opacity + scale + rotate)
+     - Animate away when clicked
+
+   POSITIONING: Fixed position, coordinates set by JavaScript
+
+   ELEMENTS: Created dynamically by createEasterEggs() function
+
+   SEE: docs/EASTER-EGGS.md
    ===================================================================== */
 
 .easter-egg {
@@ -2559,6 +2783,26 @@ body.konami-mode .cfl-btn {
 
 /* =====================================================================
    BUTTON PLAYGROUND STYLES
+   =====================================================================
+
+   PURPOSE: Styles for the interactive button builder page
+
+   PAGE: /wiki/button-playground
+
+   LAYOUT:
+     .playground-container - CSS Grid: 300px sidebar + 1fr canvas
+     .playground-palette   - Left: options for style, size, icon, etc.
+     .playground-canvas    - Right: live preview + code output
+
+   COMPONENTS:
+     .playground-option       - Clickable option button
+     .playground-option.is-selected - Currently selected option
+     .playground-preview      - Card containing the preview button
+     .playground-code         - Dark code output area
+
+   RESPONSIVE: Single column below 768px
+
+   SEE: docs/BUTTON-PLAYGROUND.md
    ===================================================================== */
 
 .playground-container {
@@ -4956,12 +5200,13 @@ label.cfl-toggle::before,
     to { transform: rotate(360deg); }
 }
 
-/* === CHASE LOADER === */
+/* === CHASE LOADER === TURBO MODE === */
 .cfl-chase {
     position: relative;
-    width: 48px;
-    height: 48px;
-    animation: chase-rotate 2.5s linear infinite;
+    width: 64px;
+    height: 64px;
+    animation: chase-rotate 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+    filter: drop-shadow(0 0 8px var(--accent));
 }
 
 .cfl-chase__dot {
@@ -4975,39 +5220,91 @@ label.cfl-toggle::before,
 .cfl-chase__dot::before {
     content: '';
     display: block;
+    width: 25%;
+    height: 25%;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: chase-dot 0.6s cubic-bezier(0.2, 0.68, 0.18, 1.08) infinite;
+    box-shadow:
+        0 0 10px var(--accent),
+        0 0 20px var(--accent),
+        0 0 30px rgba(255, 107, 53, 0.4);
+}
+
+/* Trailing ghost effect */
+.cfl-chase__dot::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 20%;
     height: 20%;
     background: var(--accent);
     border-radius: 50%;
-    animation: chase-dot 1.2s ease-in-out infinite;
+    opacity: 0.3;
+    animation: chase-trail 0.6s cubic-bezier(0.2, 0.68, 0.18, 1.08) infinite;
+    filter: blur(4px);
 }
 
 .cfl-chase__dot:nth-child(1) { transform: rotate(0deg); }
-.cfl-chase__dot:nth-child(1)::before { animation-delay: -1.1s; }
+.cfl-chase__dot:nth-child(1)::before { animation-delay: -0.55s; }
+.cfl-chase__dot:nth-child(1)::after { animation-delay: -0.58s; }
 
 .cfl-chase__dot:nth-child(2) { transform: rotate(60deg); }
-.cfl-chase__dot:nth-child(2)::before { animation-delay: -1.0s; }
+.cfl-chase__dot:nth-child(2)::before { animation-delay: -0.50s; }
+.cfl-chase__dot:nth-child(2)::after { animation-delay: -0.53s; }
 
 .cfl-chase__dot:nth-child(3) { transform: rotate(120deg); }
-.cfl-chase__dot:nth-child(3)::before { animation-delay: -0.9s; }
+.cfl-chase__dot:nth-child(3)::before { animation-delay: -0.45s; }
+.cfl-chase__dot:nth-child(3)::after { animation-delay: -0.48s; }
 
 .cfl-chase__dot:nth-child(4) { transform: rotate(180deg); }
-.cfl-chase__dot:nth-child(4)::before { animation-delay: -0.8s; }
+.cfl-chase__dot:nth-child(4)::before { animation-delay: -0.40s; }
+.cfl-chase__dot:nth-child(4)::after { animation-delay: -0.43s; }
 
 .cfl-chase__dot:nth-child(5) { transform: rotate(240deg); }
-.cfl-chase__dot:nth-child(5)::before { animation-delay: -0.7s; }
+.cfl-chase__dot:nth-child(5)::before { animation-delay: -0.35s; }
+.cfl-chase__dot:nth-child(5)::after { animation-delay: -0.38s; }
 
 .cfl-chase__dot:nth-child(6) { transform: rotate(300deg); }
-.cfl-chase__dot:nth-child(6)::before { animation-delay: -0.6s; }
+.cfl-chase__dot:nth-child(6)::before { animation-delay: -0.30s; }
+.cfl-chase__dot:nth-child(6)::after { animation-delay: -0.33s; }
 
 @keyframes chase-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1); }
+    75% { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
 @keyframes chase-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(0.4); }
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1.4);
+        box-shadow:
+            0 0 15px var(--accent),
+            0 0 30px var(--accent),
+            0 0 45px rgba(255, 107, 53, 0.6);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(0.2);
+        box-shadow:
+            0 0 5px var(--accent),
+            0 0 10px rgba(255, 107, 53, 0.2);
+    }
+}
+
+@keyframes chase-trail {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1.2) translateX(-10%);
+    }
+    50% {
+        opacity: 0;
+        transform: scale(0.3) translateX(10%);
+    }
 }
 
 /* ----- TOAST NOTIFICATIONS -----
@@ -7114,6 +7411,7 @@ pre code {
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    z-index: 3;
 }
 
 .cfl-settings__orbit-btn {
@@ -7135,6 +7433,7 @@ pre code {
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
     cursor: pointer;
+    z-index: 4;
     --tx: 0px;
     --ty: 0px;
 }
@@ -7364,5 +7663,77 @@ pre code {
     .cfl-settings__orbit {
         width: 200px;
         height: 200px;
+    }
+}
+
+/* ============================================
+   GLOSSARY
+   ============================================ */
+
+.cfl-glossary {
+    margin-top: 1rem;
+}
+
+.cfl-glossary h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.cfl-glossary__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.cfl-glossary__term {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cfl-glossary__term:hover {
+    box-shadow: 0 4px 16px var(--shadow);
+    transform: translateY(-2px);
+}
+
+.cfl-glossary__title {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.cfl-glossary__def {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.cfl-glossary__def code {
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: var(--font-mono);
+}
+
+.cfl-glossary__example {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .cfl-glossary__grid {
+        grid-template-columns: 1fr;
     }
 }

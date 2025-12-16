@@ -163,3 +163,4 @@ Requires Web Audio API support:
 - Edge 79+
 
 Falls back gracefully if unsupported (sounds simply don't play).
+

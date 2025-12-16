@@ -17,6 +17,12 @@ This folder contains project documentation for developers and contributors.
 - [The Void](THE-VOID.md) - Eldritch corruption system
 - [Button Playground](BUTTON-PLAYGROUND.md) - Interactive button builder
 
+### Technical Debt
+- [Technical Debt Overview](technical-debt/README.md) - Debt tracking index
+- [CSS Modularization](technical-debt/css-modularization.md) - 7000+ line CSS file
+- [JavaScript Extraction](technical-debt/javascript-extraction.md) - Inline JS in layout
+- [Font Loading](technical-debt/font-loading.md) - Performance optimization
+
 ## 🎮 Quick Feature Overview
 
 ### Sound Effects (`CFL.sounds`)
@@ -75,7 +81,12 @@ chicofablab.github.io/
 │   ├── FUN-BUTTONS.md     # Fun button styles reference
 │   ├── EASTER-EGGS.md     # Secrets and hidden features
 │   ├── THE-VOID.md        # Void/corruption documentation
-│   └── BUTTON-PLAYGROUND.md
+│   ├── BUTTON-PLAYGROUND.md
+│   └── technical-debt/    # Technical debt tracking
+│       ├── README.md
+│       ├── css-modularization.md
+│       ├── javascript-extraction.md
+│       └── font-loading.md
 └── index.html
 ```
 

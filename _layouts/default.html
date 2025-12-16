@@ -178,6 +178,25 @@
         // =====================================================================
         // WEB AUDIO SOUND EFFECTS SYSTEM
         // =====================================================================
+        //
+        // PURPOSE: Provides synthesized sound effects for UI interactions
+        //
+        // USAGE:
+        //   CFL.sounds.click()      - Quick blip for button clicks
+        //   CFL.sounds.success()    - Ascending tones for positive feedback
+        //   CFL.sounds.magic()      - Arpeggio for special buttons
+        //   CFL.sounds.setEnabled(false)  - Disable all sounds
+        //
+        // HOW IT WORKS:
+        //   Uses Web Audio API to generate tones in real-time via oscillators.
+        //   No audio files needed - all sounds are mathematically synthesized.
+        //
+        // STORAGE:
+        //   localStorage.cflSoundsEnabled - 'true'/'false'
+        //   localStorage.cflSoundsVolume  - float 0.0-1.0
+        //
+        // SEE: docs/SOUND-SYSTEM.md for full documentation
+        // =====================================================================
         window.CFL = window.CFL || {};
 
         CFL.sounds = (function() {
@@ -337,6 +356,28 @@
         // =====================================================================
         // ACHIEVEMENT SYSTEM
         // =====================================================================
+        //
+        // PURPOSE: Gamification layer that tracks user interactions and
+        //          unlocks badges for various accomplishments.
+        //
+        // USAGE:
+        //   CFL.achievements.unlock('achievement-id')  - Manually unlock
+        //   CFL.achievements.trackClick('buttonType')  - Auto-called on clicks
+        //   CFL.achievements.getStats()               - { clicks, pages, buttonTypes }
+        //   CFL.achievements.isUnlocked('id')         - Check if unlocked
+        //
+        // ACHIEVEMENTS (16 total):
+        //   Progression: first-click, button-10, button-50, button-100
+        //   Special:     rainbow, void-gazer, corrupted, cleansed, all-buttons
+        //   Time-based:  night-owl, early-bird
+        //   Secrets:     sound-on, easter-egg, speed-demon, konami, explorer
+        //
+        // STORAGE:
+        //   localStorage.cflAchievements - { id: { time: timestamp }, ... }
+        //   localStorage.cflStats        - { clicks, pages[], buttonTypes[] }
+        //
+        // SEE: docs/ACHIEVEMENTS.md for full documentation
+        // =====================================================================
         CFL.achievements = (function() {
             var achievements = {
                 'first-click': { name: 'First Click', desc: 'Click your first button', icon: '🖱️', sound: 'coin' },
@@ -449,6 +490,19 @@
         // =====================================================================
         // KONAMI CODE EASTER EGG
         // =====================================================================
+        //
+        // PURPOSE: Classic gaming easter egg that triggers rainbow mode
+        //
+        // THE CODE: ↑ ↑ ↓ ↓ ← → ← → B A
+        //
+        // WHAT HAPPENS:
+        //   1. body.konami-mode class added (10 seconds)
+        //   2. CFL.sounds.powerup() plays
+        //   3. Toast notification appears
+        //   4. Unlocks 'konami' and 'easter-egg' achievements
+        //
+        // SEE: docs/EASTER-EGGS.md for full documentation
+        // =====================================================================
         (function konamiCode() {
             var pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
             var current = 0;
@@ -489,6 +543,26 @@
         // =====================================================================
         // AUTO-ATTACH SOUNDS TO BUTTONS
         // =====================================================================
+        //
+        // PURPOSE: Automatically plays contextual sounds when buttons are clicked
+        //
+        // HOW IT WORKS:
+        //   - Listens for clicks on any .cfl-btn element
+        //   - Checks button's CSS classes to determine which sound to play
+        //   - Also tracks button type for achievement system
+        //
+        // SOUND MAPPING:
+        //   --rainbow, --holo, --aurora    → magic()
+        //   --bouncy, --rubber             → boing()
+        //   --neon, --electric             → zap()
+        //   --glitch, --vhs, --static      → glitch()
+        //   --3d, --pixel                  → coin()
+        //   --eldritch                     → eldritch()
+        //   --fire, --lava                 → explosion()
+        //   (default)                      → click()
+        //
+        // SEE: docs/SOUND-SYSTEM.md for full sound list
+        // =====================================================================
         (function attachButtonSounds() {
             document.addEventListener('click', function(e) {
                 var btn = e.target.closest('.cfl-btn');
@@ -528,36 +602,116 @@
         })();
 
         // =====================================================================
-        // ACHIEVEMENT PANEL UI
+        // UNIFIED FLOATING ACTION BAR
         // =====================================================================
-        (function createAchievementPanel() {
-            // Create achievement button
-            var achBtn = document.createElement('button');
-            achBtn.className = 'cfl-achievements-btn';
-            achBtn.innerHTML = '🏆';
-            achBtn.title = 'Achievements';
-            document.body.appendChild(achBtn);
+        //
+        // PURPOSE: Single expandable FAB that consolidates all floating buttons
+        //
+        // ELEMENTS:
+        //   - Main FAB (+) - Expands/collapses the bar
+        //   - Settings (⚙️) - Opens font/color settings widget
+        //   - Achievements (🏆) - Opens achievements panel
+        //   - Sound (🔊/🔇) - Toggles sound effects
+        //
+        // LAYOUT: Horizontal bar at bottom-right, expands leftward
+        //
+        // SEE: docs/FAB-BAR.md for full documentation
+        // =====================================================================
+        (function createUnifiedFabBar() {
+            // Create the FAB bar container
+            var fabBar = document.createElement('div');
+            fabBar.className = 'cfl-fab-bar';
+            fabBar.id = 'cfl-fab-bar';
 
-            // Create sound toggle
-            var soundBtn = document.createElement('button');
-            soundBtn.className = 'cfl-sound-toggle';
-            soundBtn.innerHTML = CFL.sounds.isEnabled() ? '🔊' : '🔇';
-            soundBtn.setAttribute('data-enabled', CFL.sounds.isEnabled());
-            soundBtn.title = 'Toggle sounds';
-            document.body.appendChild(soundBtn);
+            // Main FAB button (+)
+            var mainBtn = document.createElement('button');
+            mainBtn.className = 'cfl-fab-bar__main';
+            mainBtn.innerHTML = '<span class="cfl-fab-bar__main-icon">+</span>';
+            mainBtn.title = 'Quick actions';
+            mainBtn.setAttribute('aria-label', 'Toggle quick actions menu');
 
-            soundBtn.addEventListener('click', function() {
+            // Items container
+            var itemsContainer = document.createElement('div');
+            itemsContainer.className = 'cfl-fab-bar__items';
+
+            // Settings button (⚙️)
+            var settingsItem = document.createElement('button');
+            settingsItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--settings';
+            settingsItem.innerHTML = '⚙️<span class="cfl-fab-bar__label">Settings</span>';
+            settingsItem.title = 'Site settings';
+
+            // Achievements button (🏆)
+            var achItem = document.createElement('button');
+            achItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--achievements';
+            achItem.innerHTML = '🏆<span class="cfl-fab-bar__label">Achievements</span>';
+            achItem.title = 'Achievements';
+
+            // Sound toggle button (🔊)
+            var soundItem = document.createElement('button');
+            soundItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--sound';
+            soundItem.innerHTML = (CFL.sounds.isEnabled() ? '🔊' : '🔇') + '<span class="cfl-fab-bar__label">Sound</span>';
+            soundItem.setAttribute('data-enabled', CFL.sounds.isEnabled());
+            soundItem.title = 'Toggle sounds';
+
+            // Append items to container (reverse order for row-reverse layout)
+            itemsContainer.appendChild(settingsItem);
+            itemsContainer.appendChild(achItem);
+            itemsContainer.appendChild(soundItem);
+
+            // Append to FAB bar
+            fabBar.appendChild(mainBtn);
+            fabBar.appendChild(itemsContainer);
+            document.body.appendChild(fabBar);
+
+            // Main FAB toggle
+            mainBtn.addEventListener('click', function() {
+                fabBar.classList.toggle('cfl-fab-bar--open');
+                CFL.sounds.click();
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!fabBar.contains(e.target) && fabBar.classList.contains('cfl-fab-bar--open')) {
+                    fabBar.classList.remove('cfl-fab-bar--open');
+                }
+            });
+
+            // Settings button - trigger existing settings widget
+            settingsItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var settingsWidget = document.getElementById('cfl-settings');
+                var navSettingsBtn = document.getElementById('cfl-nav-settings-btn');
+                if (settingsWidget) {
+                    // Show settings if hidden
+                    if (settingsWidget.classList.contains('cfl-settings--hidden')) {
+                        settingsWidget.classList.remove('cfl-settings--hidden');
+                        localStorage.removeItem('cflSettingsHidden');
+                    }
+                    // Toggle the orbit menu
+                    if (settingsWidget.classList.contains('cfl-settings--open')) {
+                        settingsWidget.classList.remove('cfl-settings--open');
+                    } else {
+                        settingsWidget.classList.add('cfl-settings--open');
+                    }
+                }
+                fabBar.classList.remove('cfl-fab-bar--open');
+                CFL.sounds.pop();
+            });
+
+            // Sound toggle
+            soundItem.addEventListener('click', function(e) {
+                e.stopPropagation();
                 var newState = !CFL.sounds.isEnabled();
                 CFL.sounds.setEnabled(newState);
-                soundBtn.innerHTML = newState ? '🔊' : '🔇';
-                soundBtn.setAttribute('data-enabled', newState);
+                soundItem.innerHTML = (newState ? '🔊' : '🔇') + '<span class="cfl-fab-bar__label">Sound</span>';
+                soundItem.setAttribute('data-enabled', newState);
                 if (newState) {
                     CFL.sounds.success();
                     CFL.achievements.unlock('sound-on');
                 }
             });
 
-            // Create achievement panel
+            // Create achievement panel (hidden by default)
             var panel = document.createElement('div');
             panel.className = 'cfl-achievements-panel';
             panel.innerHTML = '<div class="cfl-achievements-header"><span>🏆 Achievements</span><button class="close-panel">✕</button></div><div class="cfl-achievements-list"></div><div class="cfl-achievements-stats"></div>';
@@ -583,21 +737,55 @@
                 stats.innerHTML = '<span>Unlocked: ' + unlocked.length + '/' + Object.keys(all).length + '</span><span>Clicks: ' + achStats.clicks + '</span>';
             }
 
-            achBtn.addEventListener('click', function() {
+            // Achievements button
+            achItem.addEventListener('click', function(e) {
+                e.stopPropagation();
                 panel.classList.toggle('is-open');
                 if (panel.classList.contains('is-open')) {
                     updatePanel();
                     CFL.sounds.pop();
                 }
+                fabBar.classList.remove('cfl-fab-bar--open');
             });
 
             panel.querySelector('.close-panel').addEventListener('click', function() {
                 panel.classList.remove('is-open');
             });
+
+            // Check for new achievements to show notification dot
+            function checkNewAchievements() {
+                var unlocked = CFL.achievements.getUnlocked();
+                if (unlocked.length > 0) {
+                    achItem.setAttribute('data-new', 'true');
+                }
+            }
+            checkNewAchievements();
         })();
 
         // =====================================================================
         // EASTER EGG HUNT
+        // =====================================================================
+        //
+        // PURPOSE: Hides collectible emoji around the page for users to find
+        //
+        // HOW IT WORKS:
+        //   - 5 eggs with fixed positions (but only 20% chance to spawn each)
+        //   - Found eggs are tracked in localStorage (don't respawn)
+        //   - Clicking an egg triggers sound, achievement, and toast
+        //
+        // EGGS:
+        //   🥚 (5%, 30%)   🐣 (95%, 60%)   🌟 (10%, 85%)
+        //   🍀 (90%, 15%)  🎁 (50%, 95%)
+        //
+        // STYLING:
+        //   - 10% opacity by default (nearly invisible)
+        //   - 100% opacity + grow + rotate on hover
+        //   - Disappears with animation when clicked
+        //
+        // STORAGE:
+        //   localStorage.cflFoundEggs - JSON array of found indices [0,2,4]
+        //
+        // SEE: docs/EASTER-EGGS.md for full documentation
         // =====================================================================
         (function createEasterEggs() {
             var eggs = [
@@ -1139,7 +1327,10 @@
 
             function positionOrbitButtons() {
                 if (!orbitButtons.length) return;
-                var radius = 110;
+                // Read CSS variable for orbit radius, fallback to 90
+                var computedStyle = getComputedStyle(settings);
+                var cssRadius = parseInt(computedStyle.getPropertyValue('--orbit-radius')) || 90;
+                var radius = cssRadius;
                 // Quarter circle from bottom-right: -90° (up) to -180° (left)
                 var startDeg = -90;
                 var endDeg = -180;
@@ -1155,6 +1346,8 @@
             }
 
             positionOrbitButtons();
+            // Reposition on resize to handle responsive breakpoint changes
+            window.addEventListener('resize', positionOrbitButtons);
 
             orbitButtons.forEach(function(btn) {
                 btn.addEventListener('click', function(e) {

@@ -2759,49 +2759,194 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
 
 ## Glossary
 
-### Component Terms
+<div class="cfl-glossary" markdown="0">
 
-**Variant** - A style variation of a component (e.g., `primary`, `success`, `danger`, `ghost`). Each component supports different variants for different use cases.
+<h3>🎨 Component Terms</h3>
 
-**Size** - Component size modifier. Common sizes include `sm` (small), `md` (medium, default), `lg` (large), and `xl` (extra large).
+<div class="cfl-glossary__grid">
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Variant</div>
+    <div class="cfl-glossary__def">A style variation of a component (e.g., <code>primary</code>, <code>success</code>, <code>danger</code>, <code>ghost</code>). Each component supports different variants for different use cases.</div>
+    <div class="cfl-glossary__example">
+      {% include components/badge.html text="primary" variant="info" %}
+      {% include components/badge.html text="success" variant="success" %}
+      {% include components/badge.html text="danger" variant="danger" %}
+    </div>
+  </div>
 
-**Include** - Jekyll/Liquid syntax for including reusable component templates. All CFL components use the `{% raw %}{% include components/... %}{% endraw %}` pattern.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Size</div>
+    <div class="cfl-glossary__def">Component size modifier. Common sizes: <code>sm</code> (small), <code>md</code> (medium), <code>lg</code> (large), <code>xl</code> (extra large).</div>
+    <div class="cfl-glossary__example">
+      {% include components/badge.html text="sm" variant="neutral" %}
+      {% include components/badge.html text="md" variant="neutral" %}
+      {% include components/badge.html text="lg" variant="neutral" %}
+    </div>
+  </div>
 
-**Modifier** - CSS class suffix that changes component appearance or behavior (e.g., `--primary`, `--striped`, `--hoverable`). Modifiers follow the BEM naming convention.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Include</div>
+    <div class="cfl-glossary__def">Jekyll/Liquid syntax for including reusable component templates. All CFL components use the <code>{% raw %}{% include components/... %}{% endraw %}</code> pattern.</div>
+  </div>
 
-**Block** - A boolean parameter that makes buttons span full width of their container.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Modifier</div>
+    <div class="cfl-glossary__def">CSS class suffix that changes component appearance or behavior (e.g., <code>--primary</code>, <code>--striped</code>). Follows BEM naming convention.</div>
+  </div>
 
-**Dot** - A small status indicator that appears on badges and avatars to show state (online, offline, away).
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Block</div>
+    <div class="cfl-glossary__def">A boolean parameter that makes buttons span full width of their container.</div>
+  </div>
 
-**Pulse** - An animated pulsing effect applied to badges and status indicators to draw attention.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Dot</div>
+    <div class="cfl-glossary__def">A small status indicator on badges and avatars to show state.</div>
+    <div class="cfl-glossary__example">
+      {% include components/badge.html text="Online" variant="success" dot=true %}
+      {% include components/badge.html text="Away" variant="warning" dot=true %}
+    </div>
+  </div>
 
-**Holographic** - A rainbow gradient animation effect available on buttons, text, borders, and containers using classes like `.cfl-holo`, `.cfl-holo-text`, `.cfl-holo-border`.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Pulse</div>
+    <div class="cfl-glossary__def">An animated pulsing effect applied to badges and status indicators to draw attention.</div>
+    <div class="cfl-glossary__example">
+      {% include components/badge.html text="Live" variant="danger-solid" dot=true pulse=true %}
+    </div>
+  </div>
 
-**Skeleton** - A loading placeholder that mimics the shape of content while data loads.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Holographic</div>
+    <div class="cfl-glossary__def">A rainbow gradient animation effect for buttons, text, borders, and containers.</div>
+    <div class="cfl-glossary__example">
+      <span class="cfl-holo-text" style="font-weight: bold;">Rainbow Text</span>
+    </div>
+  </div>
 
-**Toast** - A temporary notification that appears briefly, typically triggered by user actions.
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Skeleton</div>
+    <div class="cfl-glossary__def">A loading placeholder that mimics the shape of content while data loads.</div>
+    <div class="cfl-glossary__example">
+      <div class="cfl-skeleton cfl-skeleton--text" style="width: 120px; height: 12px;"></div>
+    </div>
+  </div>
 
-### CSS Classes
+  <div class="cfl-glossary__term">
+    <div class="cfl-glossary__title">Toast</div>
+    <div class="cfl-glossary__def">A temporary notification that appears briefly, typically triggered by user actions.</div>
+  </div>
+</div>
 
-**`.cfl-*`** - All CFL component classes are prefixed with `cfl-` to avoid conflicts with other stylesheets.
+<h3>🏷️ CSS Class Prefixes</h3>
 
-**`.showcase-*`** - Utility classes specific to this showcase page for layout and demonstration purposes.
+<div class="cfl-table-wrapper">
+<table class="cfl-table cfl-table--compact">
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Purpose</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.cfl-*</code></td>
+      <td>All CFL component classes</td>
+      <td><code>.cfl-btn</code>, <code>.cfl-card</code></td>
+    </tr>
+    <tr>
+      <td><code>.cfl-btn--*</code></td>
+      <td>Button modifiers</td>
+      <td><code>.cfl-btn--primary</code>, <code>.cfl-btn--rainbow</code></td>
+    </tr>
+    <tr>
+      <td><code>.cfl-table--*</code></td>
+      <td>Table modifiers</td>
+      <td><code>.cfl-table--striped</code>, <code>.cfl-table--hoverable</code></td>
+    </tr>
+    <tr>
+      <td><code>.cfl-holo*</code></td>
+      <td>Holographic effects</td>
+      <td><code>.cfl-holo</code>, <code>.cfl-holo-text</code></td>
+    </tr>
+    <tr>
+      <td><code>.showcase-*</code></td>
+      <td>Showcase page utilities</td>
+      <td><code>.showcase-row</code>, <code>.showcase-cards</code></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-**`.cfl-btn--*`** - Button modifier classes (e.g., `--primary`, `--rainbow`, `--bouncy`).
+<h3>⚙️ Common Parameters</h3>
 
-**`.cfl-table--*`** - Table modifier classes (e.g., `--striped`, `--hoverable`, `--compact`).
+<div class="cfl-table-wrapper">
+<table class="cfl-table cfl-table--striped cfl-table--hoverable">
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>text</code></td>
+      <td>string</td>
+      <td>Text content displayed in the component</td>
+    </tr>
+    <tr>
+      <td><code>href</code></td>
+      <td>string</td>
+      <td>URL for links and buttons</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td>string</td>
+      <td>Style variant name (primary, success, danger, etc.)</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td>string</td>
+      <td>Size modifier (sm, md, lg, xl)</td>
+    </tr>
+    <tr>
+      <td><code>icon</code> / <code>icon_right</code></td>
+      <td>string</td>
+      <td>Emoji or icon to display</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>string</td>
+      <td>Descriptive text label</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td>string/number</td>
+      <td>Numeric or string value</td>
+    </tr>
+    <tr>
+      <td><code>checked</code></td>
+      <td>boolean</td>
+      <td>Default state for toggles and checkboxes</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td>boolean</td>
+      <td>Disable user interaction</td>
+    </tr>
+    <tr>
+      <td><code>title</code> / <code>body</code></td>
+      <td>string</td>
+      <td>Content for alerts and callouts</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-### Common Parameters
+</div>
 
-- **`text`** - Text content displayed in the component
-- **`href`** - URL for links and buttons
-- **`variant`** - Style variant name
-- **`size`** - Size modifier
-- **`icon`** / **`icon_right`** - Emoji or icon to display
-- **`label`** - Descriptive text label
-- **`value`** - Numeric or string value
-- **`checked`** - Boolean for toggles and checkboxes
-- **`disabled`** - Boolean to disable interaction
-- **`title`** / **`body`** - Content for alerts and callouts
-
-See the [Components Documentation](/wiki/components) for full API reference.
+<div style="text-align: center; margin-top: 2rem;">
+  {% include components/button.html text="📚 Full API Reference" variant="primary" href="/wiki/components" %}
+</div>
