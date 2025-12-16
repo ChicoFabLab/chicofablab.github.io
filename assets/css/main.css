@@ -574,26 +574,26 @@ footer p {
 /* =====================================================================
    CFL COMPONENT LIBRARY STYLES
    =====================================================================
-   
+
    These styles support the reusable Jekyll components in _includes/components/
-   
+
    Components:
    - .cfl-btn      → Button/link component (button.html)
    - .cfl-alert    → Alert/notice box (alert.html)
    - .cfl-badge    → Status badge (badge.html)
    - .cfl-callout  → Callout/highlight box (callout.html)
-   
+
    Naming Convention: BEM-style with "cfl-" namespace
    - Block:    .cfl-component
    - Element:  .cfl-component__element
    - Modifier: .cfl-component--modifier
-   
+
    Color Variants: Uses CSS variables defined in :root
    - info (blue), success (green), warning (yellow), danger (red)
-   
+
    Usage: {% include components/button.html text="Click" variant="primary" %}
    Docs:  See _includes/components/index.md for full documentation
-   
+
    ===================================================================== */
 
 /* ----- BUTTON COMPONENT -----
@@ -925,4 +925,586 @@ footer p {
 
 .cfl-callout--danger .cfl-callout__title {
     color: #991b1b;
+}
+
+/* ----- ENHANCED CALLOUT WITH ICON -----
+   Optional icon placement for callouts
+*/
+.cfl-callout:has(.cfl-callout__icon) {
+    display: flex;
+    gap: 1rem;
+}
+
+.cfl-callout__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.cfl-callout__content {
+    flex: 1;
+}
+
+/* ----- PROGRESS BAR COMPONENT -----
+   Visual progress indicator with animations
+   Variants: primary, info, success, warning, danger
+   Sizes: sm, md, lg
+   Modifiers: --striped, --animated
+*/
+.cfl-progress {
+    margin: 1rem 0;
+}
+
+.cfl-progress__label {
+    display: flex;
+    justify-content: space-between;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.cfl-progress__value {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.cfl-progress__track {
+    background: var(--bg-alt);
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.cfl-progress--sm .cfl-progress__track { height: 6px; }
+.cfl-progress--md .cfl-progress__track { height: 10px; }
+.cfl-progress--lg .cfl-progress__track { height: 16px; }
+
+.cfl-progress__bar {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cfl-progress__bar--primary { background: var(--accent); }
+.cfl-progress__bar--info { background: var(--info); }
+.cfl-progress__bar--success { background: var(--success); }
+.cfl-progress__bar--warning { background: var(--warning); }
+.cfl-progress__bar--danger { background: var(--danger); }
+
+/* Striped progress bar */
+.cfl-progress__bar--striped {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255,255,255,0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,0.15) 50%,
+        rgba(255,255,255,0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+/* Animated striped bar */
+.cfl-progress__bar--animated {
+    animation: progress-stripes 1s linear infinite;
+}
+
+@keyframes progress-stripes {
+    from { background-position: 1rem 0; }
+    to { background-position: 0 0; }
+}
+
+/* ----- STAT COMPONENT -----
+   Display key metrics with optional trends
+*/
+.cfl-stat {
+    text-align: center;
+    padding: 1rem;
+}
+
+.cfl-stat__value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+.cfl-stat__prefix,
+.cfl-stat__suffix {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.cfl-stat__label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+}
+
+.cfl-stat__trend {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.cfl-stat__trend--up {
+    color: #166534;
+    background: var(--success-bg);
+}
+
+.cfl-stat__trend--down {
+    color: #991b1b;
+    background: var(--danger-bg);
+}
+
+/* ----- AVATAR COMPONENT -----
+   User/entity representation
+   Sizes: sm, md, lg, xl
+   Status: online, away, busy, offline
+*/
+.cfl-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    color: white;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.cfl-avatar--sm { width: 32px; height: 32px; font-size: 0.75rem; }
+.cfl-avatar--md { width: 44px; height: 44px; font-size: 0.9rem; }
+.cfl-avatar--lg { width: 56px; height: 56px; font-size: 1.1rem; }
+.cfl-avatar--xl { width: 72px; height: 72px; font-size: 1.4rem; }
+
+.cfl-avatar__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cfl-avatar__initials {
+    text-transform: uppercase;
+}
+
+.cfl-avatar__placeholder {
+    font-size: 1.2em;
+}
+
+.cfl-avatar--ring {
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent);
+}
+
+.cfl-avatar__status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--surface);
+}
+
+.cfl-avatar--sm .cfl-avatar__status { width: 8px; height: 8px; bottom: 0; right: 0; }
+.cfl-avatar--lg .cfl-avatar__status { width: 14px; height: 14px; }
+.cfl-avatar--xl .cfl-avatar__status { width: 16px; height: 16px; bottom: 4px; right: 4px; }
+
+.cfl-avatar__status--online { background: var(--success); }
+.cfl-avatar__status--away { background: var(--warning); }
+.cfl-avatar__status--busy { background: var(--danger); }
+.cfl-avatar__status--offline { background: var(--text-muted); }
+
+/* ----- ENHANCED CARD COMPONENT -----
+   Clickable cards with hover effects
+*/
+.cfl-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.cfl-card--clickable {
+    cursor: pointer;
+}
+
+.cfl-card--clickable:hover {
+    border-color: var(--border-dark);
+    box-shadow: 0 8px 24px var(--shadow), 0 4px 8px var(--shadow);
+    transform: translateY(-2px);
+}
+
+.cfl-card__image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg-alt);
+}
+
+.cfl-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    transition: transform 0.3s ease;
+}
+
+.cfl-card--clickable:hover .cfl-card__image img {
+    transform: scale(1.05);
+}
+
+.cfl-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.cfl-card__body {
+    padding: 1.25rem;
+    flex: 1;
+}
+
+.cfl-card__title {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.5rem 0;
+    transition: color 0.15s;
+}
+
+.cfl-card--clickable:hover .cfl-card__title {
+    color: var(--accent);
+}
+
+.cfl-card__text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.cfl-card__arrow {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    font-size: 1.25rem;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.2s ease;
+}
+
+.cfl-card--clickable:hover .cfl-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ----- BADGE ENHANCEMENTS -----
+   Dot indicator and pulse animation
+*/
+.cfl-badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 0.4rem;
+    flex-shrink: 0;
+}
+
+.cfl-badge--pulse .cfl-badge__dot,
+.cfl-badge--pulse::before {
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.cfl-badge--pulse {
+    position: relative;
+}
+
+@keyframes badge-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ----- ALERT ENHANCEMENTS -----
+   Icon support and dismissible alerts
+*/
+.cfl-alert:has(.cfl-alert__icon) {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.cfl-alert__icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.cfl-alert__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.cfl-alert--dismissible {
+    padding-right: 3rem;
+    position: relative;
+}
+
+.cfl-alert__dismiss {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: inherit;
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: opacity 0.15s;
+}
+
+.cfl-alert__dismiss:hover {
+    opacity: 1;
+}
+
+/* ----- BUTTON ICON SUPPORT ----- */
+.cfl-btn__icon {
+    display: inline-flex;
+    font-size: 1em;
+}
+
+.cfl-btn__icon--right {
+    margin-left: 0.25rem;
+}
+
+/* =====================================================================
+   SHOWCASE PAGE STYLES
+   ===================================================================== */
+
+.showcase-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.showcase-row--align-center {
+    align-items: center;
+}
+
+.showcase-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.showcase-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+.showcase-dark-preview {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    color: #f0f0f0;
+}
+
+.showcase-dark-preview h3 {
+    color: #f0f0f0;
+    margin-bottom: 0.5rem;
+}
+
+.showcase-dark-preview p {
+    color: #a0a0b0;
+    margin-bottom: 1rem;
+}
+
+.showcase-dark-preview .cfl-btn--ghost {
+    color: #f0f0f0;
+}
+
+.showcase-dark-preview .cfl-btn--ghost:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.showcase-dark-preview .cfl-badge--neutral {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+    color: #f0f0f0;
+}
+
+/* =====================================================================
+   MICRO-INTERACTIONS & ANIMATIONS
+   ===================================================================== */
+
+/* Smooth focus transitions */
+*:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    transition: outline-offset 0.15s ease;
+}
+
+/* Button hover lift */
+.cfl-btn {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cfl-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.cfl-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Alert entrance animation */
+.cfl-alert {
+    animation: alert-enter 0.3s ease-out;
+}
+
+@keyframes alert-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Callout subtle hover */
+.cfl-callout {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cfl-callout:hover {
+    box-shadow: 0 4px 16px var(--shadow);
+    border-color: var(--border-dark);
+}
+
+/* Badge hover scale */
+.cfl-badge {
+    transition: transform 0.15s ease;
+}
+
+.cfl-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Stat number animation trigger (for JS) */
+.cfl-stat__number {
+    transition: color 0.3s ease;
+}
+
+.cfl-stat:hover .cfl-stat__number {
+    color: var(--accent);
+}
+
+/* Avatar ring pulse on hover */
+.cfl-avatar--ring {
+    transition: box-shadow 0.2s ease;
+}
+
+.cfl-avatar--ring:hover {
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 6px var(--accent), 0 0 20px rgba(196, 93, 53, 0.3);
+}
+
+/* Progress bar glow */
+.cfl-progress__bar {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.cfl-progress:hover .cfl-progress__bar {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 8px currentColor;
+}
+
+/* Smooth scrolling anchor highlights */
+:target {
+    animation: target-highlight 1s ease;
+}
+
+@keyframes target-highlight {
+    0% { background-color: var(--warning-bg); }
+    100% { background-color: transparent; }
+}
+
+/* Loading shimmer effect (utility class) */
+.cfl-shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--bg-alt) 25%,
+        var(--surface) 50%,
+        var(--bg-alt) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Fade in on scroll (utility class for JS) */
+.cfl-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cfl-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tooltip-like hover card preview */
+.cfl-card--clickable::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    box-shadow: 0 0 0 0 var(--accent);
+    transition: box-shadow 0.3s ease;
+    pointer-events: none;
+}
+
+.cfl-card--clickable:focus-visible::after {
+    box-shadow: 0 0 0 3px var(--accent);
 }

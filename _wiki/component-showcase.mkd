@@ -1,0 +1,213 @@
+---
+title: Component Showcase
+layout: default
+order: 99
+---
+
+# 🎨 Component Showcase
+
+A living gallery of all CFL UI components. Copy and paste into your wiki pages!
+
+---
+
+## Buttons
+
+### Variants
+
+<div class="showcase-row">
+{% include components/button.html text="Primary" variant="primary" href="#" %}
+{% include components/button.html text="Secondary" variant="secondary" href="#" %}
+{% include components/button.html text="Ghost" variant="ghost" href="#" %}
+{% include components/button.html text="Danger" variant="danger" href="#" %}
+{% include components/button.html text="Success" variant="success" href="#" %}
+</div>
+
+### Sizes
+
+<div class="showcase-row showcase-row--align-center">
+{% include components/button.html text="Small" variant="primary" size="sm" href="#" %}
+{% include components/button.html text="Medium" variant="primary" size="md" href="#" %}
+{% include components/button.html text="Large" variant="primary" size="lg" href="#" %}
+</div>
+
+### With Icons
+
+<div class="showcase-row">
+{% include components/button.html text="Download" variant="primary" icon="⬇️" href="#" %}
+{% include components/button.html text="Next" variant="secondary" icon_right="→" href="#" %}
+{% include components/button.html text="Settings" variant="ghost" icon="⚙️" href="#" %}
+</div>
+
+### Block Button
+
+{% include components/button.html text="Full Width Button" variant="primary" block=true href="#" %}
+
+---
+
+## Alerts
+
+{% include components/alert.html variant="info" title="Information" body="This is a helpful info message with **markdown** support." icon="ℹ️" %}
+
+{% include components/alert.html variant="success" title="Success!" body="Your changes have been saved successfully." icon="✅" %}
+
+{% include components/alert.html variant="warning" title="Warning" body="This action cannot be undone. Please proceed with caution." icon="⚠️" %}
+
+{% include components/alert.html variant="danger" title="Error" body="Something went wrong. Please try again or contact support." icon="❌" %}
+
+---
+
+## Badges
+
+### Standard Variants
+
+<div class="showcase-row">
+{% include components/badge.html text="Default" variant="neutral" %}
+{% include components/badge.html text="Info" variant="info" %}
+{% include components/badge.html text="Success" variant="success" %}
+{% include components/badge.html text="Warning" variant="warning" %}
+{% include components/badge.html text="Danger" variant="danger" %}
+</div>
+
+### Solid Variants
+
+<div class="showcase-row">
+{% include components/badge.html text="Info" variant="info-solid" %}
+{% include components/badge.html text="Success" variant="success-solid" %}
+{% include components/badge.html text="Warning" variant="warning-solid" %}
+{% include components/badge.html text="Danger" variant="danger-solid" %}
+</div>
+
+### With Status Dot
+
+<div class="showcase-row">
+{% include components/badge.html text="Online" variant="success" dot=true %}
+{% include components/badge.html text="Away" variant="warning" dot=true %}
+{% include components/badge.html text="Offline" variant="neutral" dot=true %}
+</div>
+
+### Animated Pulse
+
+<div class="showcase-row">
+{% include components/badge.html text="Live" variant="danger-solid" dot=true pulse=true %}
+{% include components/badge.html text="Recording" variant="danger" pulse=true %}
+</div>
+
+---
+
+## Callouts
+
+{% include components/callout.html variant="note" title="📘 Note" body="Use callouts to highlight important information that readers shouldn't miss." %}
+
+{% include components/callout.html variant="tip" title="💡 Pro Tip" body="You can include **markdown** formatting and even [links](/wiki/getting-started) in callout bodies!" cta_url="/wiki/getting-started" cta_label="Get Started" %}
+
+{% include components/callout.html variant="warning" title="⚠️ Caution" body="This machine requires safety training before use. See the lab manager for certification." %}
+
+{% include components/callout.html variant="danger" title="🚨 Danger Zone" body="High voltage equipment. Authorized personnel only." %}
+
+---
+
+## Progress Bars
+
+{% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" %}
+
+{% include components/progress.html value=60 label="In Progress" show_value=true variant="warning" striped=true %}
+
+{% include components/progress.html value=100 label="Complete!" show_value=true variant="success" %}
+
+{% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true %}
+
+---
+
+## Stats
+
+<div class="showcase-stats">
+{% include components/stat.html value="1,247" label="Members" trend="+12%" trend_up=true %}
+{% include components/stat.html value="42" label="Active Projects" trend="+5" trend_up=true %}
+{% include components/stat.html value="98" label="Uptime" suffix="%" %}
+{% include components/stat.html value="24" label="Hours Open" suffix="/7" %}
+</div>
+
+---
+
+## Avatars
+
+<div class="showcase-row showcase-row--align-center">
+{% include components/avatar.html initials="JD" size="sm" %}
+{% include components/avatar.html initials="AB" size="md" status="online" %}
+{% include components/avatar.html initials="XY" size="lg" status="away" ring=true %}
+{% include components/avatar.html size="xl" status="offline" %}
+</div>
+
+---
+
+## Cards
+
+<div class="showcase-cards">
+{% include components/card.html title="3D Printing" body="Learn to use our Prusa and Creality printers for rapid prototyping." href="/wiki/getting-started" badge="Popular" badge_variant="success" %}
+{% include components/card.html title="Laser Cutting" body="Precision cutting and engraving on wood, acrylic, and more." href="/wiki/getting-started" badge="New" badge_variant="info" %}
+{% include components/card.html title="CNC Milling" body="Computer-controlled machining for complex parts." href="/wiki/getting-started" %}
+</div>
+
+---
+
+## Combining Components
+
+### Alert with Button
+
+{% include components/alert.html variant="info" title="New Feature Available" body="We've added laser cutter scheduling! Book your time slot now." %}
+
+<div style="margin-top: -0.5rem; margin-bottom: 1.5rem;">
+{% include components/button.html text="Book Now" variant="primary" icon="📅" href="#" %}
+{% include components/button.html text="Learn More" variant="ghost" href="#" %}
+</div>
+
+### Status Card
+
+<div class="cfl-callout cfl-callout--note" style="display: flex; align-items: center; gap: 1rem;">
+  <div>
+    {% include components/avatar.html initials="CFL" size="lg" status="online" ring=true %}
+  </div>
+  <div style="flex: 1;">
+    <strong>Chico Fab Lab</strong><br>
+    <span style="color: var(--text-muted);">Open now · Closes at 9 PM</span>
+  </div>
+  <div>
+    {% include components/badge.html text="Open" variant="success-solid" dot=true pulse=true %}
+  </div>
+</div>
+
+---
+
+## Dark Mode Preview
+
+<div class="showcase-dark-preview">
+  <div class="showcase-dark-content">
+    <h3>🌙 Dark Mode</h3>
+    <p>Components adapt beautifully to dark backgrounds.</p>
+    <div class="showcase-row">
+      {% include components/button.html text="Primary" variant="primary" href="#" %}
+      {% include components/button.html text="Ghost" variant="ghost" href="#" %}
+    </div>
+    <div class="showcase-row" style="margin-top: 1rem;">
+      {% include components/badge.html text="Dark" variant="neutral" %}
+      {% include components/badge.html text="Mode" variant="info" %}
+      {% include components/badge.html text="Ready" variant="success" %}
+    </div>
+  </div>
+</div>
+
+---
+
+## Usage
+
+Include any component in your markdown files:
+
+```liquid
+{% raw %}{% include components/button.html text="Click Me" variant="primary" href="/page" %}{% endraw %}
+
+{% raw %}{% include components/alert.html variant="warning" title="Heads Up" body="Important message here." %}{% endraw %}
+
+{% raw %}{% include components/badge.html text="New" variant="success" %}{% endraw %}
+```
+
+See the [Components Documentation](/wiki/components) for full API reference.

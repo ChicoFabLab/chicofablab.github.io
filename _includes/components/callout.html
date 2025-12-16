@@ -1,0 +1,19 @@
+{% assign variant = include.variant | default: 'note' %}
+{% assign title = include.title %}
+{% assign body = include.content | default: include.body %}
+{% assign icon = include.icon %}
+{% assign cta_label = include.cta_label | default: 'Learn more' %}
+{% assign cta_variant = include.cta_variant | default: 'primary' %}
+{% assign cta_url = include.cta_url | default: include.href | default: include.url %}
+<div class="cfl-callout cfl-callout--{{ variant }}">
+  {% if icon %}<div class="cfl-callout__icon">{{ icon }}</div>{% endif %}
+  <div class="cfl-callout__content">
+    {% if title %}<div class="cfl-callout__title">{{ title | escape }}</div>{% endif %}
+    {% if body %}<div class="cfl-callout__body">{{ body | markdownify }}</div>{% endif %}
+  </div>
+  {% if cta_url %}
+  <div class="cfl-callout__cta">
+    <a class="cfl-btn cfl-btn--{{ cta_variant }} cfl-btn--md" href="{{ cta_url }}">{{ cta_label | escape }} →</a>
+  </div>
+  {% endif %}
+</div>

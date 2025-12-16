@@ -1,0 +1,14 @@
+{% assign value = include.value | default: 0 %}
+{% assign max = include.max | default: 100 %}
+{% assign label = include.label %}
+{% assign variant = include.variant | default: 'primary' %}
+{% assign size = include.size | default: 'md' %}
+{% assign show_value = include.show_value | default: false %}
+{% assign animated = include.animated | default: false %}
+{% assign striped = include.striped | default: false %}
+<div class="cfl-progress cfl-progress--{{ size }}">
+  {% if label %}<div class="cfl-progress__label">{{ label | escape }}{% if show_value %} <span class="cfl-progress__value">{{ value }}%</span>{% endif %}</div>{% endif %}
+  <div class="cfl-progress__track">
+    <div class="cfl-progress__bar cfl-progress__bar--{{ variant }}{% if animated %} cfl-progress__bar--animated{% endif %}{% if striped %} cfl-progress__bar--striped{% endif %}" style="width: {{ value | times: 100.0 | divided_by: max }}%"></div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+{% assign variant = include.variant | default: 'neutral' %}
+{% assign label = include.label | default: include.text | default: 'Badge' %}
+{% assign size = include.size | default: 'md' %}
+{% assign dot = include.dot | default: false %}
+{% assign pulse = include.pulse | default: false %}
+<span class="cfl-badge cfl-badge--{{ variant }} cfl-badge--{{ size }}{% if pulse %} cfl-badge--pulse{% endif %}">{% if dot %}<span class="cfl-badge__dot"></span>{% endif %}{{ label | escape }}</span>

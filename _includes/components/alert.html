@@ -1,0 +1,13 @@
+{% assign variant = include.variant | default: 'info' %}
+{% assign title = include.title %}
+{% assign body = include.content | default: include.body %}
+{% assign icon = include.icon %}
+{% assign dismissible = include.dismissible | default: false %}
+<div class="cfl-alert cfl-alert--{{ variant }}{% if dismissible %} cfl-alert--dismissible{% endif %}">
+  {% if icon %}<div class="cfl-alert__icon">{{ icon }}</div>{% endif %}
+  <div class="cfl-alert__content">
+    {% if title %}<div class="cfl-alert__title">{{ title | escape }}</div>{% endif %}
+    {% if body %}<div class="cfl-alert__body">{{ body | markdownify }}</div>{% endif %}
+  </div>
+  {% if dismissible %}<button class="cfl-alert__dismiss" aria-label="Dismiss">&times;</button>{% endif %}
+</div>

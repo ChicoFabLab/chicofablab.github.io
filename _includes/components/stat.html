@@ -1,0 +1,19 @@
+{% assign value = include.value | default: '0' %}
+{% assign label = include.label | default: 'Stat' %}
+{% assign prefix = include.prefix %}
+{% assign suffix = include.suffix %}
+{% assign trend = include.trend %}
+{% assign trend_up = include.trend_up | default: true %}
+<div class="cfl-stat">
+  <div class="cfl-stat__value">
+    {% if prefix %}<span class="cfl-stat__prefix">{{ prefix }}</span>{% endif %}
+    <span class="cfl-stat__number" data-value="{{ value }}">{{ value }}</span>
+    {% if suffix %}<span class="cfl-stat__suffix">{{ suffix }}</span>{% endif %}
+  </div>
+  <div class="cfl-stat__label">{{ label | escape }}</div>
+  {% if trend %}
+  <div class="cfl-stat__trend cfl-stat__trend--{% if trend_up %}up{% else %}down{% endif %}">
+    {% if trend_up %}↑{% else %}↓{% endif %} {{ trend }}
+  </div>
+  {% endif %}
+</div>
