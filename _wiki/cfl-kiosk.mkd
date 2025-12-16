@@ -1,5 +1,6 @@
 ---
 title: CFL Kiosk 
+order: 3
 ---
 
 # CFL has a **Kiosk** display to update members and visitors about the status and projects in the space.
@@ -32,6 +33,5 @@ Specs#
 ## TODOS
 1. TODO need to double check ssh credentials 
 2. TODO Still need to figure that one out, the vnc client can connect to the machine (needed to point the vnc client to the IP because MDNS isn't working reliably for me), and updating the URL to show a rotating set of pages with timeouts is an exercise left to the reader
-
 
 
