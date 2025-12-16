@@ -380,22 +380,22 @@
         // =====================================================================
         CFL.achievements = (function() {
             var achievements = {
-                'first-click': { name: 'First Click', desc: 'Click your first button', icon: '🖱️', sound: 'coin' },
-                'button-10': { name: 'Button Masher', desc: 'Click 10 buttons', icon: '🔘', sound: 'success' },
-                'button-50': { name: 'Click Champion', desc: 'Click 50 buttons', icon: '🏆', sound: 'powerup' },
-                'button-100': { name: 'Button Legend', desc: 'Click 100 buttons', icon: '👑', sound: 'magic' },
-                'rainbow': { name: 'Taste the Rainbow', desc: 'Click a rainbow button', icon: '🌈', sound: 'magic' },
-                'void-gazer': { name: 'Void Gazer', desc: 'Visit The Void', icon: '👁️', sound: 'eldritch' },
-                'corrupted': { name: 'Corrupted Soul', desc: 'Reach 100% void corruption', icon: '🌀', sound: 'eldritch' },
-                'cleansed': { name: 'Purified', desc: 'Cleanse the void corruption', icon: '✨', sound: 'magic' },
-                'explorer': { name: 'Explorer', desc: 'Visit 5 different pages', icon: '🧭', sound: 'whoosh' },
-                'night-owl': { name: 'Night Owl', desc: 'Browse after midnight', icon: '🦉', sound: 'pop' },
-                'early-bird': { name: 'Early Bird', desc: 'Browse before 6am', icon: '🐦', sound: 'ding' },
-                'sound-on': { name: 'Audiophile', desc: 'Enable sound effects', icon: '🔊', sound: 'powerup' },
-                'easter-egg': { name: 'Egg Hunter', desc: 'Find a hidden easter egg', icon: '🥚', sound: 'coin' },
-                'all-buttons': { name: 'Completionist', desc: 'Click every fun button type', icon: '⭐', sound: 'powerup' },
-                'speed-demon': { name: 'Speed Demon', desc: 'Click 5 buttons in 2 seconds', icon: '⚡', sound: 'zap' },
-                'konami': { name: 'Old School', desc: 'Enter the Konami code', icon: '🎮', sound: 'powerup' }
+                'first-click': { name: 'First Click', desc: 'Click your first button', icon: '🖱️', sound: 'coin', category: 'progression', progress: { current: 0, target: 1 } },
+                'button-10': { name: 'Button Masher', desc: 'Click 10 buttons', icon: '🔘', sound: 'success', category: 'progression', progress: { current: 0, target: 10 } },
+                'button-50': { name: 'Click Champion', desc: 'Click 50 buttons', icon: '🏆', sound: 'powerup', category: 'progression', progress: { current: 0, target: 50 } },
+                'button-100': { name: 'Button Legend', desc: 'Click 100 buttons', icon: '👑', sound: 'magic', category: 'progression', progress: { current: 0, target: 100 } },
+                'rainbow': { name: 'Taste the Rainbow', desc: 'Click a rainbow button', icon: '🌈', sound: 'magic', category: 'special' },
+                'void-gazer': { name: 'Void Gazer', desc: 'Visit The Void', icon: '👁️', sound: 'eldritch', category: 'special' },
+                'corrupted': { name: 'Corrupted Soul', desc: 'Reach 100% void corruption', icon: '🌀', sound: 'eldritch', category: 'special' },
+                'cleansed': { name: 'Purified', desc: 'Cleanse the void corruption', icon: '✨', sound: 'magic', category: 'special' },
+                'explorer': { name: 'Explorer', desc: 'Visit 5 different pages', icon: '🧭', sound: 'whoosh', category: 'progression', progress: { current: 0, target: 5 } },
+                'night-owl': { name: 'Night Owl', desc: 'Browse after midnight', icon: '🦉', sound: 'pop', category: 'time' },
+                'early-bird': { name: 'Early Bird', desc: 'Browse before 6am', icon: '🐦', sound: 'ding', category: 'time' },
+                'sound-on': { name: 'Audiophile', desc: 'Enable sound effects', icon: '🔊', sound: 'powerup', category: 'special' },
+                'easter-egg': { name: 'Egg Hunter', desc: 'Find a hidden easter egg', icon: '🥚', sound: 'coin', category: 'secret' },
+                'all-buttons': { name: 'Completionist', desc: 'Click every fun button type', icon: '⭐', sound: 'powerup', category: 'special', progress: { current: 0, target: 15 } },
+                'speed-demon': { name: 'Speed Demon', desc: 'Click 5 buttons in 2 seconds', icon: '⚡', sound: 'zap', category: 'secret' },
+                'konami': { name: 'Old School', desc: 'Enter the Konami code', icon: '🎮', sound: 'powerup', category: 'secret' }
             };
 
             var unlocked = JSON.parse(localStorage.getItem('cflAchievements') || '{}');
@@ -438,6 +438,14 @@
                 recentClicks.push(Date.now());
                 recentClicks = recentClicks.filter(function(t) { return Date.now() - t < 2000; });
 
+                // Update progress for progression achievements
+                if (achievements['first-click']) achievements['first-click'].progress.current = Math.min(stats.clicks, 1);
+                if (achievements['button-10']) achievements['button-10'].progress.current = Math.min(stats.clicks, 10);
+                if (achievements['button-50']) achievements['button-50'].progress.current = Math.min(stats.clicks, 50);
+                if (achievements['button-100']) achievements['button-100'].progress.current = Math.min(stats.clicks, 100);
+                if (achievements['explorer']) achievements['explorer'].progress.current = Math.min(stats.pages.length, 5);
+                if (achievements['all-buttons']) achievements['all-buttons'].progress.current = Math.min(stats.buttonTypes.length, 15);
+
                 if (stats.clicks === 1) unlock('first-click');
                 if (stats.clicks >= 10) unlock('button-10');
                 if (stats.clicks >= 50) unlock('button-50');
@@ -477,11 +485,23 @@
                 trackPage: trackPage,
                 isUnlocked: function(id) { return !!unlocked[id]; },
                 getUnlocked: function() { return Object.keys(unlocked); },
+                getUnlockedData: function() { return unlocked; },
                 getStats: function() { return stats; },
                 getAll: function() { return achievements; },
+                getByCategory: function(category) {
+                    return Object.keys(achievements).filter(function(id) {
+                        return achievements[id].category === category;
+                    });
+                },
                 reset: function() {
                     unlocked = {};
                     stats = { clicks: 0, pages: [], buttonTypes: [] };
+                    // Reset progress
+                    Object.keys(achievements).forEach(function(id) {
+                        if (achievements[id].progress) {
+                            achievements[id].progress.current = 0;
+                        }
+                    });
                     save();
                 }
             };
@@ -688,26 +708,71 @@
                 }
             });
 
-            // Settings button - trigger existing settings widget
+            // =================================================================
+            // SETTINGS MENU (replaces orbit)
+            // =================================================================
+
+            // Create the settings menu once
+            var settingsMenu = document.createElement('div');
+            settingsMenu.className = 'cfl-settings-menu';
+            settingsMenu.id = 'cfl-settings-menu';
+            settingsMenu.innerHTML = [
+                '<div class="cfl-settings-menu__header">',
+                '  <span>⚙️</span> Settings',
+                '</div>',
+                '<ul class="cfl-settings-menu__list">',
+                '  <li><button class="cfl-settings-menu__item" data-panel="fonts">',
+                '    <span class="cfl-settings-menu__icon">Aa</span>',
+                '    <span class="cfl-settings-menu__label">Fonts</span>',
+                '  </button></li>',
+                '  <li><button class="cfl-settings-menu__item" data-panel="colors">',
+                '    <span class="cfl-settings-menu__icon">🎨</span>',
+                '    <span class="cfl-settings-menu__label">Colors</span>',
+                '  </button></li>',
+                '  <li class="cfl-settings-menu__divider"></li>',
+                '  <li><button class="cfl-settings-menu__item" data-action="quick-font" data-font="fraunces">',
+                '    <span class="cfl-settings-menu__icon">🫧</span>',
+                '    <span class="cfl-settings-menu__label">Soft Serif</span>',
+                '  </button></li>',
+                '  <li><button class="cfl-settings-menu__item" data-action="quick-font" data-font="bricolage">',
+                '    <span class="cfl-settings-menu__icon">✨</span>',
+                '    <span class="cfl-settings-menu__label">Playful Sans</span>',
+                '  </button></li>',
+                '  <li class="cfl-settings-menu__divider"></li>',
+                '  <li><button class="cfl-settings-menu__item" data-panel="scope">',
+                '    <span class="cfl-settings-menu__icon">🌐</span>',
+                '    <span class="cfl-settings-menu__label">Scope</span>',
+                '  </button></li>',
+                '  <li><button class="cfl-settings-menu__item" data-panel="reset">',
+                '    <span class="cfl-settings-menu__icon">↺</span>',
+                '    <span class="cfl-settings-menu__label">Reset</span>',
+                '  </button></li>',
+                '</ul>'
+            ].join('');
+            document.body.appendChild(settingsMenu);
+
+            // Settings button - toggle the new settings menu
             settingsItem.addEventListener('click', function(e) {
                 e.stopPropagation();
-                var settingsWidget = document.getElementById('cfl-settings');
-                var navSettingsBtn = document.getElementById('cfl-nav-settings-btn');
-                if (settingsWidget) {
-                    // Show settings if hidden
-                    if (settingsWidget.classList.contains('cfl-settings--hidden')) {
-                        settingsWidget.classList.remove('cfl-settings--hidden');
-                        localStorage.removeItem('cflSettingsHidden');
-                    }
-                    // Toggle the orbit menu
-                    if (settingsWidget.classList.contains('cfl-settings--open')) {
-                        settingsWidget.classList.remove('cfl-settings--open');
-                    } else {
-                        settingsWidget.classList.add('cfl-settings--open');
-                    }
-                }
+                var isOpen = settingsMenu.classList.contains('is-open');
+
+                // Close achievements panel if open
+                var achPanel = document.querySelector('.cfl-achievements-panel');
+                if (achPanel) achPanel.classList.remove('is-open');
+
+                // Toggle settings menu
+                settingsMenu.classList.toggle('is-open');
                 fabBar.classList.remove('cfl-fab-bar--open');
                 CFL.sounds.pop();
+            });
+
+            // Close settings menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!settingsMenu.contains(e.target) &&
+                    !settingsItem.contains(e.target) &&
+                    settingsMenu.classList.contains('is-open')) {
+                    settingsMenu.classList.remove('is-open');
+                }
             });
 
             // Sound toggle
@@ -723,31 +788,126 @@
                 }
             });
 
-            // Create achievement panel (hidden by default)
+            // Create achievement panel with enhanced UI
             var panel = document.createElement('div');
             panel.className = 'cfl-achievements-panel';
-            panel.innerHTML = '<div class="cfl-achievements-header"><span>🏆 Achievements</span><button class="close-panel">✕</button></div><div class="cfl-achievements-list"></div><div class="cfl-achievements-stats"></div>';
+            panel.innerHTML = [
+                '<div class="cfl-achievements-header">',
+                '  <div class="cfl-achievements-header__title">',
+                '    <span>🏆</span>',
+                '    <div>',
+                '      <div class="cfl-achievements-header__main">Achievements</div>',
+                '      <div class="cfl-achievements-header__subtitle">Unlock them all!</div>',
+                '    </div>',
+                '  </div>',
+                '  <button class="close-panel" aria-label="Close">✕</button>',
+                '</div>',
+                '<div class="cfl-achievements-tabs">',
+                '  <button class="cfl-achievements-tab active" data-category="all">All</button>',
+                '  <button class="cfl-achievements-tab" data-category="progression">📈 Progression</button>',
+                '  <button class="cfl-achievements-tab" data-category="special">⭐ Special</button>',
+                '  <button class="cfl-achievements-tab" data-category="time">⏰ Time</button>',
+                '  <button class="cfl-achievements-tab" data-category="secret">🔒 Secrets</button>',
+                '</div>',
+                '<div class="cfl-achievements-list"></div>',
+                '<div class="cfl-achievements-stats"></div>'
+            ].join('');
             document.body.appendChild(panel);
+
+            var currentCategory = 'all';
+
+            function formatTime(timestamp) {
+                if (!timestamp) return '';
+                var date = new Date(timestamp);
+                var now = new Date();
+                var diff = now - date;
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                if (days === 0) return 'Today';
+                if (days === 1) return 'Yesterday';
+                if (days < 7) return days + ' days ago';
+                return date.toLocaleDateString();
+            }
 
             function updatePanel() {
                 var list = panel.querySelector('.cfl-achievements-list');
-                var stats = panel.querySelector('.cfl-achievements-stats');
+                var statsEl = panel.querySelector('.cfl-achievements-stats');
                 var all = CFL.achievements.getAll();
                 var unlocked = CFL.achievements.getUnlocked();
+                var unlockedData = CFL.achievements.getUnlockedData();
                 var achStats = CFL.achievements.getStats();
 
-                list.innerHTML = '';
-                Object.keys(all).forEach(function(id) {
-                    var ach = all[id];
-                    var isUnlocked = unlocked.indexOf(id) !== -1;
-                    var div = document.createElement('div');
-                    div.className = 'cfl-achievement ' + (isUnlocked ? 'cfl-achievement--unlocked' : 'cfl-achievement--locked');
-                    div.innerHTML = '<div class="cfl-achievement__icon">' + ach.icon + '</div><div class="cfl-achievement__info"><div class="cfl-achievement__name">' + ach.name + '</div><div class="cfl-achievement__desc">' + (isUnlocked ? ach.desc : '???') + '</div></div>';
-                    list.appendChild(div);
+                // Filter by category
+                var achievementIds = Object.keys(all);
+                if (currentCategory !== 'all') {
+                    achievementIds = achievementIds.filter(function(id) {
+                        return all[id].category === currentCategory;
+                    });
+                }
+
+                // Sort: unlocked first, then by unlock time (newest first), then locked
+                achievementIds.sort(function(a, b) {
+                    var aUnlocked = unlocked.indexOf(a) !== -1;
+                    var bUnlocked = unlocked.indexOf(b) !== -1;
+                    if (aUnlocked && !bUnlocked) return -1;
+                    if (!aUnlocked && bUnlocked) return 1;
+                    if (aUnlocked && bUnlocked) {
+                        return (unlockedData[b].time || 0) - (unlockedData[a].time || 0);
+                    }
+                    return 0;
                 });
 
-                stats.innerHTML = '<span>Unlocked: ' + unlocked.length + '/' + Object.keys(all).length + '</span><span>Clicks: ' + achStats.clicks + '</span>';
+                list.innerHTML = '';
+                if (achievementIds.length === 0) {
+                    list.innerHTML = '<div class="cfl-achievements-empty">No achievements in this category</div>';
+                } else {
+                    achievementIds.forEach(function(id) {
+                        var ach = all[id];
+                        var isUnlocked = unlocked.indexOf(id) !== -1;
+                        var unlockTime = unlockedData[id] ? unlockedData[id].time : null;
+                        var progress = ach.progress;
+                        var progressPercent = progress ? Math.min((progress.current / progress.target) * 100, 100) : 0;
+
+                        var div = document.createElement('div');
+                        div.className = 'cfl-achievement ' + (isUnlocked ? 'cfl-achievement--unlocked' : 'cfl-achievement--locked');
+                        div.setAttribute('data-id', id);
+
+                        var progressBar = '';
+                        if (progress && !isUnlocked) {
+                            progressBar = '<div class="cfl-achievement__progress"><div class="cfl-achievement__progress-bar" style="width: ' + progressPercent + '%"></div><span class="cfl-achievement__progress-text">' + progress.current + '/' + progress.target + '</span></div>';
+                        }
+
+                        var lockIcon = isUnlocked ? '' : '<div class="cfl-achievement__lock">🔒</div>';
+                        var timestamp = isUnlocked && unlockTime ? '<div class="cfl-achievement__time">' + formatTime(unlockTime) + '</div>' : '';
+
+                        div.innerHTML = [
+                            '<div class="cfl-achievement__icon">' + ach.icon + lockIcon + '</div>',
+                            '<div class="cfl-achievement__info">',
+                            '  <div class="cfl-achievement__name">' + ach.name + '</div>',
+                            '  <div class="cfl-achievement__desc">' + (isUnlocked ? ach.desc : '???') + '</div>',
+                            progressBar,
+                            timestamp,
+                            '</div>'
+                        ].join('');
+
+                        list.appendChild(div);
+                    });
+                }
+
+                var categoryCount = currentCategory === 'all' ? achievementIds.length : achievementIds.length;
+                var categoryUnlocked = achievementIds.filter(function(id) { return unlocked.indexOf(id) !== -1; }).length;
+                statsEl.innerHTML = '<div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Category:</span><span>' + categoryUnlocked + '/' + categoryCount + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Total:</span><span>' + unlocked.length + '/' + Object.keys(all).length + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Clicks:</span><span>' + achStats.clicks + '</span></div>';
             }
+
+            // Tab switching
+            panel.querySelectorAll('.cfl-achievements-tab').forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    panel.querySelectorAll('.cfl-achievements-tab').forEach(function(t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    currentCategory = tab.getAttribute('data-category');
+                    updatePanel();
+                    CFL.sounds.pop();
+                });
+            });
 
             // Achievements button
             achItem.addEventListener('click', function(e) {
@@ -770,8 +930,22 @@
                 if (unlocked.length > 0) {
                     achItem.setAttribute('data-new', 'true');
                 }
+                // Update panel if it's open
+                if (panel.classList.contains('is-open')) {
+                    updatePanel();
+                }
             }
             checkNewAchievements();
+
+            // Listen for achievement unlocks to update panel
+            var originalUnlock = CFL.achievements.unlock;
+            CFL.achievements.unlock = function(id) {
+                var result = originalUnlock.call(this, id);
+                if (result) {
+                    setTimeout(checkNewAchievements, 100);
+                }
+                return result;
+            };
         })();
 
         // =====================================================================
@@ -1380,6 +1554,38 @@
 
                     if (panelId) {
                         openPanel(panelId);
+                    }
+                });
+            });
+
+            // Wire up the new settings menu items (created in FAB bar)
+            var settingsMenuItems = document.querySelectorAll('.cfl-settings-menu__item');
+            var settingsMenuEl = document.getElementById('cfl-settings-menu');
+            settingsMenuItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    var panelId = e.currentTarget.getAttribute('data-panel');
+                    var action = e.currentTarget.getAttribute('data-action');
+
+                    if (action === 'quick-font') {
+                        var quickFont = e.currentTarget.getAttribute('data-font');
+                        if (fonts[quickFont]) {
+                            state.font = quickFont;
+                            if (fontSelect) fontSelect.value = quickFont;
+                            applyFont();
+                            persist();
+                            CFL.sounds.pop();
+                            logger('Quick font applied from settings menu', quickFont);
+                        }
+                        // Close the settings menu
+                        if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
+                        return;
+                    }
+
+                    if (panelId) {
+                        openPanel(panelId);
+                        CFL.sounds.pop();
+                        // Close the settings menu
+                        if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
                     }
                 });
             });
