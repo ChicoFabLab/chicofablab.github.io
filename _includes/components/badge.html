@@ -1,0 +1,3 @@
+{% assign variant = include.variant | default: 'neutral' %}
+{% assign label = include.label | default: include.text | default: 'Badge' %}
+<span class="cfl-badge cfl-badge--{{ variant }}">{{ label | escape }}</span>

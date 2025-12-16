@@ -1,0 +1,12 @@
+{% assign href = include.href | default: include.url %}
+{% assign variant = include.variant | default: 'primary' %}
+{% assign size = include.size | default: 'md' %}
+{% assign block = include.block | default: false %}
+{% assign label = include.label | default: include.text | default: 'Button' %}
+{% assign target = include.target %}
+{% assign rel = include.rel %}
+{% if href %}
+<a class="cfl-btn cfl-btn--{{ variant }} cfl-btn--{{ size }}{% if block %} cfl-btn--block{% endif %}" href="{{ href }}"{% if target %} target="{{ target }}"{% endif %}{% if rel %} rel="{{ rel }}"{% endif %}>{{ label | escape }}</a>
+{% else %}
+<button class="cfl-btn cfl-btn--{{ variant }} cfl-btn--{{ size }}{% if block %} cfl-btn--block{% endif %}" type="{{ include.type | default: 'button' }}">{{ label | escape }}</button>
+{% endif %}

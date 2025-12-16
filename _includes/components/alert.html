@@ -1,0 +1,7 @@
+{% assign variant = include.variant | default: 'info' %}
+{% assign title = include.title %}
+{% assign body = include.content | default: include.body %}
+<div class="cfl-alert cfl-alert--{{ variant }}">
+  {% if title %}<div class="cfl-alert__title">{{ title | escape }}</div>{% endif %}
+  {% if body %}<div class="cfl-alert__body">{{ body | markdownify }}</div>{% endif %}
+</div>
