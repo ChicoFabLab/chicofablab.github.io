@@ -1829,10 +1829,11 @@ footer p {
 }
 
 /* ----- TOGGLE/SWITCH COMPONENT -----
-   On/off toggle switch
+   On/off toggle switch - iOS-style
 */
+label.cfl-toggle,
 .cfl-toggle {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     gap: 0.75rem;
     cursor: pointer;
@@ -1840,90 +1841,138 @@ footer p {
     list-style: none;
     margin: 0;
     padding: 0;
+    position: relative;
+}
+
+label.cfl-toggle::before,
+.cfl-toggle::before {
+    content: none !important;
+    display: none !important;
 }
 
 .cfl-toggle__input {
     position: absolute;
     opacity: 0;
-    width: 0;
-    height: 0;
-    margin: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 .cfl-toggle__track {
     position: relative;
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
     flex-shrink: 0;
-    background: var(--bg-alt);
-    border: 2px solid var(--border);
+    background-color: #d4c4a8;
+    border: 2px solid #c4b498;
     border-radius: 9999px;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
 }
 
-.cfl-toggle--sm .cfl-toggle__track { width: 36px; height: 20px; }
-.cfl-toggle--md .cfl-toggle__track { width: 44px; height: 24px; }
-.cfl-toggle--lg .cfl-toggle__track { width: 56px; height: 30px; }
+/* Explicit sizes for track */
+.cfl-toggle--sm .cfl-toggle__track {
+    width: 40px;
+    height: 22px;
+}
+
+.cfl-toggle--md .cfl-toggle__track,
+.cfl-toggle .cfl-toggle__track {
+    width: 50px;
+    height: 28px;
+}
+
+.cfl-toggle--lg .cfl-toggle__track {
+    width: 64px;
+    height: 34px;
+}
 
 .cfl-toggle__thumb {
     position: absolute;
-    top: 2px;
-    left: 2px;
-    background: var(--text-muted);
+    top: 3px;
+    left: 3px;
+    background-color: #fff;
     border-radius: 50%;
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.cfl-toggle--sm .cfl-toggle__thumb { width: 12px; height: 12px; }
-.cfl-toggle--md .cfl-toggle__thumb { width: 16px; height: 16px; }
-.cfl-toggle--lg .cfl-toggle__thumb { width: 22px; height: 22px; }
+/* Explicit sizes for thumb */
+.cfl-toggle--sm .cfl-toggle__thumb {
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    left: 2px;
+}
 
+.cfl-toggle--md .cfl-toggle__thumb,
+.cfl-toggle .cfl-toggle__thumb {
+    width: 20px;
+    height: 20px;
+    top: 2px;
+    left: 2px;
+}
+
+.cfl-toggle--lg .cfl-toggle__thumb {
+    width: 26px;
+    height: 26px;
+    top: 2px;
+    left: 2px;
+}
+
+/* Checked state - green/accent background */
 .cfl-toggle__input:checked + .cfl-toggle__track {
-    background: var(--accent);
+    background-color: var(--accent);
     border-color: var(--accent);
 }
 
-.cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
-    background: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
+/* Move thumb to right when checked */
 .cfl-toggle--sm .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
-    transform: translateX(16px);
+    transform: translateX(18px);
 }
 
-.cfl-toggle--md .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
-    transform: translateX(20px);
+.cfl-toggle--md .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb,
+.cfl-toggle .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+    transform: translateX(22px);
 }
 
 .cfl-toggle--lg .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
-    transform: translateX(26px);
+    transform: translateX(30px);
 }
 
+/* Hover state */
 .cfl-toggle:hover .cfl-toggle__track {
     border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.1);
 }
 
+/* Focus state */
 .cfl-toggle__input:focus-visible + .cfl-toggle__track {
-    box-shadow: 0 0 0 3px rgba(196, 93, 53, 0.25);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.3);
 }
 
+/* Label text */
 .cfl-toggle__label {
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text);
+    line-height: 1.4;
 }
 
+/* Disabled state */
 .cfl-toggle--disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    pointer-events: none;
 }
 
-.cfl-toggle--disabled:hover .cfl-toggle__track {
-    border-color: var(--border);
+.cfl-toggle--disabled .cfl-toggle__track {
+    background-color: #e8dcc8;
 }
 
 /* ----- TABS COMPONENT -----
