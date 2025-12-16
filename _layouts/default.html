@@ -904,7 +904,10 @@
                 statsEl.innerHTML = '<div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Category:</span><span>' + categoryUnlocked + '/' + categoryCount + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Total:</span><span>' + unlocked.length + '/' + Object.keys(all).length + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Clicks:</span><span>' + achStats.clicks + '</span></div>';
             }
 
-            // Tab switching
+            // =================================================================
+            // TAB SWITCHING
+            // =================================================================
+            // Handle category filter tab clicks
             panel.querySelectorAll('.cfl-achievements-tab').forEach(function(tab) {
                 tab.addEventListener('click', function() {
                     panel.querySelectorAll('.cfl-achievements-tab').forEach(function(t) { t.classList.remove('active'); });
@@ -915,7 +918,10 @@
                 });
             });
 
-            // Scroll lock management
+            // =================================================================
+            // SCROLL LOCK MANAGEMENT
+            // =================================================================
+            // Prevent body scrolling when panel is open for better UX
             function lockScroll() {
                 document.body.style.overflow = 'hidden';
             }
@@ -924,7 +930,10 @@
                 document.body.style.overflow = '';
             }
 
-            // Achievements button
+            // =================================================================
+            // PANEL TOGGLE HANDLERS
+            // =================================================================
+            // Toggle panel visibility and manage scroll lock
             achItem.addEventListener('click', function(e) {
                 e.stopPropagation();
                 var wasOpen = panel.classList.contains('is-open');
@@ -954,7 +963,7 @@
                 }
             });
 
-            // Check for new achievements to show notification dot
+            // Check for unlocked achievements and update notification badge
             function checkNewAchievements() {
                 var unlocked = CFL.achievements.getUnlocked();
                 if (unlocked.length > 0) {
@@ -967,7 +976,8 @@
             }
             checkNewAchievements();
 
-            // Listen for achievement unlocks to update panel
+            // Hook into achievement unlock system to auto-refresh panel
+            // Wraps original unlock function to trigger panel update
             var originalUnlock = CFL.achievements.unlock;
             CFL.achievements.unlock = function(id) {
                 var result = originalUnlock.call(this, id);

@@ -2380,21 +2380,39 @@ body.konami-mode .cfl-btn {
    ACHIEVEMENT PANEL
    =====================================================================
 
-   PURPOSE: Floating UI for displaying user achievements
+   PURPOSE: Enhanced floating UI for displaying user achievements with
+            categories, progress tracking, and improved visual design
 
    COMPONENTS:
-     .cfl-achievements-btn     - Gold trophy button (bottom-right)
-     .cfl-achievements-panel   - Sliding panel with achievement list
-     .cfl-achievement          - Individual achievement row
-     .cfl-achievement--locked  - Grayed out, description hidden
-     .cfl-achievement--unlocked - Gold highlight, full info shown
+     .cfl-achievements-panel              - Main sliding panel container
+     .cfl-achievements-header             - Header with title and close button
+     .cfl-achievements-tabs               - Category filter tabs
+     .cfl-achievements-list               - Scrollable achievement list
+     .cfl-achievement                     - Individual achievement card
+     .cfl-achievement--locked             - Locked state (grayed, lock icon)
+     .cfl-achievement--unlocked           - Unlocked state (gold highlight)
+     .cfl-achievement__progress           - Progress bar for progression achievements
+     .cfl-achievement__time               - Unlock timestamp display
+     .cfl-achievements-stats               - Footer with statistics
+
+   FEATURES:
+     - Category filtering (All, Progression, Special, Time, Secrets)
+     - Progress indicators for progression achievements
+     - Unlock timestamps with relative time formatting
+     - Scroll lock when panel is open
+     - Real-time updates when achievements unlock
+     - Responsive mobile design
 
    POSITIONING:
-     Button: fixed, bottom: 100px, right: 20px
-     Panel:  fixed, bottom: 160px, right: 20px
+     Panel: fixed, bottom: 80px, right: 1rem
+     Width: 400px (desktop), auto (mobile)
+     Max height: 70vh
 
    ANIMATIONS:
-     - Button has hover scale + rotate
+     - Panel slide-in/scale animation
+     - Achievement glow effect for unlocked items
+     - Tab hover transitions
+     - Progress bar width transitions
      - Panel slides up with opacity transition
      - New achievement dot pulses
 
