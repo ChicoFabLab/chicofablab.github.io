@@ -1,0 +1,27 @@
+---
+title: Getting Started
+---
+
+# Welcome to Chico Fab Lab
+
+Chico Fab Lab (CFL) is a community makerspace where you can learn, create, and collaborate on projects using tools like 3D printers, laser cutters, CNC machines, and electronics equipment.
+
+## Location
+
+603 Orange Street, Chico, CA
+
+## How to Visit
+
+Stop by during open hours to take a tour and see the space. Check our social media for current hours and events.
+
+## How to Join
+
+1. Visit during open hours
+2. Take an orientation tour
+3. Sign up for a membership
+
+## Learn More
+
+- [CFL Kiosk](/wiki/cfl-kiosk) - Info about our display kiosk
+- [CFL Task Dashboard](/wiki/cfl-task-dashboard) - Volunteer task management system
+
