@@ -1441,20 +1441,32 @@ footer p {
     border: none;
     border-radius: 0;
     background: var(--code-bg);
-    font-size: 0.8rem;
     overflow-x: auto;
     white-space: pre;
 }
 
 .code-snippet__content code {
     display: block;
-    padding: 1rem;
-    padding-right: 4rem;
+    padding: 1.25rem 1.5rem;
+    padding-right: 5rem;
     background: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    line-height: 1.6;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+    font-size: 0.8rem;
+    line-height: 2;
     color: var(--text);
+    tab-size: 2;
+    letter-spacing: -0.01em;
+}
+
+/* Line-by-line readability */
+.code-snippet__content code .line,
+.code-snippet__content .highlight code {
+    display: block;
+}
+
+/* Subtle line hover effect */
+.code-snippet__content pre:hover {
+    background: linear-gradient(to right, var(--code-bg) 0%, rgba(255,255,255,0.02) 100%);
 }
 
 /* Syntax Highlighting - Warm Theme */
