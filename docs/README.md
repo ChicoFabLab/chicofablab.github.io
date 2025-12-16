@@ -16,6 +16,7 @@ This folder contains project documentation for developers and contributors.
 - [Easter Eggs](EASTER-EGGS.md) - Hidden secrets and the Konami code
 - [The Void](THE-VOID.md) - Eldritch corruption system
 - [Button Playground](BUTTON-PLAYGROUND.md) - Interactive button builder
+- [Unified FAB Bar](FAB-BAR.md) - Floating action bar for quick actions
 
 ### Technical Debt
 - [Technical Debt Overview](technical-debt/README.md) - Debt tracking index

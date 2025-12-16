@@ -618,19 +618,25 @@
         // SEE: docs/FAB-BAR.md for full documentation
         // =====================================================================
         (function createUnifiedFabBar() {
-            // Create the FAB bar container
+            // =================================================================
+            // CREATE DOM STRUCTURE
+            // =================================================================
+            
+            // Main container: flex row-reverse layout, fixed bottom-right
             var fabBar = document.createElement('div');
             fabBar.className = 'cfl-fab-bar';
             fabBar.id = 'cfl-fab-bar';
 
-            // Main FAB button (+)
+            // Main toggle button: + icon that rotates 45° when open
+            // This is the primary entry point - always visible
             var mainBtn = document.createElement('button');
             mainBtn.className = 'cfl-fab-bar__main';
             mainBtn.innerHTML = '<span class="cfl-fab-bar__main-icon">+</span>';
             mainBtn.title = 'Quick actions';
             mainBtn.setAttribute('aria-label', 'Toggle quick actions menu');
 
-            // Items container
+            // Container for action buttons: hidden by default, slides in when open
+            // Uses row-reverse so items appear left-to-right: [Settings] [Achievements] [Sound] [+]
             var itemsContainer = document.createElement('div');
             itemsContainer.className = 'cfl-fab-bar__items';
 
@@ -663,13 +669,19 @@
             fabBar.appendChild(itemsContainer);
             document.body.appendChild(fabBar);
 
-            // Main FAB toggle
+            // =================================================================
+            // EVENT HANDLERS
+            // =================================================================
+            
+            // Main toggle: Opens/closes the FAB bar
+            // CSS handles the animation (items slide in, icon rotates)
             mainBtn.addEventListener('click', function() {
                 fabBar.classList.toggle('cfl-fab-bar--open');
-                CFL.sounds.click();
+                CFL.sounds.click();  // Audio feedback
             });
 
-            // Close when clicking outside
+            // Click outside to close: Standard UX pattern
+            // Prevents accidental clicks from keeping bar open
             document.addEventListener('click', function(e) {
                 if (!fabBar.contains(e.target) && fabBar.classList.contains('cfl-fab-bar--open')) {
                     fabBar.classList.remove('cfl-fab-bar--open');
