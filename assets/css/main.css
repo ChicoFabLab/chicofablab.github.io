@@ -1370,6 +1370,104 @@ footer p {
     color: #f0f0f0;
 }
 
+/* ===================
+   CODE SNIPPETS - Expandable
+   =================== */
+
+.code-snippet {
+    margin: 1rem 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.code-snippet summary {
+    padding: 0.75rem 1rem;
+    background: var(--bg-alt);
+    cursor: pointer;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.15s ease;
+    list-style: none;
+}
+
+.code-snippet summary::-webkit-details-marker {
+    display: none;
+}
+
+.code-snippet summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.code-snippet[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.code-snippet summary:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+.code-snippet__content {
+    padding: 0;
+    position: relative;
+}
+
+.code-snippet__content pre {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: var(--code-bg);
+    font-size: 0.8rem;
+    overflow-x: auto;
+}
+
+.code-snippet__content code {
+    display: block;
+    padding: 1rem;
+    background: none;
+}
+
+.code-snippet__copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.15s ease;
+}
+
+.code-snippet__content:hover .code-snippet__copy {
+    opacity: 1;
+}
+
+.code-snippet__copy:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.code-snippet__copy--copied {
+    background: var(--success) !important;
+    color: white !important;
+    border-color: var(--success) !important;
+}
+
 /* =====================================================================
    MICRO-INTERACTIONS & ANIMATIONS
    ===================================================================== */

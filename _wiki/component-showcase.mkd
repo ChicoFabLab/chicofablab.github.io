@@ -6,7 +6,7 @@ order: 99
 
 # 🎨 Component Showcase
 
-A living gallery of all CFL UI components. Copy and paste into your wiki pages!
+A living gallery of all CFL UI components. Click **📋 Copy Code** to expand and copy!
 
 ---
 
@@ -22,6 +22,21 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/button.html text="Success" variant="success" href="#" %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/button.html text="Primary" variant="primary" href="/your-link" %}
+{% include components/button.html text="Secondary" variant="secondary" href="#" %}
+{% include components/button.html text="Ghost" variant="ghost" href="#" %}
+{% include components/button.html text="Danger" variant="danger" href="#" %}
+{% include components/button.html text="Success" variant="success" href="#" %}{% endraw %}
+```
+
+</div>
+</details>
+
 ### Sizes
 
 <div class="showcase-row showcase-row--align-center">
@@ -29,6 +44,19 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/button.html text="Medium" variant="primary" size="md" href="#" %}
 {% include components/button.html text="Large" variant="primary" size="lg" href="#" %}
 </div>
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/button.html text="Small" variant="primary" size="sm" href="#" %}
+{% include components/button.html text="Medium" variant="primary" size="md" href="#" %}
+{% include components/button.html text="Large" variant="primary" size="lg" href="#" %}{% endraw %}
+```
+
+</div>
+</details>
 
 ### With Icons
 
@@ -38,9 +66,33 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/button.html text="Settings" variant="ghost" icon="⚙️" href="#" %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/button.html text="Download" variant="primary" icon="⬇️" href="#" %}
+{% include components/button.html text="Next" variant="secondary" icon_right="→" href="#" %}
+{% include components/button.html text="Settings" variant="ghost" icon="⚙️" href="#" %}{% endraw %}
+```
+
+</div>
+</details>
+
 ### Block Button
 
 {% include components/button.html text="Full Width Button" variant="primary" block=true href="#" %}
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/button.html text="Full Width Button" variant="primary" block=true href="#" %}{% endraw %}
+```
+
+</div>
+</details>
 
 ---
 
@@ -53,6 +105,23 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/alert.html variant="warning" title="Warning" body="This action cannot be undone. Please proceed with caution." icon="⚠️" %}
 
 {% include components/alert.html variant="danger" title="Error" body="Something went wrong. Please try again or contact support." icon="❌" %}
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/alert.html variant="info" title="Information" body="Your message with **markdown**." icon="ℹ️" %}
+
+{% include components/alert.html variant="success" title="Success!" body="Your changes have been saved." icon="✅" %}
+
+{% include components/alert.html variant="warning" title="Warning" body="Proceed with caution." icon="⚠️" %}
+
+{% include components/alert.html variant="danger" title="Error" body="Something went wrong." icon="❌" %}{% endraw %}
+```
+
+</div>
+</details>
 
 ---
 
@@ -68,6 +137,21 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/badge.html text="Danger" variant="danger" %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/badge.html text="Default" variant="neutral" %}
+{% include components/badge.html text="Info" variant="info" %}
+{% include components/badge.html text="Success" variant="success" %}
+{% include components/badge.html text="Warning" variant="warning" %}
+{% include components/badge.html text="Danger" variant="danger" %}{% endraw %}
+```
+
+</div>
+</details>
+
 ### Solid Variants
 
 <div class="showcase-row">
@@ -77,6 +161,20 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/badge.html text="Danger" variant="danger-solid" %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/badge.html text="Info" variant="info-solid" %}
+{% include components/badge.html text="Success" variant="success-solid" %}
+{% include components/badge.html text="Warning" variant="warning-solid" %}
+{% include components/badge.html text="Danger" variant="danger-solid" %}{% endraw %}
+```
+
+</div>
+</details>
+
 ### With Status Dot
 
 <div class="showcase-row">
@@ -85,6 +183,19 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/badge.html text="Offline" variant="neutral" dot=true %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/badge.html text="Online" variant="success" dot=true %}
+{% include components/badge.html text="Away" variant="warning" dot=true %}
+{% include components/badge.html text="Offline" variant="neutral" dot=true %}{% endraw %}
+```
+
+</div>
+</details>
+
 ### Animated Pulse
 
 <div class="showcase-row">
@@ -92,17 +203,73 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/badge.html text="Recording" variant="danger" pulse=true %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/badge.html text="Live" variant="danger-solid" dot=true pulse=true %}
+{% include components/badge.html text="Recording" variant="danger" pulse=true %}{% endraw %}
+```
+
+</div>
+</details>
+
 ---
 
 ## Callouts
 
 {% include components/callout.html variant="note" title="📘 Note" body="Use callouts to highlight important information that readers shouldn't miss." %}
 
+<details class="code-snippet">
+<summary>📋 Copy Code — Note</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/callout.html variant="note" title="📘 Note" body="Your important information here." %}{% endraw %}
+```
+
+</div>
+</details>
+
 {% include components/callout.html variant="tip" title="💡 Pro Tip" body="You can include **markdown** formatting and even [links](/wiki/getting-started) in callout bodies!" cta_url="/wiki/getting-started" cta_label="Get Started" %}
+
+<details class="code-snippet">
+<summary>📋 Copy Code — Tip with CTA</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/callout.html variant="tip" title="💡 Pro Tip" body="Your tip with **markdown** and [links](#)!" cta_url="/your-page" cta_label="Learn More" %}{% endraw %}
+```
+
+</div>
+</details>
 
 {% include components/callout.html variant="warning" title="⚠️ Caution" body="This machine requires safety training before use. See the lab manager for certification." %}
 
+<details class="code-snippet">
+<summary>📋 Copy Code — Warning</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/callout.html variant="warning" title="⚠️ Caution" body="Your warning message here." %}{% endraw %}
+```
+
+</div>
+</details>
+
 {% include components/callout.html variant="danger" title="🚨 Danger Zone" body="High voltage equipment. Authorized personnel only." %}
+
+<details class="code-snippet">
+<summary>📋 Copy Code — Danger</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/callout.html variant="danger" title="🚨 Danger" body="Critical warning message." %}{% endraw %}
+```
+
+</div>
+</details>
 
 ---
 
@@ -116,6 +283,23 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 
 {% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true %}
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" %}
+
+{% include components/progress.html value=60 label="In Progress" show_value=true variant="warning" striped=true %}
+
+{% include components/progress.html value=100 label="Complete!" show_value=true variant="success" %}
+
+{% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true %}{% endraw %}
+```
+
+</div>
+</details>
+
 ---
 
 ## Stats
@@ -126,6 +310,22 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/stat.html value="98" label="Uptime" suffix="%" %}
 {% include components/stat.html value="24" label="Hours Open" suffix="/7" %}
 </div>
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}<div class="showcase-stats">
+{% include components/stat.html value="1,247" label="Members" trend="+12%" trend_up=true %}
+{% include components/stat.html value="42" label="Active Projects" trend="+5" trend_up=true %}
+{% include components/stat.html value="98" label="Uptime" suffix="%" %}
+{% include components/stat.html value="24" label="Hours Open" suffix="/7" %}
+</div>{% endraw %}
+```
+
+</div>
+</details>
 
 ---
 
@@ -138,6 +338,20 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/avatar.html size="xl" status="offline" %}
 </div>
 
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/avatar.html initials="JD" size="sm" %}
+{% include components/avatar.html initials="AB" size="md" status="online" %}
+{% include components/avatar.html initials="XY" size="lg" status="away" ring=true %}
+{% include components/avatar.html size="xl" status="offline" %}{% endraw %}
+```
+
+</div>
+</details>
+
 ---
 
 ## Cards
@@ -147,6 +361,21 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/card.html title="Laser Cutting" body="Precision cutting and engraving on wood, acrylic, and more." href="/wiki/getting-started" badge="New" badge_variant="info" %}
 {% include components/card.html title="CNC Milling" body="Computer-controlled machining for complex parts." href="/wiki/getting-started" %}
 </div>
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}<div class="showcase-cards">
+{% include components/card.html title="3D Printing" body="Description here." href="/link" badge="Popular" badge_variant="success" %}
+{% include components/card.html title="Laser Cutting" body="Description here." href="/link" badge="New" badge_variant="info" %}
+{% include components/card.html title="CNC Milling" body="Description here." href="/link" %}
+</div>{% endraw %}
+```
+
+</div>
+</details>
 
 ---
 
@@ -160,6 +389,22 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 {% include components/button.html text="Book Now" variant="primary" icon="📅" href="#" %}
 {% include components/button.html text="Learn More" variant="ghost" href="#" %}
 </div>
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}{% include components/alert.html variant="info" title="New Feature" body="Your announcement here." %}
+
+<div style="margin-top: -0.5rem; margin-bottom: 1.5rem;">
+{% include components/button.html text="Book Now" variant="primary" icon="📅" href="#" %}
+{% include components/button.html text="Learn More" variant="ghost" href="#" %}
+</div>{% endraw %}
+```
+
+</div>
+</details>
 
 ### Status Card
 
@@ -175,6 +420,28 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
     {% include components/badge.html text="Open" variant="success-solid" dot=true pulse=true %}
   </div>
 </div>
+
+<details class="code-snippet">
+<summary>📋 Copy Code</summary>
+<div class="code-snippet__content">
+
+```liquid
+{% raw %}<div class="cfl-callout cfl-callout--note" style="display: flex; align-items: center; gap: 1rem;">
+  <div>
+    {% include components/avatar.html initials="CFL" size="lg" status="online" ring=true %}
+  </div>
+  <div style="flex: 1;">
+    <strong>Chico Fab Lab</strong><br>
+    <span style="color: var(--text-muted);">Open now · Closes at 9 PM</span>
+  </div>
+  <div>
+    {% include components/badge.html text="Open" variant="success-solid" dot=true pulse=true %}
+  </div>
+</div>{% endraw %}
+```
+
+</div>
+</details>
 
 ---
 
@@ -198,16 +465,17 @@ A living gallery of all CFL UI components. Copy and paste into your wiki pages!
 
 ---
 
-## Usage
+## Quick Reference
 
-Include any component in your markdown files:
-
-```liquid
-{% raw %}{% include components/button.html text="Click Me" variant="primary" href="/page" %}{% endraw %}
-
-{% raw %}{% include components/alert.html variant="warning" title="Heads Up" body="Important message here." %}{% endraw %}
-
-{% raw %}{% include components/badge.html text="New" variant="success" %}{% endraw %}
-```
+| Component | Basic Usage |
+|-----------|-------------|
+| **Button** | `{% raw %}{% include components/button.html text="Click" variant="primary" href="#" %}{% endraw %}` |
+| **Alert** | `{% raw %}{% include components/alert.html variant="info" title="Title" body="Message" %}{% endraw %}` |
+| **Badge** | `{% raw %}{% include components/badge.html text="New" variant="success" %}{% endraw %}` |
+| **Callout** | `{% raw %}{% include components/callout.html variant="tip" title="Tip" body="Content" %}{% endraw %}` |
+| **Progress** | `{% raw %}{% include components/progress.html value=50 label="Loading" %}{% endraw %}` |
+| **Stat** | `{% raw %}{% include components/stat.html value="42" label="Count" %}{% endraw %}` |
+| **Avatar** | `{% raw %}{% include components/avatar.html initials="AB" size="md" %}{% endraw %}` |
+| **Card** | `{% raw %}{% include components/card.html title="Title" body="Desc" href="#" %}{% endraw %}` |
 
 See the [Components Documentation](/wiki/components) for full API reference.
