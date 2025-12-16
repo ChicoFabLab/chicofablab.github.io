@@ -815,9 +815,9 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <p>
 Tooltips are great for
-{% include components/tooltip.html text="Provides additional context without cluttering the UI" position="top" content="<u>help text</u>" %}
+{% include components/tooltip.html text="Provides additional context without cluttering the UI" position="top" content="<span class='cfl-hint'>💡 help text</span>" %}
 and
-{% include components/tooltip.html text="Shows what will happen when clicked" position="top" content="<u>action hints</u>" %}.
+{% include components/tooltip.html text="Shows what will happen when clicked" position="top" content="<span class='cfl-hint cfl-hint--action'>⚡ action hints</span>" %}.
 </p>
 
 <details class="code-snippet">

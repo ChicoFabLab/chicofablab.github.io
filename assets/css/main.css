@@ -2731,3 +2731,63 @@ label.cfl-toggle::before,
     opacity: 0.8;
     font-size: 0.7rem;
 }
+
+/* ----- HINT BADGES ----- */
+.cfl-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--info);
+    background: var(--info-bg);
+    border: 1px solid var(--info-border);
+    border-radius: 6px;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.cfl-hint:hover {
+    background: var(--info);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(3, 133, 146, 0.3);
+}
+
+.cfl-hint--action {
+    color: var(--accent);
+    background: var(--danger-bg);
+    border-color: var(--danger-border);
+}
+
+.cfl-hint--action:hover {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(230, 57, 70, 0.3);
+}
+
+.cfl-hint--success {
+    color: var(--success);
+    background: var(--success-bg);
+    border-color: var(--success-border);
+}
+
+.cfl-hint--success:hover {
+    background: var(--success);
+    color: white;
+    box-shadow: 0 2px 8px rgba(45, 157, 90, 0.3);
+}
+
+.cfl-hint--warning {
+    color: var(--warning);
+    background: var(--warning-bg);
+    border-color: var(--warning-border);
+}
+
+.cfl-hint--warning:hover {
+    background: var(--warning);
+    color: white;
+    box-shadow: 0 2px 8px rgba(230, 148, 10, 0.3);
+}
