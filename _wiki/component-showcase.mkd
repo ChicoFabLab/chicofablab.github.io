@@ -1543,6 +1543,652 @@ Positions: top, right, bottom, left{% endraw %}
 
 ---
 
+## Form Controls & Inputs 🎛️
+
+A comprehensive collection of sliders, selectors, and interactive form elements.
+
+---
+
+### Range Sliders
+
+<div style="display: flex; flex-direction: column; gap: 2rem; max-width: 400px;">
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Volume</label>
+    <div class="cfl-slider__wrapper">
+      <div class="cfl-slider" style="flex: 1;">
+        <input type="range" class="cfl-slider__input" min="0" max="100" value="65" id="slider1">
+      </div>
+      <span class="cfl-slider__value" id="slider1-value">65</span>
+    </div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Brightness</label>
+    <div class="cfl-slider cfl-slider--warning">
+      <input type="range" class="cfl-slider__input" min="0" max="100" value="80">
+      <div class="cfl-slider__labels"><span>Dark</span><span>Bright</span></div>
+    </div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Temperature</label>
+    <div class="cfl-slider cfl-slider--gradient">
+      <input type="range" class="cfl-slider__input" min="0" max="100" value="50">
+    </div>
+  </div>
+</div>
+
+### Slider Sizes
+
+<div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 300px; margin-top: 1rem;">
+  <div class="cfl-slider cfl-slider--sm">
+    <input type="range" class="cfl-slider__input" value="30">
+  </div>
+  <div class="cfl-slider">
+    <input type="range" class="cfl-slider__input" value="60">
+  </div>
+  <div class="cfl-slider cfl-slider--lg cfl-slider--success">
+    <input type="range" class="cfl-slider__input" value="85">
+  </div>
+</div>
+
+---
+
+### Dropdowns / Selects
+
+<div class="showcase-row" style="flex-wrap: wrap; gap: 1rem;">
+  <div class="cfl-select">
+    <select class="cfl-select__input">
+      <option>Select an option...</option>
+      <option>🚀 Rocket Mode</option>
+      <option>🐢 Turtle Mode</option>
+      <option>⚡ Lightning Mode</option>
+    </select>
+  </div>
+  
+  <div class="cfl-select cfl-select--sm">
+    <select class="cfl-select__input">
+      <option>Small select</option>
+      <option>Option A</option>
+      <option>Option B</option>
+    </select>
+  </div>
+  
+  <div class="cfl-select cfl-select--lg">
+    <select class="cfl-select__input">
+      <option>Large select</option>
+      <option>Big Option 1</option>
+      <option>Big Option 2</option>
+    </select>
+  </div>
+</div>
+
+---
+
+### Radio Buttons
+
+<div class="showcase-row" style="gap: 3rem; flex-wrap: wrap;">
+  <div class="cfl-radio-group">
+    <label class="cfl-radio">
+      <input type="radio" class="cfl-radio__input" name="plan" checked>
+      <span class="cfl-radio__mark"></span>
+      Free Plan
+    </label>
+    <label class="cfl-radio">
+      <input type="radio" class="cfl-radio__input" name="plan">
+      <span class="cfl-radio__mark"></span>
+      Pro Plan ($9/mo)
+    </label>
+    <label class="cfl-radio">
+      <input type="radio" class="cfl-radio__input" name="plan">
+      <span class="cfl-radio__mark"></span>
+      Enterprise (Custom)
+    </label>
+  </div>
+  
+  <div class="cfl-radio-group cfl-radio-group--horizontal">
+    <label class="cfl-radio cfl-radio--success">
+      <input type="radio" class="cfl-radio__input" name="size" checked>
+      <span class="cfl-radio__mark"></span>
+      S
+    </label>
+    <label class="cfl-radio cfl-radio--success">
+      <input type="radio" class="cfl-radio__input" name="size">
+      <span class="cfl-radio__mark"></span>
+      M
+    </label>
+    <label class="cfl-radio cfl-radio--success">
+      <input type="radio" class="cfl-radio__input" name="size">
+      <span class="cfl-radio__mark"></span>
+      L
+    </label>
+    <label class="cfl-radio cfl-radio--danger">
+      <input type="radio" class="cfl-radio__input" name="size">
+      <span class="cfl-radio__mark"></span>
+      XL
+    </label>
+  </div>
+</div>
+
+---
+
+### Checkboxes
+
+<div class="showcase-row" style="gap: 3rem; flex-wrap: wrap;">
+  <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+    <label class="cfl-checkbox">
+      <input type="checkbox" class="cfl-checkbox__input" checked>
+      <span class="cfl-checkbox__mark"></span>
+      Accept terms & conditions
+    </label>
+    <label class="cfl-checkbox">
+      <input type="checkbox" class="cfl-checkbox__input">
+      <span class="cfl-checkbox__mark"></span>
+      Subscribe to newsletter
+    </label>
+    <label class="cfl-checkbox cfl-checkbox--success">
+      <input type="checkbox" class="cfl-checkbox__input" checked>
+      <span class="cfl-checkbox__mark"></span>
+      Verified member
+    </label>
+    <label class="cfl-checkbox cfl-checkbox--danger">
+      <input type="checkbox" class="cfl-checkbox__input" checked>
+      <span class="cfl-checkbox__mark"></span>
+      Delete permanently
+    </label>
+  </div>
+</div>
+
+---
+
+### Chips & Tags
+
+<div style="display: flex; flex-direction: column; gap: 1.5rem;">
+  <div class="cfl-chip-group">
+    <span class="cfl-chip">🏷️ Default</span>
+    <span class="cfl-chip cfl-chip--primary">Primary</span>
+    <span class="cfl-chip cfl-chip--success">✅ Success</span>
+    <span class="cfl-chip cfl-chip--warning">⚠️ Warning</span>
+    <span class="cfl-chip cfl-chip--danger">🔥 Danger</span>
+  </div>
+  
+  <div class="cfl-chip-group">
+    <span class="cfl-chip cfl-chip--clickable" onclick="this.classList.toggle('cfl-chip--selected')">Click me</span>
+    <span class="cfl-chip cfl-chip--clickable cfl-chip--selected" onclick="this.classList.toggle('cfl-chip--selected')">Selected</span>
+    <span class="cfl-chip cfl-chip--clickable" onclick="this.classList.toggle('cfl-chip--selected')">Toggle me</span>
+  </div>
+  
+  <div class="cfl-chip-group">
+    <span class="cfl-chip">
+      JavaScript
+      <button class="cfl-chip__remove" onclick="this.parentElement.remove()">×</button>
+    </span>
+    <span class="cfl-chip">
+      Python
+      <button class="cfl-chip__remove" onclick="this.parentElement.remove()">×</button>
+    </span>
+    <span class="cfl-chip">
+      Rust
+      <button class="cfl-chip__remove" onclick="this.parentElement.remove()">×</button>
+    </span>
+    <span class="cfl-chip">
+      Go
+      <button class="cfl-chip__remove" onclick="this.parentElement.remove()">×</button>
+    </span>
+  </div>
+</div>
+
+---
+
+### Number Steppers
+
+<div class="showcase-row" style="gap: 2rem; flex-wrap: wrap;">
+  <div class="cfl-stepper cfl-stepper--sm">
+    <button class="cfl-stepper__btn" onclick="this.nextElementSibling.textContent = Math.max(0, parseInt(this.nextElementSibling.textContent) - 1)">−</button>
+    <span class="cfl-stepper__value">5</span>
+    <button class="cfl-stepper__btn" onclick="this.previousElementSibling.textContent = parseInt(this.previousElementSibling.textContent) + 1">+</button>
+  </div>
+  
+  <div class="cfl-stepper">
+    <button class="cfl-stepper__btn" onclick="this.nextElementSibling.textContent = Math.max(0, parseInt(this.nextElementSibling.textContent) - 1)">−</button>
+    <span class="cfl-stepper__value">12</span>
+    <button class="cfl-stepper__btn" onclick="this.previousElementSibling.textContent = parseInt(this.previousElementSibling.textContent) + 1">+</button>
+  </div>
+  
+  <div class="cfl-stepper cfl-stepper--lg">
+    <button class="cfl-stepper__btn" onclick="this.nextElementSibling.textContent = Math.max(0, parseInt(this.nextElementSibling.textContent) - 1)">−</button>
+    <span class="cfl-stepper__value">99</span>
+    <button class="cfl-stepper__btn" onclick="this.previousElementSibling.textContent = parseInt(this.previousElementSibling.textContent) + 1">+</button>
+  </div>
+</div>
+
+---
+
+### Star Ratings ⭐
+
+<div class="showcase-row" style="gap: 2rem; flex-wrap: wrap; align-items: center;">
+  <div class="cfl-rating">
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star">★</span>
+  </div>
+  
+  <div class="cfl-rating cfl-rating--lg">
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+    <span class="cfl-rating__star">★</span>
+    <span class="cfl-rating__star">★</span>
+  </div>
+  
+  <div class="cfl-rating cfl-rating--xl cfl-rating--hearts">
+    <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
+    <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
+  </div>
+</div>
+
+---
+
+### Segmented Controls
+
+<div style="display: flex; flex-direction: column; gap: 1.5rem;">
+  <div class="cfl-segmented">
+    <button class="cfl-segmented__btn cfl-segmented__btn--active">Day</button>
+    <button class="cfl-segmented__btn">Week</button>
+    <button class="cfl-segmented__btn">Month</button>
+    <button class="cfl-segmented__btn">Year</button>
+  </div>
+  
+  <div class="cfl-segmented cfl-segmented--pill">
+    <button class="cfl-segmented__btn">🌅 Light</button>
+    <button class="cfl-segmented__btn cfl-segmented__btn--active">🌙 Dark</button>
+    <button class="cfl-segmented__btn">🔄 Auto</button>
+  </div>
+  
+  <div class="cfl-segmented">
+    <button class="cfl-segmented__btn cfl-segmented__btn--active">📊 Grid</button>
+    <button class="cfl-segmented__btn">📋 List</button>
+    <button class="cfl-segmented__btn">🗂️ Cards</button>
+  </div>
+</div>
+
+---
+
+### Knobs / Dials
+
+<div class="showcase-row" style="gap: 2rem; align-items: center;">
+  <div class="cfl-knob cfl-knob--sm" style="--knob-value: 25;">
+    <div class="cfl-knob__track"></div>
+    <div class="cfl-knob__inner">25</div>
+  </div>
+  
+  <div class="cfl-knob" style="--knob-value: 65;">
+    <div class="cfl-knob__track"></div>
+    <div class="cfl-knob__inner">65</div>
+  </div>
+  
+  <div class="cfl-knob cfl-knob--lg" style="--knob-value: 88;">
+    <div class="cfl-knob__track"></div>
+    <div class="cfl-knob__inner">88%</div>
+  </div>
+</div>
+
+---
+
+### Meters & Gauges
+
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+  <div>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+      <span>Storage Used</span>
+      <span>75%</span>
+    </div>
+    <div class="cfl-meter cfl-meter--warning">
+      <div class="cfl-meter__fill" style="width: 75%;"></div>
+    </div>
+  </div>
+  
+  <div>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+      <span>Battery</span>
+      <span>90%</span>
+    </div>
+    <div class="cfl-meter cfl-meter--success">
+      <div class="cfl-meter__fill" style="width: 90%;"></div>
+    </div>
+  </div>
+  
+  <div>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+      <span>CPU Usage</span>
+      <span>45%</span>
+    </div>
+    <div class="cfl-meter cfl-meter--striped cfl-meter--animated">
+      <div class="cfl-meter__fill" style="width: 45%;"></div>
+    </div>
+  </div>
+</div>
+
+---
+
+### Color Pickers
+
+<div class="showcase-row" style="gap: 2rem; flex-wrap: wrap;">
+  <div class="cfl-color-picker">
+    <div class="cfl-color-picker__swatch">
+      <input type="color" class="cfl-color-picker__input" value="#3b82f6" id="color1">
+    </div>
+    <span class="cfl-color-picker__value">#3b82f6</span>
+  </div>
+  
+  <div class="cfl-color-picker cfl-color-picker--lg">
+    <div class="cfl-color-picker__swatch">
+      <input type="color" class="cfl-color-picker__input" value="#22c55e">
+    </div>
+    <span class="cfl-color-picker__value">#22c55e</span>
+  </div>
+  
+  <div class="cfl-color-picker">
+    <div class="cfl-color-picker__swatch">
+      <input type="color" class="cfl-color-picker__input" value="#f59e0b">
+    </div>
+    <span class="cfl-color-picker__value">#f59e0b</span>
+  </div>
+</div>
+
+---
+
+### File Upload
+
+<div style="max-width: 400px;">
+  <div class="cfl-upload" onclick="document.getElementById('file-input').click()">
+    <div class="cfl-upload__icon">📁</div>
+    <div class="cfl-upload__text">Drag & drop files here</div>
+    <div class="cfl-upload__hint">or click to browse (max 10MB)</div>
+    <input type="file" id="file-input" class="cfl-upload__input" multiple>
+  </div>
+</div>
+
+---
+
+### Input Groups
+
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+  <div class="cfl-input-group">
+    <span class="cfl-input-group__prepend">@</span>
+    <input type="text" class="cfl-input-group__input" placeholder="username">
+  </div>
+  
+  <div class="cfl-input-group">
+    <span class="cfl-input-group__prepend">$</span>
+    <input type="number" class="cfl-input-group__input" placeholder="0.00">
+    <span class="cfl-input-group__append">USD</span>
+  </div>
+  
+  <div class="cfl-input-group">
+    <span class="cfl-input-group__prepend">🔗</span>
+    <input type="url" class="cfl-input-group__input" placeholder="https://example.com">
+  </div>
+</div>
+
+---
+
+### Textarea
+
+<div style="max-width: 400px;">
+  <textarea class="cfl-textarea" placeholder="Write your message here..."></textarea>
+</div>
+
+---
+
+### Switch Cards
+
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+  <div class="cfl-switch-card cfl-switch-card--active">
+    <div class="cfl-switch-card__content">
+      <div class="cfl-switch-card__title">🔔 Push Notifications</div>
+      <div class="cfl-switch-card__desc">Get notified when something happens</div>
+    </div>
+    <label class="cfl-toggle cfl-toggle--md">
+      <input type="checkbox" class="cfl-toggle__input" checked>
+      <span class="cfl-toggle__track"><span class="cfl-toggle__thumb"></span></span>
+    </label>
+  </div>
+  
+  <div class="cfl-switch-card">
+    <div class="cfl-switch-card__content">
+      <div class="cfl-switch-card__title">📧 Email Digest</div>
+      <div class="cfl-switch-card__desc">Weekly summary of activity</div>
+    </div>
+    <label class="cfl-toggle cfl-toggle--md">
+      <input type="checkbox" class="cfl-toggle__input">
+      <span class="cfl-toggle__track"><span class="cfl-toggle__thumb"></span></span>
+    </label>
+  </div>
+  
+  <div class="cfl-switch-card">
+    <div class="cfl-switch-card__content">
+      <div class="cfl-switch-card__title">🌙 Dark Mode</div>
+      <div class="cfl-switch-card__desc">Easy on the eyes at night</div>
+    </div>
+    <label class="cfl-toggle cfl-toggle--md">
+      <input type="checkbox" class="cfl-toggle__input">
+      <span class="cfl-toggle__track"><span class="cfl-toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>
+
+---
+
+### Avatar Groups
+
+<div class="showcase-row" style="gap: 3rem;">
+  <div class="cfl-avatar-group">
+    <div class="cfl-avatar cfl-avatar--md" style="background: linear-gradient(135deg, #667eea, #764ba2);">JD</div>
+    <div class="cfl-avatar cfl-avatar--md" style="background: linear-gradient(135deg, #f093fb, #f5576c);">AK</div>
+    <div class="cfl-avatar cfl-avatar--md" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">MR</div>
+    <div class="cfl-avatar cfl-avatar--md" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">SL</div>
+    <div class="cfl-avatar-group__overflow">+12</div>
+  </div>
+</div>
+
+---
+
+### Step Wizard
+
+<div style="max-width: 500px;">
+  <div class="cfl-steps">
+    <div class="cfl-step cfl-step--completed">
+      <div class="cfl-step__circle">✓</div>
+      <div class="cfl-step__line"></div>
+    </div>
+    <div class="cfl-step cfl-step--completed">
+      <div class="cfl-step__circle">✓</div>
+      <div class="cfl-step__line"></div>
+    </div>
+    <div class="cfl-step cfl-step--active">
+      <div class="cfl-step__circle">3</div>
+      <div class="cfl-step__line"></div>
+    </div>
+    <div class="cfl-step">
+      <div class="cfl-step__circle">4</div>
+      <div class="cfl-step__line"></div>
+    </div>
+    <div class="cfl-step">
+      <div class="cfl-step__circle">5</div>
+    </div>
+  </div>
+</div>
+
+---
+
+### Timeline
+
+<div class="cfl-timeline" style="max-width: 400px;">
+  <div class="cfl-timeline__item">
+    <div class="cfl-timeline__marker cfl-timeline__marker--success"></div>
+    <div class="cfl-timeline__content">
+      <div class="cfl-timeline__title">🎉 Project Started</div>
+      <div class="cfl-timeline__time">Dec 1, 2025</div>
+      <div class="cfl-timeline__body">Initial commit and project setup completed.</div>
+    </div>
+  </div>
+  <div class="cfl-timeline__item">
+    <div class="cfl-timeline__marker cfl-timeline__marker--success"></div>
+    <div class="cfl-timeline__content">
+      <div class="cfl-timeline__title">🚀 v1.0 Released</div>
+      <div class="cfl-timeline__time">Dec 10, 2025</div>
+      <div class="cfl-timeline__body">First stable version shipped to production.</div>
+    </div>
+  </div>
+  <div class="cfl-timeline__item">
+    <div class="cfl-timeline__marker cfl-timeline__marker--warning"></div>
+    <div class="cfl-timeline__content">
+      <div class="cfl-timeline__title">⚡ Performance Tuning</div>
+      <div class="cfl-timeline__time">Dec 15, 2025</div>
+      <div class="cfl-timeline__body">Currently optimizing bundle size and load times.</div>
+    </div>
+  </div>
+  <div class="cfl-timeline__item">
+    <div class="cfl-timeline__marker"></div>
+    <div class="cfl-timeline__content">
+      <div class="cfl-timeline__title">🔮 v2.0 Planned</div>
+      <div class="cfl-timeline__time">Jan 2026</div>
+      <div class="cfl-timeline__body">Major update with new features coming soon.</div>
+    </div>
+  </div>
+</div>
+
+---
+
+### Accordion
+
+<div class="cfl-accordion" style="max-width: 500px;">
+  <div class="cfl-accordion__item cfl-accordion__item--open">
+    <button class="cfl-accordion__header" onclick="this.parentElement.classList.toggle('cfl-accordion__item--open')">
+      <span>🚀 What is this component library?</span>
+      <span class="cfl-accordion__icon">▼</span>
+    </button>
+    <div class="cfl-accordion__content">
+      <div class="cfl-accordion__body">
+        A comprehensive collection of reusable UI components designed for the Chico Fab Lab website. Built with pure CSS and minimal JavaScript for maximum performance.
+      </div>
+    </div>
+  </div>
+  <div class="cfl-accordion__item">
+    <button class="cfl-accordion__header" onclick="this.parentElement.classList.toggle('cfl-accordion__item--open')">
+      <span>🎨 Can I customize the styles?</span>
+      <span class="cfl-accordion__icon">▼</span>
+    </button>
+    <div class="cfl-accordion__content">
+      <div class="cfl-accordion__body">
+        Absolutely! All components use CSS custom properties (variables) for easy theming. Just override the root variables to match your brand colors.
+      </div>
+    </div>
+  </div>
+  <div class="cfl-accordion__item">
+    <button class="cfl-accordion__header" onclick="this.parentElement.classList.toggle('cfl-accordion__item--open')">
+      <span>📱 Are components responsive?</span>
+      <span class="cfl-accordion__icon">▼</span>
+    </button>
+    <div class="cfl-accordion__content">
+      <div class="cfl-accordion__body">
+        Yes! All components are built mobile-first and adapt gracefully to different screen sizes. Touch-friendly on mobile devices.
+      </div>
+    </div>
+  </div>
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+{% raw %}<!-- Range Slider -->
+<div class="cfl-slider">
+  <input type="range" class="cfl-slider__input" min="0" max="100" value="50">
+</div>
+
+<!-- Custom Select -->
+<div class="cfl-select">
+  <select class="cfl-select__input">
+    <option>Option 1</option>
+    <option>Option 2</option>
+  </select>
+</div>
+
+<!-- Radio Group -->
+<div class="cfl-radio-group">
+  <label class="cfl-radio">
+    <input type="radio" class="cfl-radio__input" name="group" checked>
+    <span class="cfl-radio__mark"></span>
+    Option 1
+  </label>
+</div>
+
+<!-- Checkbox -->
+<label class="cfl-checkbox">
+  <input type="checkbox" class="cfl-checkbox__input" checked>
+  <span class="cfl-checkbox__mark"></span>
+  Check me
+</label>
+
+<!-- Chips -->
+<span class="cfl-chip cfl-chip--primary">Chip</span>
+<span class="cfl-chip">
+  Removable
+  <button class="cfl-chip__remove">×</button>
+</span>
+
+<!-- Stepper -->
+<div class="cfl-stepper">
+  <button class="cfl-stepper__btn">−</button>
+  <span class="cfl-stepper__value">5</span>
+  <button class="cfl-stepper__btn">+</button>
+</div>
+
+<!-- Rating -->
+<div class="cfl-rating">
+  <span class="cfl-rating__star cfl-rating__star--filled">★</span>
+  <span class="cfl-rating__star">★</span>
+</div>
+
+<!-- Segmented Control -->
+<div class="cfl-segmented">
+  <button class="cfl-segmented__btn cfl-segmented__btn--active">Day</button>
+  <button class="cfl-segmented__btn">Week</button>
+</div>
+
+<!-- Timeline -->
+<div class="cfl-timeline">
+  <div class="cfl-timeline__item">
+    <div class="cfl-timeline__marker"></div>
+    <div class="cfl-timeline__content">...</div>
+  </div>
+</div>
+
+<!-- Steps -->
+<div class="cfl-steps">
+  <div class="cfl-step cfl-step--completed">
+    <div class="cfl-step__circle">✓</div>
+    <div class="cfl-step__line"></div>
+  </div>
+  <div class="cfl-step cfl-step--active">
+    <div class="cfl-step__circle">2</div>
+  </div>
+</div>{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
 ## Breadcrumbs
 
 {% include components/breadcrumbs.html items="[{\"label\": \"Home\", \"href\": \"/\"}, {\"label\": \"Wiki\", \"href\": \"/wiki\"}, {\"label\": \"Components\", \"href\": \"/wiki/component-showcase\"}, {\"label\": \"Breadcrumbs\"}]" %}

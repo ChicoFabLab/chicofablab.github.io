@@ -79,6 +79,8 @@ component_sections:
     anchor: avatars
   - label: Tooltips
     anchor: tooltips
+  - label: Forms
+    anchor: form-controls--inputs-
   - label: Breadcrumbs
     anchor: breadcrumbs
   - label: Cards

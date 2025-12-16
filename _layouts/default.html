@@ -43,6 +43,81 @@
         </div>
     </footer>
 
+    <div class="cfl-settings" id="cfl-settings" aria-live="polite">
+        <button type="button" class="cfl-settings__fab" aria-expanded="false" aria-controls="cfl-settings-panel">
+            <span class="cfl-settings__fab-icon" aria-hidden="true">⚙️</span>
+            <span class="cfl-settings__fab-label">Site settings</span>
+        </button>
+        <div class="cfl-settings__orbit" aria-hidden="true">
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="fonts" title="Fonts">
+                <span aria-hidden="true">Aa</span>
+                <span class="sr-only">Fonts</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="fraunces" title="Soft serif">
+                <span aria-hidden="true">🫧</span>
+                <span class="sr-only">Soft serif</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="bricolage" title="Playful sans">
+                <span aria-hidden="true">✨</span>
+                <span class="sr-only">Playful sans</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="scope" title="Scope">
+                <span aria-hidden="true">🌐</span>
+                <span class="sr-only">Scope</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="reset" title="Reset">
+                <span aria-hidden="true">↺</span>
+                <span class="sr-only">Reset</span>
+            </button>
+        </div>
+
+        <div class="cfl-settings__panel" id="cfl-settings-panel" data-panel="fonts" hidden>
+            <div class="cfl-settings__panel-title">Font switcher</div>
+            <label class="cfl-settings__label" for="cfl-font-select">Pick a style</label>
+            <select id="cfl-font-select" class="cfl-settings__select">
+                <option value="default">Default (Georgia + Inter)</option>
+                <option value="fraunces">Fraunces (soft serif)</option>
+                <option value="caprasimo">Caprasimo (bold & bubbly)</option>
+                <option value="chonburi">Chonburi (retro serif)</option>
+                <option value="dm-serif">DM Serif Display (editorial)</option>
+                <option value="abril">Abril Fatface (dramatic)</option>
+                <option value="bricolage">Bricolage Grotesque (playful sans)</option>
+                <option value="calistoga">Calistoga (friendly retro)</option>
+                <option value="varela">Varela Round (soft sans)</option>
+                <option value="fredoka">Fredoka (bold rounded)</option>
+                <option value="nunito">Nunito (rounded UI)</option>
+            </select>
+            <p class="cfl-settings__note">Headings and body will update instantly. Defaults remain Georgia/Inter if you reset.</p>
+        </div>
+
+        <div class="cfl-settings__panel" data-panel="scope" hidden>
+            <div class="cfl-settings__panel-title">Scope</div>
+            <label class="cfl-settings__label">Apply where?</label>
+            <label class="cfl-toggle cfl-toggle--md cfl-settings__scope-toggle">
+                <input type="checkbox" class="cfl-toggle__input" id="cfl-settings-scope">
+                <span class="cfl-toggle__track">
+                    <span class="cfl-toggle__thumb"></span>
+                </span>
+                <span class="cfl-toggle__label">Site-wide (this device)</span>
+            </label>
+            <p class="cfl-settings__note">Switch off for “This page only” (clears when you leave). Switch on for “Site-wide” (saves to this browser only).</p>
+            <div class="cfl-settings__legal">Settings stay local on your device (localStorage/sessionStorage). Fonts load from Google Fonts. No tracking or cookies.</div>
+        </div>
+
+        <div class="cfl-settings__panel" data-panel="reset" hidden>
+            <div class="cfl-settings__panel-title">Reset & debug</div>
+            <button type="button" class="cfl-btn cfl-btn--ghost cfl-btn--sm cfl-settings__reset" data-action="reset-scope">Reset current scope</button>
+            <label class="cfl-toggle cfl-toggle--sm cfl-settings__debug-toggle">
+                <input type="checkbox" class="cfl-toggle__input" id="cfl-settings-debug" checked>
+                <span class="cfl-toggle__track">
+                    <span class="cfl-toggle__thumb"></span>
+                </span>
+                <span class="cfl-toggle__label">Debug logging</span>
+            </label>
+            <p class="cfl-settings__note">Debug logs print to the console to help troubleshoot font changes and persistence.</p>
+        </div>
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Add copy buttons to code snippets
@@ -216,6 +291,329 @@
                 CFL.toast({ icon: '🐕', title: 'Good human!', message: 'Tail wagging intensifies!', variant: 'success', iconAnim: 'shake' });
             }
         };
+
+        // Slider value display
+        document.querySelectorAll('.cfl-slider__input').forEach(function(slider) {
+            var valueDisplay = slider.closest('.cfl-slider__wrapper')?.querySelector('.cfl-slider__value');
+            if (valueDisplay) {
+                slider.addEventListener('input', function() {
+                    valueDisplay.textContent = this.value;
+                });
+            }
+        });
+
+        // Segmented control switching
+        document.querySelectorAll('.cfl-segmented').forEach(function(segmented) {
+            segmented.querySelectorAll('.cfl-segmented__btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    segmented.querySelectorAll('.cfl-segmented__btn').forEach(function(b) {
+                        b.classList.remove('cfl-segmented__btn--active');
+                    });
+                    this.classList.add('cfl-segmented__btn--active');
+                });
+            });
+        });
+
+        // Rating stars interaction
+        document.querySelectorAll('.cfl-rating').forEach(function(rating) {
+            var stars = rating.querySelectorAll('.cfl-rating__star');
+            stars.forEach(function(star, index) {
+                star.addEventListener('click', function() {
+                    stars.forEach(function(s, i) {
+                        if (i <= index) {
+                            s.classList.add('cfl-rating__star--filled');
+                        } else {
+                            s.classList.remove('cfl-rating__star--filled');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Color picker value display
+        document.querySelectorAll('.cfl-color-picker__input').forEach(function(picker) {
+            var valueDisplay = picker.closest('.cfl-color-picker')?.querySelector('.cfl-color-picker__value');
+            if (valueDisplay) {
+                picker.addEventListener('input', function() {
+                    valueDisplay.textContent = this.value;
+                });
+            }
+        });
+
+        // File upload drag and drop
+        document.querySelectorAll('.cfl-upload').forEach(function(upload) {
+            upload.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('cfl-upload--dragover');
+            });
+            upload.addEventListener('dragleave', function() {
+                this.classList.remove('cfl-upload--dragover');
+            });
+            upload.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('cfl-upload--dragover');
+                var files = e.dataTransfer.files;
+                if (files.length) {
+                    CFL.toast({ icon: '📁', title: 'Files received!', message: files.length + ' file(s) dropped', variant: 'success', iconAnim: 'bounce' });
+                }
+            });
+        });
+
+        // Floating settings widget (font switcher + scope)
+        (function initSettingsWidget() {
+            var settings = document.getElementById('cfl-settings');
+            if (!settings) return;
+
+            var fab = settings.querySelector('.cfl-settings__fab');
+            var orbitButtons = settings.querySelectorAll('.cfl-settings__orbit-btn');
+            var panels = settings.querySelectorAll('.cfl-settings__panel');
+            var fontSelect = document.getElementById('cfl-font-select');
+            var scopeToggle = document.getElementById('cfl-settings-scope');
+            var debugToggle = document.getElementById('cfl-settings-debug');
+            var resetButton = settings.querySelector('[data-action="reset-scope"]');
+
+            var STATE_KEYS = {
+                scope: 'cflSettingsScope',
+                site: 'cflSettingsSite',
+                pagePrefix: 'cflSettingsPage:'
+            };
+
+            var fonts = {
+                default: { heading: "'Georgia', 'Times New Roman', serif", body: "'Georgia', 'Times New Roman', serif", ui: "'Inter', system-ui, sans-serif" },
+                fraunces: { heading: "'Fraunces', serif", body: "'Fraunces', serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
+                caprasimo: { heading: "'Caprasimo', serif", body: "'Caprasimo', serif", ui: "'Nunito', system-ui, sans-serif" },
+                chonburi: { heading: "'Chonburi', serif", body: "'Chonburi', serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
+                'dm-serif': { heading: "'DM Serif Display', serif", body: "'DM Serif Display', serif", ui: "'Nunito', system-ui, sans-serif" },
+                abril: { heading: "'Abril Fatface', serif", body: "'Abril Fatface', serif", ui: "'Nunito', system-ui, sans-serif" },
+                bricolage: { heading: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif", body: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif", ui: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif" },
+                calistoga: { heading: "'Calistoga', serif", body: "'Calistoga', serif", ui: "'Nunito', system-ui, sans-serif" },
+                varela: { heading: "'Varela Round', 'Inter', system-ui, sans-serif", body: "'Varela Round', 'Inter', system-ui, sans-serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
+                fredoka: { heading: "'Fredoka', 'Nunito', system-ui, sans-serif", body: "'Fredoka', 'Nunito', system-ui, sans-serif", ui: "'Fredoka', 'Nunito', system-ui, sans-serif" },
+                nunito: { heading: "'Nunito', system-ui, sans-serif", body: "'Nunito', system-ui, sans-serif", ui: "'Nunito', system-ui, sans-serif" }
+            };
+
+            var state = {
+                scope: 'site',
+                font: 'default',
+                debug: true,
+                openPanel: null
+            };
+
+            function logger() {
+                if (!state.debug) return;
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift('[CFL settings]');
+                console.info.apply(console, args);
+            }
+
+            function storageForScope(scope) {
+                return scope === 'site' ? localStorage : sessionStorage;
+            }
+
+            function scopeKey(scope) {
+                return scope === 'site' ? STATE_KEYS.site : STATE_KEYS.pagePrefix + window.location.pathname;
+            }
+
+            function readScopePreference() {
+                var savedScope = localStorage.getItem(STATE_KEYS.scope);
+                if (savedScope === 'page' || savedScope === 'site') {
+                    state.scope = savedScope;
+                }
+                if (scopeToggle) {
+                    scopeToggle.checked = state.scope === 'site';
+                }
+            }
+
+            function readDebugPreference() {
+                var saved = localStorage.getItem('cflSettingsDebug');
+                state.debug = saved === null ? true : saved !== 'false';
+                if (debugToggle) debugToggle.checked = state.debug;
+            }
+
+            function readFontPreference() {
+                var storage = storageForScope(state.scope);
+                var key = scopeKey(state.scope);
+                var stored = null;
+                try {
+                    stored = JSON.parse(storage.getItem(key));
+                } catch (e) {
+                    logger('Could not parse stored settings', e);
+                }
+                state.font = stored && stored.font && fonts[stored.font] ? stored.font : 'default';
+                if (fontSelect) fontSelect.value = state.font;
+            }
+
+            function applyFont() {
+                var chosen = fonts[state.font] || fonts.default;
+                var root = document.documentElement;
+                root.style.setProperty('--font-heading', chosen.heading);
+                root.style.setProperty('--font-body', chosen.body);
+                root.style.setProperty('--font-ui', chosen.ui);
+                logger('Applied font', state.font, 'scope', state.scope);
+            }
+
+            function persist() {
+                var storage = storageForScope(state.scope);
+                var key = scopeKey(state.scope);
+                storage.setItem(key, JSON.stringify({ font: state.font }));
+                localStorage.setItem(STATE_KEYS.scope, state.scope);
+                logger('Persisted settings', { scope: state.scope, font: state.font });
+            }
+
+            function resetCurrentScope() {
+                var storage = storageForScope(state.scope);
+                storage.removeItem(scopeKey(state.scope));
+                state.font = 'default';
+                if (fontSelect) fontSelect.value = state.font;
+                applyFont();
+                persist();
+                logger('Reset settings for scope', state.scope);
+            }
+
+            function openOrbitOnly() {
+                state.openPanel = null;
+                settings.classList.add('cfl-settings--open');
+                fab.setAttribute('aria-expanded', 'true');
+                panels.forEach(function(panel) { panel.setAttribute('hidden', ''); });
+                settings.removeAttribute('data-open-panel');
+            }
+
+            function openPanel(panelId) {
+                state.openPanel = panelId;
+                settings.classList.add('cfl-settings--open');
+                fab.setAttribute('aria-expanded', 'true');
+                panels.forEach(function(panel) {
+                    var active = panel.getAttribute('data-panel') === panelId;
+                    panel.toggleAttribute('hidden', !active);
+                });
+                settings.setAttribute('data-open-panel', panelId);
+            }
+
+            function closePanels() {
+                state.openPanel = null;
+                settings.classList.remove('cfl-settings--open');
+                fab.setAttribute('aria-expanded', 'false');
+                panels.forEach(function(panel) {
+                    panel.setAttribute('hidden', '');
+                });
+                settings.removeAttribute('data-open-panel');
+            }
+
+            function togglePanels(panelId) {
+                if (state.openPanel === panelId) {
+                    closePanels();
+                } else {
+                    openPanel(panelId);
+                }
+            }
+
+            // Event wiring
+            if (fab) {
+                fab.addEventListener('click', function() {
+                    if (settings.classList.contains('cfl-settings--open') && !state.openPanel) {
+                        closePanels();
+                    } else if (settings.classList.contains('cfl-settings--open') && state.openPanel) {
+                        openOrbitOnly();
+                    } else {
+                        openOrbitOnly();
+                    }
+                });
+            }
+
+            function positionOrbitButtons() {
+                if (!orbitButtons.length) return;
+                var radius = 110;
+                var startDeg = -20;
+                var endDeg = -160;
+                var steps = orbitButtons.length > 1 ? orbitButtons.length - 1 : 1;
+                orbitButtons.forEach(function(btn, index) {
+                    var angleDeg = startDeg + ((endDeg - startDeg) * (index / steps));
+                    var angleRad = angleDeg * (Math.PI / 180);
+                    var tx = Math.cos(angleRad) * radius;
+                    var ty = Math.sin(angleRad) * radius;
+                    btn.style.setProperty('--tx', tx.toFixed(2) + 'px');
+                    btn.style.setProperty('--ty', ty.toFixed(2) + 'px');
+                });
+            }
+
+            positionOrbitButtons();
+
+            orbitButtons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    var panelId = e.currentTarget.getAttribute('data-panel');
+                    var action = e.currentTarget.getAttribute('data-action');
+
+                    if (action === 'quick-font') {
+                        var quickFont = e.currentTarget.getAttribute('data-font');
+                        if (fonts[quickFont]) {
+                            state.font = quickFont;
+                            if (fontSelect) fontSelect.value = quickFont;
+                            applyFont();
+                            persist();
+                            logger('Quick font applied from orbit', quickFont);
+                        }
+                        return;
+                    }
+
+                    if (panelId) {
+                        openPanel(panelId);
+                    }
+                });
+            });
+
+            if (fontSelect) {
+                fontSelect.addEventListener('change', function(e) {
+                    state.font = e.target.value;
+                    applyFont();
+                    persist();
+                });
+            }
+
+            if (scopeToggle) {
+                scopeToggle.addEventListener('change', function(e) {
+                    state.scope = e.target.checked ? 'site' : 'page';
+                    readFontPreference();
+                    applyFont();
+                    persist();
+                });
+            }
+
+            if (debugToggle) {
+                debugToggle.addEventListener('change', function(e) {
+                    state.debug = e.target.checked;
+                    localStorage.setItem('cflSettingsDebug', state.debug ? 'true' : 'false');
+                    if (state.debug) {
+                        logger('Debug logging enabled');
+                    } else {
+                        console.info('[CFL settings] Debug logging disabled');
+                    }
+                });
+            }
+
+            if (resetButton) {
+                resetButton.addEventListener('click', function() {
+                    resetCurrentScope();
+                });
+            }
+
+            document.addEventListener('click', function(event) {
+                if (!settings.contains(event.target)) {
+                    closePanels();
+                }
+            });
+
+            window.addEventListener('pagehide', function() {
+                sessionStorage.removeItem(scopeKey('page'));
+            });
+
+            // Init
+            readScopePreference();
+            readDebugPreference();
+            readFontPreference();
+            applyFont();
+            persist();
+            logger('Settings widget initialized', state);
+        })();
     });
     </script>
 </body>
