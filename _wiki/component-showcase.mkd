@@ -800,26 +800,153 @@ For sidebars and settings panels with many options.
 
 ## Tables
 
-{% include components/table.html headers="Equipment,Status,Location" rows="[[\"3D Printer\", \"✅ Available\", \"Room 101\"], [\"Laser Cutter\", \"🔧 Maintenance\", \"Room 102\"], [\"CNC Mill\", \"✅ Available\", \"Room 103\"], [\"Vinyl Cutter\", \"⏳ In Use\", \"Room 101\"]]" striped=true %}
+Display data in organized rows and columns.
+
+### Equipment Status
+
+<div class="cfl-table-wrapper">
+  <table class="cfl-table cfl-table--striped cfl-table--hoverable">
+    <thead>
+      <tr>
+        <th>Equipment</th>
+        <th>Status</th>
+        <th>Location</th>
+        <th>Next Available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🖨️ 3D Printer (Prusa)</td>
+        <td>{% include components/badge.html text="Available" variant="success" %}</td>
+        <td>Room 101</td>
+        <td>Now</td>
+      </tr>
+      <tr>
+        <td>✂️ Laser Cutter</td>
+        <td>{% include components/badge.html text="Maintenance" variant="warning" %}</td>
+        <td>Room 102</td>
+        <td>Dec 18</td>
+      </tr>
+      <tr>
+        <td>🔧 CNC Mill</td>
+        <td>{% include components/badge.html text="Available" variant="success" %}</td>
+        <td>Room 103</td>
+        <td>Now</td>
+      </tr>
+      <tr>
+        <td>🎨 Vinyl Cutter</td>
+        <td>{% include components/badge.html text="In Use" variant="info" dot=true pulse=true %}</td>
+        <td>Room 101</td>
+        <td>2:30 PM</td>
+      </tr>
+      <tr>
+        <td>🧵 Embroidery Machine</td>
+        <td>{% include components/badge.html text="Offline" variant="danger" %}</td>
+        <td>Room 104</td>
+        <td>TBD</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Compact Table
 
-{% include components/table.html headers="Name,Role" rows="[[\"Alice\", \"Admin\"], [\"Bob\", \"Member\"], [\"Carol\", \"Guest\"]]" compact=true %}
+<div class="cfl-table-wrapper">
+  <table class="cfl-table cfl-table--compact cfl-table--hoverable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Alice Chen</td>
+        <td>Admin</td>
+        <td>{% include components/badge.html text="Active" variant="success" %}</td>
+      </tr>
+      <tr>
+        <td>Bob Smith</td>
+        <td>Member</td>
+        <td>{% include components/badge.html text="Active" variant="success" %}</td>
+      </tr>
+      <tr>
+        <td>Carol Davis</td>
+        <td>Guest</td>
+        <td>{% include components/badge.html text="Pending" variant="warning" %}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Minimal Table (No Borders)
+
+<table class="cfl-table">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Hours</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Monday - Tuesday</td>
+      <td>Closed</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Wednesday</td>
+      <td>5:00 PM - 7:00 PM</td>
+      <td>Open Lab</td>
+    </tr>
+    <tr>
+      <td>Thursday - Friday</td>
+      <td>By Appointment</td>
+      <td>Email to schedule</td>
+    </tr>
+    <tr>
+      <td>Saturday</td>
+      <td>10:00 AM - 2:00 PM</td>
+      <td>Workshop Days</td>
+    </tr>
+    <tr>
+      <td>Sunday</td>
+      <td>Closed</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
 
 <details class="code-snippet">
 <summary>Show Code</summary>
 <div class="code-snippet__content" markdown="1">
 
-```liquid
-{% raw %}{% include components/table.html
-   headers="Name,Status,Location"
-   rows="[
-     [\"Item 1\", \"Active\", \"Room A\"],
-     [\"Item 2\", \"Pending\", \"Room B\"]
-   ]"
-   striped=true
-   hoverable=true
-%}{% endraw %}
+```html
+{% raw %}<!-- Striped + Hoverable Table -->
+<div class="cfl-table-wrapper">
+  <table class="cfl-table cfl-table--striped cfl-table--hoverable">
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Data 1</td>
+        <td>Data 2</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Compact Table -->
+<table class="cfl-table cfl-table--compact">
+
+<!-- With Badges in Cells -->
+<td>{% include components/badge.html text="Active" variant="success" %}</td>{% endraw %}
 ```
 
 </div>
