@@ -1,27 +1,28 @@
 ---
 title: Getting Started
+order: 1
 ---
 
 # Welcome to Chico Fab Lab
 
-Chico Fab Lab (CFL) is a community makerspace where you can learn, create, and collaborate on projects using tools like 3D printers, laser cutters, CNC machines, and electronics equipment.
+New to CFL? This page points you at the basics so you can get moving fast.
 
-## Location
+## Quick Info
+- Location: 603 Orange Street, Chico, CA
+- Typical hours: Check the front door or our Discord for current open hours
+- How to join: Stop by during open hours, say hi to a volunteer, and get a quick tour
 
-603 Orange Street, Chico, CA
+## What to Bring
+- A project idea (or just curiosity)
+- Laptop + charger if you have one
+- Closed-toe shoes for shop areas
 
-## How to Visit
+## Starter Links
+- Main site repo: [chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
+- Task dashboard project: [tasksdashboard](https://github.com/ChicoFabLab/tasksdashboard)
+- Kiosk notes: [CFL Kiosk](/wiki/cfl-kiosk)
 
-Stop by during open hours to take a tour and see the space. Check our social media for current hours and events.
-
-## How to Join
-
-1. Visit during open hours
-2. Take an orientation tour
-3. Sign up for a membership
-
-## Learn More
-
-- [CFL Kiosk](/wiki/cfl-kiosk) - Info about our display kiosk
-- [CFL Task Dashboard](/wiki/cfl-task-dashboard) - Volunteer task management system
-
+## Get Involved
+- Ask about current volunteer tasks on the task dashboard or Discord
+- Share what you’re working on so we can showcase it on the kiosk
+- Add or edit wiki pages right here in `_wiki/` (see README)

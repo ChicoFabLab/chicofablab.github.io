@@ -5,8 +5,9 @@ layout: default
 <h2>wiki pages</h2>
 
 {% if site.wiki.size > 0 %}
+{% assign pages = site.wiki | sort: "order" %}
 <ul>
-{% for page in site.wiki %}
+{% for page in pages %}
 <li><a href="{{ page.url }}">{{ page.title }}</a></li>
 {% endfor %}
 </ul>
