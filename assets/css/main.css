@@ -1021,6 +1021,45 @@ footer p {
     to { background-position: 0 0; }
 }
 
+/* Cycling fill animation for demo/showcase */
+.cfl-progress--demo .cfl-progress__bar {
+    animation: progress-fill-cycle 3s ease-in-out infinite;
+}
+
+.cfl-progress--demo:nth-child(2) .cfl-progress__bar {
+    animation-delay: 0.5s;
+}
+
+.cfl-progress--demo:nth-child(3) .cfl-progress__bar {
+    animation-delay: 1s;
+}
+
+.cfl-progress--demo:nth-child(4) .cfl-progress__bar {
+    animation-delay: 1.5s;
+}
+
+@keyframes progress-fill-cycle {
+    0% { 
+        width: 0% !important; 
+        opacity: 0.7;
+    }
+    50% { 
+        opacity: 1;
+    }
+    70% { 
+        width: var(--progress-value, 100%) !important;
+        opacity: 1;
+    }
+    85% {
+        width: var(--progress-value, 100%) !important;
+        opacity: 1;
+    }
+    100% { 
+        width: 0% !important;
+        opacity: 0.7;
+    }
+}
+
 /* ----- STAT COMPONENT -----
    Display key metrics with optional trends
 */

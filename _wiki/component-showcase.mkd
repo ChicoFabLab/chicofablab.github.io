@@ -434,13 +434,13 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ## Progress Bars
 
-{% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" %}
+{% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" demo=true %}
 
-{% include components/progress.html value=60 label="In Progress" show_value=true variant="warning" striped=true %}
+{% include components/progress.html value=60 label="In Progress" show_value=true variant="warning" striped=true demo=true %}
 
-{% include components/progress.html value=100 label="Complete!" show_value=true variant="success" %}
+{% include components/progress.html value=100 label="Complete!" show_value=true variant="success" demo=true %}
 
-{% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true %}
+{% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true demo=true %}
 
 <details class="code-snippet">
 <summary>Show Code</summary>
