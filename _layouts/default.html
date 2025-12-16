@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>{% if page.title %}{{ page.title }} - {% endif %}CFL Wiki</title>
-<link rel="stylesheet" href="/assets/css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}CFL Wiki</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>CFL Wiki</h1>
+    <header>
+        <h1>CFL Wiki</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/README">How to Contribute</a>
+        </nav>
+    </header>
 
-<nav>
-<a href="/">home</a> | <a href="/README">readme</a>
-</nav>
+    <main>
+        {{ content }}
+    </main>
 
-<hr>
-
-{{ content }}
-
-<hr>
-
-<footer>
-<p>Chico Fab Lab . 603 Orange Street . Chico, CA</p>
-</footer>
+    <footer>
+        <p>Chico Fab Lab · 603 Orange Street · Chico, CA</p>
+        <p>Wednesdays 5-7pm and by arrangement</p>
+    </footer>
 </body>
 </html>
