@@ -8,9 +8,10 @@ order: 98
 
 A collection of single-purpose utility classes for rapid styling. All classes use the `cfl-` prefix.
 
+<div class="page-index">
 {% include quick-nav.html type="css" %}
-
 {% include related-pages.html type="css" title="Related Resources" %}
+</div>
 
 ---
 

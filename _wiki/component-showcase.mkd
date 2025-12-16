@@ -8,9 +8,10 @@ order: 99
 
 A living gallery of all CFL UI components. Click **Show Code** to expand, then copy.
 
+<div class="page-index">
 {% include quick-nav.html type="components" %}
-
 {% include related-pages.html type="components" title="Related Resources" %}
+</div>
 
 ---
 

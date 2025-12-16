@@ -2846,3 +2846,34 @@ label.cfl-toggle::before,
     color: var(--text-muted);
     line-height: 1.4;
 }
+
+/* ----- PAGE INDEX WRAPPER ----- */
+.page-index {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.page-index .quick-nav {
+    margin: 0 0 1rem 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.page-index .related-pages {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.page-index .related-pages h3 {
+    margin-bottom: 0.75rem;
+}
