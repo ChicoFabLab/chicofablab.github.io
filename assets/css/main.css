@@ -13,6 +13,20 @@
     --border-dark: #d4d0c8;
     --code-bg: #f0eeea;
     --shadow: rgba(45, 42, 38, 0.08);
+
+    /* Component colors */
+    --info: #3b82f6;
+    --info-bg: #eff6ff;
+    --info-border: #bfdbfe;
+    --success: #22c55e;
+    --success-bg: #f0fdf4;
+    --success-border: #bbf7d0;
+    --warning: #f59e0b;
+    --warning-bg: #fffbeb;
+    --warning-border: #fde68a;
+    --danger: #ef4444;
+    --danger-bg: #fef2f2;
+    --danger-border: #fecaca;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -555,4 +569,330 @@ footer p {
     background: var(--bg-alt);
     border-radius: 6px;
     border: 1px dashed var(--border);
+}
+
+/* ===================
+   CFL BUTTON COMPONENT
+   =================== */
+
+.cfl-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.cfl-btn:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Button Sizes */
+.cfl-btn--sm {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+}
+
+.cfl-btn--md {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.25rem;
+}
+
+.cfl-btn--lg {
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+}
+
+/* Button Variants */
+.cfl-btn--primary {
+    background: var(--accent);
+    color: white;
+}
+
+.cfl-btn--primary:hover {
+    background: var(--accent-hover);
+    color: white;
+}
+
+.cfl-btn--secondary {
+    background: var(--bg-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.cfl-btn--secondary:hover {
+    background: var(--border);
+    border-color: var(--border-dark);
+}
+
+.cfl-btn--ghost {
+    background: transparent;
+    color: var(--accent);
+}
+
+.cfl-btn--ghost:hover {
+    background: var(--bg-alt);
+}
+
+.cfl-btn--danger {
+    background: var(--danger);
+    color: white;
+}
+
+.cfl-btn--danger:hover {
+    background: #dc2626;
+    color: white;
+}
+
+.cfl-btn--success {
+    background: var(--success);
+    color: white;
+}
+
+.cfl-btn--success:hover {
+    background: #16a34a;
+    color: white;
+}
+
+/* Block Button */
+.cfl-btn--block {
+    display: flex;
+    width: 100%;
+}
+
+/* Disabled State */
+.cfl-btn:disabled,
+.cfl-btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ===================
+   CFL ALERT COMPONENT
+   =================== */
+
+.cfl-alert {
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    border-left: 4px solid;
+    margin: 1rem 0;
+}
+
+.cfl-alert__title {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+}
+
+.cfl-alert__body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cfl-alert__body p {
+    margin: 0;
+}
+
+.cfl-alert__body p + p {
+    margin-top: 0.5rem;
+}
+
+/* Alert Variants */
+.cfl-alert--info {
+    background: var(--info-bg);
+    border-color: var(--info);
+    color: #1e40af;
+}
+
+.cfl-alert--info .cfl-alert__title {
+    color: #1e3a8a;
+}
+
+.cfl-alert--success {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #166534;
+}
+
+.cfl-alert--success .cfl-alert__title {
+    color: #14532d;
+}
+
+.cfl-alert--warning {
+    background: var(--warning-bg);
+    border-color: var(--warning);
+    color: #92400e;
+}
+
+.cfl-alert--warning .cfl-alert__title {
+    color: #78350f;
+}
+
+.cfl-alert--danger {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+    color: #991b1b;
+}
+
+.cfl-alert--danger .cfl-alert__title {
+    color: #7f1d1d;
+}
+
+/* ===================
+   CFL BADGE COMPONENT
+   =================== */
+
+.cfl-badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Badge Variants */
+.cfl-badge--neutral {
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.cfl-badge--info {
+    background: var(--info-bg);
+    color: #1e40af;
+    border: 1px solid var(--info-border);
+}
+
+.cfl-badge--success {
+    background: var(--success-bg);
+    color: #166534;
+    border: 1px solid var(--success-border);
+}
+
+.cfl-badge--warning {
+    background: var(--warning-bg);
+    color: #92400e;
+    border: 1px solid var(--warning-border);
+}
+
+.cfl-badge--danger {
+    background: var(--danger-bg);
+    color: #991b1b;
+    border: 1px solid var(--danger-border);
+}
+
+/* Solid Badge Variants */
+.cfl-badge--info-solid {
+    background: var(--info);
+    color: white;
+    border: none;
+}
+
+.cfl-badge--success-solid {
+    background: var(--success);
+    color: white;
+    border: none;
+}
+
+.cfl-badge--warning-solid {
+    background: var(--warning);
+    color: white;
+    border: none;
+}
+
+.cfl-badge--danger-solid {
+    background: var(--danger);
+    color: white;
+    border: none;
+}
+
+/* ===================
+   CFL CALLOUT COMPONENT
+   =================== */
+
+.cfl-callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.cfl-callout__title {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.cfl-callout__body {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.cfl-callout__body p {
+    margin: 0;
+}
+
+.cfl-callout__body p + p {
+    margin-top: 0.75rem;
+}
+
+.cfl-callout__cta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Callout Variants */
+.cfl-callout--note {
+    border-left: 4px solid var(--info);
+}
+
+.cfl-callout--note .cfl-callout__title {
+    color: #1e40af;
+}
+
+.cfl-callout--tip {
+    border-left: 4px solid var(--success);
+}
+
+.cfl-callout--tip .cfl-callout__title {
+    color: #166534;
+}
+
+.cfl-callout--warning {
+    border-left: 4px solid var(--warning);
+    background: var(--warning-bg);
+}
+
+.cfl-callout--warning .cfl-callout__title {
+    color: #92400e;
+}
+
+.cfl-callout--danger {
+    border-left: 4px solid var(--danger);
+    background: var(--danger-bg);
+}
+
+.cfl-callout--danger .cfl-callout__title {
+    color: #991b1b;
 }
