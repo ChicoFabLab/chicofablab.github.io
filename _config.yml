@@ -3,7 +3,13 @@ baseurl: ""
 url: "https://chicofl.org"
 
 markdown: kramdown
+highlighter: rouge
 permalink: pretty
+
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
 
 collections:
   wiki:

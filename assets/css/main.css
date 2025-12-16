@@ -1454,7 +1454,48 @@ footer p {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     line-height: 1.6;
+    color: var(--text);
 }
+
+/* Syntax Highlighting - Warm Theme */
+.code-snippet__content .highlight,
+.code-snippet__content pre.highlight {
+    background: var(--code-bg);
+}
+
+/* Liquid/Jekyll Tags */
+.code-snippet__content .p,
+.code-snippet__content .err { color: #b35900; }  /* Punctuation - warm orange */
+
+.code-snippet__content .k,
+.code-snippet__content .kd,
+.code-snippet__content .kn { color: #c62d3a; font-weight: 600; }  /* Keywords - coral red */
+
+.code-snippet__content .nv,
+.code-snippet__content .vi,
+.code-snippet__content .na { color: #0e7490; }  /* Variables/Attributes - teal */
+
+.code-snippet__content .s,
+.code-snippet__content .s1,
+.code-snippet__content .s2 { color: #2d9d5a; }  /* Strings - green */
+
+.code-snippet__content .n,
+.code-snippet__content .nn,
+.code-snippet__content .nc { color: #9333ea; }  /* Names - purple */
+
+.code-snippet__content .nt { color: #c62d3a; }  /* HTML Tags - coral */
+.code-snippet__content .nb { color: #b35900; }  /* Builtins - orange */
+
+.code-snippet__content .c,
+.code-snippet__content .c1,
+.code-snippet__content .cm { color: #6b5c52; font-style: italic; }  /* Comments - muted */
+
+.code-snippet__content .o,
+.code-snippet__content .ow { color: #c62d3a; }  /* Operators */
+
+.code-snippet__content .m,
+.code-snippet__content .mi,
+.code-snippet__content .mf { color: #0e7490; }  /* Numbers - teal */
 
 .code-snippet__copy {
     position: absolute;
