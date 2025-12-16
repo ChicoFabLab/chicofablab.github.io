@@ -507,6 +507,13 @@
                 logger('Applied font', state.font, 'scope', state.scope);
             }
 
+            function updateActiveSwatch() {
+                swatches.forEach(function(swatch) {
+                    var t = swatch.getAttribute('data-theme');
+                    swatch.classList.toggle('is-active', t === state.theme);
+                });
+            }
+
             function applyTheme() {
                 var root = document.documentElement;
                 // Reset to defaults first
@@ -518,6 +525,7 @@
                 Object.keys(chosen).forEach(function(key) {
                     root.style.setProperty(key, chosen[key]);
                 });
+                updateActiveSwatch();
                 logger('Applied theme', state.theme, 'scope', state.scope);
             }
 
@@ -597,8 +605,8 @@
             function positionOrbitButtons() {
                 if (!orbitButtons.length) return;
                 var radius = 110;
-                var startDeg = -20;
-                var endDeg = -160;
+                var startDeg = -10;
+                var endDeg = -170;
                 var steps = orbitButtons.length > 1 ? orbitButtons.length - 1 : 1;
                 orbitButtons.forEach(function(btn, index) {
                     var angleDeg = startDeg + ((endDeg - startDeg) * (index / steps));
@@ -693,6 +701,12 @@
 
             document.addEventListener('click', function(event) {
                 if (!settings.contains(event.target)) {
+                    closePanels();
+                }
+            });
+
+            document.addEventListener('keyup', function(event) {
+                if (event.key === 'Escape') {
                     closePanels();
                 }
             });
