@@ -12,12 +12,18 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
   <strong>Jump to:</strong>
   <a href="#buttons">Buttons</a>
   <a href="#search">Search</a>
+  <a href="#toggles">Toggles</a>
   <a href="#alerts">Alerts</a>
   <a href="#badges">Badges</a>
   <a href="#callouts">Callouts</a>
+  <a href="#tabs">Tabs</a>
+  <a href="#tables">Tables</a>
   <a href="#progress-bars">Progress</a>
+  <a href="#spinners">Spinners</a>
   <a href="#stats">Stats</a>
   <a href="#avatars">Avatars</a>
+  <a href="#tooltips">Tooltips</a>
+  <a href="#breadcrumbs">Breadcrumbs</a>
   <a href="#cards">Cards</a>
   <a href="#combining-components">Combos</a>
 </nav>
@@ -213,6 +219,50 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 {% include components/search.html
    variant="filled"
    placeholder="Search with filled background..."
+%}{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
+## Toggles
+
+<div class="showcase-row">
+{% include components/toggle.html id="toggle1" label="Enable notifications" %}
+{% include components/toggle.html id="toggle2" label="Dark mode" checked=true %}
+{% include components/toggle.html id="toggle3" label="Disabled" disabled=true %}
+</div>
+
+### Sizes
+
+<div class="showcase-row showcase-row--align-center">
+{% include components/toggle.html id="toggle-sm" size="sm" label="Small" %}
+{% include components/toggle.html id="toggle-md" size="md" label="Medium" checked=true %}
+{% include components/toggle.html id="toggle-lg" size="lg" label="Large" %}
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/toggle.html
+   id="toggle1"
+   label="Enable notifications"
+%}
+
+{% include components/toggle.html
+   id="toggle2"
+   label="Dark mode"
+   checked=true
+%}
+
+{% include components/toggle.html
+   id="toggle3"
+   size="lg"
+   label="Large toggle"
 %}{% endraw %}
 ```
 
@@ -494,6 +544,68 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ---
 
+## Tabs
+
+{% include components/tabs.html id="demo-tabs" tabs="[{\"label\": \"Overview\", \"content\": \"<p>This is the overview content. Tabs help organize related content into sections.</p>\"}, {\"label\": \"Features\", \"content\": \"<p>Feature list goes here. Each tab can contain any HTML content.</p>\"}, {\"label\": \"Settings\", \"content\": \"<p>Settings and configuration options would go in this panel.</p>\"}]" %}
+
+### Pill Variant
+
+{% include components/tabs.html id="pill-tabs" variant="pills" tabs="[{\"label\": \"Tab 1\", \"content\": \"<p>Content for tab 1</p>\"}, {\"label\": \"Tab 2\", \"content\": \"<p>Content for tab 2</p>\"}, {\"label\": \"Tab 3\", \"content\": \"<p>Content for tab 3</p>\"}]" %}
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/tabs.html
+   id="my-tabs"
+   tabs="[
+     {\"label\": \"Tab 1\", \"content\": \"<p>Content 1</p>\"},
+     {\"label\": \"Tab 2\", \"content\": \"<p>Content 2</p>\"}
+   ]"
+%}
+
+{% include components/tabs.html
+   id="pill-tabs"
+   variant="pills"
+   tabs="[...]"
+%}{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
+## Tables
+
+{% include components/table.html headers="Equipment,Status,Location" rows="[[\"3D Printer\", \"✅ Available\", \"Room 101\"], [\"Laser Cutter\", \"🔧 Maintenance\", \"Room 102\"], [\"CNC Mill\", \"✅ Available\", \"Room 103\"], [\"Vinyl Cutter\", \"⏳ In Use\", \"Room 101\"]]" striped=true %}
+
+### Compact Table
+
+{% include components/table.html headers="Name,Role" rows="[[\"Alice\", \"Admin\"], [\"Bob\", \"Member\"], [\"Carol\", \"Guest\"]]" compact=true %}
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/table.html
+   headers="Name,Status,Location"
+   rows="[
+     [\"Item 1\", \"Active\", \"Room A\"],
+     [\"Item 2\", \"Pending\", \"Room B\"]
+   ]"
+   striped=true
+   hoverable=true
+%}{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
 ## Progress Bars
 
 {% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" demo=true %}
@@ -538,6 +650,57 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
    variant="primary"
    striped=true
    animated=true
+%}{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
+## Spinners
+
+<div class="showcase-row showcase-row--align-center">
+{% include components/spinner.html size="sm" %}
+{% include components/spinner.html size="md" %}
+{% include components/spinner.html size="lg" %}
+{% include components/spinner.html size="xl" %}
+</div>
+
+### With Labels
+
+<div class="showcase-row">
+{% include components/spinner.html size="md" label="Loading..." %}
+{% include components/spinner.html size="md" variant="success" label="Saving..." %}
+{% include components/spinner.html size="md" variant="danger" label="Processing..." %}
+</div>
+
+### Variants
+
+<div class="showcase-row showcase-row--align-center">
+{% include components/spinner.html variant="primary" %}
+{% include components/spinner.html variant="secondary" %}
+{% include components/spinner.html variant="success" %}
+{% include components/spinner.html variant="danger" %}
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/spinner.html
+   size="md"
+%}
+
+{% include components/spinner.html
+   size="lg"
+   label="Loading..."
+%}
+
+{% include components/spinner.html
+   variant="success"
+   label="Saving..."
 %}{% endraw %}
 ```
 
@@ -631,6 +794,77 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 {% include components/avatar.html
    size="xl"
    status="offline"
+%}{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
+## Tooltips
+
+<div class="showcase-row" style="padding: 2rem 0;">
+{% include components/tooltip.html text="I'm on top!" position="top" content="<strong>Hover me (top)</strong>" %}
+{% include components/tooltip.html text="I'm on the right!" position="right" content="<strong>Hover me (right)</strong>" %}
+{% include components/tooltip.html text="I'm on the bottom!" position="bottom" content="<strong>Hover me (bottom)</strong>" %}
+{% include components/tooltip.html text="I'm on the left!" position="left" content="<strong>Hover me (left)</strong>" %}
+</div>
+
+### Use Cases
+
+<p>
+Tooltips are great for 
+{% include components/tooltip.html text="Provides additional context without cluttering the UI" position="top" content="<u>help text</u>" %} 
+and 
+{% include components/tooltip.html text="Shows what will happen when clicked" position="top" content="<u>action hints</u>" %}.
+</p>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/tooltip.html
+   text="Tooltip message"
+   position="top"
+   content="<strong>Hover target</strong>"
+%}
+
+Positions: top, right, bottom, left{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
+## Breadcrumbs
+
+{% include components/breadcrumbs.html items="[{\"label\": \"Home\", \"href\": \"/\"}, {\"label\": \"Wiki\", \"href\": \"/wiki\"}, {\"label\": \"Components\", \"href\": \"/wiki/component-showcase\"}, {\"label\": \"Breadcrumbs\"}]" %}
+
+### Custom Separator
+
+{% include components/breadcrumbs.html separator="›" items="[{\"label\": \"Dashboard\", \"href\": \"#\"}, {\"label\": \"Settings\", \"href\": \"#\"}, {\"label\": \"Profile\"}]" %}
+
+{% include components/breadcrumbs.html separator="→" items="[{\"label\": \"Step 1\", \"href\": \"#\"}, {\"label\": \"Step 2\", \"href\": \"#\"}, {\"label\": \"Step 3\"}]" %}
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/breadcrumbs.html
+   items="[
+     {\"label\": \"Home\", \"href\": \"/\"},
+     {\"label\": \"Section\", \"href\": \"/section\"},
+     {\"label\": \"Current Page\"}
+   ]"
+%}
+
+{% include components/breadcrumbs.html
+   separator="›"
+   items="[...]"
 %}{% endraw %}
 ```
 

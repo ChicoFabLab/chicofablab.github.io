@@ -1,0 +1,7 @@
+{% assign text = include.text | default: "Tooltip" %}
+{% assign position = include.position | default: "top" %}
+{% assign content = include.content %}
+<span class="cfl-tooltip cfl-tooltip--{{ position }}">
+  {{ content }}
+  <span class="cfl-tooltip__text">{{ text | escape }}</span>
+</span>

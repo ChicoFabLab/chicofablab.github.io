@@ -86,6 +86,35 @@
                 }
             });
         });
+
+        // Tabs functionality
+        document.querySelectorAll('.cfl-tabs').forEach(function(tabContainer) {
+            var tabs = tabContainer.querySelectorAll('.cfl-tabs__tab');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var targetId = this.getAttribute('data-tab');
+                    
+                    // Deactivate all tabs and panels
+                    tabContainer.querySelectorAll('.cfl-tabs__tab').forEach(function(t) {
+                        t.classList.remove('cfl-tabs__tab--active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tabContainer.querySelectorAll('.cfl-tabs__panel').forEach(function(p) {
+                        p.classList.remove('cfl-tabs__panel--active');
+                        p.setAttribute('hidden', '');
+                    });
+                    
+                    // Activate clicked tab and its panel
+                    this.classList.add('cfl-tabs__tab--active');
+                    this.setAttribute('aria-selected', 'true');
+                    var panel = tabContainer.querySelector('[data-panel="' + targetId + '"]');
+                    if (panel) {
+                        panel.classList.add('cfl-tabs__panel--active');
+                        panel.removeAttribute('hidden');
+                    }
+                });
+            });
+        });
     });
     </script>
 </body>

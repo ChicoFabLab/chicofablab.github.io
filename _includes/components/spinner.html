@@ -1,0 +1,10 @@
+{% assign size = include.size | default: "md" %}
+{% assign variant = include.variant | default: "primary" %}
+{% assign label = include.label %}
+<div class="cfl-spinner cfl-spinner--{{ size }} cfl-spinner--{{ variant }}">
+  <svg class="cfl-spinner__icon" viewBox="0 0 24 24" fill="none">
+    <circle class="cfl-spinner__track" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"></circle>
+    <path class="cfl-spinner__head" d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+  </svg>
+  {% if label %}<span class="cfl-spinner__label">{{ label | escape }}</span>{% endif %}
+</div>
