@@ -10,14 +10,17 @@ New to CFL? This page points you at the basics so you can get moving fast.
 ## Quick Info
 - Location: 603 Orange Street, Chico, CA
 - Typical hours: Check the front door or our Discord for current open hours
-- How to join: Stop by during open hours, say hi to a volunteer, and get a quick tour
+
+## How to Visit
+
+Stop by during open hours to take a tour and see the space. Check our social media for current hours and events.
 
 ## What to Bring
 - A project idea (or just curiosity)
 - Laptop + charger if you have one
 - Closed-toe shoes for shop areas
 
-## Starter Links
+## Resources
 - Main site repo: [chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
 - Task dashboard project: [tasksdashboard](https://github.com/ChicoFabLab/tasksdashboard)
 - Kiosk notes: [CFL Kiosk](/wiki/cfl-kiosk)
