@@ -37,6 +37,24 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
    text="Secondary"
    variant="secondary"
    href="#"
+%}
+
+{% include components/button.html
+   text="Ghost"
+   variant="ghost"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Danger"
+   variant="danger"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Success"
+   variant="success"
+   href="#"
 %}{% endraw %}
 ```
 
@@ -129,6 +147,20 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
    title="Success!"
    body="Your changes have been saved."
    icon="✅"
+%}
+
+{% include components/alert.html
+   variant="warning"
+   title="Warning"
+   body="Proceed with caution."
+   icon="⚠️"
+%}
+
+{% include components/alert.html
+   variant="danger"
+   title="Error"
+   body="Something went wrong."
+   icon="❌"
 %}{% endraw %}
 ```
 
