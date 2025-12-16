@@ -216,8 +216,18 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <div class="showcase-row" markdown="0">
 {% include components/toggle.html id="toggle1" label="Enable notifications" %}
-{% include components/toggle.html id="toggle2" label="Dark mode" checked=true %}
-{% include components/toggle.html id="toggle3" label="Disabled" disabled=true %}
+{% include components/toggle.html id="toggle3" label="Auto-save" checked=true %}
+{% include components/toggle.html id="toggle4" label="Disabled" disabled=true %}
+</div>
+
+### Theme Toggle (Sun/Moon)
+
+A special animated toggle for dark/light mode switching.
+
+<div class="showcase-row showcase-row--align-center" markdown="0">
+{% include components/theme-toggle.html id="theme-sm" size="sm" %}
+{% include components/theme-toggle.html id="theme-md" size="md" %}
+{% include components/theme-toggle.html id="theme-lg" size="lg" checked=true %}
 </div>
 
 ### Sizes
@@ -233,14 +243,15 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/toggle.html
+{% raw %}<!-- Standard Toggle -->
+{% include components/toggle.html
    id="toggle1"
    label="Enable notifications"
 %}
 
 {% include components/toggle.html
    id="toggle2"
-   label="Dark mode"
+   label="Auto-save"
    checked=true
 %}
 
@@ -248,6 +259,18 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
    id="toggle3"
    size="lg"
    label="Large toggle"
+%}
+
+<!-- Theme Toggle (Sun/Moon) -->
+{% include components/theme-toggle.html
+   id="theme-toggle"
+   size="md"
+%}
+
+{% include components/theme-toggle.html
+   id="theme-dark"
+   size="lg"
+   checked=true
 %}{% endraw %}
 ```
 
@@ -739,14 +762,14 @@ For sidebars and settings panels with many options.
 {% raw %}<!-- Default Tabs -->
 <div class="cfl-tabs cfl-tabs--default" data-tabs="my-tabs">
   <div class="cfl-tabs__list" role="tablist">
-    <button class="cfl-tabs__tab cfl-tabs__tab--active" 
+    <button class="cfl-tabs__tab cfl-tabs__tab--active"
             role="tab" data-tab="my-tabs-1">Tab 1</button>
-    <button class="cfl-tabs__tab" 
+    <button class="cfl-tabs__tab"
             role="tab" data-tab="my-tabs-2">Tab 2</button>
   </div>
-  <div class="cfl-tabs__panel cfl-tabs__panel--active" 
+  <div class="cfl-tabs__panel cfl-tabs__panel--active"
        data-panel="my-tabs-1">Content 1</div>
-  <div class="cfl-tabs__panel" 
+  <div class="cfl-tabs__panel"
        data-panel="my-tabs-2" hidden>Content 2</div>
 </div>
 
