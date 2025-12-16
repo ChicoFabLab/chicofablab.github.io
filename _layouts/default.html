@@ -788,7 +788,11 @@
                 }
             });
 
-            // Create achievement panel with enhanced UI
+            // =================================================================
+            // CREATE ACHIEVEMENTS PANEL
+            // =================================================================
+            // Enhanced UI with category tabs, progress indicators, and timestamps
+            // Structure: Header (title + close) > Tabs > List > Stats footer
             var panel = document.createElement('div');
             panel.className = 'cfl-achievements-panel';
             panel.innerHTML = [
@@ -828,6 +832,8 @@
                 return date.toLocaleDateString();
             }
 
+            // Update the achievements panel with current data
+            // Handles filtering, sorting, progress display, and stats
             function updatePanel() {
                 var list = panel.querySelector('.cfl-achievements-list');
                 var statsEl = panel.querySelector('.cfl-achievements-stats');
@@ -836,7 +842,7 @@
                 var unlockedData = CFL.achievements.getUnlockedData();
                 var achStats = CFL.achievements.getStats();
 
-                // Filter by category
+                // Filter achievements by selected category
                 var achievementIds = Object.keys(all);
                 if (currentCategory !== 'all') {
                     achievementIds = achievementIds.filter(function(id) {
@@ -940,8 +946,8 @@
 
             // Close panel and unlock scroll when clicking outside
             document.addEventListener('click', function(e) {
-                if (!panel.contains(e.target) && 
-                    !achItem.contains(e.target) && 
+                if (!panel.contains(e.target) &&
+                    !achItem.contains(e.target) &&
                     panel.classList.contains('is-open')) {
                     panel.classList.remove('is-open');
                     unlockScroll();
