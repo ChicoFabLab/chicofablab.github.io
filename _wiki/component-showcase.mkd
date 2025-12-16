@@ -76,61 +76,6 @@ Click any button to see a fun toast notification! 🎉
   <button class="cfl-btn cfl-btn--primary cfl-btn--lg" onclick="CFL.toasts.large()">🦖 Large</button>
 </div>
 
-### Fun Buttons Gallery
-
-<div class="showcase-row" style="flex-wrap: wrap;">
-  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.rocket()">🚀 Launch</button>
-  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.pizza()">🍕 Pizza</button>
-  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.unicorn()">🦄 Magic</button>
-  <button class="cfl-btn cfl-btn--ghost cfl-btn--md" onclick="CFL.toasts.coffee()">☕ Coffee</button>
-  <button class="cfl-btn cfl-btn--danger cfl-btn--md" onclick="CFL.toasts.fire()">🔥 Fire</button>
-</div>
-
-<div class="showcase-row" style="flex-wrap: wrap; margin-top: 0.5rem;">
-  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.sparkles()">✨ Sparkles</button>
-  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.music()">🎵 Music</button>
-  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.brain()">🧠 Big Brain</button>
-  <button class="cfl-btn cfl-btn--ghost cfl-btn--md" onclick="CFL.toasts.party()">🎊 Party</button>
-  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.robot()">🤖 Robot</button>
-</div>
-
-<div class="showcase-row" style="flex-wrap: wrap; margin-top: 0.5rem;">
-  <button class="cfl-btn cfl-btn--danger cfl-btn--md" onclick="CFL.toasts.heart()">❤️ Love</button>
-  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.lightning()">⚡ Fast</button>
-  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.cat()">🐱 Cat</button>
-  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.dog()">🐕 Dog</button>
-</div>
-
-<details class="code-snippet">
-<summary>Show Code</summary>
-<div class="code-snippet__content" markdown="1">
-
-```liquid
-{% raw %}{% include components/button.html
-   text="Small"
-   variant="primary"
-   size="sm"
-   href="#"
-%}
-
-{% include components/button.html
-   text="Medium"
-   variant="primary"
-   size="md"
-   href="#"
-%}
-
-{% include components/button.html
-   text="Large"
-   variant="primary"
-   size="lg"
-   href="#"
-%}{% endraw %}
-```
-
-</div>
-</details>
-
 ### With Icons
 
 <div class="showcase-row">
@@ -188,6 +133,380 @@ Click any button to see a fun toast notification! 🎉
 
 </div>
 </details>
+
+### Fun Buttons Gallery 🎪
+
+Animated, playful button styles for when you want to go **wild**!
+
+<div class="cfl-callout cfl-callout--info" style="margin-bottom: 1rem;">
+<strong>🎨 Try the Button Playground!</strong> Mix and match styles to create your perfect button.
+<a href="/wiki/button-playground" class="cfl-btn cfl-btn--rainbow cfl-btn--sm" style="margin-left: 1rem;">Open Playground →</a>
+</div>
+
+#### Rainbow & Gradient
+
+<div class="showcase-row" style="flex-wrap: wrap;">
+  <button class="cfl-btn cfl-btn--rainbow cfl-btn--md" onclick="CFL.toasts.unicorn()">🌈 Rainbow</button>
+  <button class="cfl-btn cfl-btn--holo cfl-btn--md" onclick="CFL.toasts.sparkles()">✨ Holographic</button>
+  <button class="cfl-btn cfl-btn--mood cfl-btn--md" onclick="CFL.toasts.unicorn()">💍 Mood Ring</button>
+  <button class="cfl-btn cfl-btn--gradient-border cfl-btn--md" onclick="CFL.toasts.party()">🎨 Gradient Border</button>
+</div>
+
+#### Bouncy & Playful
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--bouncy cfl-btn--md" onclick="CFL.toasts.rocket()">🎾 Bouncy</button>
+  <button class="cfl-btn cfl-btn--wiggle cfl-btn--md" onclick="CFL.toasts.party()">🕺 Wiggle</button>
+  <button class="cfl-btn cfl-btn--liquid cfl-btn--md" onclick="CFL.toasts.brain()">🫧 Liquid Blob</button>
+  <button class="cfl-btn cfl-btn--rubber cfl-btn--md" onclick="CFL.toasts.rocket()">🎈 Rubber</button>
+  <button class="cfl-btn cfl-btn--spin cfl-btn--md" onclick="CFL.toasts.lightning()">🌀 Spin</button>
+</div>
+
+#### Organic & Natural
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--breathe cfl-btn--md" onclick="CFL.toasts.sparkles()">🧘 Breathe</button>
+  <button class="cfl-btn cfl-btn--heartbeat cfl-btn--md" onclick="CFL.toasts.heart()">💓 Heartbeat</button>
+  <button class="cfl-btn cfl-btn--bubble cfl-btn--md" onclick="CFL.toasts.sparkles()">🫧 Bubble</button>
+  <button class="cfl-btn cfl-btn--water cfl-btn--md" onclick="CFL.toasts.sparkles()">💧 Water Drop</button>
+  <button class="cfl-btn cfl-btn--lava cfl-btn--md" onclick="CFL.toasts.fire()">🌋 Lava Lamp</button>
+</div>
+
+#### Elements
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--fire cfl-btn--md" onclick="CFL.toasts.fire()">🔥 Fire</button>
+  <button class="cfl-btn cfl-btn--ice cfl-btn--md" onclick="CFL.toasts.sparkles()">❄️ Ice</button>
+  <button class="cfl-btn cfl-btn--electric cfl-btn--md" onclick="CFL.toasts.lightning()">⚡ Electric</button>
+  <button class="cfl-btn cfl-btn--aurora cfl-btn--md" onclick="CFL.toasts.unicorn()">🌌 Aurora</button>
+</div>
+
+#### Neon & Glow
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem; background: #1a1a2e; padding: 1.5rem; border-radius: 8px;">
+  <button class="cfl-btn cfl-btn--neon cfl-btn--md" onclick="CFL.toasts.lightning()">⚡ Neon Cyan</button>
+  <button class="cfl-btn cfl-btn--neon-pink cfl-btn--md" onclick="CFL.toasts.heart()">💖 Neon Pink</button>
+  <button class="cfl-btn cfl-btn--pulse cfl-btn--md" onclick="CFL.toasts.fire()">💗 Pulse</button>
+  <button class="cfl-btn cfl-btn--disco cfl-btn--md" onclick="CFL.toasts.party()">🪩 Disco</button>
+</div>
+
+#### Retro & Digital
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem; background: #1a1a2e; padding: 1.5rem; border-radius: 8px;">
+  <button class="cfl-btn cfl-btn--glitch cfl-btn--md" data-text="GLITCH" onclick="CFL.toasts.robot()">👾 Glitch</button>
+  <button class="cfl-btn cfl-btn--vhs cfl-btn--md" onclick="CFL.toasts.robot()">📼 VHS</button>
+  <button class="cfl-btn cfl-btn--static cfl-btn--md" onclick="CFL.toasts.robot()">📺 Static</button>
+  <button class="cfl-btn cfl-btn--cyber cfl-btn--md" onclick="CFL.toasts.robot()">🤖 Cyber</button>
+  <button class="cfl-btn cfl-btn--soundwave cfl-btn--md" onclick="CFL.toasts.music()">🎵 Soundwave</button>
+</div>
+
+#### 3D & Tactile
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--3d cfl-btn--md" onclick="CFL.toasts.success()">🎮 3D Green</button>
+  <button class="cfl-btn cfl-btn--3d-red cfl-btn--md" onclick="CFL.toasts.danger()">🔴 3D Red</button>
+  <button class="cfl-btn cfl-btn--pixel cfl-btn--md" onclick="CFL.toasts.robot()">👾 PIXEL</button>
+  <button class="cfl-btn cfl-btn--flip cfl-btn--md" onclick="CFL.toasts.sparkles()">🔄 Flip</button>
+  <button class="cfl-btn cfl-btn--sticker cfl-btn--md" onclick="CFL.toasts.party()">🏷️ Sticker</button>
+</div>
+
+#### Textures & Materials
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--paper cfl-btn--md" onclick="CFL.toasts.sparkles()">📝 Paper</button>
+  <button class="cfl-btn cfl-btn--chalk cfl-btn--md" onclick="CFL.toasts.brain()">🖍️ Chalk</button>
+  <button class="cfl-btn cfl-btn--glass cfl-btn--md" style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 1rem;" onclick="CFL.toasts.sparkles()">🪟 Glass</button>
+</div>
+
+#### Special Effects
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--confetti cfl-btn--md" onclick="CFL.toasts.party()">🎉 Confetti</button>
+  <button class="cfl-btn cfl-btn--magnetic cfl-btn--md" onclick="CFL.toasts.unicorn()">🧲 Magnetic</button>
+  <button class="cfl-btn cfl-btn--portal cfl-btn--md" onclick="CFL.toasts.unicorn()">🌀 Portal</button>
+  <button class="cfl-btn cfl-btn--meteor cfl-btn--md" onclick="CFL.toasts.rocket()">☄️ Meteor</button>
+  <button class="cfl-btn cfl-btn--loading cfl-btn--md" onclick="CFL.toasts.robot()">⏳ Loading</button>
+</div>
+
+#### Fun & Themed
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem;">
+  <button class="cfl-btn cfl-btn--casino cfl-btn--md" onclick="CFL.toasts.party()">🎰 Casino</button>
+  <button class="cfl-btn cfl-btn--dna cfl-btn--md" onclick="CFL.toasts.brain()">🧬 DNA</button>
+  <button class="cfl-btn cfl-btn--magnet cfl-btn--md" onclick="CFL.toasts.lightning()">🧲 Magnet</button>
+  <button class="cfl-btn cfl-btn--emoji cfl-btn--md" onclick="CFL.toasts.party()">🎉 Emoji Party</button>
+  <button class="cfl-btn cfl-btn--typewriter cfl-btn--md" onclick="CFL.toasts.robot()">⌨️ Terminal</button>
+</div>
+
+#### ~~Do Not Click~~ 🕳️
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem; background: linear-gradient(135deg, #0a0008, #1a0a1a); padding: 2rem; border-radius: 8px;">
+  <a href="/wiki/void" class="cfl-btn cfl-btn--eldritch cfl-btn--md" data-text="EMBRACE THE VOID">👁️ E̷m̵b̶r̷a̵c̷e̶ ̵t̶h̵e̷ ̶V̵o̶i̴d̷</a>
+</div>
+
+<details class="code-snippet">
+<summary>Show Fun Button Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+<!-- Rainbow Gradient -->
+<button class="cfl-btn cfl-btn--rainbow cfl-btn--md">🌈 Rainbow</button>
+
+<!-- Holographic -->
+<button class="cfl-btn cfl-btn--holo cfl-btn--md">✨ Holographic</button>
+
+<!-- Bouncy / Jello -->
+<button class="cfl-btn cfl-btn--bouncy cfl-btn--md">🎾 Bouncy</button>
+
+<!-- Organic -->
+<button class="cfl-btn cfl-btn--breathe cfl-btn--md">🧘 Breathe</button>
+<button class="cfl-btn cfl-btn--heartbeat cfl-btn--md">💓 Heartbeat</button>
+<button class="cfl-btn cfl-btn--lava cfl-btn--md">🌋 Lava Lamp</button>
+
+<!-- Elements -->
+<button class="cfl-btn cfl-btn--fire cfl-btn--md">🔥 Fire</button>
+<button class="cfl-btn cfl-btn--ice cfl-btn--md">❄️ Ice</button>
+<button class="cfl-btn cfl-btn--electric cfl-btn--md">⚡ Electric</button>
+<button class="cfl-btn cfl-btn--aurora cfl-btn--md">🌌 Aurora</button>
+
+<!-- Neon (use on dark backgrounds) -->
+<button class="cfl-btn cfl-btn--neon cfl-btn--md">⚡ Neon</button>
+<button class="cfl-btn cfl-btn--neon-pink cfl-btn--md">💖 Neon Pink</button>
+<button class="cfl-btn cfl-btn--disco cfl-btn--md">🪩 Disco</button>
+
+<!-- Retro Digital -->
+<button class="cfl-btn cfl-btn--glitch cfl-btn--md" data-text="GLITCH">👾 Glitch</button>
+<button class="cfl-btn cfl-btn--vhs cfl-btn--md">📼 VHS</button>
+<button class="cfl-btn cfl-btn--static cfl-btn--md">📺 Static</button>
+<button class="cfl-btn cfl-btn--cyber cfl-btn--md">🤖 Cyber</button>
+
+<!-- 3D & Tactile -->
+<button class="cfl-btn cfl-btn--3d cfl-btn--md">🎮 3D Green</button>
+<button class="cfl-btn cfl-btn--pixel cfl-btn--md">👾 PIXEL</button>
+<button class="cfl-btn cfl-btn--flip cfl-btn--md">🔄 Flip</button>
+
+<!-- Textures -->
+<button class="cfl-btn cfl-btn--paper cfl-btn--md">📝 Paper</button>
+<button class="cfl-btn cfl-btn--chalk cfl-btn--md">🖍️ Chalk</button>
+<button class="cfl-btn cfl-btn--glass cfl-btn--md">🪟 Glass</button>
+
+<!-- Special Effects -->
+<button class="cfl-btn cfl-btn--confetti cfl-btn--md">🎉 Confetti</button>
+<button class="cfl-btn cfl-btn--portal cfl-btn--md">🌀 Portal</button>
+<button class="cfl-btn cfl-btn--meteor cfl-btn--md">☄️ Meteor</button>
+<button class="cfl-btn cfl-btn--loading cfl-btn--md">⏳ Loading</button>
+
+<!-- Fun & Themed -->
+<button class="cfl-btn cfl-btn--casino cfl-btn--md">🎰 Casino</button>
+<button class="cfl-btn cfl-btn--dna cfl-btn--md">🧬 DNA</button>
+<button class="cfl-btn cfl-btn--emoji cfl-btn--md">🎉 Emoji Party</button>
+
+<!-- ELDRITCH CORRUPTION (use with caution...) -->
+<button class="cfl-btn cfl-btn--eldritch cfl-btn--md" data-text="EMBRACE THE VOID">
+    👁️ Embrace the Void
+</button>
+```
+
+</div>
+</details>
+
+---
+
+## Holographic Utilities
+
+Universal holographic shader classes that work on text, containers, borders, and images. These are separate from the button-specific `.cfl-btn--holo` class.
+
+### Holographic Text
+
+Apply rainbow gradient animation to any text element.
+
+<div class="showcase-row showcase-row--vertical" style="gap: 1rem;">
+  <h2 class="cfl-holo-text" style="margin: 0;">Rainbow Heading</h2>
+  <p class="cfl-holo-text" style="margin: 0; font-size: 1.25rem;">Holographic paragraph text</p>
+  <span class="cfl-holo-text" style="font-weight: bold;">Inline holographic span</span>
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+<!-- Any text element -->
+<h2 class="cfl-holo-text">Rainbow Heading</h2>
+<p class="cfl-holo-text">Holographic paragraph text</p>
+<span class="cfl-holo-text">Inline holographic span</span>
+```
+
+</div>
+</details>
+
+### Holographic Containers
+
+Apply holographic background to any container. Add `.cfl-holo-shine` for the sweeping light effect.
+
+<div class="showcase-row" style="gap: 1rem; flex-wrap: wrap;">
+  <div class="cfl-holo" style="padding: 1.5rem; border-radius: 8px; color: white;">
+    <strong>Basic Holo</strong><br>
+    <small>.cfl-holo</small>
+  </div>
+  <div class="cfl-holo cfl-holo-shine" style="padding: 1.5rem; border-radius: 8px; color: white;">
+    <strong>With Shine</strong><br>
+    <small>.cfl-holo .cfl-holo-shine</small>
+  </div>
+  <div class="cfl-holo cfl-holo-shine cfl-holo--fast" style="padding: 1.5rem; border-radius: 8px; color: white;">
+    <strong>Fast Animation</strong><br>
+    <small>.cfl-holo--fast</small>
+  </div>
+  <div class="cfl-holo cfl-holo-shine cfl-holo--slow" style="padding: 1.5rem; border-radius: 8px; color: white;">
+    <strong>Slow Animation</strong><br>
+    <small>.cfl-holo--slow</small>
+  </div>
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+<!-- Basic holographic background -->
+<div class="cfl-holo">Content</div>
+
+<!-- With shine sweep effect -->
+<div class="cfl-holo cfl-holo-shine">Content with shine</div>
+
+<!-- Speed modifiers -->
+<div class="cfl-holo cfl-holo--fast">Fast (1s)</div>
+<div class="cfl-holo cfl-holo--slow">Slow (8s)</div>
+```
+
+</div>
+</details>
+
+### Holographic Borders
+
+Rainbow animated border that supports `border-radius`. Center fill matches page background.
+
+<div class="showcase-row" style="gap: 1rem; flex-wrap: wrap;">
+  <div class="cfl-holo-border" style="padding: 1.5rem; border-radius: 0;">
+    <strong>Square Border</strong>
+  </div>
+  <div class="cfl-holo-border" style="padding: 1.5rem; border-radius: 8px;">
+    <strong>Rounded Border</strong>
+  </div>
+  <div class="cfl-holo-border" style="padding: 1.5rem; border-radius: 50px;">
+    <strong>Pill Border</strong>
+  </div>
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+<!-- Works with any border-radius -->
+<div class="cfl-holo-border">Square</div>
+<div class="cfl-holo-border" style="border-radius: 8px;">Rounded</div>
+<div class="cfl-holo-border" style="border-radius: 50px;">Pill</div>
+```
+
+</div>
+</details>
+
+### Holographic Images
+
+Apply holographic overlay to images. Use wrapper approach (class goes on container, not `<img>` tag).
+
+<div class="showcase-row" style="gap: 1rem; flex-wrap: wrap;">
+  <figure class="cfl-holo-img" style="margin: 0; width: 150px;">
+    <img src="/assets/images/makerspace.png" alt="Demo image" style="border-radius: 8px;">
+  </figure>
+  <figure class="cfl-holo-img cfl-holo--fast" style="margin: 0; width: 150px;">
+    <img src="/assets/images/makerspace.png" alt="Demo image fast" style="border-radius: 8px;">
+  </figure>
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+<!-- Wrapper approach: class on container, NOT on img -->
+<figure class="cfl-holo-img">
+    <img src="your-image.jpg" alt="Description">
+</figure>
+
+<!-- With speed modifier -->
+<figure class="cfl-holo-img cfl-holo--fast">
+    <img src="your-image.jpg" alt="Description">
+</figure>
+
+<!-- Background-image approach (alternative) -->
+<div class="cfl-holo-bg" style="background-image: url('your-image.jpg'); height: 200px;"></div>
+```
+
+</div>
+</details>
+
+### Combined Examples
+
+Mix holographic utilities with other components.
+
+<div class="showcase-row" style="gap: 1rem; flex-wrap: wrap; align-items: stretch;">
+  <div class="cfl-card cfl-holo cfl-holo-shine" style="padding: 1.5rem; color: white; max-width: 200px;">
+    <h4 style="margin: 0 0 0.5rem 0;">Holo Card</h4>
+    <p style="margin: 0; font-size: 0.875rem;">A card with holographic background and shine effect.</p>
+  </div>
+  <div class="cfl-card cfl-holo-border" style="padding: 1.5rem; max-width: 200px; border-radius: 8px;">
+    <h4 class="cfl-holo-text" style="margin: 0 0 0.5rem 0;">Border + Text</h4>
+    <p style="margin: 0; font-size: 0.875rem;">Holographic border with holographic text heading.</p>
+  </div>
+  <button class="cfl-btn cfl-holo cfl-holo-shine cfl-btn--lg" style="color: white; border: none;">
+    🌈 Custom Holo Button
+  </button>
+</div>
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```html
+<!-- Card with holo background -->
+<div class="cfl-card cfl-holo cfl-holo-shine">
+    <h4>Holo Card</h4>
+    <p>Content here</p>
+</div>
+
+<!-- Card with holo border and text -->
+<div class="cfl-card cfl-holo-border">
+    <h4 class="cfl-holo-text">Border + Text</h4>
+    <p>Content here</p>
+</div>
+
+<!-- Custom button with holo utilities -->
+<button class="cfl-btn cfl-holo cfl-holo-shine cfl-btn--lg">
+    🌈 Custom Holo Button
+</button>
+```
+
+</div>
+</details>
+
+### Accessibility Note
+
+These animations respect `prefers-reduced-motion`. Users who have reduced motion enabled will see a static gradient instead of animation.
+
+### Class Reference
+
+| Class | Purpose |
+|-------|---------|
+| `.cfl-holo` | Rainbow gradient background on any element |
+| `.cfl-holo-shine` | Add sweeping shine effect (combine with `.cfl-holo`) |
+| `.cfl-holo-text` | Rainbow gradient text |
+| `.cfl-holo-border` | Rainbow border with solid center (supports border-radius) |
+| `.cfl-holo-img` | Image overlay (apply to wrapper div/figure) |
+| `.cfl-holo-bg` | Image overlay for CSS background-image |
+| `.cfl-holo--fast` | Speed modifier (1s animation) |
+| `.cfl-holo--slow` | Speed modifier (8s animation) |
 
 ---
 

@@ -17,6 +17,9 @@
         <h1><a href="/">CFL Wiki</a></h1>
         <nav>
             {% include nav.html type="main" %}
+            <button type="button" class="cfl-nav-settings" id="cfl-nav-settings-btn" aria-label="Site settings" title="Site settings">
+                ⚙️
+            </button>
         </nav>
     </header>
 
@@ -45,34 +48,42 @@
 
     <div class="cfl-settings" id="cfl-settings" aria-live="polite">
         <div class="cfl-settings__scrim" data-scrim hidden></div>
-        <button type="button" class="cfl-settings__fab" aria-expanded="false" aria-controls="cfl-settings-panel">
+        <button type="button" class="cfl-settings__dismiss" id="cfl-settings-dismiss" aria-label="Hide settings button" title="Hide settings widget">
+            ✕
+        </button>
+        <button type="button" class="cfl-settings__fab" aria-expanded="false" aria-controls="cfl-settings-panel" aria-label="Site settings">
             <span class="cfl-settings__fab-icon" aria-hidden="true">⚙️</span>
-            <span class="cfl-settings__fab-label">Site settings</span>
         </button>
         <div class="cfl-settings__orbit" aria-hidden="true">
             <button type="button" class="cfl-settings__orbit-btn" data-panel="fonts" title="Fonts">
                 <span aria-hidden="true">Aa</span>
                 <span class="sr-only">Fonts</span>
+                <span class="cfl-settings__orbit-label">Fonts</span>
             </button>
             <button type="button" class="cfl-settings__orbit-btn" data-panel="colors" title="Colors">
                 <span aria-hidden="true">🎨</span>
                 <span class="sr-only">Colors</span>
+                <span class="cfl-settings__orbit-label">Colors</span>
             </button>
             <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="fraunces" title="Soft serif">
                 <span aria-hidden="true">🫧</span>
                 <span class="sr-only">Soft serif</span>
+                <span class="cfl-settings__orbit-label">Serif</span>
             </button>
             <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="bricolage" title="Playful sans">
                 <span aria-hidden="true">✨</span>
                 <span class="sr-only">Playful sans</span>
+                <span class="cfl-settings__orbit-label">Sans</span>
             </button>
             <button type="button" class="cfl-settings__orbit-btn" data-panel="scope" title="Scope">
                 <span aria-hidden="true">🌐</span>
                 <span class="sr-only">Scope</span>
+                <span class="cfl-settings__orbit-label">Scope</span>
             </button>
             <button type="button" class="cfl-settings__orbit-btn" data-panel="reset" title="Reset">
                 <span aria-hidden="true">↺</span>
                 <span class="sr-only">Reset</span>
+                <span class="cfl-settings__orbit-label">Reset</span>
             </button>
         </div>
 
@@ -149,6 +160,492 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Check for eldritch corruption (the void remembers...)
+        (function checkVoidCorruption() {
+            var corruption = parseInt(localStorage.getItem('voidCorruption') || '0');
+            if (corruption > 0) {
+                document.body.classList.add('eldritch-mode');
+                // Whisper to the console...
+                if (corruption >= 50) {
+                    console.log('%c👁️ The void sees you...', 'color: #8b00ff; font-size: 20px; text-shadow: 0 0 10px #8b00ff;');
+                }
+                if (corruption >= 100) {
+                    console.log('%c🌀 FULLY CONSUMED', 'color: #ff00ff; font-size: 24px; font-weight: bold;');
+                }
+            }
+        })();
+
+        // =====================================================================
+        // WEB AUDIO SOUND EFFECTS SYSTEM
+        // =====================================================================
+        window.CFL = window.CFL || {};
+
+        CFL.sounds = (function() {
+            var audioContext = null;
+            var enabled = localStorage.getItem('cflSoundsEnabled') !== 'false';
+            var volume = parseFloat(localStorage.getItem('cflSoundsVolume') || '0.3');
+
+            function getContext() {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                return audioContext;
+            }
+
+            function playTone(frequency, type, duration, volumeMod) {
+                if (!enabled) return;
+                try {
+                    var ctx = getContext();
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+
+                    osc.type = type || 'sine';
+                    osc.frequency.setValueAtTime(frequency, ctx.currentTime);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    var vol = volume * (volumeMod || 1);
+                    gain.gain.setValueAtTime(vol, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + duration);
+                } catch(e) { console.log('Sound error:', e); }
+            }
+
+            function playNoise(duration, volumeMod) {
+                if (!enabled) return;
+                try {
+                    var ctx = getContext();
+                    var bufferSize = ctx.sampleRate * duration;
+                    var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                    var data = buffer.getChannelData(0);
+                    for (var i = 0; i < bufferSize; i++) {
+                        data[i] = Math.random() * 2 - 1;
+                    }
+                    var noise = ctx.createBufferSource();
+                    noise.buffer = buffer;
+                    var gain = ctx.createGain();
+                    var filter = ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 1000;
+                    noise.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(ctx.destination);
+                    var vol = volume * (volumeMod || 0.3);
+                    gain.gain.setValueAtTime(vol, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+                    noise.start();
+                } catch(e) {}
+            }
+
+            return {
+                // Basic sounds
+                click: function() { playTone(800, 'sine', 0.05, 0.5); },
+                pop: function() { playTone(600, 'sine', 0.08, 0.6); playTone(900, 'sine', 0.04, 0.3); },
+                success: function() {
+                    playTone(523, 'sine', 0.1, 0.4);
+                    setTimeout(function() { playTone(659, 'sine', 0.1, 0.4); }, 100);
+                    setTimeout(function() { playTone(784, 'sine', 0.15, 0.5); }, 200);
+                },
+                error: function() {
+                    playTone(200, 'sawtooth', 0.15, 0.3);
+                    setTimeout(function() { playTone(150, 'sawtooth', 0.2, 0.3); }, 100);
+                },
+                hover: function() { playTone(1200, 'sine', 0.03, 0.2); },
+                whoosh: function() {
+                    playTone(400, 'sine', 0.15, 0.3);
+                    playNoise(0.1, 0.2);
+                },
+                ding: function() { playTone(1047, 'sine', 0.3, 0.4); },
+
+                // Fun sounds
+                boing: function() {
+                    var ctx = getContext();
+                    if (!enabled || !ctx) return;
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(150, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.1);
+                    osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.2);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    gain.gain.setValueAtTime(volume * 0.5, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                },
+                zap: function() {
+                    playTone(2000, 'sawtooth', 0.05, 0.3);
+                    playTone(100, 'sawtooth', 0.1, 0.2);
+                },
+                magic: function() {
+                    [523, 659, 784, 1047, 1319].forEach(function(f, i) {
+                        setTimeout(function() { playTone(f, 'sine', 0.15, 0.3); }, i * 50);
+                    });
+                },
+                coin: function() {
+                    playTone(988, 'square', 0.05, 0.3);
+                    setTimeout(function() { playTone(1319, 'square', 0.15, 0.3); }, 50);
+                },
+                powerup: function() {
+                    [262, 330, 392, 523, 659, 784].forEach(function(f, i) {
+                        setTimeout(function() { playTone(f, 'square', 0.08, 0.25); }, i * 60);
+                    });
+                },
+                glitch: function() {
+                    for (var i = 0; i < 5; i++) {
+                        setTimeout(function() {
+                            playTone(Math.random() * 2000 + 100, 'sawtooth', 0.03, 0.2);
+                        }, i * 30);
+                    }
+                },
+                laser: function() {
+                    var ctx = getContext();
+                    if (!enabled || !ctx) return;
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(1500, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.2);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    gain.gain.setValueAtTime(volume * 0.3, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.2);
+                },
+                explosion: function() {
+                    playNoise(0.3, 0.5);
+                    playTone(80, 'sine', 0.3, 0.4);
+                },
+                eldritch: function() {
+                    playTone(50, 'sine', 0.5, 0.4);
+                    playTone(53, 'sine', 0.5, 0.3);
+                    setTimeout(function() { playTone(47, 'sawtooth', 0.3, 0.2); }, 200);
+                },
+
+                // Settings
+                setEnabled: function(val) { enabled = val; localStorage.setItem('cflSoundsEnabled', val); },
+                setVolume: function(val) { volume = val; localStorage.setItem('cflSoundsVolume', val); },
+                isEnabled: function() { return enabled; },
+                getVolume: function() { return volume; }
+            };
+        })();
+
+        // =====================================================================
+        // ACHIEVEMENT SYSTEM
+        // =====================================================================
+        CFL.achievements = (function() {
+            var achievements = {
+                'first-click': { name: 'First Click', desc: 'Click your first button', icon: '🖱️', sound: 'coin' },
+                'button-10': { name: 'Button Masher', desc: 'Click 10 buttons', icon: '🔘', sound: 'success' },
+                'button-50': { name: 'Click Champion', desc: 'Click 50 buttons', icon: '🏆', sound: 'powerup' },
+                'button-100': { name: 'Button Legend', desc: 'Click 100 buttons', icon: '👑', sound: 'magic' },
+                'rainbow': { name: 'Taste the Rainbow', desc: 'Click a rainbow button', icon: '🌈', sound: 'magic' },
+                'void-gazer': { name: 'Void Gazer', desc: 'Visit The Void', icon: '👁️', sound: 'eldritch' },
+                'corrupted': { name: 'Corrupted Soul', desc: 'Reach 100% void corruption', icon: '🌀', sound: 'eldritch' },
+                'cleansed': { name: 'Purified', desc: 'Cleanse the void corruption', icon: '✨', sound: 'magic' },
+                'explorer': { name: 'Explorer', desc: 'Visit 5 different pages', icon: '🧭', sound: 'whoosh' },
+                'night-owl': { name: 'Night Owl', desc: 'Browse after midnight', icon: '🦉', sound: 'pop' },
+                'early-bird': { name: 'Early Bird', desc: 'Browse before 6am', icon: '🐦', sound: 'ding' },
+                'sound-on': { name: 'Audiophile', desc: 'Enable sound effects', icon: '🔊', sound: 'powerup' },
+                'easter-egg': { name: 'Egg Hunter', desc: 'Find a hidden easter egg', icon: '🥚', sound: 'coin' },
+                'all-buttons': { name: 'Completionist', desc: 'Click every fun button type', icon: '⭐', sound: 'powerup' },
+                'speed-demon': { name: 'Speed Demon', desc: 'Click 5 buttons in 2 seconds', icon: '⚡', sound: 'zap' },
+                'konami': { name: 'Old School', desc: 'Enter the Konami code', icon: '🎮', sound: 'powerup' }
+            };
+
+            var unlocked = JSON.parse(localStorage.getItem('cflAchievements') || '{}');
+            var stats = JSON.parse(localStorage.getItem('cflStats') || '{"clicks":0,"pages":[],"buttonTypes":[]}');
+            var recentClicks = [];
+
+            function save() {
+                localStorage.setItem('cflAchievements', JSON.stringify(unlocked));
+                localStorage.setItem('cflStats', JSON.stringify(stats));
+            }
+
+            function unlock(id) {
+                if (unlocked[id]) return false;
+                if (!achievements[id]) return false;
+
+                unlocked[id] = { time: Date.now() };
+                save();
+
+                var ach = achievements[id];
+                if (CFL.sounds && ach.sound) CFL.sounds[ach.sound]();
+
+                // Show achievement toast
+                if (CFL.toast) {
+                    CFL.toast({
+                        icon: ach.icon,
+                        title: '🏅 Achievement Unlocked!',
+                        message: ach.name + ' - ' + ach.desc,
+                        variant: 'party',
+                        iconAnim: 'bounce',
+                        duration: 5000
+                    });
+                }
+
+                console.log('%c🏅 Achievement: ' + ach.name, 'color: gold; font-size: 16px; font-weight: bold;');
+                return true;
+            }
+
+            function trackClick(buttonType) {
+                stats.clicks++;
+                recentClicks.push(Date.now());
+                recentClicks = recentClicks.filter(function(t) { return Date.now() - t < 2000; });
+
+                if (stats.clicks === 1) unlock('first-click');
+                if (stats.clicks >= 10) unlock('button-10');
+                if (stats.clicks >= 50) unlock('button-50');
+                if (stats.clicks >= 100) unlock('button-100');
+                if (recentClicks.length >= 5) unlock('speed-demon');
+
+                if (buttonType && stats.buttonTypes.indexOf(buttonType) === -1) {
+                    stats.buttonTypes.push(buttonType);
+                    if (buttonType === 'rainbow') unlock('rainbow');
+                    // Check for completionist (15+ unique button types)
+                    if (stats.buttonTypes.length >= 15) unlock('all-buttons');
+                }
+
+                save();
+            }
+
+            function trackPage(path) {
+                if (stats.pages.indexOf(path) === -1) {
+                    stats.pages.push(path);
+                    if (stats.pages.length >= 5) unlock('explorer');
+                }
+                if (path.includes('/void')) unlock('void-gazer');
+                save();
+            }
+
+            // Time-based achievements
+            var hour = new Date().getHours();
+            if (hour >= 0 && hour < 6) unlock('early-bird');
+            if (hour >= 0 && hour < 5) unlock('night-owl');
+
+            // Track current page
+            trackPage(window.location.pathname);
+
+            return {
+                unlock: unlock,
+                trackClick: trackClick,
+                trackPage: trackPage,
+                isUnlocked: function(id) { return !!unlocked[id]; },
+                getUnlocked: function() { return Object.keys(unlocked); },
+                getStats: function() { return stats; },
+                getAll: function() { return achievements; },
+                reset: function() {
+                    unlocked = {};
+                    stats = { clicks: 0, pages: [], buttonTypes: [] };
+                    save();
+                }
+            };
+        })();
+
+        // =====================================================================
+        // KONAMI CODE EASTER EGG
+        // =====================================================================
+        (function konamiCode() {
+            var pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            var current = 0;
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === pattern[current]) {
+                    current++;
+                    if (current === pattern.length) {
+                        current = 0;
+                        CFL.achievements.unlock('konami');
+                        CFL.achievements.unlock('easter-egg');
+
+                        // Rainbow mode!
+                        document.body.classList.add('konami-mode');
+                        CFL.sounds.powerup();
+
+                        if (CFL.toast) {
+                            CFL.toast({
+                                icon: '🎮',
+                                title: '↑↑↓↓←→←→BA',
+                                message: 'KONAMI CODE ACTIVATED! Rainbow mode enabled!',
+                                variant: 'party',
+                                iconAnim: 'bounce',
+                                duration: 5000
+                            });
+                        }
+
+                        setTimeout(function() {
+                            document.body.classList.remove('konami-mode');
+                        }, 10000);
+                    }
+                } else {
+                    current = 0;
+                }
+            });
+        })();
+
+        // =====================================================================
+        // AUTO-ATTACH SOUNDS TO BUTTONS
+        // =====================================================================
+        (function attachButtonSounds() {
+            document.addEventListener('click', function(e) {
+                var btn = e.target.closest('.cfl-btn');
+                if (!btn) return;
+
+                // Track achievement
+                var btnClass = btn.className;
+                var buttonType = null;
+                var match = btnClass.match(/cfl-btn--(\w+)/);
+                if (match) buttonType = match[1];
+                CFL.achievements.trackClick(buttonType);
+
+                // Play appropriate sound
+                if (btnClass.includes('--rainbow')) { CFL.sounds.magic(); }
+                else if (btnClass.includes('--bouncy') || btnClass.includes('--rubber')) { CFL.sounds.boing(); }
+                else if (btnClass.includes('--neon') || btnClass.includes('--electric')) { CFL.sounds.zap(); }
+                else if (btnClass.includes('--glitch') || btnClass.includes('--vhs') || btnClass.includes('--static')) { CFL.sounds.glitch(); }
+                else if (btnClass.includes('--3d') || btnClass.includes('--pixel')) { CFL.sounds.coin(); }
+                else if (btnClass.includes('--eldritch')) { CFL.sounds.eldritch(); }
+                else if (btnClass.includes('--confetti') || btnClass.includes('--party')) { CFL.sounds.powerup(); }
+                else if (btnClass.includes('--holo') || btnClass.includes('--aurora')) { CFL.sounds.magic(); }
+                else if (btnClass.includes('--portal') || btnClass.includes('--spin')) { CFL.sounds.whoosh(); }
+                else if (btnClass.includes('--fire') || btnClass.includes('--lava')) { CFL.sounds.explosion(); }
+                else if (btnClass.includes('--danger')) { CFL.sounds.error(); }
+                else if (btnClass.includes('--success')) { CFL.sounds.success(); }
+                else { CFL.sounds.click(); }
+            });
+
+            // Hover sounds (subtle)
+            document.addEventListener('mouseover', function(e) {
+                var btn = e.target.closest('.cfl-btn');
+                if (btn && CFL.sounds.isEnabled()) {
+                    // Only play hover sound occasionally to avoid annoyance
+                    if (Math.random() > 0.7) CFL.sounds.hover();
+                }
+            });
+        })();
+
+        // =====================================================================
+        // ACHIEVEMENT PANEL UI
+        // =====================================================================
+        (function createAchievementPanel() {
+            // Create achievement button
+            var achBtn = document.createElement('button');
+            achBtn.className = 'cfl-achievements-btn';
+            achBtn.innerHTML = '🏆';
+            achBtn.title = 'Achievements';
+            document.body.appendChild(achBtn);
+
+            // Create sound toggle
+            var soundBtn = document.createElement('button');
+            soundBtn.className = 'cfl-sound-toggle';
+            soundBtn.innerHTML = CFL.sounds.isEnabled() ? '🔊' : '🔇';
+            soundBtn.setAttribute('data-enabled', CFL.sounds.isEnabled());
+            soundBtn.title = 'Toggle sounds';
+            document.body.appendChild(soundBtn);
+
+            soundBtn.addEventListener('click', function() {
+                var newState = !CFL.sounds.isEnabled();
+                CFL.sounds.setEnabled(newState);
+                soundBtn.innerHTML = newState ? '🔊' : '🔇';
+                soundBtn.setAttribute('data-enabled', newState);
+                if (newState) {
+                    CFL.sounds.success();
+                    CFL.achievements.unlock('sound-on');
+                }
+            });
+
+            // Create achievement panel
+            var panel = document.createElement('div');
+            panel.className = 'cfl-achievements-panel';
+            panel.innerHTML = '<div class="cfl-achievements-header"><span>🏆 Achievements</span><button class="close-panel">✕</button></div><div class="cfl-achievements-list"></div><div class="cfl-achievements-stats"></div>';
+            document.body.appendChild(panel);
+
+            function updatePanel() {
+                var list = panel.querySelector('.cfl-achievements-list');
+                var stats = panel.querySelector('.cfl-achievements-stats');
+                var all = CFL.achievements.getAll();
+                var unlocked = CFL.achievements.getUnlocked();
+                var achStats = CFL.achievements.getStats();
+
+                list.innerHTML = '';
+                Object.keys(all).forEach(function(id) {
+                    var ach = all[id];
+                    var isUnlocked = unlocked.indexOf(id) !== -1;
+                    var div = document.createElement('div');
+                    div.className = 'cfl-achievement ' + (isUnlocked ? 'cfl-achievement--unlocked' : 'cfl-achievement--locked');
+                    div.innerHTML = '<div class="cfl-achievement__icon">' + ach.icon + '</div><div class="cfl-achievement__info"><div class="cfl-achievement__name">' + ach.name + '</div><div class="cfl-achievement__desc">' + (isUnlocked ? ach.desc : '???') + '</div></div>';
+                    list.appendChild(div);
+                });
+
+                stats.innerHTML = '<span>Unlocked: ' + unlocked.length + '/' + Object.keys(all).length + '</span><span>Clicks: ' + achStats.clicks + '</span>';
+            }
+
+            achBtn.addEventListener('click', function() {
+                panel.classList.toggle('is-open');
+                if (panel.classList.contains('is-open')) {
+                    updatePanel();
+                    CFL.sounds.pop();
+                }
+            });
+
+            panel.querySelector('.close-panel').addEventListener('click', function() {
+                panel.classList.remove('is-open');
+            });
+        })();
+
+        // =====================================================================
+        // EASTER EGG HUNT
+        // =====================================================================
+        (function createEasterEggs() {
+            var eggs = [
+                { emoji: '🥚', x: '5%', y: '30%' },
+                { emoji: '🐣', x: '95%', y: '60%' },
+                { emoji: '🌟', x: '10%', y: '85%' },
+                { emoji: '🍀', x: '90%', y: '15%' },
+                { emoji: '🎁', x: '50%', y: '95%' }
+            ];
+
+            var foundEggs = JSON.parse(localStorage.getItem('cflFoundEggs') || '[]');
+
+            eggs.forEach(function(egg, index) {
+                if (foundEggs.indexOf(index) !== -1) return; // Already found
+
+                // Only show egg 20% of the time on page load
+                if (Math.random() > 0.2) return;
+
+                var eggEl = document.createElement('div');
+                eggEl.className = 'easter-egg';
+                eggEl.innerHTML = egg.emoji;
+                eggEl.style.left = egg.x;
+                eggEl.style.top = egg.y;
+                document.body.appendChild(eggEl);
+
+                eggEl.addEventListener('click', function() {
+                    foundEggs.push(index);
+                    localStorage.setItem('cflFoundEggs', JSON.stringify(foundEggs));
+                    eggEl.classList.add('easter-egg--found');
+
+                    CFL.sounds.coin();
+                    CFL.achievements.unlock('easter-egg');
+
+                    if (CFL.toast) {
+                        CFL.toast({
+                            icon: egg.emoji,
+                            title: 'Easter Egg Found!',
+                            message: 'You found a hidden ' + egg.emoji + '! ' + (5 - foundEggs.length) + ' more to find!',
+                            variant: 'party',
+                            iconAnim: 'bounce'
+                        });
+                    }
+
+                    setTimeout(function() { eggEl.remove(); }, 500);
+                });
+            });
+        })();
+
         // Add copy buttons to code snippets
         var copyIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
         var checkIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
@@ -402,11 +899,14 @@
             var resetButton = settings.querySelector('[data-action="reset-scope"]');
             var scrim = settings.querySelector('[data-scrim]');
             var swatches = settings.querySelectorAll('.cfl-settings__swatch');
+            var dismissBtn = document.getElementById('cfl-settings-dismiss');
+            var navSettingsBtn = document.getElementById('cfl-nav-settings-btn');
 
             var STATE_KEYS = {
                 scope: 'cflSettingsScope',
                 site: 'cflSettingsSite',
-                pagePrefix: 'cflSettingsPage:'
+                pagePrefix: 'cflSettingsPage:',
+                hidden: 'cflSettingsHidden'
             };
 
             var fonts = {
@@ -549,6 +1049,35 @@
                 logger('Reset settings for scope', state.scope);
             }
 
+            function dismissSettings() {
+                closePanels();
+                settings.classList.add('cfl-settings--hidden');
+                localStorage.setItem(STATE_KEYS.hidden, 'true');
+                if (navSettingsBtn) {
+                    navSettingsBtn.classList.add('cfl-nav-settings--active');
+                }
+                logger('Settings widget dismissed');
+            }
+
+            function showSettings() {
+                settings.classList.remove('cfl-settings--hidden');
+                localStorage.removeItem(STATE_KEYS.hidden);
+                if (navSettingsBtn) {
+                    navSettingsBtn.classList.remove('cfl-nav-settings--active');
+                }
+                logger('Settings widget shown');
+            }
+
+            function checkHiddenState() {
+                var isHidden = localStorage.getItem(STATE_KEYS.hidden) === 'true';
+                if (isHidden) {
+                    settings.classList.add('cfl-settings--hidden');
+                    if (navSettingsBtn) {
+                        navSettingsBtn.classList.add('cfl-nav-settings--active');
+                    }
+                }
+            }
+
             function openOrbitOnly() {
                 state.openPanel = null;
                 settings.classList.add('cfl-settings--open');
@@ -556,6 +1085,12 @@
                 panels.forEach(function(panel) { panel.setAttribute('hidden', ''); });
                 settings.removeAttribute('data-open-panel');
                 if (scrim) scrim.setAttribute('hidden', '');
+
+                // Show labels briefly so users learn what icons do
+                settings.classList.add('cfl-settings--labels-visible');
+                setTimeout(function() {
+                    settings.classList.remove('cfl-settings--labels-visible');
+                }, 2000);
             }
 
             function openPanel(panelId) {
@@ -605,8 +1140,9 @@
             function positionOrbitButtons() {
                 if (!orbitButtons.length) return;
                 var radius = 110;
-                var startDeg = -10;
-                var endDeg = -170;
+                // Quarter circle from bottom-right: -90° (up) to -180° (left)
+                var startDeg = -90;
+                var endDeg = -180;
                 var steps = orbitButtons.length > 1 ? orbitButtons.length - 1 : 1;
                 orbitButtons.forEach(function(btn, index) {
                     var angleDeg = startDeg + ((endDeg - startDeg) * (index / steps));
@@ -686,6 +1222,34 @@
                 });
             }
 
+            if (dismissBtn) {
+                dismissBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dismissSettings();
+                });
+            }
+
+            if (navSettingsBtn) {
+                navSettingsBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (settings.classList.contains('cfl-settings--hidden')) {
+                        showSettings();
+                        // Open the menu after showing
+                        setTimeout(function() {
+                            openOrbitOnly();
+                        }, 100);
+                    } else {
+                        // Toggle the menu
+                        if (settings.classList.contains('cfl-settings--open')) {
+                            closePanels();
+                        } else {
+                            openOrbitOnly();
+                        }
+                    }
+                });
+            }
+
             swatches.forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     var theme = e.currentTarget.getAttribute('data-theme');
@@ -716,6 +1280,7 @@
             });
 
             // Init
+            checkHiddenState();
             readScopePreference();
             readDebugPreference();
             readFontPreference();
