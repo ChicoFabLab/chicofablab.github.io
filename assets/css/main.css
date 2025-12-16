@@ -386,6 +386,21 @@ ul, ol {
     margin: 1rem 0;
 }
 
+/* Prevent list styling on component labels */
+main label.cfl-toggle,
+main .cfl-toggle {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main label.cfl-toggle::before,
+main .cfl-toggle::before {
+    content: none;
+    display: none;
+}
+
 li {
     margin: 0.4rem 0;
     color: var(--text);
@@ -1493,10 +1508,33 @@ footer p {
     flex-wrap: wrap;
     gap: 1rem;
     margin: 1rem 0;
+    list-style: none;
+    padding: 0;
+}
+
+.showcase-row > *,
+.showcase-row label,
+.showcase-row .cfl-toggle {
+    list-style: none;
+    display: inline-flex;
+}
+
+.showcase-row > *::before,
+.showcase-row > *::marker,
+.showcase-row label::before,
+.showcase-row label::marker {
+    content: none;
+    display: none;
 }
 
 .showcase-row--align-center {
     align-items: center;
+}
+
+.showcase-row--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
 }
 
 .showcase-stats {
@@ -1799,6 +1837,9 @@ footer p {
     gap: 0.75rem;
     cursor: pointer;
     user-select: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .cfl-toggle__input {
@@ -1806,11 +1847,15 @@ footer p {
     opacity: 0;
     width: 0;
     height: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .cfl-toggle__track {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
     background: var(--bg-alt);
     border: 2px solid var(--border);
     border-radius: 9999px;
@@ -1827,7 +1872,8 @@ footer p {
     left: 2px;
     background: var(--text-muted);
     border-radius: 50%;
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .cfl-toggle--sm .cfl-toggle__thumb { width: 12px; height: 12px; }
@@ -1841,6 +1887,7 @@ footer p {
 
 .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
     background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .cfl-toggle--sm .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
@@ -1855,18 +1902,28 @@ footer p {
     transform: translateX(26px);
 }
 
+.cfl-toggle:hover .cfl-toggle__track {
+    border-color: var(--accent);
+}
+
 .cfl-toggle__input:focus-visible + .cfl-toggle__track {
     box-shadow: 0 0 0 3px rgba(196, 93, 53, 0.25);
 }
 
 .cfl-toggle__label {
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: 0.95rem;
+    font-weight: 500;
     color: var(--text);
 }
 
 .cfl-toggle--disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.cfl-toggle--disabled:hover .cfl-toggle__track {
+    border-color: var(--border);
 }
 
 /* ----- TABS COMPONENT -----

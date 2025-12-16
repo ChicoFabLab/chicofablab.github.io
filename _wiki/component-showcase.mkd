@@ -229,7 +229,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ## Toggles
 
-<div class="showcase-row">
+<div class="showcase-row" markdown="0">
 {% include components/toggle.html id="toggle1" label="Enable notifications" %}
 {% include components/toggle.html id="toggle2" label="Dark mode" checked=true %}
 {% include components/toggle.html id="toggle3" label="Disabled" disabled=true %}
@@ -237,7 +237,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ### Sizes
 
-<div class="showcase-row showcase-row--align-center">
+<div class="showcase-row showcase-row--align-center" markdown="0">
 {% include components/toggle.html id="toggle-sm" size="sm" label="Small" %}
 {% include components/toggle.html id="toggle-md" size="md" label="Medium" checked=true %}
 {% include components/toggle.html id="toggle-lg" size="lg" label="Large" %}
@@ -814,9 +814,9 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 ### Use Cases
 
 <p>
-Tooltips are great for 
-{% include components/tooltip.html text="Provides additional context without cluttering the UI" position="top" content="<u>help text</u>" %} 
-and 
+Tooltips are great for
+{% include components/tooltip.html text="Provides additional context without cluttering the UI" position="top" content="<u>help text</u>" %}
+and
 {% include components/tooltip.html text="Shows what will happen when clicked" position="top" content="<u>action hints</u>" %}.
 </p>
 
