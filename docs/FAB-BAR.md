@@ -34,11 +34,18 @@ The Unified FAB Bar consolidates all floating action buttons (Settings, Achievem
 - **Color**: Accent gradient
 - **Behavior**: Toggles `.cfl-fab-bar--open` class
 
-### Settings Button
+### Settings Button ⭐ ENHANCED
 
 - **Icon**: ⚙️
-- **Action**: Opens/closes the settings widget orbit menu
-- **Integration**: Works with existing `#cfl-settings` widget
+- **Action**: Opens/closes the **new Settings Menu** (vertical dropdown)
+- **Menu Items**:
+  - Fonts panel
+  - Colors panel
+  - Quick font switchers (Soft Serif, Playful Sans)
+  - Scope settings
+  - Reset options
+- **Behavior**: Menu appears above FAB bar, closes on outside click
+- **Integration**: Works with existing `#cfl-settings` widget panels
 
 ### Achievements Button
 
@@ -161,25 +168,37 @@ document.addEventListener('click', function(e) {
 });
 ```
 
-### Settings Integration
+### Settings Integration ⭐ ENHANCED
+
+The settings button now opens a clean vertical dropdown menu:
 
 ```javascript
+// Settings menu is created once
+var settingsMenu = document.createElement('div');
+settingsMenu.className = 'cfl-settings-menu';
+// Contains: Fonts, Colors, Quick fonts, Scope, Reset
+
 settingsItem.addEventListener('click', function(e) {
     e.stopPropagation();
-    var settingsWidget = document.getElementById('cfl-settings');
-
-    // Show if hidden
-    if (settingsWidget.classList.contains('cfl-settings--hidden')) {
-        settingsWidget.classList.remove('cfl-settings--hidden');
-    }
-
-    // Toggle orbit menu
-    settingsWidget.classList.toggle('cfl-settings--open');
-
+    
+    // Close achievements panel if open
+    var achPanel = document.querySelector('.cfl-achievements-panel');
+    if (achPanel) achPanel.classList.remove('is-open');
+    
+    // Toggle settings menu
+    settingsMenu.classList.toggle('is-open');
     fabBar.classList.remove('cfl-fab-bar--open');
     CFL.sounds.pop();
 });
 ```
+
+**Settings Menu Features:**
+- Vertical dropdown (replaces old orbit menu)
+- Clean list layout with icons
+- Dividers between sections
+- Click outside to close
+- Integrates with existing settings panels
+- Quick font switchers for instant preview
 
 ## Accessibility
 
@@ -195,13 +214,55 @@ The FAB bar maintains its position on all screen sizes. On mobile:
 - Touch targets remain 44px minimum
 - Tooltips may be cut off (acceptable trade-off)
 
+## Settings Menu Component ⭐ NEW
+
+The settings menu (`.cfl-settings-menu`) is a new vertical dropdown:
+
+```css
+.cfl-settings-menu {
+    position: fixed;
+    bottom: 80px;        /* Above FAB bar */
+    right: 1rem;
+    width: 200px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--shadow);
+    z-index: 9992;       /* Above FAB bar (9990) */
+}
+```
+
+**Menu Structure:**
+```
+┌─────────────────────┐
+│ ⚙️ Settings         │
+├─────────────────────┤
+│ Aa  Fonts           │
+│ 🎨 Colors           │
+├─────────────────────┤
+│ 🫧 Soft Serif       │
+│ ✨ Playful Sans     │
+├─────────────────────┤
+│ 🌐 Scope            │
+│ ↺ Reset             │
+└─────────────────────┘
+```
+
+**Menu Items:**
+- **Fonts/Colors/Scope/Reset**: Open corresponding settings panel
+- **Quick Fonts**: Instant font change (closes menu after selection)
+- **Dividers**: Visual separation between sections
+
 ## Migration from Old System
 
-The old standalone buttons are hidden:
+The old standalone buttons and orbit menu are hidden:
 
 ```css
 .cfl-achievements-btn,
-.cfl-sound-toggle {
+.cfl-sound-toggle,
+.cfl-settings__fab,
+.cfl-settings__dismiss,
+.cfl-settings__orbit {
     display: none !important;
 }
 ```
