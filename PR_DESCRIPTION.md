@@ -28,18 +28,24 @@ This PR introduces a comprehensive component library with 30+ animated button st
 - Volume control via localStorage
 - Contextual sounds: magic for rainbow, boing for bouncy, zap for neon, etc.
 
-### 3. **Achievement System** (`_layouts/default.html`)
-- 16 unlockable achievements
+### 3. **Achievement System** (`_layouts/default.html`) ⭐ ENHANCED
+- 16 unlockable achievements with **category organization**
+- **Progress tracking** with visual progress bars for progression achievements
+- **Unlock timestamps** with relative time formatting ("Today", "2 days ago")
+- **Category tabs**: All, Progression, Special, Time, Secrets
+- **Enhanced UI**: Lock icons, glow effects, hover states
+- **Scroll locking** when panel is open for better UX
+- **Real-time updates** when achievements unlock
 - Tracks: clicks, pages visited, button types clicked
 - Toast notifications on unlock
-- Achievement panel UI (🏆 button)
+- Achievement panel UI (🏆 button in FAB bar)
 - Persistent via localStorage
 
-**Achievements:**
-- Progression: First Click, Button Masher (10), Click Champion (50), Button Legend (100)
-- Special: Taste the Rainbow, Void Gazer, Corrupted Soul, Purified, Completionist
-- Time-based: Night Owl, Early Bird
-- Secrets: Audiophile, Egg Hunter, Speed Demon, Old School (Konami), Explorer
+**Achievements by Category:**
+- **Progression** (with progress bars): First Click, Button Masher (10), Click Champion (50), Button Legend (100), Explorer (5 pages), Completionist (15 button types)
+- **Special**: Taste the Rainbow, Void Gazer, Corrupted Soul, Purified, Audiophile
+- **Time-based**: Night Owl, Early Bird
+- **Secrets**: Egg Hunter, Speed Demon, Old School (Konami)
 
 ### 4. **Easter Eggs**
 - **Konami Code** (↑↑↓↓←→←→BA): Triggers 10-second rainbow mode
@@ -53,11 +59,15 @@ This PR introduces a comprehensive component library with 30+ animated button st
 - Copy-to-clipboard code output
 - Randomize button for inspiration
 
-### 6. **Unified FAB Bar** (`_layouts/default.html`, `assets/css/main.css`)
+### 6. **Unified FAB Bar** (`_layouts/default.html`, `assets/css/main.css`) ⭐ ENHANCED
 - Consolidates all floating buttons into one expandable bar
 - Main FAB (+) expands to show: Settings, Achievements, Sound
 - Smooth animations with staggered item reveals
 - Tooltip labels on hover
+- **New Settings Menu**: Clean vertical dropdown replacing orbit menu
+  - Fonts, Colors, Scope, Reset panels
+  - Quick font switchers (Serif, Sans)
+  - Click-outside-to-close behavior
 
 ### 7. **Component Showcase** (`_wiki/component-showcase.mkd`)
 - Live examples of all components
@@ -109,6 +119,9 @@ This PR introduces a comprehensive component library with 30+ animated button st
 - [x] All button styles render correctly
 - [x] Sounds play on button clicks
 - [x] Achievements unlock properly
+- [x] Achievement categories and progress bars work
+- [x] Settings menu opens/closes correctly
+- [x] Scroll locking works when panels are open
 - [x] Easter eggs spawn and collect
 - [x] Konami code triggers rainbow mode
 - [x] Button playground generates valid code
