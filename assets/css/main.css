@@ -538,7 +538,7 @@ footer p {
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -548,11 +548,11 @@ footer p {
     .card-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .hero {
         padding: 4rem 2rem;
     }
-    
+
     .hero-title {
         font-size: 2.75rem;
     }
@@ -571,10 +571,37 @@ footer p {
     border: 1px dashed var(--border);
 }
 
-/* ===================
-   CFL BUTTON COMPONENT
-   =================== */
+/* =====================================================================
+   CFL COMPONENT LIBRARY STYLES
+   =====================================================================
+   
+   These styles support the reusable Jekyll components in _includes/components/
+   
+   Components:
+   - .cfl-btn      → Button/link component (button.html)
+   - .cfl-alert    → Alert/notice box (alert.html)
+   - .cfl-badge    → Status badge (badge.html)
+   - .cfl-callout  → Callout/highlight box (callout.html)
+   
+   Naming Convention: BEM-style with "cfl-" namespace
+   - Block:    .cfl-component
+   - Element:  .cfl-component__element
+   - Modifier: .cfl-component--modifier
+   
+   Color Variants: Uses CSS variables defined in :root
+   - info (blue), success (green), warning (yellow), danger (red)
+   
+   Usage: {% include components/button.html text="Click" variant="primary" %}
+   Docs:  See _includes/components/index.md for full documentation
+   
+   ===================================================================== */
 
+/* ----- BUTTON COMPONENT -----
+   Renders as <a> with href, or <button> without
+   Variants: primary, secondary, ghost, danger, success
+   Sizes: sm, md, lg
+   Modifiers: --block (full width), :disabled
+*/
 .cfl-btn {
     display: inline-flex;
     align-items: center;
@@ -676,10 +703,11 @@ footer p {
     pointer-events: none;
 }
 
-/* ===================
-   CFL ALERT COMPONENT
-   =================== */
-
+/* ----- ALERT COMPONENT -----
+   Notification boxes with left border accent
+   Variants: info (blue), success (green), warning (yellow), danger (red)
+   Elements: __title (optional), __body (supports markdown)
+*/
 .cfl-alert {
     padding: 1rem 1.25rem;
     border-radius: 6px;
@@ -748,10 +776,11 @@ footer p {
     color: #7f1d1d;
 }
 
-/* ===================
-   CFL BADGE COMPONENT
-   =================== */
-
+/* ----- BADGE COMPONENT -----
+   Small pill-shaped status indicators
+   Variants: neutral, info, success, warning, danger
+   Solid variants: --info-solid, --success-solid, --warning-solid, --danger-solid
+*/
 .cfl-badge {
     display: inline-flex;
     align-items: center;
@@ -821,10 +850,11 @@ footer p {
     border: none;
 }
 
-/* ===================
-   CFL CALLOUT COMPONENT
-   =================== */
-
+/* ----- CALLOUT COMPONENT -----
+   Card-style highlight boxes with optional CTA
+   Variants: note (blue), tip (green), warning (yellow bg), danger (red bg)
+   Elements: __title, __body (supports markdown), __cta (optional button area)
+*/
 .cfl-callout {
     background: var(--surface);
     border: 1px solid var(--border);
