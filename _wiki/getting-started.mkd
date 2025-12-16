@@ -7,7 +7,7 @@ order: 1
 
 New to CFL? This page points you at the basics so you can get moving fast.
 
-![Chico Fab Lab](../assets/img/chicofablab_logo.webp)
+![Chico Fab Lab](../assets/img/chicofablab_logo.webp){: width="80px" height="auto"}
 
 ## Quick Info
 - Location: 603 Orange Street, Chico, CA
