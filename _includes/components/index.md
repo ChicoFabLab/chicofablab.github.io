@@ -6,8 +6,52 @@ title: Components
 
 A comprehensive set of reusable UI components for the CFL Wiki. All components use the `cfl-` namespace and follow BEM naming conventions.
 
-**Styles:** `assets/css/main.css` (search for "CFL COMPONENT LIBRARY")
-**Showcase:** [View all components in action →](/wiki/component-showcase)
+## Quick Links
+
+| Resource | Description |
+|----------|-------------|
+| **[Component Showcase](/wiki/component-showcase)** | Live examples with copy-paste code |
+| **Styles** | `assets/css/main.css` (search for "CFL COMPONENT LIBRARY") |
+| **Components** | `_includes/components/*.html` |
+
+---
+
+## How to Use Components
+
+### Basic Syntax
+
+Include any component using Liquid:
+
+```liquid
+{% include components/button.html
+   text="Click Me"
+   variant="primary"
+   href="/page"
+%}
+```
+
+### Multi-line Formatting (Recommended)
+
+For readability, put each parameter on its own line:
+
+```liquid
+{% include components/alert.html
+   variant="success"
+   title="Task Complete"
+   body="Your changes have been saved."
+   icon="✅"
+%}
+```
+
+### Component Showcase
+
+The [Component Showcase](/wiki/component-showcase) page provides:
+
+- **Live previews** of every component
+- **Expandable code snippets** with syntax highlighting
+- **Copy button** for easy copy-paste
+- **Scrollable code blocks** for longer examples
+- **All variants** documented with full working code
 
 ---
 
