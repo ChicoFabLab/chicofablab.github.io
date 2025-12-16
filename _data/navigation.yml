@@ -71,8 +71,8 @@ component_sections:
     anchor: tables
   - label: Progress
     anchor: progress-bars
-  - label: Spinners
-    anchor: spinners
+  - label: Loading
+    anchor: loading-animations
   - label: Stats
     anchor: stats
   - label: Avatars

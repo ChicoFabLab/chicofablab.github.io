@@ -1006,7 +1006,13 @@ Display data in organized rows and columns.
 
 ---
 
-## Spinners
+## Loading Animations
+
+A comprehensive library of loading states, spinners, skeletons, and animated indicators.
+
+---
+
+### Classic Spinners
 
 <div class="showcase-row showcase-row--align-center">
 {% include components/spinner.html size="sm" %}
@@ -1015,41 +1021,364 @@ Display data in organized rows and columns.
 {% include components/spinner.html size="xl" %}
 </div>
 
-### With Labels
-
 <div class="showcase-row">
 {% include components/spinner.html size="md" label="Loading..." %}
 {% include components/spinner.html size="md" variant="success" label="Saving..." %}
-{% include components/spinner.html size="md" variant="danger" label="Processing..." %}
+{% include components/spinner.html size="md" variant="danger" label="Deleting..." %}
 </div>
 
-### Variants
+---
+
+### Gradient Spinners
 
 <div class="showcase-row showcase-row--align-center">
-{% include components/spinner.html variant="primary" %}
-{% include components/spinner.html variant="secondary" %}
-{% include components/spinner.html variant="success" %}
-{% include components/spinner.html variant="danger" %}
+  <div class="cfl-gradient-spinner cfl-gradient-spinner--sm"></div>
+  <div class="cfl-gradient-spinner"></div>
+  <div class="cfl-gradient-spinner cfl-gradient-spinner--lg"></div>
+</div>
+
+---
+
+### Dot Loaders
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2rem;">
+  <div style="text-align: center;">
+    <div class="cfl-dots cfl-dots--bounce">
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Bounce</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-dots cfl-dots--pulse">
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Pulse</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-dots cfl-dots--wave">
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Wave</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-dots cfl-dots--typing">
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+      <span class="cfl-dots__dot"></span>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Typing</div>
+  </div>
+</div>
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2rem; margin-top: 1rem;">
+  <div class="cfl-dots cfl-dots--bounce cfl-dots--sm cfl-dots--success">
+    <span class="cfl-dots__dot"></span>
+    <span class="cfl-dots__dot"></span>
+    <span class="cfl-dots__dot"></span>
+  </div>
+  <div class="cfl-dots cfl-dots--bounce cfl-dots--warning">
+    <span class="cfl-dots__dot"></span>
+    <span class="cfl-dots__dot"></span>
+    <span class="cfl-dots__dot"></span>
+  </div>
+  <div class="cfl-dots cfl-dots--bounce cfl-dots--lg cfl-dots--danger">
+    <span class="cfl-dots__dot"></span>
+    <span class="cfl-dots__dot"></span>
+    <span class="cfl-dots__dot"></span>
+  </div>
+</div>
+
+---
+
+### Bar/Equalizer Loaders
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2rem;">
+  <div class="cfl-bars cfl-bars--sm">
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+  </div>
+  <div class="cfl-bars">
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+  </div>
+  <div class="cfl-bars cfl-bars--lg">
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+    <span class="cfl-bars__bar"></span>
+  </div>
+</div>
+
+---
+
+### Creative Loaders
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2.5rem;">
+  <div style="text-align: center;">
+    <div class="cfl-ripple">
+      <div class="cfl-ripple__circle"></div>
+      <div class="cfl-ripple__circle"></div>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Ripple</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-orbit">
+      <div class="cfl-orbit__ring"></div>
+      <div class="cfl-orbit__ring"></div>
+      <div class="cfl-orbit__ring"></div>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Orbit</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-morph"></div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Morph</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-flip"></div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Flip</div>
+  </div>
+  <div style="text-align: center;">
+    <div class="cfl-chase">
+      <div class="cfl-chase__dot"></div>
+      <div class="cfl-chase__dot"></div>
+      <div class="cfl-chase__dot"></div>
+      <div class="cfl-chase__dot"></div>
+      <div class="cfl-chase__dot"></div>
+      <div class="cfl-chase__dot"></div>
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Chase</div>
+  </div>
+</div>
+
+---
+
+### Bounce Loader
+
+<div class="showcase-row showcase-row--align-center">
+  <div class="cfl-bounce-loader">
+    <div class="cfl-bounce-loader__ball"></div>
+    <div class="cfl-bounce-loader__ball"></div>
+    <div class="cfl-bounce-loader__ball"></div>
+  </div>
+</div>
+
+---
+
+### Clock Loader
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2rem;">
+  <div class="cfl-clock">
+    <div class="cfl-clock__hand cfl-clock__hand--hour"></div>
+    <div class="cfl-clock__hand cfl-clock__hand--minute"></div>
+  </div>
+  <span class="cfl-hourglass cfl-hourglass--sm">⏳</span>
+  <span class="cfl-hourglass">⏳</span>
+  <span class="cfl-hourglass cfl-hourglass--lg">⏳</span>
+</div>
+
+---
+
+### Character Loaders 🎭
+
+Fun animated emoji and character loaders!
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2rem;">
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--bounce">🚀</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Bounce</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--spin">⚙️</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Spin</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--pulse">💡</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Pulse</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--shake">🔔</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Shake</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--wave">👋</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Wave</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--float">🎈</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Float</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--wiggle">🐛</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Wiggle</div>
+  </div>
+  <div style="text-align: center;">
+    <span class="cfl-character cfl-character--zoom">🔍</span>
+    <div style="font-size: 0.8rem; color: var(--text-muted);">Zoom</div>
+  </div>
+</div>
+
+<div class="showcase-row showcase-row--align-center" style="gap: 2rem; margin-top: 1rem;">
+  <span class="cfl-character cfl-character--spin">🌀</span>
+  <span class="cfl-character cfl-character--bounce">⚽</span>
+  <span class="cfl-character cfl-character--pulse">⭐</span>
+  <span class="cfl-character cfl-character--shake">📱</span>
+  <span class="cfl-character cfl-character--float">🦋</span>
+  <span class="cfl-character cfl-character--spin">🎡</span>
+  <span class="cfl-heartbeat">❤️</span>
+</div>
+
+---
+
+### Text Loaders
+
+<div class="showcase-row" style="gap: 2rem;">
+  <div>
+    <span class="cfl-loading-text">Loading</span>
+  </div>
+  <div>
+    <span class="cfl-loading-text">Processing your request</span>
+  </div>
+  <div>
+    <span class="cfl-loading-text">Saving changes</span>
+  </div>
+</div>
+
+<div class="showcase-row" style="margin-top: 1rem;">
+  <div class="cfl-typing">
+    <span class="cfl-typing__text">AI is thinking</span>
+    <span class="cfl-typing__cursor"></span>
+  </div>
+</div>
+
+---
+
+### Skeleton Loaders
+
+Content placeholders that shimmer while loading.
+
+<div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+  <div style="width: 300px;">
+    <h4 style="margin-bottom: 1rem;">Card Skeleton</h4>
+    <div class="cfl-skeleton--card">
+      <div class="cfl-skeleton cfl-skeleton--thumbnail" style="margin-bottom: 1rem;"></div>
+      <div class="cfl-skeleton cfl-skeleton--title"></div>
+      <div class="cfl-skeleton cfl-skeleton--text"></div>
+      <div class="cfl-skeleton cfl-skeleton--text cfl-skeleton--text-medium"></div>
+      <div class="cfl-skeleton cfl-skeleton--text cfl-skeleton--text-short"></div>
+      <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+        <div class="cfl-skeleton cfl-skeleton--button"></div>
+        <div class="cfl-skeleton cfl-skeleton--button"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div style="width: 300px;">
+    <h4 style="margin-bottom: 1rem;">Profile Skeleton</h4>
+    <div class="cfl-skeleton--card">
+      <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+        <div class="cfl-skeleton cfl-skeleton--avatar-lg"></div>
+        <div style="flex: 1;">
+          <div class="cfl-skeleton cfl-skeleton--text" style="width: 60%; margin-bottom: 0.5rem;"></div>
+          <div class="cfl-skeleton cfl-skeleton--text cfl-skeleton--text-short"></div>
+        </div>
+      </div>
+      <div class="cfl-skeleton cfl-skeleton--text"></div>
+      <div class="cfl-skeleton cfl-skeleton--text"></div>
+      <div class="cfl-skeleton cfl-skeleton--text cfl-skeleton--text-medium"></div>
+    </div>
+  </div>
+  
+  <div style="width: 300px;">
+    <h4 style="margin-bottom: 1rem;">List Skeleton</h4>
+    <div class="cfl-skeleton--card">
+      <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+        <div class="cfl-skeleton cfl-skeleton--avatar-sm"></div>
+        <div class="cfl-skeleton cfl-skeleton--text" style="flex: 1;"></div>
+      </div>
+      <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+        <div class="cfl-skeleton cfl-skeleton--avatar-sm"></div>
+        <div class="cfl-skeleton cfl-skeleton--text" style="flex: 1;"></div>
+      </div>
+      <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+        <div class="cfl-skeleton cfl-skeleton--avatar-sm"></div>
+        <div class="cfl-skeleton cfl-skeleton--text" style="flex: 1;"></div>
+      </div>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <div class="cfl-skeleton cfl-skeleton--avatar-sm"></div>
+        <div class="cfl-skeleton cfl-skeleton--text" style="flex: 1;"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <details class="code-snippet">
 <summary>Show Code</summary>
 <div class="code-snippet__content" markdown="1">
 
-```liquid
-{% raw %}{% include components/spinner.html
-   size="md"
-%}
+```html
+{% raw %}<!-- Dot Loaders -->
+<div class="cfl-dots cfl-dots--bounce">
+  <span class="cfl-dots__dot"></span>
+  <span class="cfl-dots__dot"></span>
+  <span class="cfl-dots__dot"></span>
+</div>
 
-{% include components/spinner.html
-   size="lg"
-   label="Loading..."
-%}
+<!-- Bar Loader -->
+<div class="cfl-bars">
+  <span class="cfl-bars__bar"></span>
+  <span class="cfl-bars__bar"></span>
+  <span class="cfl-bars__bar"></span>
+  <span class="cfl-bars__bar"></span>
+  <span class="cfl-bars__bar"></span>
+</div>
 
-{% include components/spinner.html
-   variant="success"
-   label="Saving..."
-%}{% endraw %}
+<!-- Creative Loaders -->
+<div class="cfl-ripple">
+  <div class="cfl-ripple__circle"></div>
+  <div class="cfl-ripple__circle"></div>
+</div>
+
+<div class="cfl-orbit">
+  <div class="cfl-orbit__ring"></div>
+  <div class="cfl-orbit__ring"></div>
+  <div class="cfl-orbit__ring"></div>
+</div>
+
+<div class="cfl-morph"></div>
+<div class="cfl-flip"></div>
+
+<!-- Character Loaders -->
+<span class="cfl-character cfl-character--bounce">🚀</span>
+<span class="cfl-character cfl-character--spin">⚙️</span>
+<span class="cfl-character cfl-character--pulse">💡</span>
+<span class="cfl-heartbeat">❤️</span>
+
+<!-- Text Loaders -->
+<span class="cfl-loading-text">Loading</span>
+
+<div class="cfl-typing">
+  <span class="cfl-typing__text">AI is thinking</span>
+  <span class="cfl-typing__cursor"></span>
+</div>
+
+<!-- Skeleton Loaders -->
+<div class="cfl-skeleton cfl-skeleton--title"></div>
+<div class="cfl-skeleton cfl-skeleton--text"></div>
+<div class="cfl-skeleton cfl-skeleton--avatar"></div>
+<div class="cfl-skeleton cfl-skeleton--thumbnail"></div>{% endraw %}
 ```
 
 </div>
