@@ -1060,6 +1060,130 @@ footer p {
     }
 }
 
+/* ----- SEARCH COMPONENT -----
+   Search input with icon and clear button
+*/
+.cfl-search {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.cfl-search__icon {
+    position: absolute;
+    left: 0.875rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color 0.15s ease;
+}
+
+.cfl-search__input {
+    width: 100%;
+    padding: 0.625rem 2.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.cfl-search__input::placeholder {
+    color: var(--text-muted);
+}
+
+.cfl-search__input:hover {
+    border-color: var(--accent);
+}
+
+.cfl-search__input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(196, 93, 53, 0.15);
+    background: var(--bg);
+}
+
+.cfl-search__input:focus + .cfl-search__icon,
+.cfl-search:focus-within .cfl-search__icon {
+    color: var(--accent);
+}
+
+.cfl-search__clear {
+    position: absolute;
+    right: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.cfl-search__input:not(:placeholder-shown) ~ .cfl-search__clear {
+    opacity: 1;
+}
+
+.cfl-search__clear:hover {
+    background: var(--bg-alt);
+    color: var(--text);
+}
+
+/* Search sizes */
+.cfl-search--sm .cfl-search__input {
+    padding: 0.4rem 2rem;
+    font-size: 0.85rem;
+}
+
+.cfl-search--sm .cfl-search__icon {
+    left: 0.625rem;
+    width: 14px;
+    height: 14px;
+}
+
+.cfl-search--sm .cfl-search__clear {
+    right: 0.4rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.cfl-search--lg .cfl-search__input {
+    padding: 0.875rem 3rem;
+    font-size: 1.1rem;
+}
+
+.cfl-search--lg .cfl-search__icon {
+    left: 1rem;
+    width: 22px;
+    height: 22px;
+}
+
+.cfl-search--lg .cfl-search__clear {
+    right: 0.875rem;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+/* Search variants */
+.cfl-search--filled .cfl-search__input {
+    background: var(--bg-alt);
+    border-color: transparent;
+}
+
+.cfl-search--filled .cfl-search__input:focus {
+    background: var(--surface);
+    border-color: var(--accent);
+}
+
 /* ----- STAT COMPONENT -----
    Display key metrics with optional trends
 */

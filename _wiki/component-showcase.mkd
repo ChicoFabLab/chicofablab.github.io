@@ -11,6 +11,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <nav class="quick-nav">
   <strong>Jump to:</strong>
   <a href="#buttons">Buttons</a>
+  <a href="#search">Search</a>
   <a href="#alerts">Alerts</a>
   <a href="#badges">Badges</a>
   <a href="#callouts">Callouts</a>
@@ -164,6 +165,54 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
    variant="primary"
    block=true
    href="#"
+%}{% endraw %}
+```
+
+</div>
+</details>
+
+---
+
+## Search
+
+### Default
+
+{% include components/search.html placeholder="Search components..." %}
+
+### Sizes
+
+<div class="showcase-row showcase-row--vertical">
+{% include components/search.html size="sm" placeholder="Small search..." %}
+{% include components/search.html size="md" placeholder="Medium search..." %}
+{% include components/search.html size="lg" placeholder="Large search..." %}
+</div>
+
+### Filled Variant
+
+{% include components/search.html variant="filled" placeholder="Search with filled background..." %}
+
+<details class="code-snippet">
+<summary>Show Code</summary>
+<div class="code-snippet__content" markdown="1">
+
+```liquid
+{% raw %}{% include components/search.html
+   placeholder="Search components..."
+%}
+
+{% include components/search.html
+   size="sm"
+   placeholder="Small search..."
+%}
+
+{% include components/search.html
+   size="lg"
+   placeholder="Large search..."
+%}
+
+{% include components/search.html
+   variant="filled"
+   placeholder="Search with filled background..."
 %}{% endraw %}
 ```
 
