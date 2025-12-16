@@ -1,8 +1,8 @@
 {% assign href = include.href | default: include.url %}
-{% assign variant = include.variant | default: 'primary' %}
-{% assign size = include.size | default: 'md' %}
+{% assign variant = include.variant | default: "primary" %}
+{% assign size = include.size | default: "md" %}
 {% assign block = include.block | default: false %}
-{% assign label = include.label | default: include.text | default: 'Button' %}
+{% assign label = include.label | default: include.text | default: "Button" %}
 {% assign target = include.target %}
 {% assign rel = include.rel %}
 {% assign icon = include.icon %}
@@ -10,5 +10,5 @@
 {% if href %}
 <a class="cfl-btn cfl-btn--{{ variant }} cfl-btn--{{ size }}{% if block %} cfl-btn--block{% endif %}{% if icon or icon_right %} cfl-btn--with-icon{% endif %}" href="{{ href }}"{% if target %} target="{{ target }}"{% endif %}{% if rel %} rel="{{ rel }}"{% endif %}>{% if icon %}<span class="cfl-btn__icon">{{ icon }}</span>{% endif %}{{ label | escape }}{% if icon_right %}<span class="cfl-btn__icon cfl-btn__icon--right">{{ icon_right }}</span>{% endif %}</a>
 {% else %}
-<button class="cfl-btn cfl-btn--{{ variant }} cfl-btn--{{ size }}{% if block %} cfl-btn--block{% endif %}{% if icon or icon_right %} cfl-btn--with-icon{% endif %}" type="{{ include.type | default: 'button' }}">{% if icon %}<span class="cfl-btn__icon">{{ icon }}</span>{% endif %}{{ label | escape }}{% if icon_right %}<span class="cfl-btn__icon cfl-btn__icon--right">{{ icon_right }}</span>{% endif %}</button>
+<button class="cfl-btn cfl-btn--{{ variant }} cfl-btn--{{ size }}{% if block %} cfl-btn--block{% endif %}{% if icon or icon_right %} cfl-btn--with-icon{% endif %}" type="{{ include.type | default: "button" }}">{% if icon %}<span class="cfl-btn__icon">{{ icon }}</span>{% endif %}{{ label | escape }}{% if icon_right %}<span class="cfl-btn__icon cfl-btn__icon--right">{{ icon_right }}</span>{% endif %}</button>
 {% endif %}
