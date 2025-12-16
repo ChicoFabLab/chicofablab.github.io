@@ -1,0 +1,25 @@
+{% comment %}
+  Navigation Component
+  Usage: {% include nav.html type="main" %}
+  Types: main, footer
+  
+  Data source: _data/navigation.yml
+{% endcomment %}
+
+{% assign nav_type = include.type | default: "main" %}
+{% assign show_icons = include.icons | default: false %}
+
+{% if nav_type == "main" %}
+  {% for item in site.data.navigation.main %}
+    <a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}>
+      {%- if show_icons and item.icon %}{{ item.icon }} {% endif -%}
+      {{ item.label }}
+    </a>
+  {% endfor %}
+{% elsif nav_type == "footer" %}
+  {% for item in site.data.navigation.footer %}
+    <a href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}>
+      {{ item.label }}
+    </a>
+  {% endfor %}
+{% endif %}

@@ -8,25 +8,9 @@ order: 99
 
 A living gallery of all CFL UI components. Click **Show Code** to expand, then copy.
 
-<nav class="quick-nav">
-  <strong>Jump to:</strong>
-  <a href="#buttons">Buttons</a>
-  <a href="#search">Search</a>
-  <a href="#toggles">Toggles</a>
-  <a href="#alerts">Alerts</a>
-  <a href="#badges">Badges</a>
-  <a href="#callouts">Callouts</a>
-  <a href="#tabs">Tabs</a>
-  <a href="#tables">Tables</a>
-  <a href="#progress-bars">Progress</a>
-  <a href="#spinners">Spinners</a>
-  <a href="#stats">Stats</a>
-  <a href="#avatars">Avatars</a>
-  <a href="#tooltips">Tooltips</a>
-  <a href="#breadcrumbs">Breadcrumbs</a>
-  <a href="#cards">Cards</a>
-  <a href="#combining-components">Combos</a>
-</nav>
+{% include quick-nav.html type="components" %}
+
+{% include related-pages.html type="components" title="Related Resources" %}
 
 ---
 

@@ -1,0 +1,30 @@
+{% comment %}
+  Related Pages Component
+  Usage: {% include related-pages.html type="components" %}
+  Types: components, css
+  
+  Data source: _data/navigation.yml
+{% endcomment %}
+
+{% assign rel_type = include.type %}
+{% assign title = include.title | default: "Related Pages" %}
+
+{% if rel_type == "components" %}
+  {% assign items = site.data.navigation.related.components %}
+{% elsif rel_type == "css" %}
+  {% assign items = site.data.navigation.related.css %}
+{% endif %}
+
+{% if items %}
+<div class="related-pages">
+  <h3>{{ title }}</h3>
+  <div class="related-pages__grid">
+    {% for item in items %}
+    <a href="{{ item.url }}" class="related-pages__item">
+      <strong>{{ item.label }}</strong>
+      {% if item.description %}<span>{{ item.description }}</span>{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

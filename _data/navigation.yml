@@ -1,0 +1,107 @@
+# Main site navigation
+# Edit this file to update navigation links across the site
+
+main:
+  - label: Home
+    url: /
+    icon: 🏠
+  - label: Get Started
+    url: /wiki/getting-started
+    icon: 🚀
+  - label: Components
+    url: /wiki/component-showcase
+    icon: 🧩
+  - label: CSS
+    url: /wiki/css-library
+    icon: 🎨
+  - label: Contribute
+    url: /README
+    icon: 💻
+
+# Footer navigation (can be different from main)
+footer:
+  - label: Home
+    url: /
+  - label: Getting Started
+    url: /wiki/getting-started
+  - label: Component Library
+    url: /wiki/component-showcase
+  - label: CSS Utilities
+    url: /wiki/css-library
+  - label: How to Contribute
+    url: /README
+  - label: Source Code
+    url: https://github.com/ChicoFabLab/chicofablab.github.io
+    external: true
+
+# Related pages for cross-linking
+related:
+  components:
+    - label: CSS Utility Library
+      url: /wiki/css-library
+      description: 100+ utility classes for rapid styling
+    - label: Brand Standards
+      url: /wiki/brand-standards
+      description: Colors, typography, and design guidelines
+  css:
+    - label: Component Library
+      url: /wiki/component-showcase
+      description: 16 reusable UI components
+    - label: Brand Standards
+      url: /wiki/brand-standards
+      description: Design tokens and color palette
+
+# Quick navigation sections (for component showcase page)
+component_sections:
+  - label: Buttons
+    anchor: buttons
+  - label: Search
+    anchor: search
+  - label: Toggles
+    anchor: toggles
+  - label: Alerts
+    anchor: alerts
+  - label: Badges
+    anchor: badges
+  - label: Callouts
+    anchor: callouts
+  - label: Tabs
+    anchor: tabs
+  - label: Tables
+    anchor: tables
+  - label: Progress
+    anchor: progress-bars
+  - label: Spinners
+    anchor: spinners
+  - label: Stats
+    anchor: stats
+  - label: Avatars
+    anchor: avatars
+  - label: Tooltips
+    anchor: tooltips
+  - label: Breadcrumbs
+    anchor: breadcrumbs
+  - label: Cards
+    anchor: cards
+  - label: Combos
+    anchor: combining-components
+
+css_sections:
+  - label: Tokens
+    anchor: design-tokens
+  - label: Spacing
+    anchor: spacing
+  - label: Typography
+    anchor: typography
+  - label: Colors
+    anchor: colors
+  - label: Flexbox
+    anchor: flexbox
+  - label: Borders
+    anchor: borders
+  - label: Shadows
+    anchor: shadows
+  - label: Layout
+    anchor: layout
+  - label: Animations
+    anchor: animations

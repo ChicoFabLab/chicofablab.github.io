@@ -8,18 +8,9 @@ order: 98
 
 A collection of single-purpose utility classes for rapid styling. All classes use the `cfl-` prefix.
 
-<nav class="quick-nav">
-  <strong>Jump to:</strong>
-  <a href="#design-tokens">Tokens</a>
-  <a href="#spacing">Spacing</a>
-  <a href="#typography">Typography</a>
-  <a href="#colors">Colors</a>
-  <a href="#flexbox">Flexbox</a>
-  <a href="#borders">Borders</a>
-  <a href="#shadows">Shadows</a>
-  <a href="#layout">Layout</a>
-  <a href="#animations">Animations</a>
-</nav>
+{% include quick-nav.html type="css" %}
+
+{% include related-pages.html type="css" title="Related Resources" %}
 
 ---
 
@@ -95,7 +86,7 @@ CSS variables for consistent theming across the site.
   --accent: #e63946;
   --accent-secondary: #038592;
   --border: #e8dcc8;
-  
+
   --info: #038592;
   --success: #2d9d5a;
   --warning: #e6940a;

@@ -2791,3 +2791,58 @@ label.cfl-toggle::before,
     color: white;
     box-shadow: 0 2px 8px rgba(230, 148, 10, 0.3);
 }
+
+/* ----- RELATED PAGES COMPONENT ----- */
+.related-pages {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.related-pages h3 {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+}
+
+.related-pages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.related-pages__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.related-pages__item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.related-pages__item strong {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+
+.related-pages__item span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}

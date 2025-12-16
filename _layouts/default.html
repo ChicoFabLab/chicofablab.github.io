@@ -15,11 +15,7 @@
     <header>
         <h1><a href="/">CFL Wiki</a></h1>
         <nav>
-            <a href="/">Home</a>
-            <a href="/wiki/getting-started">Get Started</a>
-            <a href="/wiki/component-showcase">Components</a>
-            <a href="/wiki/css-library">CSS</a>
-            <a href="/README">Contribute</a>
+            {% include nav.html type="main" %}
         </nav>
     </header>
 
@@ -38,10 +34,7 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/wiki/getting-started">Getting Started</a>
-                <a href="/README">How to Contribute</a>
-                <a href="https://github.com/ChicoFabLab/chicofablab.github.io" target="_blank" rel="noopener">Source Code</a>
+                {% include nav.html type="footer" %}
             </div>
             <p>Chico Fab Lab · 603 Orange Street · Chico, CA</p>
             <p>Open Wednesdays 5-7pm and by arrangement</p>
