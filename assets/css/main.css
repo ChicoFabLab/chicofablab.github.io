@@ -1,35 +1,35 @@
-/* CFL Wiki — Logo-Inspired Color Theme */
+/* CFL Wiki — Warm Logo-Inspired Theme */
 /* Archived: assets/css/archive/main-v1-warm-paper-20251216.css */
 
 :root {
-    /* Logo-based palette — Teal + Cream + Red */
-    --bg: #fdf8f0;              /* Warm cream from logo */
-    --bg-alt: #f6deb8;          /* Logo cream/tan */
-    --surface: #ffffff;         /* Pure white cards */
-    --text: #0a0a0a;            /* Near-black from logo */
-    --text-muted: #5a5a5a;      /* Softer gray */
-    --accent: #038592;          /* TEAL from logo - primary */
-    --accent-hover: #026d78;    /* Darker teal */
-    --accent-secondary: #ef2853; /* RED/PINK from logo */
-    --accent-secondary-hover: #d91f47;
+    /* Warm palette — Cream + Coral/Red + Teal accent */
+    --bg: #fef9f3;              /* Warm off-white */
+    --bg-alt: #f8edd8;          /* Warm cream/tan from logo */
+    --surface: #fffcf8;         /* Warm white cards */
+    --text: #2a1f1a;            /* Warm dark brown */
+    --text-muted: #6b5c52;      /* Warm brown-gray */
+    --accent: #e63946;          /* Warm coral-red (PRIMARY) */
+    --accent-hover: #c62d3a;    /* Darker coral */
+    --accent-secondary: #038592; /* Teal (SECONDARY - for info) */
+    --accent-secondary-hover: #026d78;
     --border: #e8dcc8;          /* Warm cream border */
-    --border-dark: #d4c4a8;     /* Darker cream */
-    --code-bg: #f5efe5;         /* Cream-tinted code bg */
-    --shadow: rgba(3, 133, 146, 0.1); /* Teal-tinted shadow */
+    --border-dark: #d4c4a8;     /* Darker warm border */
+    --code-bg: #f8f0e6;         /* Warm cream code bg */
+    --shadow: rgba(42, 31, 26, 0.1); /* Warm brown shadow */
 
-    /* Component colors - logo harmonized */
-    --info: #038592;            /* Teal (same as accent) */
-    --info-bg: #e6f4f5;
-    --info-border: #a8d8dc;
-    --success: #10b981;         /* Emerald green */
-    --success-bg: #ecfdf5;
-    --success-border: #a7f3d0;
-    --warning: #f59e0b;         /* Amber */
-    --warning-bg: #fffbeb;
-    --warning-border: #fde68a;
-    --danger: #ef2853;          /* Logo red/pink */
-    --danger-bg: #fef2f4;
-    --danger-border: #fecdd3;
+    /* Component colors - warm harmonized */
+    --info: #038592;            /* Teal for info (cool contrast) */
+    --info-bg: #e8f4f5;
+    --info-border: #b0d8dc;
+    --success: #2d9d5a;         /* Warm forest green */
+    --success-bg: #eef8f0;
+    --success-border: #a8dbb8;
+    --warning: #e6940a;         /* Warm amber-orange */
+    --warning-bg: #fef8ec;
+    --warning-border: #f5d88a;
+    --danger: #e63946;          /* Coral-red (same as accent) */
+    --danger-bg: #fef2f2;
+    --danger-border: #f8c4c8;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,7 +52,7 @@ body {
    =================== */
 
 .marquee-container {
-    background: linear-gradient(135deg, #038592 0%, #026d78 100%);
+    background: linear-gradient(135deg, #3d2c29 0%, #2a1f1a 100%);
     overflow: hidden;
     white-space: nowrap;
 }
@@ -1083,7 +1083,7 @@ footer p {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent) 0%, #026d78 50%, var(--accent-secondary) 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, #c62d3a 50%, #8b2332 100%);
     color: white;
     font-family: system-ui, -apple-system, sans-serif;
     font-weight: 700;
@@ -1339,11 +1339,11 @@ footer p {
 }
 
 .showcase-dark-preview {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a3a3d 50%, #038592 100%);
+    background: linear-gradient(135deg, #2a1f1a 0%, #3d2c29 50%, #4a3530 100%);
     border-radius: 12px;
     padding: 2rem;
     margin: 1.5rem 0;
-    color: #f0f0f0;
+    color: #f8edd8;
 }
 
 .showcase-dark-preview h3 {
