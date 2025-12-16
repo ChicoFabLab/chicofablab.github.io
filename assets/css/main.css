@@ -1,4 +1,4 @@
-/* CFL Wiki - Dark Makerspace Theme */
+/* CFL Wiki - Mobile-First Responsive Design */
 
 :root {
     --bg-dark: #0d1117;
@@ -13,21 +13,31 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     background: var(--bg-dark);
+    font-size: 16px;
 }
+
+/* ===================
+   MOBILE BASE (default)
+   =================== */
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: var(--bg-dark);
     color: var(--text-primary);
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 1rem;
     line-height: 1.7;
     min-height: 100vh;
+}
+
+/* Header */
+header {
+    margin-bottom: 1.5rem;
 }
 
 /* Typography */
@@ -39,27 +49,55 @@ h1, h2, h3 {
 
 h1 {
     color: var(--accent);
-    font-size: 2.5rem;
-    margin: 0 0 1rem 0;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
     border-bottom: 2px solid var(--border);
-    padding-bottom: 0.5rem;
 }
 
 h2 {
     color: var(--text-primary);
-    font-size: 1.5rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
 }
 
 h3 {
     color: var(--text-secondary);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 p {
     margin: 1rem 0;
     color: var(--text-secondary);
+}
+
+/* Navigation - Stacked on mobile */
+nav {
+    background: var(--bg-card);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+nav a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.75rem 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--accent-hover);
 }
 
 /* Links */
@@ -74,32 +112,17 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Navigation */
-nav {
-    background: var(--bg-card);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    border: 1px solid var(--border);
-}
-
-nav a {
-    margin-right: 1.5rem;
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
 /* Lists */
 ul, ol {
-    padding-left: 1.5rem;
+    padding-left: 1.25rem;
     color: var(--text-secondary);
+    margin: 1rem 0;
 }
 
 li {
     margin: 0.75rem 0;
     line-height: 1.6;
+    padding-left: 0.25rem;
 }
 
 li::marker {
@@ -109,19 +132,20 @@ li::marker {
 /* Code */
 pre {
     background: var(--code-bg);
-    padding: 1.25rem;
+    padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: 1.25rem 0;
     border: 1px solid var(--border);
+    font-size: 0.875rem;
 }
 
 code {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     background: var(--code-bg);
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.4rem;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 0.875em;
     color: var(--accent);
 }
 
@@ -135,27 +159,28 @@ pre code {
 hr {
     border: none;
     border-top: 1px solid var(--border);
-    margin: 2.5rem 0;
+    margin: 2rem 0;
 }
 
-/* Images */
+/* Images - Full width on mobile */
 img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 8px;
-    margin: 1.5rem 0;
-    border: 1px solid var(--border);
+    display: block;
+    margin: 1.25rem 0;
+    border-radius: 4px;
 }
 
 /* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0;
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
 }
 
 th, td {
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.75rem;
     border: 1px solid var(--border);
     text-align: left;
 }
@@ -170,47 +195,159 @@ td {
     color: var(--text-secondary);
 }
 
-/* Footer */
+/* Main content */
+main {
+    margin-bottom: 2rem;
+}
+
+/* Footer - Compact on mobile */
 footer {
     background: var(--bg-card);
-    margin-top: 3rem;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 8px;
     border: 1px solid var(--border);
     text-align: center;
 }
 
 footer p {
-    margin: 0;
-    font-size: 0.9rem;
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
     color: var(--text-secondary);
 }
 
-/* Wiki page list */
-ul li a {
-    font-weight: 500;
+/* ===================
+   TABLET (600px+)
+   =================== */
+
+@media (min-width: 600px) {
+    body {
+        padding: 1.5rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    /* Horizontal nav on tablet */
+    nav {
+        flex-direction: row;
+        gap: 0;
+        padding: 0.5rem 1rem;
+    }
+
+    nav a {
+        padding: 0.5rem 1rem;
+        min-height: auto;
+    }
+
+    img {
+        border-radius: 8px;
+    }
+
+    footer {
+        padding: 1.25rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* ===================
+   DESKTOP (900px+)
+   =================== */
+
+@media (min-width: 900px) {
     body {
-        padding: 1rem;
+        padding: 2rem 1.5rem;
+        max-width: 900px;
     }
-    
+
+    header {
+        margin-bottom: 2rem;
+    }
+
     h1 {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
-    
+
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
     }
-    
+
+    p {
+        margin: 1.25rem 0;
+    }
+
     nav {
+        padding: 1rem 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    ul, ol {
+        padding-left: 1.5rem;
+    }
+
+    li {
+        margin: 0.6rem 0;
+    }
+
+    pre {
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+    }
+
+    img {
+        margin: 1.5rem 0;
+        border: 1px solid var(--border);
+    }
+
+    table {
+        margin: 1.5rem 0;
+        font-size: 1rem;
+    }
+
+    th, td {
         padding: 0.75rem 1rem;
     }
-    
-    nav a {
-        display: block;
-        margin: 0.5rem 0;
+
+    main {
+        margin-bottom: 3rem;
+    }
+
+    footer {
+        padding: 1.5rem;
+    }
+
+    footer p {
+        margin: 0.3rem 0;
+    }
+}
+
+/* ===================
+   LARGE DESKTOP (1200px+)
+   =================== */
+
+@media (min-width: 1200px) {
+    body {
+        max-width: 960px;
+    }
+
+    h1 {
+        font-size: 2.75rem;
     }
 }
