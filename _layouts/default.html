@@ -909,19 +909,43 @@
                 });
             });
 
+            // Scroll lock management
+            function lockScroll() {
+                document.body.style.overflow = 'hidden';
+            }
+
+            function unlockScroll() {
+                document.body.style.overflow = '';
+            }
+
             // Achievements button
             achItem.addEventListener('click', function(e) {
                 e.stopPropagation();
+                var wasOpen = panel.classList.contains('is-open');
                 panel.classList.toggle('is-open');
                 if (panel.classList.contains('is-open')) {
                     updatePanel();
+                    lockScroll();
                     CFL.sounds.pop();
+                } else {
+                    unlockScroll();
                 }
                 fabBar.classList.remove('cfl-fab-bar--open');
             });
 
             panel.querySelector('.close-panel').addEventListener('click', function() {
                 panel.classList.remove('is-open');
+                unlockScroll();
+            });
+
+            // Close panel and unlock scroll when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!panel.contains(e.target) && 
+                    !achItem.contains(e.target) && 
+                    panel.classList.contains('is-open')) {
+                    panel.classList.remove('is-open');
+                    unlockScroll();
+                }
             });
 
             // Check for new achievements to show notification dot

@@ -2699,6 +2699,11 @@ body.konami-mode .cfl-btn {
     visibility: visible;
 }
 
+/* Prevent body scroll when achievements panel is open */
+body:has(.cfl-achievements-panel.is-open) {
+    overflow: hidden;
+}
+
 .cfl-achievements-header {
     padding: 1rem 1.25rem;
     background: linear-gradient(135deg, #ffd700, #ff8c00);
