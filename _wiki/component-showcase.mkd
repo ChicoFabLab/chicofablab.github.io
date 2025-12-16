@@ -4,9 +4,9 @@ layout: default
 order: 99
 ---
 
-# 🎨 Component Showcase
+# Component Showcase
 
-A living gallery of all CFL UI components. Click **📋 Copy Code** to expand and copy!
+A living gallery of all CFL UI components. Click **Show Code** to expand, then copy.
 
 ---
 
@@ -23,7 +23,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -46,7 +46,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -67,7 +67,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -84,7 +84,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/button.html text="Full Width Button" variant="primary" block=true href="#" %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -107,7 +107,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/alert.html variant="danger" title="Error" body="Something went wrong. Please try again or contact support." icon="❌" %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -138,7 +138,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -162,7 +162,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -184,7 +184,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -204,7 +204,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -222,7 +222,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/callout.html variant="note" title="📘 Note" body="Use callouts to highlight important information that readers shouldn't miss." %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code — Note</summary>
+<summary>Show Code — Note</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -235,7 +235,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/callout.html variant="tip" title="💡 Pro Tip" body="You can include **markdown** formatting and even [links](/wiki/getting-started) in callout bodies!" cta_url="/wiki/getting-started" cta_label="Get Started" %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code — Tip with CTA</summary>
+<summary>Show Code — Tip with CTA</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -248,7 +248,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/callout.html variant="warning" title="⚠️ Caution" body="This machine requires safety training before use. See the lab manager for certification." %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code — Warning</summary>
+<summary>Show Code — Warning</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -261,7 +261,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/callout.html variant="danger" title="🚨 Danger Zone" body="High voltage equipment. Authorized personnel only." %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code — Danger</summary>
+<summary>Show Code — Danger</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -284,7 +284,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 {% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true %}
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -312,7 +312,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -339,7 +339,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -363,7 +363,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -391,7 +391,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid
@@ -422,7 +422,7 @@ A living gallery of all CFL UI components. Click **📋 Copy Code** to expand an
 </div>
 
 <details class="code-snippet">
-<summary>📋 Copy Code</summary>
+<summary>Show Code</summary>
 <div class="code-snippet__content">
 
 ```liquid

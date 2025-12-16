@@ -1384,12 +1384,12 @@ footer p {
 }
 
 .code-snippet summary {
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 1rem;
     background: var(--bg-alt);
     cursor: pointer;
     font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 500;
     color: var(--text-muted);
     display: flex;
     align-items: center;
@@ -1403,8 +1403,12 @@ footer p {
 }
 
 .code-snippet summary::before {
-    content: '▶';
-    font-size: 0.7rem;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid var(--text-muted);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
     transition: transform 0.2s ease;
 }
 
@@ -1420,6 +1424,7 @@ footer p {
 .code-snippet__content {
     padding: 0;
     position: relative;
+    border-top: 1px solid var(--border);
 }
 
 .code-snippet__content pre {
@@ -1429,32 +1434,36 @@ footer p {
     background: var(--code-bg);
     font-size: 0.8rem;
     overflow-x: auto;
+    white-space: pre;
 }
 
 .code-snippet__content code {
     display: block;
     padding: 1rem;
+    padding-right: 4rem;
     background: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.6;
 }
 
 .code-snippet__copy {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    padding: 0.35rem 0.6rem;
+    padding: 0.4rem 0.65rem;
     font-size: 0.7rem;
     font-family: system-ui, -apple-system, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
     cursor: pointer;
-    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
     transition: all 0.15s ease;
-}
-
-.code-snippet__content:hover .code-snippet__copy {
-    opacity: 1;
+    color: var(--text-muted);
 }
 
 .code-snippet__copy:hover {
@@ -1464,9 +1473,9 @@ footer p {
 }
 
 .code-snippet__copy--copied {
-    background: var(--success) !important;
-    color: white !important;
-    border-color: var(--success) !important;
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
 }
 
 /* =====================================================================

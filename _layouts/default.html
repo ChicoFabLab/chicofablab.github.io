@@ -46,5 +46,35 @@
             <span class="footer-badge">Built with Jekyll · Hosted on GitHub Pages</span>
         </div>
     </footer>
+
+    <script>
+    // Add copy buttons to code snippets
+    document.addEventListener('DOMContentLoaded', function() {
+        var copyIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        var checkIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        
+        document.querySelectorAll('.code-snippet__content').forEach(function(content) {
+            var code = content.querySelector('code');
+            if (code && !content.querySelector('.code-snippet__copy')) {
+                var btn = document.createElement('button');
+                btn.className = 'code-snippet__copy';
+                btn.innerHTML = copyIcon + ' Copy';
+                content.appendChild(btn);
+                
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(code.textContent.trim()).then(function() {
+                        btn.classList.add('code-snippet__copy--copied');
+                        btn.innerHTML = checkIcon + ' Copied';
+                        setTimeout(function() {
+                            btn.classList.remove('code-snippet__copy--copied');
+                            btn.innerHTML = copyIcon + ' Copy';
+                        }, 2000);
+                    });
+                });
+            }
+        });
+    });
+    </script>
 </body>
 </html>
