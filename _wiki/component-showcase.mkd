@@ -74,9 +74,26 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/button.html text="Small" variant="primary" size="sm" href="#" %}
-{% include components/button.html text="Medium" variant="primary" size="md" href="#" %}
-{% include components/button.html text="Large" variant="primary" size="lg" href="#" %}{% endraw %}
+{% raw %}{% include components/button.html
+   text="Small"
+   variant="primary"
+   size="sm"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Medium"
+   variant="primary"
+   size="md"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Large"
+   variant="primary"
+   size="lg"
+   href="#"
+%}{% endraw %}
 ```
 
 </div>
@@ -95,9 +112,26 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/button.html text="Download" variant="primary" icon="⬇️" href="#" %}
-{% include components/button.html text="Next" variant="secondary" icon_right="→" href="#" %}
-{% include components/button.html text="Settings" variant="ghost" icon="⚙️" href="#" %}{% endraw %}
+{% raw %}{% include components/button.html
+   text="Download"
+   variant="primary"
+   icon="⬇️"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Next"
+   variant="secondary"
+   icon_right="→"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Settings"
+   variant="ghost"
+   icon="⚙️"
+   href="#"
+%}{% endraw %}
 ```
 
 </div>
@@ -112,7 +146,12 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/button.html text="Full Width Button" variant="primary" block=true href="#" %}{% endraw %}
+{% raw %}{% include components/button.html
+   text="Full Width Button"
+   variant="primary"
+   block=true
+   href="#"
+%}{% endraw %}
 ```
 
 </div>
@@ -186,11 +225,30 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/badge.html text="Default" variant="neutral" %}
-{% include components/badge.html text="Info" variant="info" %}
-{% include components/badge.html text="Success" variant="success" %}
-{% include components/badge.html text="Warning" variant="warning" %}
-{% include components/badge.html text="Danger" variant="danger" %}{% endraw %}
+{% raw %}{% include components/badge.html
+   text="Default"
+   variant="neutral"
+%}
+
+{% include components/badge.html
+   text="Info"
+   variant="info"
+%}
+
+{% include components/badge.html
+   text="Success"
+   variant="success"
+%}
+
+{% include components/badge.html
+   text="Warning"
+   variant="warning"
+%}
+
+{% include components/badge.html
+   text="Danger"
+   variant="danger"
+%}{% endraw %}
 ```
 
 </div>
@@ -210,10 +268,25 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/badge.html text="Info" variant="info-solid" %}
-{% include components/badge.html text="Success" variant="success-solid" %}
-{% include components/badge.html text="Warning" variant="warning-solid" %}
-{% include components/badge.html text="Danger" variant="danger-solid" %}{% endraw %}
+{% raw %}{% include components/badge.html
+   text="Info"
+   variant="info-solid"
+%}
+
+{% include components/badge.html
+   text="Success"
+   variant="success-solid"
+%}
+
+{% include components/badge.html
+   text="Warning"
+   variant="warning-solid"
+%}
+
+{% include components/badge.html
+   text="Danger"
+   variant="danger-solid"
+%}{% endraw %}
 ```
 
 </div>
@@ -232,9 +305,23 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/badge.html text="Online" variant="success" dot=true %}
-{% include components/badge.html text="Away" variant="warning" dot=true %}
-{% include components/badge.html text="Offline" variant="neutral" dot=true %}{% endraw %}
+{% raw %}{% include components/badge.html
+   text="Online"
+   variant="success"
+   dot=true
+%}
+
+{% include components/badge.html
+   text="Away"
+   variant="warning"
+   dot=true
+%}
+
+{% include components/badge.html
+   text="Offline"
+   variant="neutral"
+   dot=true
+%}{% endraw %}
 ```
 
 </div>
@@ -252,8 +339,18 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/badge.html text="Live" variant="danger-solid" dot=true pulse=true %}
-{% include components/badge.html text="Recording" variant="danger" pulse=true %}{% endraw %}
+{% raw %}{% include components/badge.html
+   text="Live"
+   variant="danger-solid"
+   dot=true
+   pulse=true
+%}
+
+{% include components/badge.html
+   text="Recording"
+   variant="danger"
+   pulse=true
+%}{% endraw %}
 ```
 
 </div>
@@ -270,7 +367,11 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/callout.html variant="note" title="📘 Note" body="Your important information here." %}{% endraw %}
+{% raw %}{% include components/callout.html
+   variant="note"
+   title="📘 Note"
+   body="Your important information here."
+%}{% endraw %}
 ```
 
 </div>
@@ -283,7 +384,13 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/callout.html variant="tip" title="💡 Pro Tip" body="Your tip with **markdown** and [links](#)!" cta_url="/your-page" cta_label="Learn More" %}{% endraw %}
+{% raw %}{% include components/callout.html
+   variant="tip"
+   title="💡 Pro Tip"
+   body="Your tip with **markdown** and [links](#)!"
+   cta_url="/your-page"
+   cta_label="Learn More"
+%}{% endraw %}
 ```
 
 </div>
@@ -296,7 +403,11 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/callout.html variant="warning" title="⚠️ Caution" body="Your warning message here." %}{% endraw %}
+{% raw %}{% include components/callout.html
+   variant="warning"
+   title="⚠️ Caution"
+   body="Your warning message here."
+%}{% endraw %}
 ```
 
 </div>
@@ -309,7 +420,11 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/callout.html variant="danger" title="🚨 Danger" body="Critical warning message." %}{% endraw %}
+{% raw %}{% include components/callout.html
+   variant="danger"
+   title="🚨 Danger"
+   body="Critical warning message."
+%}{% endraw %}
 ```
 
 </div>
@@ -332,13 +447,36 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" %}
+{% raw %}{% include components/progress.html
+   value=25
+   label="Getting Started"
+   show_value=true
+   variant="info"
+%}
 
-{% include components/progress.html value=60 label="In Progress" show_value=true variant="warning" striped=true %}
+{% include components/progress.html
+   value=60
+   label="In Progress"
+   show_value=true
+   variant="warning"
+   striped=true
+%}
 
-{% include components/progress.html value=100 label="Complete!" show_value=true variant="success" %}
+{% include components/progress.html
+   value=100
+   label="Complete!"
+   show_value=true
+   variant="success"
+%}
 
-{% include components/progress.html value=45 label="Uploading..." show_value=true variant="primary" striped=true animated=true %}{% endraw %}
+{% include components/progress.html
+   value=45
+   label="Uploading..."
+   show_value=true
+   variant="primary"
+   striped=true
+   animated=true
+%}{% endraw %}
 ```
 
 </div>
@@ -361,10 +499,33 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ```liquid
 {% raw %}<div class="showcase-stats">
-{% include components/stat.html value="1,247" label="Members" trend="+12%" trend_up=true %}
-{% include components/stat.html value="42" label="Active Projects" trend="+5" trend_up=true %}
-{% include components/stat.html value="98" label="Uptime" suffix="%" %}
-{% include components/stat.html value="24" label="Hours Open" suffix="/7" %}
+
+{% include components/stat.html
+   value="1,247"
+   label="Members"
+   trend="+12%"
+   trend_up=true
+%}
+
+{% include components/stat.html
+   value="42"
+   label="Active Projects"
+   trend="+5"
+   trend_up=true
+%}
+
+{% include components/stat.html
+   value="98"
+   label="Uptime"
+   suffix="%"
+%}
+
+{% include components/stat.html
+   value="24"
+   label="Hours Open"
+   suffix="/7"
+%}
+
 </div>{% endraw %}
 ```
 
@@ -387,10 +548,28 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/avatar.html initials="JD" size="sm" %}
-{% include components/avatar.html initials="AB" size="md" status="online" %}
-{% include components/avatar.html initials="XY" size="lg" status="away" ring=true %}
-{% include components/avatar.html size="xl" status="offline" %}{% endraw %}
+{% raw %}{% include components/avatar.html
+   initials="JD"
+   size="sm"
+%}
+
+{% include components/avatar.html
+   initials="AB"
+   size="md"
+   status="online"
+%}
+
+{% include components/avatar.html
+   initials="XY"
+   size="lg"
+   status="away"
+   ring=true
+%}
+
+{% include components/avatar.html
+   size="xl"
+   status="offline"
+%}{% endraw %}
 ```
 
 </div>
@@ -412,9 +591,29 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ```liquid
 {% raw %}<div class="showcase-cards">
-{% include components/card.html title="3D Printing" body="Description here." href="/link" badge="Popular" badge_variant="success" %}
-{% include components/card.html title="Laser Cutting" body="Description here." href="/link" badge="New" badge_variant="info" %}
-{% include components/card.html title="CNC Milling" body="Description here." href="/link" %}
+
+{% include components/card.html
+   title="3D Printing"
+   body="Description here."
+   href="/link"
+   badge="Popular"
+   badge_variant="success"
+%}
+
+{% include components/card.html
+   title="Laser Cutting"
+   body="Description here."
+   href="/link"
+   badge="New"
+   badge_variant="info"
+%}
+
+{% include components/card.html
+   title="CNC Milling"
+   body="Description here."
+   href="/link"
+%}
+
 </div>{% endraw %}
 ```
 
@@ -439,11 +638,27 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}{% include components/alert.html variant="info" title="New Feature" body="Your announcement here." %}
+{% raw %}{% include components/alert.html
+   variant="info"
+   title="New Feature"
+   body="Your announcement here."
+%}
 
 <div style="margin-top: -0.5rem; margin-bottom: 1.5rem;">
-{% include components/button.html text="Book Now" variant="primary" icon="📅" href="#" %}
-{% include components/button.html text="Learn More" variant="ghost" href="#" %}
+
+{% include components/button.html
+   text="Book Now"
+   variant="primary"
+   icon="📅"
+   href="#"
+%}
+
+{% include components/button.html
+   text="Learn More"
+   variant="ghost"
+   href="#"
+%}
+
 </div>{% endraw %}
 ```
 
@@ -470,17 +685,34 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 <div class="code-snippet__content" markdown="1">
 
 ```liquid
-{% raw %}<div class="cfl-callout cfl-callout--note" style="display: flex; align-items: center; gap: 1rem;">
+{% raw %}<div class="cfl-callout cfl-callout--note"
+     style="display: flex; align-items: center; gap: 1rem;">
+
   <div>
-    {% include components/avatar.html initials="CFL" size="lg" status="online" ring=true %}
+    {% include components/avatar.html
+       initials="CFL"
+       size="lg"
+       status="online"
+       ring=true
+    %}
   </div>
+
   <div style="flex: 1;">
     <strong>Chico Fab Lab</strong><br>
-    <span style="color: var(--text-muted);">Open now · Closes at 9 PM</span>
+    <span style="color: var(--text-muted);">
+      Open now · Closes at 9 PM
+    </span>
   </div>
+
   <div>
-    {% include components/badge.html text="Open" variant="success-solid" dot=true pulse=true %}
+    {% include components/badge.html
+       text="Open"
+       variant="success-solid"
+       dot=true
+       pulse=true
+    %}
   </div>
+
 </div>{% endraw %}
 ```
 
