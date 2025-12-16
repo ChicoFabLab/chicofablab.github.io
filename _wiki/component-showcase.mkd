@@ -24,7 +24,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/button.html text="Primary" variant="primary" href="/your-link" %}
@@ -47,7 +47,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/button.html text="Small" variant="primary" size="sm" href="#" %}
@@ -68,7 +68,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/button.html text="Download" variant="primary" icon="⬇️" href="#" %}
@@ -85,7 +85,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/button.html text="Full Width Button" variant="primary" block=true href="#" %}{% endraw %}
@@ -108,7 +108,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/alert.html variant="info" title="Information" body="Your message with **markdown**." icon="ℹ️" %}
@@ -139,7 +139,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/badge.html text="Default" variant="neutral" %}
@@ -163,7 +163,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/badge.html text="Info" variant="info-solid" %}
@@ -185,7 +185,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/badge.html text="Online" variant="success" dot=true %}
@@ -205,7 +205,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/badge.html text="Live" variant="danger-solid" dot=true pulse=true %}
@@ -223,7 +223,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code — Note</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/callout.html variant="note" title="📘 Note" body="Your important information here." %}{% endraw %}
@@ -236,7 +236,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code — Tip with CTA</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/callout.html variant="tip" title="💡 Pro Tip" body="Your tip with **markdown** and [links](#)!" cta_url="/your-page" cta_label="Learn More" %}{% endraw %}
@@ -249,7 +249,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code — Warning</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/callout.html variant="warning" title="⚠️ Caution" body="Your warning message here." %}{% endraw %}
@@ -262,7 +262,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code — Danger</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/callout.html variant="danger" title="🚨 Danger" body="Critical warning message." %}{% endraw %}
@@ -285,7 +285,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/progress.html value=25 label="Getting Started" show_value=true variant="info" %}
@@ -313,7 +313,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}<div class="showcase-stats">
@@ -340,7 +340,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/avatar.html initials="JD" size="sm" %}
@@ -364,7 +364,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}<div class="showcase-cards">
@@ -392,7 +392,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}{% include components/alert.html variant="info" title="New Feature" body="Your announcement here." %}
@@ -423,7 +423,7 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 <details class="code-snippet">
 <summary>Show Code</summary>
-<div class="code-snippet__content">
+<div class="code-snippet__content" markdown="1">
 
 ```liquid
 {% raw %}<div class="cfl-callout cfl-callout--note" style="display: flex; align-items: center; gap: 1rem;">
