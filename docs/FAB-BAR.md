@@ -167,15 +167,15 @@ document.addEventListener('click', function(e) {
 settingsItem.addEventListener('click', function(e) {
     e.stopPropagation();
     var settingsWidget = document.getElementById('cfl-settings');
-    
+
     // Show if hidden
     if (settingsWidget.classList.contains('cfl-settings--hidden')) {
         settingsWidget.classList.remove('cfl-settings--hidden');
     }
-    
+
     // Toggle orbit menu
     settingsWidget.classList.toggle('cfl-settings--open');
-    
+
     fabBar.classList.remove('cfl-fab-bar--open');
     CFL.sounds.pop();
 });

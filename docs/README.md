@@ -4,6 +4,9 @@ This folder contains project documentation for developers and contributors.
 
 ## 📚 Documentation Index
 
+### Quick Start
+- **[Complete Feature Recap](COMPLETE-FEATURE-RECAP.md)** - Comprehensive overview of all features
+
 ### Core Documentation
 - [Component Library](_includes/components/index.md) - Reusable UI components
 - [CSS Library](/wiki/css-library.html) - Utility classes and design tokens

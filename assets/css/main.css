@@ -7669,11 +7669,11 @@ pre code {
 /* ============================================
    GLOSSARY COMPONENT
    ============================================
-   
+
    PURPOSE: Displays a grid of term definitions with examples
-   
+
    USAGE: Used in component-showcase.mkd to explain terminology
-   
+
    STRUCTURE:
      .cfl-glossary              - Container
        h3                       - Section heading (e.g., "Component Terms")
@@ -7682,12 +7682,12 @@ pre code {
            .cfl-glossary__title - Term name (accent color)
            .cfl-glossary__def   - Definition text
            .cfl-glossary__example - Live component examples
-   
+
    LAYOUT:
      - Responsive grid: auto-fill, minmax(280px, 1fr)
      - Single column on mobile (< 600px)
      - Cards have hover lift effect
-   
+
    SEE: _wiki/component-showcase.mkd for usage example
    ============================================ */
 
