@@ -531,30 +531,230 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ## Tabs
 
-{% include components/tabs.html id="demo-tabs" tabs="[{\"label\": \"Overview\", \"content\": \"<p>This is the overview content. Tabs help organize related content into sections.</p>\"}, {\"label\": \"Features\", \"content\": \"<p>Feature list goes here. Each tab can contain any HTML content.</p>\"}, {\"label\": \"Settings\", \"content\": \"<p>Settings and configuration options would go in this panel.</p>\"}]" %}
+Organize content into switchable panels. Click tabs to see content change.
+
+### Default Tabs
+
+<div class="cfl-tabs cfl-tabs--default" data-tabs="demo-tabs">
+  <div class="cfl-tabs__list" role="tablist">
+    <button class="cfl-tabs__tab cfl-tabs__tab--active" role="tab" data-tab="demo-tabs-1" aria-selected="true">🏠 Overview</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="demo-tabs-2" aria-selected="false">⚡ Features</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="demo-tabs-3" aria-selected="false">⚙️ Settings</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="demo-tabs-4" aria-selected="false">📊 Analytics</button>
+  </div>
+  <div class="cfl-tabs__panel cfl-tabs__panel--active" role="tabpanel" data-panel="demo-tabs-1">
+    <h4>Welcome to the Overview</h4>
+    <p>Tabs help organize related content into logical sections. Users can switch between views without leaving the page.</p>
+    <p><strong>Best for:</strong> Settings pages, dashboards, documentation with multiple topics.</p>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="demo-tabs-2" hidden>
+    <h4>Key Features</h4>
+    <ul>
+      <li>✅ Accessible with ARIA attributes</li>
+      <li>✅ Keyboard navigation support</li>
+      <li>✅ Smooth animated transitions</li>
+      <li>✅ Multiple style variants</li>
+      <li>✅ Works with any HTML content</li>
+    </ul>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="demo-tabs-3" hidden>
+    <h4>Configuration Options</h4>
+    <div class="cfl-flex cfl-flex-col cfl-gap-3">
+      {% include components/toggle.html id="tab-setting-1" label="Enable notifications" checked=true %}
+      {% include components/toggle.html id="tab-setting-2" label="Dark mode" %}
+      {% include components/toggle.html id="tab-setting-3" label="Auto-save drafts" checked=true %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="demo-tabs-4" hidden>
+    <h4>Usage Statistics</h4>
+    <div class="showcase-stats">
+      {% include components/stat.html value="2,847" label="Page Views" trend="up" change="+12%" %}
+      {% include components/stat.html value="423" label="Unique Users" trend="up" change="+8%" %}
+      {% include components/stat.html value="3:42" label="Avg. Session" trend="down" change="-5%" %}
+    </div>
+  </div>
+</div>
 
 ### Pill Variant
 
-{% include components/tabs.html id="pill-tabs" variant="pills" tabs="[{\"label\": \"Tab 1\", \"content\": \"<p>Content for tab 1</p>\"}, {\"label\": \"Tab 2\", \"content\": \"<p>Content for tab 2</p>\"}, {\"label\": \"Tab 3\", \"content\": \"<p>Content for tab 3</p>\"}]" %}
+Rounded pill-style tabs for a softer, more modern look.
+
+<div class="cfl-tabs cfl-tabs--pills" data-tabs="pill-tabs">
+  <div class="cfl-tabs__list" role="tablist">
+    <button class="cfl-tabs__tab cfl-tabs__tab--active" role="tab" data-tab="pill-tabs-1" aria-selected="true">All</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-2" aria-selected="false">Active</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-3" aria-selected="false">Completed</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-4" aria-selected="false">Archived</button>
+  </div>
+  <div class="cfl-tabs__panel cfl-tabs__panel--active" role="tabpanel" data-panel="pill-tabs-1">
+    <p class="cfl-text-muted cfl-mb-3">Showing all 12 items</p>
+    <div class="cfl-flex cfl-flex-col cfl-gap-2">
+      {% include components/badge.html text="3D Print Job" variant="info" %}
+      {% include components/badge.html text="Laser Cut Project" variant="success" %}
+      {% include components/badge.html text="CNC Milling" variant="warning" %}
+      {% include components/badge.html text="Vinyl Design" variant="primary" %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-2" hidden>
+    <p class="cfl-text-muted cfl-mb-3">Showing 3 active items</p>
+    <div class="cfl-flex cfl-flex-col cfl-gap-2">
+      {% include components/badge.html text="3D Print Job" variant="info" dot=true pulse=true %}
+      {% include components/badge.html text="Laser Cut Project" variant="info" dot=true pulse=true %}
+      {% include components/badge.html text="CNC Milling" variant="info" dot=true pulse=true %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-3" hidden>
+    <p class="cfl-text-muted cfl-mb-3">Showing 5 completed items</p>
+    <div class="cfl-flex cfl-flex-col cfl-gap-2">
+      {% include components/badge.html text="Phone Stand" variant="success" %}
+      {% include components/badge.html text="Keychain Set" variant="success" %}
+      {% include components/badge.html text="Name Badge" variant="success" %}
+      {% include components/badge.html text="Box Design" variant="success" %}
+      {% include components/badge.html text="Logo Engrave" variant="success" %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-4" hidden>
+    <p class="cfl-text-muted cfl-mb-3">Showing 4 archived items</p>
+    <div class="cfl-flex cfl-flex-col cfl-gap-2">
+      {% include components/badge.html text="Old Project 1" variant="secondary" %}
+      {% include components/badge.html text="Old Project 2" variant="secondary" %}
+      {% include components/badge.html text="Test Print" variant="secondary" %}
+      {% include components/badge.html text="Draft Design" variant="secondary" %}
+    </div>
+  </div>
+</div>
+
+### Tabs with Icons
+
+Icons make tabs more scannable and visually distinctive.
+
+<div class="cfl-tabs cfl-tabs--default" data-tabs="icon-tabs">
+  <div class="cfl-tabs__list" role="tablist">
+    <button class="cfl-tabs__tab cfl-tabs__tab--active" role="tab" data-tab="icon-tabs-1" aria-selected="true">🖨️ 3D Printing</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="icon-tabs-2" aria-selected="false">✂️ Laser Cutting</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="icon-tabs-3" aria-selected="false">🔧 CNC Milling</button>
+  </div>
+  <div class="cfl-tabs__panel cfl-tabs__panel--active" role="tabpanel" data-panel="icon-tabs-1">
+    <div class="cfl-flex cfl-gap-4 cfl-items-start">
+      <div class="cfl-flex-1">
+        <h4>3D Printing Services</h4>
+        <p>Create physical objects from digital models using additive manufacturing. Perfect for prototypes, custom parts, and creative projects.</p>
+        <div class="cfl-flex cfl-gap-2 cfl-mt-3">
+          {% include components/button.html text="Book Time" variant="primary" href="#" %}
+          {% include components/button.html text="Learn More" variant="ghost" href="#" %}
+        </div>
+      </div>
+      <div class="showcase-stats" style="min-width: 200px;">
+        {% include components/stat.html value="4" label="Printers" %}
+        {% include components/stat.html value="$0.10" label="Per Gram" %}
+      </div>
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="icon-tabs-2" hidden>
+    <div class="cfl-flex cfl-gap-4 cfl-items-start">
+      <div class="cfl-flex-1">
+        <h4>Laser Cutting Services</h4>
+        <p>Precision cutting and engraving on wood, acrylic, leather, and more. Great for signage, jewelry, and decorative items.</p>
+        <div class="cfl-flex cfl-gap-2 cfl-mt-3">
+          {% include components/button.html text="Book Time" variant="primary" href="#" %}
+          {% include components/button.html text="Materials Guide" variant="ghost" href="#" %}
+        </div>
+      </div>
+      <div class="showcase-stats" style="min-width: 200px;">
+        {% include components/stat.html value="2" label="Cutters" %}
+        {% include components/stat.html value="24×18\"" label="Max Size" %}
+      </div>
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="icon-tabs-3" hidden>
+    <div class="cfl-flex cfl-gap-4 cfl-items-start">
+      <div class="cfl-flex-1">
+        <h4>CNC Milling Services</h4>
+        <p>Computer-controlled machining for precise cuts in wood, plastic, and soft metals. Ideal for furniture, signs, and mechanical parts.</p>
+        <div class="cfl-flex cfl-gap-2 cfl-mt-3">
+          {% include components/button.html text="Book Time" variant="primary" href="#" %}
+          {% include components/button.html text="Safety Training" variant="ghost" href="#" %}
+        </div>
+      </div>
+      <div class="showcase-stats" style="min-width: 200px;">
+        {% include components/stat.html value="1" label="CNC Mill" %}
+        {% include components/stat.html value="48×96\"" label="Max Size" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+### Vertical Tabs
+
+For sidebars and settings panels with many options.
+
+<div class="cfl-tabs cfl-tabs--vertical" data-tabs="vert-tabs">
+  <div class="cfl-tabs__list" role="tablist">
+    <button class="cfl-tabs__tab cfl-tabs__tab--active" role="tab" data-tab="vert-tabs-1" aria-selected="true">👤 Profile</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="vert-tabs-2" aria-selected="false">🔔 Notifications</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="vert-tabs-3" aria-selected="false">🔒 Privacy</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="vert-tabs-4" aria-selected="false">💳 Billing</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="vert-tabs-5" aria-selected="false">🎨 Appearance</button>
+  </div>
+  <div class="cfl-tabs__panel cfl-tabs__panel--active" role="tabpanel" data-panel="vert-tabs-1">
+    <h4>Profile Settings</h4>
+    <p>Manage your public profile information and how others see you.</p>
+    {% include components/search.html placeholder="Search settings..." size="sm" %}
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="vert-tabs-2" hidden>
+    <h4>Notification Preferences</h4>
+    <div class="cfl-flex cfl-flex-col cfl-gap-3">
+      {% include components/toggle.html id="notif-email" label="Email notifications" checked=true %}
+      {% include components/toggle.html id="notif-push" label="Push notifications" checked=true %}
+      {% include components/toggle.html id="notif-sms" label="SMS notifications" %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="vert-tabs-3" hidden>
+    <h4>Privacy Controls</h4>
+    <div class="cfl-flex cfl-flex-col cfl-gap-3">
+      {% include components/toggle.html id="priv-public" label="Public profile" checked=true %}
+      {% include components/toggle.html id="priv-search" label="Show in search" checked=true %}
+      {% include components/toggle.html id="priv-activity" label="Show activity status" %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="vert-tabs-4" hidden>
+    <h4>Billing Information</h4>
+    {% include components/alert.html variant="info" title="No payment method" body="Add a payment method to enable premium features." icon="💳" %}
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="vert-tabs-5" hidden>
+    <h4>Appearance Settings</h4>
+    <div class="cfl-flex cfl-flex-col cfl-gap-3">
+      {% include components/toggle.html id="appear-dark" label="Dark mode" %}
+      {% include components/toggle.html id="appear-compact" label="Compact view" %}
+      {% include components/toggle.html id="appear-anim" label="Reduce animations" %}
+    </div>
+  </div>
+</div>
 
 <details class="code-snippet">
 <summary>Show Code</summary>
 <div class="code-snippet__content" markdown="1">
 
-```liquid
-{% raw %}{% include components/tabs.html
-   id="my-tabs"
-   tabs="[
-     {\"label\": \"Tab 1\", \"content\": \"<p>Content 1</p>\"},
-     {\"label\": \"Tab 2\", \"content\": \"<p>Content 2</p>\"}
-   ]"
-%}
+```html
+{% raw %}<!-- Default Tabs -->
+<div class="cfl-tabs cfl-tabs--default" data-tabs="my-tabs">
+  <div class="cfl-tabs__list" role="tablist">
+    <button class="cfl-tabs__tab cfl-tabs__tab--active" 
+            role="tab" data-tab="my-tabs-1">Tab 1</button>
+    <button class="cfl-tabs__tab" 
+            role="tab" data-tab="my-tabs-2">Tab 2</button>
+  </div>
+  <div class="cfl-tabs__panel cfl-tabs__panel--active" 
+       data-panel="my-tabs-1">Content 1</div>
+  <div class="cfl-tabs__panel" 
+       data-panel="my-tabs-2" hidden>Content 2</div>
+</div>
 
-{% include components/tabs.html
-   id="pill-tabs"
-   variant="pills"
-   tabs="[...]"
-%}{% endraw %}
+<!-- Pill Variant -->
+<div class="cfl-tabs cfl-tabs--pills" data-tabs="...">
+
+<!-- Vertical Tabs -->
+<div class="cfl-tabs cfl-tabs--vertical" data-tabs="...">{% endraw %}
 ```
 
 </div>

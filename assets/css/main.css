@@ -2043,6 +2043,78 @@ label.cfl-toggle::before,
     color: white;
 }
 
+/* Vertical tabs variant */
+.cfl-tabs--vertical {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.cfl-tabs--vertical .cfl-tabs__list {
+    flex-direction: column;
+    border-bottom: none;
+    border-right: 2px solid var(--border);
+    margin-bottom: 0;
+    padding-right: 1rem;
+    min-width: 160px;
+    gap: 0.25rem;
+}
+
+.cfl-tabs--vertical .cfl-tabs__tab {
+    text-align: left;
+    border-bottom: none;
+    border-right: 2px solid transparent;
+    margin-bottom: 0;
+    margin-right: -2px;
+    padding: 0.6rem 1rem;
+    border-radius: 6px 0 0 6px;
+    white-space: nowrap;
+}
+
+.cfl-tabs--vertical .cfl-tabs__tab:hover {
+    background: var(--bg-alt);
+}
+
+.cfl-tabs--vertical .cfl-tabs__tab--active {
+    color: var(--accent);
+    border-right-color: var(--accent);
+    background: var(--bg);
+}
+
+.cfl-tabs--vertical .cfl-tabs__panel {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+/* Tab panel content enhancements */
+.cfl-tabs__panel h4 {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.75rem 0;
+}
+
+.cfl-tabs__panel p {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.cfl-tabs__panel ul {
+    margin: 0.5rem 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.cfl-tabs__panel li {
+    padding: 0.4rem 0;
+    color: var(--text);
+}
+
 /* ----- TABLE COMPONENT -----
    Styled data tables
 */
