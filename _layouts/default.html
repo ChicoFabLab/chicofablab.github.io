@@ -44,6 +44,7 @@
     </footer>
 
     <div class="cfl-settings" id="cfl-settings" aria-live="polite">
+        <div class="cfl-settings__scrim" data-scrim hidden></div>
         <button type="button" class="cfl-settings__fab" aria-expanded="false" aria-controls="cfl-settings-panel">
             <span class="cfl-settings__fab-icon" aria-hidden="true">⚙️</span>
             <span class="cfl-settings__fab-label">Site settings</span>
@@ -52,6 +53,10 @@
             <button type="button" class="cfl-settings__orbit-btn" data-panel="fonts" title="Fonts">
                 <span aria-hidden="true">Aa</span>
                 <span class="sr-only">Fonts</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="colors" title="Colors">
+                <span aria-hidden="true">🎨</span>
+                <span class="sr-only">Colors</span>
             </button>
             <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="fraunces" title="Soft serif">
                 <span aria-hidden="true">🫧</span>
@@ -88,6 +93,30 @@
                 <option value="nunito">Nunito (rounded UI)</option>
             </select>
             <p class="cfl-settings__note">Headings and body will update instantly. Defaults remain Georgia/Inter if you reset.</p>
+        </div>
+
+        <div class="cfl-settings__panel" data-panel="colors" hidden>
+            <div class="cfl-settings__panel-title">Color theme</div>
+            <p class="cfl-settings__note">Pick an accent vibe. Applies to this device only.</p>
+            <div class="cfl-settings__swatches" role="group" aria-label="Color themes">
+                <button type="button" class="cfl-settings__swatch" data-theme="default">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #e63946; --swatch-bg: #fef9f3;"></span>
+                    Default
+                </button>
+                <button type="button" class="cfl-settings__swatch" data-theme="teal">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #0f766e; --swatch-bg: #f0fdfa;"></span>
+                    Teal
+                </button>
+                <button type="button" class="cfl-settings__swatch" data-theme="amber">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #d97706; --swatch-bg: #fffbeb;"></span>
+                    Amber
+                </button>
+                <button type="button" class="cfl-settings__swatch" data-theme="plum">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #9333ea; --swatch-bg: #f5f3ff;"></span>
+                    Plum
+                </button>
+            </div>
+            <div class="cfl-settings__legal">Colors are applied with CSS variables only; nothing is sent or stored remotely.</div>
         </div>
 
         <div class="cfl-settings__panel" data-panel="scope" hidden>
@@ -371,6 +400,8 @@
             var scopeToggle = document.getElementById('cfl-settings-scope');
             var debugToggle = document.getElementById('cfl-settings-debug');
             var resetButton = settings.querySelector('[data-action="reset-scope"]');
+            var scrim = settings.querySelector('[data-scrim]');
+            var swatches = settings.querySelectorAll('.cfl-settings__swatch');
 
             var STATE_KEYS = {
                 scope: 'cflSettingsScope',
@@ -392,9 +423,32 @@
                 nunito: { heading: "'Nunito', system-ui, sans-serif", body: "'Nunito', system-ui, sans-serif", ui: "'Nunito', system-ui, sans-serif" }
             };
 
+            var themes = {
+                default: {},
+                teal: {
+                    '--accent': '#0f766e',
+                    '--accent-hover': '#115e59',
+                    '--accent-secondary': '#0ea5e9',
+                    '--accent-secondary-hover': '#0284c7'
+                },
+                amber: {
+                    '--accent': '#d97706',
+                    '--accent-hover': '#b45309',
+                    '--accent-secondary': '#f59e0b',
+                    '--accent-secondary-hover': '#d97706'
+                },
+                plum: {
+                    '--accent': '#9333ea',
+                    '--accent-hover': '#7e22ce',
+                    '--accent-secondary': '#22c55e',
+                    '--accent-secondary-hover': '#16a34a'
+                }
+            };
+
             var state = {
                 scope: 'site',
                 font: 'default',
+                theme: 'default',
                 debug: true,
                 openPanel: null
             };
@@ -440,6 +494,7 @@
                     logger('Could not parse stored settings', e);
                 }
                 state.font = stored && stored.font && fonts[stored.font] ? stored.font : 'default';
+                state.theme = stored && stored.theme && themes[stored.theme] ? stored.theme : 'default';
                 if (fontSelect) fontSelect.value = state.font;
             }
 
@@ -452,20 +507,36 @@
                 logger('Applied font', state.font, 'scope', state.scope);
             }
 
+            function applyTheme() {
+                var root = document.documentElement;
+                // Reset to defaults first
+                root.style.removeProperty('--accent');
+                root.style.removeProperty('--accent-hover');
+                root.style.removeProperty('--accent-secondary');
+                root.style.removeProperty('--accent-secondary-hover');
+                var chosen = themes[state.theme] || themes.default;
+                Object.keys(chosen).forEach(function(key) {
+                    root.style.setProperty(key, chosen[key]);
+                });
+                logger('Applied theme', state.theme, 'scope', state.scope);
+            }
+
             function persist() {
                 var storage = storageForScope(state.scope);
                 var key = scopeKey(state.scope);
-                storage.setItem(key, JSON.stringify({ font: state.font }));
+                storage.setItem(key, JSON.stringify({ font: state.font, theme: state.theme }));
                 localStorage.setItem(STATE_KEYS.scope, state.scope);
-                logger('Persisted settings', { scope: state.scope, font: state.font });
+                logger('Persisted settings', { scope: state.scope, font: state.font, theme: state.theme });
             }
 
             function resetCurrentScope() {
                 var storage = storageForScope(state.scope);
                 storage.removeItem(scopeKey(state.scope));
                 state.font = 'default';
+                state.theme = 'default';
                 if (fontSelect) fontSelect.value = state.font;
                 applyFont();
+                applyTheme();
                 persist();
                 logger('Reset settings for scope', state.scope);
             }
@@ -476,6 +547,7 @@
                 fab.setAttribute('aria-expanded', 'true');
                 panels.forEach(function(panel) { panel.setAttribute('hidden', ''); });
                 settings.removeAttribute('data-open-panel');
+                if (scrim) scrim.setAttribute('hidden', '');
             }
 
             function openPanel(panelId) {
@@ -487,6 +559,7 @@
                     panel.toggleAttribute('hidden', !active);
                 });
                 settings.setAttribute('data-open-panel', panelId);
+                if (scrim) scrim.removeAttribute('hidden');
             }
 
             function closePanels() {
@@ -497,6 +570,7 @@
                     panel.setAttribute('hidden', '');
                 });
                 settings.removeAttribute('data-open-panel');
+                if (scrim) scrim.setAttribute('hidden', '');
             }
 
             function togglePanels(panelId) {
@@ -565,6 +639,7 @@
                 fontSelect.addEventListener('change', function(e) {
                     state.font = e.target.value;
                     applyFont();
+                    applyTheme();
                     persist();
                 });
             }
@@ -574,6 +649,7 @@
                     state.scope = e.target.checked ? 'site' : 'page';
                     readFontPreference();
                     applyFont();
+                    applyTheme();
                     persist();
                 });
             }
@@ -596,6 +672,25 @@
                 });
             }
 
+            if (scrim) {
+                scrim.addEventListener('click', function() {
+                    closePanels();
+                });
+            }
+
+            swatches.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    var theme = e.currentTarget.getAttribute('data-theme');
+                    if (themes[theme]) {
+                        state.theme = theme;
+                        swatches.forEach(function(s) { s.classList.toggle('is-active', s === btn); });
+                        applyTheme();
+                        persist();
+                        logger('Theme changed', theme);
+                    }
+                });
+            });
+
             document.addEventListener('click', function(event) {
                 if (!settings.contains(event.target)) {
                     closePanels();
@@ -611,6 +706,7 @@
             readDebugPreference();
             readFontPreference();
             applyFont();
+            applyTheme();
             persist();
             logger('Settings widget initialized', state);
         })();

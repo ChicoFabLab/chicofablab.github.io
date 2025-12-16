@@ -1561,7 +1561,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <span class="cfl-slider__value" id="slider1-value">65</span>
     </div>
   </div>
-  
+
   <div>
     <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Brightness</label>
     <div class="cfl-slider cfl-slider--warning">
@@ -1569,7 +1569,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <div class="cfl-slider__labels"><span>Dark</span><span>Bright</span></div>
     </div>
   </div>
-  
+
   <div>
     <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Temperature</label>
     <div class="cfl-slider cfl-slider--gradient">
@@ -1605,7 +1605,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <option>⚡ Lightning Mode</option>
     </select>
   </div>
-  
+
   <div class="cfl-select cfl-select--sm">
     <select class="cfl-select__input">
       <option>Small select</option>
@@ -1613,7 +1613,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <option>Option B</option>
     </select>
   </div>
-  
+
   <div class="cfl-select cfl-select--lg">
     <select class="cfl-select__input">
       <option>Large select</option>
@@ -1645,7 +1645,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       Enterprise (Custom)
     </label>
   </div>
-  
+
   <div class="cfl-radio-group cfl-radio-group--horizontal">
     <label class="cfl-radio cfl-radio--success">
       <input type="radio" class="cfl-radio__input" name="size" checked>
@@ -1711,13 +1711,13 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <span class="cfl-chip cfl-chip--warning">⚠️ Warning</span>
     <span class="cfl-chip cfl-chip--danger">🔥 Danger</span>
   </div>
-  
+
   <div class="cfl-chip-group">
     <span class="cfl-chip cfl-chip--clickable" onclick="this.classList.toggle('cfl-chip--selected')">Click me</span>
     <span class="cfl-chip cfl-chip--clickable cfl-chip--selected" onclick="this.classList.toggle('cfl-chip--selected')">Selected</span>
     <span class="cfl-chip cfl-chip--clickable" onclick="this.classList.toggle('cfl-chip--selected')">Toggle me</span>
   </div>
-  
+
   <div class="cfl-chip-group">
     <span class="cfl-chip">
       JavaScript
@@ -1748,13 +1748,13 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <span class="cfl-stepper__value">5</span>
     <button class="cfl-stepper__btn" onclick="this.previousElementSibling.textContent = parseInt(this.previousElementSibling.textContent) + 1">+</button>
   </div>
-  
+
   <div class="cfl-stepper">
     <button class="cfl-stepper__btn" onclick="this.nextElementSibling.textContent = Math.max(0, parseInt(this.nextElementSibling.textContent) - 1)">−</button>
     <span class="cfl-stepper__value">12</span>
     <button class="cfl-stepper__btn" onclick="this.previousElementSibling.textContent = parseInt(this.previousElementSibling.textContent) + 1">+</button>
   </div>
-  
+
   <div class="cfl-stepper cfl-stepper--lg">
     <button class="cfl-stepper__btn" onclick="this.nextElementSibling.textContent = Math.max(0, parseInt(this.nextElementSibling.textContent) - 1)">−</button>
     <span class="cfl-stepper__value">99</span>
@@ -1774,7 +1774,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <span class="cfl-rating__star cfl-rating__star--filled">★</span>
     <span class="cfl-rating__star">★</span>
   </div>
-  
+
   <div class="cfl-rating cfl-rating--lg">
     <span class="cfl-rating__star cfl-rating__star--filled">★</span>
     <span class="cfl-rating__star cfl-rating__star--filled">★</span>
@@ -1782,7 +1782,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <span class="cfl-rating__star">★</span>
     <span class="cfl-rating__star">★</span>
   </div>
-  
+
   <div class="cfl-rating cfl-rating--xl cfl-rating--hearts">
     <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
     <span class="cfl-rating__star cfl-rating__star--filled">♥</span>
@@ -1803,13 +1803,13 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <button class="cfl-segmented__btn">Month</button>
     <button class="cfl-segmented__btn">Year</button>
   </div>
-  
+
   <div class="cfl-segmented cfl-segmented--pill">
     <button class="cfl-segmented__btn">🌅 Light</button>
     <button class="cfl-segmented__btn cfl-segmented__btn--active">🌙 Dark</button>
     <button class="cfl-segmented__btn">🔄 Auto</button>
   </div>
-  
+
   <div class="cfl-segmented">
     <button class="cfl-segmented__btn cfl-segmented__btn--active">📊 Grid</button>
     <button class="cfl-segmented__btn">📋 List</button>
@@ -1826,12 +1826,12 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <div class="cfl-knob__track"></div>
     <div class="cfl-knob__inner">25</div>
   </div>
-  
+
   <div class="cfl-knob" style="--knob-value: 65;">
     <div class="cfl-knob__track"></div>
     <div class="cfl-knob__inner">65</div>
   </div>
-  
+
   <div class="cfl-knob cfl-knob--lg" style="--knob-value: 88;">
     <div class="cfl-knob__track"></div>
     <div class="cfl-knob__inner">88%</div>
@@ -1852,7 +1852,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <div class="cfl-meter__fill" style="width: 75%;"></div>
     </div>
   </div>
-  
+
   <div>
     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
       <span>Battery</span>
@@ -1862,7 +1862,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <div class="cfl-meter__fill" style="width: 90%;"></div>
     </div>
   </div>
-  
+
   <div>
     <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
       <span>CPU Usage</span>
@@ -1885,14 +1885,14 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     </div>
     <span class="cfl-color-picker__value">#3b82f6</span>
   </div>
-  
+
   <div class="cfl-color-picker cfl-color-picker--lg">
     <div class="cfl-color-picker__swatch">
       <input type="color" class="cfl-color-picker__input" value="#22c55e">
     </div>
     <span class="cfl-color-picker__value">#22c55e</span>
   </div>
-  
+
   <div class="cfl-color-picker">
     <div class="cfl-color-picker__swatch">
       <input type="color" class="cfl-color-picker__input" value="#f59e0b">
@@ -1923,13 +1923,13 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
     <span class="cfl-input-group__prepend">@</span>
     <input type="text" class="cfl-input-group__input" placeholder="username">
   </div>
-  
+
   <div class="cfl-input-group">
     <span class="cfl-input-group__prepend">$</span>
     <input type="number" class="cfl-input-group__input" placeholder="0.00">
     <span class="cfl-input-group__append">USD</span>
   </div>
-  
+
   <div class="cfl-input-group">
     <span class="cfl-input-group__prepend">🔗</span>
     <input type="url" class="cfl-input-group__input" placeholder="https://example.com">
@@ -1959,7 +1959,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <span class="cfl-toggle__track"><span class="cfl-toggle__thumb"></span></span>
     </label>
   </div>
-  
+
   <div class="cfl-switch-card">
     <div class="cfl-switch-card__content">
       <div class="cfl-switch-card__title">📧 Email Digest</div>
@@ -1970,7 +1970,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
       <span class="cfl-toggle__track"><span class="cfl-toggle__thumb"></span></span>
     </label>
   </div>
-  
+
   <div class="cfl-switch-card">
     <div class="cfl-switch-card__content">
       <div class="cfl-switch-card__title">🌙 Dark Mode</div>
