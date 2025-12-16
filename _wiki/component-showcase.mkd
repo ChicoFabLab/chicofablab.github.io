@@ -15,6 +15,57 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ---
 
+## Quick Reference
+
+<div class="cfl-table-wrapper">
+<table class="cfl-table">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Basic Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Button</strong></td>
+      <td><code>{% raw %}{% include components/button.html text="Click" variant="primary" href="#" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Alert</strong></td>
+      <td><code>{% raw %}{% include components/alert.html variant="info" title="Title" body="Message" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Badge</strong></td>
+      <td><code>{% raw %}{% include components/badge.html text="New" variant="success" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Callout</strong></td>
+      <td><code>{% raw %}{% include components/callout.html variant="tip" title="Tip" body="Content" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Progress</strong></td>
+      <td><code>{% raw %}{% include components/progress.html value=50 label="Loading" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Stat</strong></td>
+      <td><code>{% raw %}{% include components/stat.html value="42" label="Count" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Avatar</strong></td>
+      <td><code>{% raw %}{% include components/avatar.html initials="AB" size="md" %}{% endraw %}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Card</strong></td>
+      <td><code>{% raw %}{% include components/card.html title="Title" body="Desc" href="#" %}{% endraw %}</code></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+See the [Components Documentation](/wiki/components) for full API reference.
+
+---
+
 ## Buttons
 
 Click any button to see a fun toast notification! 🎉
@@ -2706,17 +2757,51 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
 
 ---
 
-## Quick Reference
+## Glossary
 
-| Component | Basic Usage |
-|-----------|-------------|
-| **Button** | `{% raw %}{% include components/button.html text="Click" variant="primary" href="#" %}{% endraw %}` |
-| **Alert** | `{% raw %}{% include components/alert.html variant="info" title="Title" body="Message" %}{% endraw %}` |
-| **Badge** | `{% raw %}{% include components/badge.html text="New" variant="success" %}{% endraw %}` |
-| **Callout** | `{% raw %}{% include components/callout.html variant="tip" title="Tip" body="Content" %}{% endraw %}` |
-| **Progress** | `{% raw %}{% include components/progress.html value=50 label="Loading" %}{% endraw %}` |
-| **Stat** | `{% raw %}{% include components/stat.html value="42" label="Count" %}{% endraw %}` |
-| **Avatar** | `{% raw %}{% include components/avatar.html initials="AB" size="md" %}{% endraw %}` |
-| **Card** | `{% raw %}{% include components/card.html title="Title" body="Desc" href="#" %}{% endraw %}` |
+### Component Terms
+
+**Variant** - A style variation of a component (e.g., `primary`, `success`, `danger`, `ghost`). Each component supports different variants for different use cases.
+
+**Size** - Component size modifier. Common sizes include `sm` (small), `md` (medium, default), `lg` (large), and `xl` (extra large).
+
+**Include** - Jekyll/Liquid syntax for including reusable component templates. All CFL components use the `{% raw %}{% include components/... %}{% endraw %}` pattern.
+
+**Modifier** - CSS class suffix that changes component appearance or behavior (e.g., `--primary`, `--striped`, `--hoverable`). Modifiers follow the BEM naming convention.
+
+**Block** - A boolean parameter that makes buttons span full width of their container.
+
+**Dot** - A small status indicator that appears on badges and avatars to show state (online, offline, away).
+
+**Pulse** - An animated pulsing effect applied to badges and status indicators to draw attention.
+
+**Holographic** - A rainbow gradient animation effect available on buttons, text, borders, and containers using classes like `.cfl-holo`, `.cfl-holo-text`, `.cfl-holo-border`.
+
+**Skeleton** - A loading placeholder that mimics the shape of content while data loads.
+
+**Toast** - A temporary notification that appears briefly, typically triggered by user actions.
+
+### CSS Classes
+
+**`.cfl-*`** - All CFL component classes are prefixed with `cfl-` to avoid conflicts with other stylesheets.
+
+**`.showcase-*`** - Utility classes specific to this showcase page for layout and demonstration purposes.
+
+**`.cfl-btn--*`** - Button modifier classes (e.g., `--primary`, `--rainbow`, `--bouncy`).
+
+**`.cfl-table--*`** - Table modifier classes (e.g., `--striped`, `--hoverable`, `--compact`).
+
+### Common Parameters
+
+- **`text`** - Text content displayed in the component
+- **`href`** - URL for links and buttons
+- **`variant`** - Style variant name
+- **`size`** - Size modifier
+- **`icon`** / **`icon_right`** - Emoji or icon to display
+- **`label`** - Descriptive text label
+- **`value`** - Numeric or string value
+- **`checked`** - Boolean for toggles and checkboxes
+- **`disabled`** - Boolean to disable interaction
+- **`title`** / **`body`** - Content for alerts and callouts
 
 See the [Components Documentation](/wiki/components) for full API reference.
