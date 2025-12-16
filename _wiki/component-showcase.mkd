@@ -17,14 +17,16 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 
 ## Buttons
 
+Click any button to see a fun toast notification! 🎉
+
 ### Variants
 
 <div class="showcase-row">
-{% include components/button.html text="Primary" variant="primary" href="#" %}
-{% include components/button.html text="Secondary" variant="secondary" href="#" %}
-{% include components/button.html text="Ghost" variant="ghost" href="#" %}
-{% include components/button.html text="Danger" variant="danger" href="#" %}
-{% include components/button.html text="Success" variant="success" href="#" %}
+  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.primary()">🚀 Primary</button>
+  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.secondary()">🎭 Secondary</button>
+  <button class="cfl-btn cfl-btn--ghost cfl-btn--md" onclick="CFL.toasts.ghost()">👻 Ghost</button>
+  <button class="cfl-btn cfl-btn--danger cfl-btn--md" onclick="CFL.toasts.danger()">🔥 Danger</button>
+  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.success()">🎉 Success</button>
 </div>
 
 <details class="code-snippet">
@@ -69,9 +71,34 @@ A living gallery of all CFL UI components. Click **Show Code** to expand, then c
 ### Sizes
 
 <div class="showcase-row showcase-row--align-center">
-{% include components/button.html text="Small" variant="primary" size="sm" href="#" %}
-{% include components/button.html text="Medium" variant="primary" size="md" href="#" %}
-{% include components/button.html text="Large" variant="primary" size="lg" href="#" %}
+  <button class="cfl-btn cfl-btn--primary cfl-btn--sm" onclick="CFL.toasts.small()">🐜 Small</button>
+  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.medium()">🎯 Medium</button>
+  <button class="cfl-btn cfl-btn--primary cfl-btn--lg" onclick="CFL.toasts.large()">🦖 Large</button>
+</div>
+
+### Fun Buttons Gallery
+
+<div class="showcase-row" style="flex-wrap: wrap;">
+  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.rocket()">🚀 Launch</button>
+  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.pizza()">🍕 Pizza</button>
+  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.unicorn()">🦄 Magic</button>
+  <button class="cfl-btn cfl-btn--ghost cfl-btn--md" onclick="CFL.toasts.coffee()">☕ Coffee</button>
+  <button class="cfl-btn cfl-btn--danger cfl-btn--md" onclick="CFL.toasts.fire()">🔥 Fire</button>
+</div>
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 0.5rem;">
+  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.sparkles()">✨ Sparkles</button>
+  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.music()">🎵 Music</button>
+  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.brain()">🧠 Big Brain</button>
+  <button class="cfl-btn cfl-btn--ghost cfl-btn--md" onclick="CFL.toasts.party()">🎊 Party</button>
+  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.robot()">🤖 Robot</button>
+</div>
+
+<div class="showcase-row" style="flex-wrap: wrap; margin-top: 0.5rem;">
+  <button class="cfl-btn cfl-btn--danger cfl-btn--md" onclick="CFL.toasts.heart()">❤️ Love</button>
+  <button class="cfl-btn cfl-btn--primary cfl-btn--md" onclick="CFL.toasts.lightning()">⚡ Fast</button>
+  <button class="cfl-btn cfl-btn--success cfl-btn--md" onclick="CFL.toasts.cat()">🐱 Cat</button>
+  <button class="cfl-btn cfl-btn--secondary cfl-btn--md" onclick="CFL.toasts.dog()">🐕 Dog</button>
 </div>
 
 <details class="code-snippet">
@@ -1284,7 +1311,7 @@ Content placeholders that shimmer while loading.
       </div>
     </div>
   </div>
-  
+
   <div style="width: 300px;">
     <h4 style="margin-bottom: 1rem;">Profile Skeleton</h4>
     <div class="cfl-skeleton--card">
@@ -1300,7 +1327,7 @@ Content placeholders that shimmer while loading.
       <div class="cfl-skeleton cfl-skeleton--text cfl-skeleton--text-medium"></div>
     </div>
   </div>
-  
+
   <div style="width: 300px;">
     <h4 style="margin-bottom: 1rem;">List Skeleton</h4>
     <div class="cfl-skeleton--card">

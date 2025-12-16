@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Caprasimo&family=Chonburi&family=DM+Serif+Display&family=Abril+Fatface&family=Bricolage+Grotesque:wght@400;600;700&family=Calistoga&family=Varela+Round&family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include marquee.html %}
@@ -110,6 +111,111 @@
                 });
             });
         });
+
+        // Toast notification system
+        window.CFL = window.CFL || {};
+
+        // Create toast container if it doesn't exist
+        if (!document.querySelector('.cfl-toast-container')) {
+            var container = document.createElement('div');
+            container.className = 'cfl-toast-container';
+            document.body.appendChild(container);
+        }
+
+        // Toast function
+        window.CFL.toast = function(options) {
+            var container = document.querySelector('.cfl-toast-container');
+            var toast = document.createElement('div');
+            toast.className = 'cfl-toast cfl-toast--' + (options.variant || 'info');
+
+            var iconAnim = options.iconAnim || 'pop';
+            toast.innerHTML =
+                '<span class="cfl-toast__icon cfl-toast__icon--' + iconAnim + '">' + (options.icon || '✨') + '</span>' +
+                '<div class="cfl-toast__content">' +
+                    '<div class="cfl-toast__title">' + (options.title || 'Notification') + '</div>' +
+                    '<div class="cfl-toast__message">' + (options.message || '') + '</div>' +
+                '</div>';
+
+            container.appendChild(toast);
+
+            // Auto remove after duration
+            setTimeout(function() {
+                toast.classList.add('cfl-toast--leaving');
+                setTimeout(function() {
+                    toast.remove();
+                }, 300);
+            }, options.duration || 3000);
+        };
+
+        // Fun toast presets
+        window.CFL.toasts = {
+            primary: function() {
+                CFL.toast({ icon: '🚀', title: 'Blast off!', message: 'Primary action initiated. Ready for launch!', variant: 'info', iconAnim: 'bounce' });
+            },
+            secondary: function() {
+                CFL.toast({ icon: '🎭', title: 'Behind the scenes', message: 'Secondary actions are the unsung heroes.', variant: 'info', iconAnim: 'pop' });
+            },
+            ghost: function() {
+                CFL.toast({ icon: '👻', title: 'Boo!', message: 'Ghost buttons are spooky subtle.', variant: 'info', iconAnim: 'shake' });
+            },
+            danger: function() {
+                CFL.toast({ icon: '🔥', title: 'Danger zone!', message: 'Handle with care. This is serious business.', variant: 'danger', iconAnim: 'shake' });
+            },
+            success: function() {
+                CFL.toast({ icon: '🎉', title: 'Woohoo!', message: 'Everything worked perfectly!', variant: 'success', iconAnim: 'bounce' });
+            },
+            small: function() {
+                CFL.toast({ icon: '🐜', title: 'Small but mighty!', message: 'Size doesn\'t matter, impact does.', variant: 'info', iconAnim: 'pop' });
+            },
+            medium: function() {
+                CFL.toast({ icon: '🎯', title: 'Right on target!', message: 'The Goldilocks zone of buttons.', variant: 'info', iconAnim: 'pop' });
+            },
+            large: function() {
+                CFL.toast({ icon: '🦖', title: 'Go big!', message: 'Large and in charge. No squinting required!', variant: 'info', iconAnim: 'bounce' });
+            },
+            rocket: function() {
+                CFL.toast({ icon: '🚀', title: '3... 2... 1... Liftoff!', message: 'Houston, we have ignition!', variant: 'party', iconAnim: 'bounce' });
+            },
+            pizza: function() {
+                CFL.toast({ icon: '🍕', title: 'Pizza time!', message: 'You deserve a slice. Great work!', variant: 'warning', iconAnim: 'spin' });
+            },
+            unicorn: function() {
+                CFL.toast({ icon: '🦄', title: 'Magical!', message: 'Unicorns approve of this action.', variant: 'party', iconAnim: 'bounce' });
+            },
+            coffee: function() {
+                CFL.toast({ icon: '☕', title: 'Coffee break!', message: 'Refueling creativity levels...', variant: 'warning', iconAnim: 'pop' });
+            },
+            sparkles: function() {
+                CFL.toast({ icon: '✨', title: 'Sparkle sparkle!', message: 'Adding a little magic to your day.', variant: 'party', iconAnim: 'spin' });
+            },
+            music: function() {
+                CFL.toast({ icon: '🎵', title: 'Feel the beat!', message: 'Dancing through the code...', variant: 'info', iconAnim: 'bounce' });
+            },
+            brain: function() {
+                CFL.toast({ icon: '🧠', title: 'Big brain time!', message: '200 IQ play detected.', variant: 'success', iconAnim: 'pop' });
+            },
+            fire: function() {
+                CFL.toast({ icon: '🔥', title: 'This is fire!', message: 'Absolutely blazing performance!', variant: 'danger', iconAnim: 'shake' });
+            },
+            party: function() {
+                CFL.toast({ icon: '🎊', title: 'Party mode!', message: 'Let\'s celebrate! Confetti everywhere!', variant: 'party', iconAnim: 'bounce' });
+            },
+            robot: function() {
+                CFL.toast({ icon: '🤖', title: 'Beep boop!', message: 'Automation activated. Humans optional.', variant: 'info', iconAnim: 'shake' });
+            },
+            heart: function() {
+                CFL.toast({ icon: '❤️', title: 'Sending love!', message: 'You\'re doing amazing!', variant: 'danger', iconAnim: 'pop' });
+            },
+            lightning: function() {
+                CFL.toast({ icon: '⚡', title: 'Lightning fast!', message: 'Speed is your superpower!', variant: 'warning', iconAnim: 'shake' });
+            },
+            cat: function() {
+                CFL.toast({ icon: '🐱', title: 'Meow!', message: 'Cats approve. That\'s the highest honor.', variant: 'info', iconAnim: 'bounce' });
+            },
+            dog: function() {
+                CFL.toast({ icon: '🐕', title: 'Good human!', message: 'Tail wagging intensifies!', variant: 'success', iconAnim: 'shake' });
+            }
+        };
     });
     </script>
 </body>
