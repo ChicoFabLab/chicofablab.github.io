@@ -1907,14 +1907,19 @@ label.cfl-toggle::before,
     box-sizing: border-box;
 }
 
+/* Base size for track (default = medium) */
+.cfl-toggle .cfl-toggle__track {
+    width: 48px !important;
+    height: 26px !important;
+}
+
 /* Explicit sizes for track - DRAMATICALLY DIFFERENT */
 .cfl-toggle--sm .cfl-toggle__track {
     width: 28px !important;
     height: 16px !important;
 }
 
-.cfl-toggle--md .cfl-toggle__track,
-.cfl-toggle .cfl-toggle__track {
+.cfl-toggle--md .cfl-toggle__track {
     width: 48px !important;
     height: 26px !important;
 }
@@ -1934,6 +1939,14 @@ label.cfl-toggle::before,
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Base size for thumb (default = medium) */
+.cfl-toggle .cfl-toggle__thumb {
+    width: 20px !important;
+    height: 20px !important;
+    top: 3px !important;
+    left: 3px !important;
+}
+
 /* Explicit sizes for thumb - DRAMATICALLY DIFFERENT */
 .cfl-toggle--sm .cfl-toggle__thumb {
     width: 12px !important;
@@ -1942,8 +1955,7 @@ label.cfl-toggle::before,
     left: 2px !important;
 }
 
-.cfl-toggle--md .cfl-toggle__thumb,
-.cfl-toggle .cfl-toggle__thumb {
+.cfl-toggle--md .cfl-toggle__thumb {
     width: 20px !important;
     height: 20px !important;
     top: 3px !important;
@@ -1963,13 +1975,17 @@ label.cfl-toggle::before,
     border-color: var(--accent);
 }
 
+/* Base checked state (default = medium) */
+.cfl-toggle .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+    transform: translateX(22px) !important;
+}
+
 /* Move thumb to right when checked - matches new sizes */
 .cfl-toggle--sm .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
     transform: translateX(12px) !important;
 }
 
-.cfl-toggle--md .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb,
-.cfl-toggle .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+.cfl-toggle--md .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
     transform: translateX(22px) !important;
 }
 
@@ -4979,6 +4995,8 @@ pre code {
    =================== */
 
 .cfl-settings {
+    --orbit-radius: 110px;
+    --fab-height: 52px;
     position: fixed;
     right: 1.25rem;
     bottom: 1.25rem;
@@ -5005,23 +5023,24 @@ pre code {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--accent);
-    color: white;
-    border: none;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
     padding: 0.65rem 1rem;
     border-radius: 999px;
     cursor: pointer;
-    box-shadow: 0 12px 30px rgba(230, 57, 70, 0.25), 0 2px 8px var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: 0 8px 22px var(--shadow), 0 1px 4px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .cfl-settings__fab:hover {
-    background: var(--accent-hover);
+    background: var(--bg-alt);
+    border-color: var(--border-dark);
     transform: translateY(-2px);
 }
 
 .cfl-settings--open .cfl-settings__fab {
-    box-shadow: 0 14px 40px rgba(230, 57, 70, 0.3), 0 4px 12px var(--shadow);
+    box-shadow: 0 12px 30px var(--shadow), 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .cfl-settings__fab-icon {
@@ -5030,7 +5049,7 @@ pre code {
     justify-content: center;
     width: 32px;
     height: 32px;
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--bg-alt);
     border-radius: 50%;
     font-size: 1rem;
 }
@@ -5042,12 +5061,11 @@ pre code {
 
 .cfl-settings__orbit {
     position: absolute;
-    width: 240px;
-    height: 240px;
-    bottom: 10px;
-    right: 10px;
+    width: calc(var(--orbit-radius) * 2);
+    height: calc(var(--orbit-radius) * 2);
+    bottom: calc(var(--fab-height) * 0.5 - var(--orbit-radius));
+    right: calc(var(--fab-height) * 0.5 - var(--orbit-radius));
     pointer-events: none;
-    transform: translate(50%, 50%);
 }
 
 .cfl-settings__orbit-btn {
