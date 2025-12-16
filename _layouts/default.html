@@ -17,6 +17,8 @@
         <nav>
             <a href="/">Home</a>
             <a href="/wiki/getting-started">Get Started</a>
+            <a href="/wiki/component-showcase">Components</a>
+            <a href="/wiki/css-library">CSS</a>
             <a href="/README">Contribute</a>
         </nav>
     </header>
@@ -93,7 +95,7 @@
             tabs.forEach(function(tab) {
                 tab.addEventListener('click', function() {
                     var targetId = this.getAttribute('data-tab');
-                    
+
                     // Deactivate all tabs and panels
                     tabContainer.querySelectorAll('.cfl-tabs__tab').forEach(function(t) {
                         t.classList.remove('cfl-tabs__tab--active');
@@ -103,7 +105,7 @@
                         p.classList.remove('cfl-tabs__panel--active');
                         p.setAttribute('hidden', '');
                     });
-                    
+
                     // Activate clicked tab and its panel
                     this.classList.add('cfl-tabs__tab--active');
                     this.setAttribute('aria-selected', 'true');
