@@ -605,40 +605,53 @@ Rounded pill-style tabs for a softer, more modern look.
 <div class="cfl-tabs cfl-tabs--pills" data-tabs="pill-tabs">
   <div class="cfl-tabs__list" role="tablist">
     <button class="cfl-tabs__tab cfl-tabs__tab--active" role="tab" data-tab="pill-tabs-1" aria-selected="true">All</button>
-    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-2" aria-selected="false">Active</button>
-    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-3" aria-selected="false">Completed</button>
-    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-4" aria-selected="false">Archived</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-2" aria-selected="false">In Progress</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-3" aria-selected="false">Queued</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-4" aria-selected="false">Completed</button>
+    <button class="cfl-tabs__tab" role="tab" data-tab="pill-tabs-5" aria-selected="false">Archived</button>
   </div>
   <div class="cfl-tabs__panel cfl-tabs__panel--active" role="tabpanel" data-panel="pill-tabs-1">
-    <p class="cfl-text-muted cfl-mb-3">Showing all 12 items</p>
-    <div class="cfl-flex cfl-flex-col cfl-gap-2">
-      {% include components/badge.html text="3D Print Job" variant="info" %}
-      {% include components/badge.html text="Laser Cut Project" variant="success" %}
-      {% include components/badge.html text="CNC Milling" variant="warning" %}
-      {% include components/badge.html text="Vinyl Design" variant="primary" %}
+    <p class="cfl-text-muted cfl-mb-3">Showing all 15 items</p>
+    <div class="cfl-flex cfl-flex-wrap cfl-gap-2">
+      {% include components/badge.html text="3D Print Job" variant="warning" dot=true pulse=true %}
+      {% include components/badge.html text="Laser Cut Project" variant="warning" dot=true pulse=true %}
+      {% include components/badge.html text="CNC Milling" variant="info" %}
+      {% include components/badge.html text="Vinyl Design" variant="info" %}
+      {% include components/badge.html text="Phone Stand" variant="success" %}
+      {% include components/badge.html text="Keychain Set" variant="success" %}
     </div>
   </div>
   <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-2" hidden>
-    <p class="cfl-text-muted cfl-mb-3">Showing 3 active items</p>
-    <div class="cfl-flex cfl-flex-col cfl-gap-2">
-      {% include components/badge.html text="3D Print Job" variant="info" dot=true pulse=true %}
-      {% include components/badge.html text="Laser Cut Project" variant="info" dot=true pulse=true %}
-      {% include components/badge.html text="CNC Milling" variant="info" dot=true pulse=true %}
+    <p class="cfl-text-muted cfl-mb-3">Showing 2 in progress</p>
+    <div class="cfl-flex cfl-flex-wrap cfl-gap-2">
+      {% include components/badge.html text="3D Print Job" variant="warning" dot=true pulse=true %}
+      {% include components/badge.html text="Laser Cut Project" variant="warning" dot=true pulse=true %}
     </div>
+    {% include components/progress.html value=65 label="3D Print Job" show_value=true variant="warning" demo=true %}
+    {% include components/progress.html value=30 label="Laser Cut Project" show_value=true variant="warning" demo=true %}
   </div>
   <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-3" hidden>
-    <p class="cfl-text-muted cfl-mb-3">Showing 5 completed items</p>
-    <div class="cfl-flex cfl-flex-col cfl-gap-2">
+    <p class="cfl-text-muted cfl-mb-3">Showing 3 queued items</p>
+    <div class="cfl-flex cfl-flex-wrap cfl-gap-2">
+      {% include components/badge.html text="CNC Milling" variant="info" %}
+      {% include components/badge.html text="Vinyl Design" variant="info" %}
+      {% include components/badge.html text="Embroidery Project" variant="info" %}
+    </div>
+  </div>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-4" hidden>
+    <p class="cfl-text-muted cfl-mb-3">Showing 6 completed items</p>
+    <div class="cfl-flex cfl-flex-wrap cfl-gap-2">
       {% include components/badge.html text="Phone Stand" variant="success" %}
       {% include components/badge.html text="Keychain Set" variant="success" %}
       {% include components/badge.html text="Name Badge" variant="success" %}
       {% include components/badge.html text="Box Design" variant="success" %}
       {% include components/badge.html text="Logo Engrave" variant="success" %}
+      {% include components/badge.html text="Custom Sign" variant="success" %}
     </div>
   </div>
-  <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-4" hidden>
+  <div class="cfl-tabs__panel" role="tabpanel" data-panel="pill-tabs-5" hidden>
     <p class="cfl-text-muted cfl-mb-3">Showing 4 archived items</p>
-    <div class="cfl-flex cfl-flex-col cfl-gap-2">
+    <div class="cfl-flex cfl-flex-wrap cfl-gap-2">
       {% include components/badge.html text="Old Project 1" variant="secondary" %}
       {% include components/badge.html text="Old Project 2" variant="secondary" %}
       {% include components/badge.html text="Test Print" variant="secondary" %}
