@@ -1,35 +1,32 @@
-/* CFL Wiki — Logo-Inspired Color Theme */
-/* Archived: assets/css/archive/main-v1-warm-paper-20251216.css */
+/* CFL Wiki — Clean Makerspace Wiki Theme */
 
 :root {
-    /* Logo-based palette — Teal + Cream + Red */
-    --bg: #fdf8f0;              /* Warm cream from logo */
-    --bg-alt: #f6deb8;          /* Logo cream/tan */
-    --surface: #ffffff;         /* Pure white cards */
-    --text: #0a0a0a;            /* Near-black from logo */
-    --text-muted: #5a5a5a;      /* Softer gray */
-    --accent: #038592;          /* TEAL from logo - primary */
-    --accent-hover: #026d78;    /* Darker teal */
-    --accent-secondary: #ef2853; /* RED/PINK from logo */
-    --accent-secondary-hover: #d91f47;
-    --border: #e8dcc8;          /* Warm cream border */
-    --border-dark: #d4c4a8;     /* Darker cream */
-    --code-bg: #f5efe5;         /* Cream-tinted code bg */
-    --shadow: rgba(3, 133, 146, 0.1); /* Teal-tinted shadow */
+    /* Warm paper-like palette */
+    --bg: #faf9f7;
+    --bg-alt: #f4f3f0;
+    --surface: #ffffff;
+    --text: #2d2a26;
+    --text-muted: #6b6560;
+    --accent: #c45d35;
+    --accent-hover: #a84c2a;
+    --border: #e5e2dc;
+    --border-dark: #d4d0c8;
+    --code-bg: #f0eeea;
+    --shadow: rgba(45, 42, 38, 0.08);
 
-    /* Component colors - logo harmonized */
-    --info: #038592;            /* Teal (same as accent) */
-    --info-bg: #e6f4f5;
-    --info-border: #a8d8dc;
-    --success: #10b981;         /* Emerald green */
-    --success-bg: #ecfdf5;
-    --success-border: #a7f3d0;
-    --warning: #f59e0b;         /* Amber */
+    /* Component colors */
+    --info: #3b82f6;
+    --info-bg: #eff6ff;
+    --info-border: #bfdbfe;
+    --success: #22c55e;
+    --success-bg: #f0fdf4;
+    --success-border: #bbf7d0;
+    --warning: #f59e0b;
     --warning-bg: #fffbeb;
     --warning-border: #fde68a;
-    --danger: #ef2853;          /* Logo red/pink */
-    --danger-bg: #fef2f4;
-    --danger-border: #fecdd3;
+    --danger: #ef4444;
+    --danger-bg: #fef2f2;
+    --danger-border: #fecaca;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,7 +49,7 @@ body {
    =================== */
 
 .marquee-container {
-    background: linear-gradient(135deg, #038592 0%, #026d78 100%);
+    background: var(--text);
     overflow: hidden;
     white-space: nowrap;
 }
@@ -1083,7 +1080,7 @@ footer p {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent) 0%, #026d78 50%, var(--accent-secondary) 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
     color: white;
     font-family: system-ui, -apple-system, sans-serif;
     font-weight: 700;
@@ -1339,7 +1336,7 @@ footer p {
 }
 
 .showcase-dark-preview {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a3a3d 50%, #038592 100%);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     border-radius: 12px;
     padding: 2rem;
     margin: 1.5rem 0;
