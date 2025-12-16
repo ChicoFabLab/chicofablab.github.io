@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    {% include marquee.html %}
+    
     <header>
-        <h1>CFL Wiki</h1>
+        <h1><a href="/">CFL Wiki</a></h1>
         <nav>
             <a href="/">Home</a>
-            <a href="/README">How to Contribute</a>
+            <a href="/wiki/getting-started">Get Started</a>
+            <a href="/README">Contribute</a>
         </nav>
     </header>
 
@@ -23,8 +26,25 @@
     </main>
 
     <footer>
-        <p>Chico Fab Lab · 603 Orange Street · Chico, CA</p>
-        <p>Wednesdays 5-7pm and by arrangement</p>
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://github.com/ChicoFabLab" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                    ⌘
+                </a>
+                <a href="https://discord.gg/chicofablab" class="social-link" title="Discord" target="_blank" rel="noopener">
+                    💬
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/wiki/getting-started">Getting Started</a>
+                <a href="/README">How to Contribute</a>
+                <a href="https://github.com/ChicoFabLab/chicofablab.github.io" target="_blank" rel="noopener">Source Code</a>
+            </div>
+            <p>Chico Fab Lab · 603 Orange Street · Chico, CA</p>
+            <p>Open Wednesdays 5-7pm and by arrangement</p>
+            <span class="footer-badge">Built with Jekyll · Hosted on GitHub Pages</span>
+        </div>
     </footer>
 </body>
 </html>

@@ -2,15 +2,36 @@
 layout: default
 ---
 
-<h2>wiki pages</h2>
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Chico Fab Lab</h1>
+        <p class="hero-subtitle">Community Makerspace Wiki</p>
+        <p class="hero-description">Your guide to tools, projects, and everything happening at CFL</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">{{ site.wiki.size }}</span>
+                <span class="stat-label">Wiki Pages</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">Wed</span>
+                <span class="stat-label">5-7pm Open</span>
+            </div>
+        </div>
+        <a href="/wiki/getting-started" class="hero-cta">Get Started →</a>
+    </div>
+</section>
 
-{% if site.wiki.size > 0 %}
-{% assign pages = site.wiki | sort: "order" %}
-<ul>
-{% for page in pages %}
-<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-{% endfor %}
-</ul>
-{% else %}
-<p>no pages yet - <a href="/README">see how to add one</a></p>
-{% endif %}
+<section class="wiki-section">
+    <h2 class="section-title">Wiki Pages</h2>
+    
+    {% if site.wiki.size > 0 %}
+    <div class="card-grid">
+        {% assign pages = site.wiki | sort: "order" %}
+        {% for page in pages %}
+            {% include card.html page=page %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">No pages yet — <a href="/README">see how to add one</a></p>
+    {% endif %}
+</section>

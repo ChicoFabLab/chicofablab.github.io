@@ -1,0 +1,17 @@
+<a href="{{ include.page.url }}" class="wiki-card">
+    <div class="card-header">
+        <h3>{{ include.page.title }}</h3>
+        <span class="card-order">#{{ include.page.order }}</span>
+    </div>
+    <p class="card-excerpt">
+        {% if include.page.description %}
+            {{ include.page.description }}
+        {% else %}
+            {{ include.page.content | strip_html | truncate: 120 }}
+        {% endif %}
+    </p>
+    <div class="card-footer">
+        <span class="card-link">Read more →</span>
+    </div>
+</a>
+
