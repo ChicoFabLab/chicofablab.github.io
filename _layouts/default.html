@@ -1671,8 +1671,15 @@
                     if (panelId) {
                         // #region agent log
                         console.log('[DEBUG] Opening panel:', panelId);
+                        console.log('[DEBUG] settings element exists:', !!settings);
+                        console.log('[DEBUG] settings classes BEFORE:', settings ? settings.className : 'N/A');
+                        console.log('[DEBUG] settings hidden?:', settings ? settings.classList.contains('cfl-settings--hidden') : 'N/A');
                         // #endregion
                         openPanel(panelId);
+                        // #region agent log
+                        console.log('[DEBUG] settings classes AFTER:', settings ? settings.className : 'N/A');
+                        console.log('[DEBUG] panel visible check:', document.querySelector('.cfl-settings__panel[data-panel="' + panelId + '"]'));
+                        // #endregion
                         CFL.sounds.pop();
                         // Close the settings menu
                         if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
