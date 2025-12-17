@@ -29,6 +29,8 @@ A complete arcade game hidden in the footer featuring:
 
 ### 🎮 Controls
 
+**Keyboard:**
+
 | Key | Action |
 |-----|--------|
 | `W` / `↑` | Move paddle up |
@@ -36,6 +38,17 @@ A complete arcade game hidden in the footer featuring:
 | `Space` | Shoot laser / Pause |
 | `P` | Pause/Resume |
 | `R` | Reset game |
+
+**Mobile/Touch:**
+
+| Control | Action |
+|---------|--------|
+| Drag on canvas | Move paddle to finger |
+| ⬆️ Up button | Move paddle up |
+| ⬇️ Down button | Move paddle down |
+| 🔫 Shoot button | Fire laser (when powered up) |
+
+*Mobile controls appear automatically on touch devices.*
 
 ### 🏅 New Achievement
 
