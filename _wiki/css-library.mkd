@@ -2,6 +2,8 @@
 title: CSS Utility Library
 layout: default
 order: 98
+category: development
+icon: "💅"
 ---
 
 # CSS Utility Library

@@ -1,6 +1,8 @@
 ---
 title: Brand Standards
 order: 10
+category: development
+icon: "🎨"
 ---
 
 # CFL Brand Standards

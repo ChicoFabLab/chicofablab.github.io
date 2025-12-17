@@ -2,6 +2,8 @@
 title: API Reference
 order: 8
 description: Complete reference for all CFL components and CSS variables.
+category: development
+icon: "📚"
 ---
 
 # API Reference

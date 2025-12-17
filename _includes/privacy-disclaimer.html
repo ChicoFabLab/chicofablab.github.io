@@ -1,0 +1,92 @@
+<!-- Privacy Disclaimer for Achievements System -->
+<!-- Floating dismissible banner that appears on first visit -->
+<div class="cfl-privacy-disclaimer" id="cfl-privacy-disclaimer" hidden>
+  <div class="cfl-privacy-disclaimer__content">
+    <div class="cfl-privacy-disclaimer__icon">🔒</div>
+    <div class="cfl-privacy-disclaimer__text">
+      <div class="cfl-privacy-disclaimer__title">Your Progress is Saved Locally</div>
+      <div class="cfl-privacy-disclaimer__body">
+        This site tracks your achievements and learning progress using your browser's local storage.
+        <strong>No data is sent to any server</strong> — everything stays on your device.
+      </div>
+    </div>
+    <div class="cfl-privacy-disclaimer__actions">
+      <button type="button" class="cfl-btn cfl-btn--ghost cfl-btn--sm" id="cfl-privacy-manage">
+        Manage Data
+      </button>
+      <button type="button" class="cfl-btn cfl-btn--primary cfl-btn--sm" id="cfl-privacy-accept">
+        Got it!
+      </button>
+    </div>
+    <button type="button" class="cfl-privacy-disclaimer__close" id="cfl-privacy-close" aria-label="Close">
+      ✕
+    </button>
+  </div>
+</div>
+
+<!-- Data Management Modal -->
+<div class="cfl-data-modal" id="cfl-data-modal" hidden>
+  <div class="cfl-data-modal__backdrop" data-close></div>
+  <div class="cfl-data-modal__content">
+    <div class="cfl-data-modal__header">
+      <h3>🔐 Manage Your Data</h3>
+      <button type="button" class="cfl-data-modal__close" data-close aria-label="Close">✕</button>
+    </div>
+    <div class="cfl-data-modal__body">
+      <div class="cfl-data-modal__section">
+        <h4>📊 What We Store</h4>
+        <ul class="cfl-data-modal__list">
+          <li><strong>Achievements:</strong> Which badges you've unlocked and when</li>
+          <li><strong>Stats:</strong> Click counts, pages visited, button types clicked</li>
+          <li><strong>Preferences:</strong> Font choices, color themes, sound settings</li>
+          <li><strong>Easter Eggs:</strong> Which hidden items you've found</li>
+        </ul>
+        <p class="cfl-data-modal__note">
+          <em>All data is stored in your browser's localStorage. Nothing is sent to any server.</em>
+        </p>
+      </div>
+
+      <div class="cfl-data-modal__section">
+        <h4>🛠️ Data Controls</h4>
+        <div class="cfl-data-modal__actions">
+          <button type="button" class="cfl-btn cfl-btn--secondary cfl-btn--sm" id="cfl-data-export">
+            📥 Export My Data
+          </button>
+          <button type="button" class="cfl-btn cfl-btn--danger cfl-btn--sm" id="cfl-data-clear">
+            🗑️ Clear All Progress
+          </button>
+        </div>
+      </div>
+
+      <div class="cfl-data-modal__section" id="cfl-data-stats">
+        <h4>📈 Your Current Data</h4>
+        <div class="cfl-data-modal__stats">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+    <div class="cfl-data-modal__footer">
+      <button type="button" class="cfl-btn cfl-btn--primary cfl-btn--sm" data-close>
+        Done
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Modal for Clear Data -->
+<div class="cfl-confirm-modal" id="cfl-confirm-modal" hidden>
+  <div class="cfl-confirm-modal__backdrop" data-close></div>
+  <div class="cfl-confirm-modal__content">
+    <div class="cfl-confirm-modal__icon">⚠️</div>
+    <h3>Clear All Progress?</h3>
+    <p>This will permanently delete all your achievements, stats, and preferences. This cannot be undone.</p>
+    <div class="cfl-confirm-modal__actions">
+      <button type="button" class="cfl-btn cfl-btn--ghost cfl-btn--sm" data-close>
+        Cancel
+      </button>
+      <button type="button" class="cfl-btn cfl-btn--danger cfl-btn--sm" id="cfl-confirm-clear">
+        Yes, Clear Everything
+      </button>
+    </div>
+  </div>
+</div>

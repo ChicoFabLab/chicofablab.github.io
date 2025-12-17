@@ -2,6 +2,8 @@
 title: "T̸h̵e̶ ̷V̴o̵i̷d̶ ̵A̷w̵a̶i̷t̵s̷"
 layout: default
 sitemap: false
+category: fun
+icon: "👁️"
 ---
 
 <style>

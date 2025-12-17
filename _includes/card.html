@@ -1,17 +1,43 @@
-<a href="{{ include.page.url }}" class="wiki-card">
-    <div class="card-header">
-        <h3>{{ include.page.title }}</h3>
-        <span class="card-order">#{{ include.page.order }}</span>
-    </div>
-    <p class="card-excerpt">
-        {% if include.page.description %}
-            {{ include.page.description }}
-        {% else %}
-            {{ include.page.content | strip_html | truncate: 120 }}
-        {% endif %}
-    </p>
-    <div class="card-footer">
-        <span class="card-link">Read more →</span>
+{% assign page_category = include.page.category | default: "uncategorized" %}
+{% assign page_title = include.page.title %}
+{% assign page_excerpt = include.page.description | default: include.page.content | strip_html | truncate: 120 %}
+{% assign page_updated = include.page.last_updated | default: include.page.date %}
+
+<a href="{{ include.page.url }}"
+   class="wiki-card"
+   data-category="{{ page_category }}"
+   data-title="{{ page_title | downcase }}"
+   data-excerpt="{{ page_excerpt | downcase | escape }}">
+
+    <div class="card-accent" data-category="{{ page_category }}"></div>
+
+    <div class="card-content">
+        <div class="card-header">
+            <span class="card-category" data-category="{{ page_category }}">
+                {{ page_category | replace: "-", " " | capitalize }}
+            </span>
+            {% if page_updated %}
+            <span class="card-updated">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                {{ page_updated | date: "%b %d" }}
+            </span>
+            {% endif %}
+        </div>
+
+        <h3 class="card-title">{{ page_title }}</h3>
+
+        <p class="card-excerpt">{{ page_excerpt }}</p>
+
+        <div class="card-footer">
+            <span class="card-link">
+                <span class="card-link__text">Read more</span>
+                <svg class="card-link__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </span>
+        </div>
     </div>
 </a>
-

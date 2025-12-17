@@ -2,6 +2,8 @@
 title: Button Playground
 layout: default
 order: 97
+category: development
+icon: "🎮"
 ---
 
 # 🎨 Button Playground

@@ -2,6 +2,8 @@
 title: Component Showcase
 layout: default
 order: 99
+category: development
+icon: "🧩"
 ---
 
 # Component Showcase

@@ -2,6 +2,8 @@
 title: Equipment Guide
 layout: default
 order: 7
+category: equipment
+icon: "🛠️"
 ---
 
 # 🛠️ Equipment Guide

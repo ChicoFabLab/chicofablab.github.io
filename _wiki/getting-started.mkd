@@ -1,6 +1,8 @@
 ---
 title: Getting Started
 order: 1
+category: getting-started
+icon: "🚀"
 ---
 
 # Welcome to Chico Fab Lab

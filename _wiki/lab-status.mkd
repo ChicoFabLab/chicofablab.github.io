@@ -2,6 +2,8 @@
 title: Lab Status Dashboard
 layout: default
 order: 5
+category: equipment
+icon: "📊"
 ---
 
 # 📊 Lab Status Dashboard

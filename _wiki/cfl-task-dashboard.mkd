@@ -1,6 +1,8 @@
 ---
 title: CFL Task Dashboard
 order: 2
+category: projects
+icon: "📋"
 ---
 
 # CFL Task Dashboard

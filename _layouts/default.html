@@ -12,6 +12,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Caprasimo&family=Chonburi&family=DM+Serif+Display&family=Abril+Fatface&family=Bricolage+Grotesque:wght@400;600;700&family=Calistoga&family=Varela+Round&family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Settings Drawer -->
+    <div class="cfl-drawer__backdrop" id="cfl-drawer-backdrop" data-open="false"></div>
+    <div class="cfl-drawer" id="cfl-drawer" data-open="false" role="dialog" aria-label="Settings">
+        <div class="cfl-drawer__header">
+            <span class="cfl-drawer__title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                Settings
+            </span>
+            <button type="button" class="cfl-drawer__close" id="cfl-drawer-close" aria-label="Close settings">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="cfl-drawer__body">
+            <div class="cfl-drawer__section">
+                <div class="cfl-drawer__section-title">Appearance</div>
+                <div class="cfl-drawer__option" id="cfl-dark-mode-toggle">
+                    <span class="cfl-drawer__option-label">Dark Mode</span>
+                    <label class="cfl-toggle cfl-toggle--md">
+                        <input type="checkbox" class="cfl-toggle__input" id="cfl-dark-mode-switch">
+                        <span class="cfl-toggle__track">
+                            <span class="cfl-toggle__thumb"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="cfl-drawer__section">
+                <div class="cfl-drawer__section-title">Typography</div>
+                <select class="cfl-drawer__select" id="cfl-drawer-font-select">
+                    <option value="default">Default (Georgia + Inter)</option>
+                    <option value="fraunces">Fraunces (soft serif)</option>
+                    <option value="caprasimo">Caprasimo (bold & bubbly)</option>
+                    <option value="chonburi">Chonburi (retro serif)</option>
+                    <option value="dm-serif">DM Serif Display (elegant)</option>
+                    <option value="abril">Abril Fatface (bold display)</option>
+                    <option value="bricolage">Bricolage Grotesque (modern sans)</option>
+                    <option value="calistoga">Calistoga (friendly)</option>
+                    <option value="varela">Varela Round (rounded sans)</option>
+                    <option value="fredoka">Fredoka (playful)</option>
+                    <option value="nunito">Nunito (clean sans)</option>
+                </select>
+            </div>
+            <div class="cfl-drawer__section">
+                <div class="cfl-drawer__section-title">Quick Actions</div>
+                <div class="cfl-drawer__option" id="cfl-reset-settings">
+                    <span class="cfl-drawer__option-label">Reset All Settings</span>
+                    <span class="cfl-drawer__option-value">↺</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% include marquee.html %}
 
     <header>
@@ -19,7 +75,10 @@
         <nav>
             {% include nav.html type="main" %}
             <button type="button" class="cfl-nav-settings" id="cfl-nav-settings-btn" aria-label="Site settings" title="Site settings">
-                ⚙️
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
             </button>
         </nav>
     </header>
@@ -32,10 +91,14 @@
         <div class="footer-content">
             <div class="footer-social">
                 <a href="https://github.com/ChicoFabLab" class="social-link" title="GitHub" target="_blank" rel="noopener">
-                    ⌘
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
                 </a>
                 <a href="https://discord.gg/chicofablab" class="social-link" title="Discord" target="_blank" rel="noopener">
-                    💬
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                    </svg>
                 </a>
             </div>
             <div class="footer-links">
@@ -47,13 +110,20 @@
         </div>
     </footer>
 
+    {% include privacy-disclaimer.html %}
+
     <div class="cfl-settings" id="cfl-settings" aria-live="polite">
         <div class="cfl-settings__scrim" data-scrim hidden></div>
         <button type="button" class="cfl-settings__dismiss" id="cfl-settings-dismiss" aria-label="Hide settings button" title="Hide settings widget">
             ✕
         </button>
         <button type="button" class="cfl-settings__fab" aria-expanded="false" aria-controls="cfl-settings-panel" aria-label="Site settings">
-            <span class="cfl-settings__fab-icon" aria-hidden="true">⚙️</span>
+            <span class="cfl-settings__fab-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </span>
         </button>
         <div class="cfl-settings__orbit" aria-hidden="true">
             <button type="button" class="cfl-settings__orbit-btn" data-panel="fonts" title="Fonts">
@@ -160,6 +230,15 @@
     </div>
 
     <script>
+    // Central settings configuration - loaded from _data/settings.yml
+    // This is the single source of truth for all site settings
+    try {
+        window.CFL_CONFIG = {{ site.data.settings | jsonify }};
+    } catch (e) {
+        console.warn('[CFL] Settings config not loaded, using fallbacks');
+        window.CFL_CONFIG = {};
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         function safeGet(storage, key, fallback) {
             try {
@@ -196,6 +275,257 @@
                 return fallback;
             }
         }
+
+        // =====================
+        // SHARED DARK MODE MANAGER
+        // =====================
+        (function initDarkModeManager() {
+            // Get dark mode key from config
+            var config = window.CFL_CONFIG || {};
+            var darkModeKey = (config.storage_keys && config.storage_keys.dark_mode) || 'cfl-dark-mode';
+            var defaultDarkMode = (config.defaults && config.defaults.dark_mode === true) || false;
+
+            // Get initial dark mode state
+            var isDark = safeGet(localStorage, darkModeKey, defaultDarkMode.toString()) === 'true';
+            // Also check system preference if no explicit setting
+            if (safeGet(localStorage, darkModeKey, null) === null) {
+                isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
+            // Shared function to set dark mode and sync all toggles
+            window.CFLDarkMode = {
+                setDarkMode: function(enabled) {
+                    if (enabled) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                    } else {
+                        document.documentElement.removeAttribute('data-theme');
+                    }
+                    var config = window.CFL_CONFIG || {};
+                    var darkModeKey = (config.storage_keys && config.storage_keys.dark_mode) || 'cfl-dark-mode';
+                    safeSet(localStorage, darkModeKey, enabled ? 'true' : 'false');
+
+                    // Sync all toggles (works even if they don't exist yet)
+                    this.syncToggles(enabled);
+                },
+
+                syncToggles: function(enabled) {
+                    // Sync drawer toggle (now uses checkbox input like menu toggle)
+                    var drawerSwitch = document.getElementById('cfl-dark-mode-switch');
+                    if (drawerSwitch) {
+                        drawerSwitch.checked = enabled;
+                    }
+
+                    // Sync settings menu toggle (uses checkbox input)
+                    var menuSwitch = document.getElementById('cfl-settings-menu-dark-mode-switch');
+                    if (menuSwitch) {
+                        menuSwitch.checked = enabled;
+                    }
+                },
+
+                toggle: function() {
+                    var isCurrentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                    this.setDarkMode(!isCurrentlyDark);
+                },
+
+                isDark: function() {
+                    return document.documentElement.getAttribute('data-theme') === 'dark';
+                }
+            };
+
+            // Initialize dark mode on page load
+            window.CFLDarkMode.setDarkMode(isDark);
+        })();
+
+        // =====================
+        // SETTINGS DRAWER
+        // =====================
+        (function initDrawer() {
+            var drawer = document.getElementById('cfl-drawer');
+            var backdrop = document.getElementById('cfl-drawer-backdrop');
+            var openBtn = document.getElementById('cfl-nav-settings-btn');
+            var closeBtn = document.getElementById('cfl-drawer-close');
+            var darkModeToggle = document.getElementById('cfl-dark-mode-toggle');
+            var darkModeSwitch = document.getElementById('cfl-dark-mode-switch');
+            var fontSelect = document.getElementById('cfl-drawer-font-select');
+            var resetBtn = document.getElementById('cfl-reset-settings');
+
+            if (!drawer || !backdrop) return;
+
+            function openDrawer() {
+                drawer.setAttribute('data-open', 'true');
+                backdrop.setAttribute('data-open', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                drawer.setAttribute('data-open', 'false');
+                backdrop.setAttribute('data-open', 'false');
+                document.body.style.overflow = '';
+            }
+
+            // Open drawer
+            if (openBtn) {
+                openBtn.addEventListener('click', openDrawer);
+            }
+
+            // Close drawer
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeDrawer);
+            }
+            if (backdrop) {
+                backdrop.addEventListener('click', closeDrawer);
+            }
+
+            // Escape key closes drawer
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && drawer.getAttribute('data-open') === 'true') {
+                    closeDrawer();
+                }
+            });
+
+            // Dark mode toggle - uses shared manager
+            // Initialize drawer toggle state and ensure all toggles are synced
+            if (window.CFLDarkMode) {
+                // Sync all toggles to current state (ensures consistency)
+                window.CFLDarkMode.syncToggles(window.CFLDarkMode.isDark());
+            }
+
+            // Handle drawer toggle - uses checkbox change event
+            // The label will handle clicks automatically, so we just need the change event
+            if (darkModeSwitch) {
+                darkModeSwitch.addEventListener('change', function(e) {
+                    if (window.CFLDarkMode) {
+                        window.CFLDarkMode.setDarkMode(e.target.checked);
+                    }
+                });
+            }
+
+            // Also allow clicking the container div to toggle (for better UX)
+            // This ensures the entire option area is clickable
+            if (darkModeToggle && darkModeSwitch) {
+                darkModeToggle.addEventListener('click', function(e) {
+                    // Only handle if click wasn't on the checkbox/label itself
+                    var clickedElement = e.target;
+                    var isClickOnToggle = clickedElement === darkModeSwitch ||
+                                         clickedElement.closest('label.cfl-toggle') ||
+                                         clickedElement.closest('.cfl-toggle');
+                    if (!isClickOnToggle) {
+                        // Programmatically toggle the checkbox
+                        darkModeSwitch.checked = !darkModeSwitch.checked;
+                        darkModeSwitch.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                });
+            }
+
+            // Font select - sync with existing settings if available
+            if (fontSelect) {
+                var config = window.CFL_CONFIG || {};
+                var fontKey = (config.storage_keys && config.storage_keys.font) || 'cfl-font';
+                var defaultFont = (config.defaults && config.defaults.font) || 'default';
+                var savedFont = safeGet(localStorage, fontKey, defaultFont);
+                fontSelect.value = savedFont;
+
+                fontSelect.addEventListener('change', function() {
+                    var font = fontSelect.value;
+                    var config = window.CFL_CONFIG || {};
+                    var fontKey = (config.storage_keys && config.storage_keys.font) || 'cfl-font';
+                    safeSet(localStorage, fontKey, font);
+                    // Trigger the existing font system if available
+                    if (window.CFLSettings && window.CFLSettings.setFont) {
+                        window.CFLSettings.setFont(font);
+                    } else {
+                        // Fallback: dispatch event for settings widget
+                        document.dispatchEvent(new CustomEvent('cfl-font-change', { detail: { font: font } }));
+                    }
+                });
+            }
+
+            // Reset settings
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function() {
+                    if (confirm('Reset all settings to defaults?')) {
+                        var config = window.CFL_CONFIG || {};
+                        var keys = config.storage_keys || {};
+                        safeRemove(localStorage, keys.dark_mode || 'cfl-dark-mode');
+                        safeRemove(localStorage, keys.font || 'cfl-font');
+                        safeRemove(localStorage, keys.theme || 'cfl-theme');
+                        window.CFLDarkMode.setDarkMode(false);
+                        var config = window.CFL_CONFIG || {};
+                        var defaultFont = (config.defaults && config.defaults.font) || 'default';
+                        if (fontSelect) fontSelect.value = defaultFont;
+                        if (window.CFLSettings && window.CFLSettings.reset) {
+                            window.CFLSettings.reset();
+                        }
+                        closeDrawer();
+                    }
+                });
+            }
+        })();
+
+        // =====================
+        // DAILY TIP DISMISS
+        // =====================
+        (function initDailyTip() {
+            var tip = document.getElementById('daily-tip');
+            var dismissBtn = document.getElementById('daily-tip-dismiss');
+            if (!tip || !dismissBtn) return;
+
+            // Check if already dismissed today
+            var dismissedDate = safeGet(localStorage, 'cfl-tip-dismissed', '');
+            var today = new Date().toDateString();
+            if (dismissedDate === today) {
+                tip.hidden = true;
+                return;
+            }
+
+            dismissBtn.addEventListener('click', function() {
+                tip.hidden = true;
+                safeSet(localStorage, 'cfl-tip-dismissed', today);
+            });
+        })();
+
+        // =====================
+        // KEYBOARD SHORTCUTS
+        // =====================
+        (function initKeyboardShortcuts() {
+            document.addEventListener('keydown', function(e) {
+                // Ignore if user is typing in an input/textarea
+                var tag = e.target.tagName.toLowerCase();
+                if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) {
+                    return;
+                }
+
+                // "/" focuses search
+                if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    var searchInput = document.getElementById('wiki-search-input');
+                    if (searchInput) {
+                        searchInput.focus();
+                        searchInput.select();
+                    }
+                }
+
+                // "d" toggles dark mode
+                if (e.key === 'd' && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                    if (window.CFLDarkMode) {
+                        window.CFLDarkMode.toggle();
+                    }
+                }
+
+                // "," opens settings
+                if (e.key === ',' && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    var drawer = document.getElementById('cfl-drawer');
+                    var backdrop = document.getElementById('cfl-drawer-backdrop');
+                    if (drawer && backdrop) {
+                        var isOpen = drawer.getAttribute('data-open') === 'true';
+                        drawer.setAttribute('data-open', (!isOpen).toString());
+                        backdrop.setAttribute('data-open', (!isOpen).toString());
+                        document.body.style.overflow = isOpen ? '' : 'hidden';
+                    }
+                }
+            });
+        })();
 
         // Check for eldritch corruption (the void remembers...)
         (function checkVoidCorruption() {
@@ -391,6 +721,293 @@
         })();
 
         // =====================================================================
+        // PRIVACY DISCLAIMER SYSTEM
+        // =====================================================================
+        //
+        // PURPOSE: Shows a privacy disclaimer on first visit and provides
+        //          data management controls (export/clear)
+        //
+        // STORAGE:
+        //   localStorage.cflPrivacyAccepted - 'true' if dismissed
+        //
+        // SEE: _includes/privacy-disclaimer.html for HTML structure
+        // =====================================================================
+        CFL.privacy = (function() {
+            var STORAGE_KEY = 'cflPrivacyAccepted';
+
+            function isAccepted() {
+                return safeGet(localStorage, STORAGE_KEY, 'false') === 'true';
+            }
+
+            function accept() {
+                safeSet(localStorage, STORAGE_KEY, 'true');
+            }
+
+            function showDisclaimer() {
+                var disclaimer = document.getElementById('cfl-privacy-disclaimer');
+                if (disclaimer) {
+                    disclaimer.removeAttribute('hidden');
+                }
+            }
+
+            function hideDisclaimer() {
+                var disclaimer = document.getElementById('cfl-privacy-disclaimer');
+                if (disclaimer) {
+                    disclaimer.setAttribute('hidden', '');
+                }
+            }
+
+            function showDataModal() {
+                var modal = document.getElementById('cfl-data-modal');
+                if (modal) {
+                    modal.removeAttribute('hidden');
+                    updateDataStats();
+                }
+            }
+
+            function hideDataModal() {
+                var modal = document.getElementById('cfl-data-modal');
+                if (modal) {
+                    modal.setAttribute('hidden', '');
+                }
+            }
+
+            function showConfirmModal() {
+                var modal = document.getElementById('cfl-confirm-modal');
+                if (modal) {
+                    modal.removeAttribute('hidden');
+                }
+            }
+
+            function hideConfirmModal() {
+                var modal = document.getElementById('cfl-confirm-modal');
+                if (modal) {
+                    modal.setAttribute('hidden', '');
+                }
+            }
+
+            function updateDataStats() {
+                var statsContainer = document.querySelector('#cfl-data-stats .cfl-data-modal__stats');
+                if (!statsContainer) return;
+
+                var achievements = safeParse(safeGet(localStorage, 'cflAchievements', '{}'), {});
+                var stats = safeParse(safeGet(localStorage, 'cflStats', '{}'), {});
+                var unlockedCount = Object.keys(achievements).length;
+                var clickCount = stats.clicks || 0;
+                var pageCount = (stats.pages || []).length;
+                var xp = CFL.achievements ? CFL.achievements.getTotalXP() : 0;
+
+                statsContainer.innerHTML = [
+                    '<div class="cfl-data-modal__stat">',
+                    '  <div class="cfl-data-modal__stat-value">' + unlockedCount + '</div>',
+                    '  <div class="cfl-data-modal__stat-label">Achievements</div>',
+                    '</div>',
+                    '<div class="cfl-data-modal__stat">',
+                    '  <div class="cfl-data-modal__stat-value">' + xp + '</div>',
+                    '  <div class="cfl-data-modal__stat-label">Total XP</div>',
+                    '</div>',
+                    '<div class="cfl-data-modal__stat">',
+                    '  <div class="cfl-data-modal__stat-value">' + clickCount + '</div>',
+                    '  <div class="cfl-data-modal__stat-label">Clicks</div>',
+                    '</div>',
+                    '<div class="cfl-data-modal__stat">',
+                    '  <div class="cfl-data-modal__stat-value">' + pageCount + '</div>',
+                    '  <div class="cfl-data-modal__stat-label">Pages Visited</div>',
+                    '</div>'
+                ].join('');
+            }
+
+            function exportData() {
+                var data = {
+                    exportDate: new Date().toISOString(),
+                    achievements: safeParse(safeGet(localStorage, 'cflAchievements', '{}'), {}),
+                    stats: safeParse(safeGet(localStorage, 'cflStats', '{}'), {}),
+                    preferences: {
+                        font: safeGet(localStorage, 'cflSettingsSite', null),
+                        sounds: safeGet(localStorage, 'cflSoundsEnabled', 'true'),
+                        soundVolume: safeGet(localStorage, 'cflSoundsVolume', '0.3')
+                    },
+                    easterEggs: safeParse(safeGet(localStorage, 'cflFoundEggs', '[]'), []),
+                    voidCorruption: safeGet(localStorage, 'voidCorruption', '0')
+                };
+
+                var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'cfl-wiki-data-' + new Date().toISOString().split('T')[0] + '.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                if (CFL.sounds) CFL.sounds.success();
+                if (CFL.toast) {
+                    CFL.toast({
+                        icon: '📥',
+                        title: 'Data Exported!',
+                        message: 'Your progress has been saved to a file.',
+                        variant: 'success',
+                        iconAnim: 'bounce'
+                    });
+                }
+            }
+
+            function clearAllData() {
+                // List of all CFL localStorage keys to clear
+                var keysToRemove = [
+                    'cflAchievements',
+                    'cflStats',
+                    'cflPrivacyAccepted',
+                    'cflSettingsSite',
+                    'cflSettingsScope',
+                    'cflSettingsDebug',
+                    'cflSettingsHidden',
+                    'cflSoundsEnabled',
+                    'cflSoundsVolume',
+                    'cflFoundEggs',
+                    'voidCorruption'
+                ];
+
+                keysToRemove.forEach(function(key) {
+                    safeRemove(localStorage, key);
+                });
+
+                // Also clear any page-specific settings
+                Object.keys(localStorage).forEach(function(key) {
+                    if (key.startsWith('cflSettingsPage:')) {
+                        safeRemove(localStorage, key);
+                    }
+                });
+
+                if (CFL.sounds) CFL.sounds.whoosh();
+                if (CFL.toast) {
+                    CFL.toast({
+                        icon: '🗑️',
+                        title: 'Data Cleared',
+                        message: 'All progress has been reset. Refreshing...',
+                        variant: 'info',
+                        iconAnim: 'shake'
+                    });
+                }
+
+                // Reload page after a brief delay
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500);
+            }
+
+            function init() {
+                // Show disclaimer if not yet accepted
+                if (!isAccepted()) {
+                    // Small delay to let page render first
+                    setTimeout(showDisclaimer, 1000);
+                }
+
+                // Accept button
+                var acceptBtn = document.getElementById('cfl-privacy-accept');
+                if (acceptBtn) {
+                    acceptBtn.addEventListener('click', function() {
+                        accept();
+                        hideDisclaimer();
+                        if (CFL.sounds) CFL.sounds.success();
+                    });
+                }
+
+                // Close button (also accepts)
+                var closeBtn = document.getElementById('cfl-privacy-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        accept();
+                        hideDisclaimer();
+                    });
+                }
+
+                // Manage data button
+                var manageBtn = document.getElementById('cfl-privacy-manage');
+                if (manageBtn) {
+                    manageBtn.addEventListener('click', function() {
+                        accept();
+                        hideDisclaimer();
+                        showDataModal();
+                    });
+                }
+
+                // Data modal close handlers
+                var dataModal = document.getElementById('cfl-data-modal');
+                if (dataModal) {
+                    dataModal.querySelectorAll('[data-close]').forEach(function(el) {
+                        el.addEventListener('click', hideDataModal);
+                    });
+                }
+
+                // Export button
+                var exportBtn = document.getElementById('cfl-data-export');
+                if (exportBtn) {
+                    exportBtn.addEventListener('click', exportData);
+                }
+
+                // Clear button (shows confirmation)
+                var clearBtn = document.getElementById('cfl-data-clear');
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', showConfirmModal);
+                }
+
+                // Confirm modal handlers
+                var confirmModal = document.getElementById('cfl-confirm-modal');
+                if (confirmModal) {
+                    // Close on backdrop click
+                    confirmModal.addEventListener('click', function(e) {
+                        if (e.target === confirmModal || e.target.hasAttribute('data-close') || e.target.closest('[data-close]')) {
+                            hideConfirmModal();
+                        }
+                    });
+                }
+
+                // Confirm clear button
+                var confirmClearBtn = document.getElementById('cfl-confirm-clear');
+                if (confirmClearBtn) {
+                    confirmClearBtn.addEventListener('click', function() {
+                        hideConfirmModal();
+                        hideDataModal();
+                        clearAllData();
+                    });
+                }
+
+                // Close modals on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        var confirmModal = document.getElementById('cfl-confirm-modal');
+                        var dataModal = document.getElementById('cfl-data-modal');
+                        if (confirmModal && !confirmModal.hasAttribute('hidden')) {
+                            hideConfirmModal();
+                        } else if (dataModal && !dataModal.hasAttribute('hidden')) {
+                            hideDataModal();
+                        }
+                    }
+                });
+            }
+
+            // Initialize on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            return {
+                isAccepted: isAccepted,
+                accept: accept,
+                showDataModal: showDataModal,
+                hideDataModal: hideDataModal,
+                showConfirmModal: showConfirmModal,
+                hideConfirmModal: hideConfirmModal,
+                exportData: exportData,
+                clearAllData: clearAllData
+            };
+        })();
+
+        // =====================================================================
         // ACHIEVEMENT SYSTEM
         // =====================================================================
         //
@@ -402,12 +1019,24 @@
         //   CFL.achievements.trackClick('buttonType')  - Auto-called on clicks
         //   CFL.achievements.getStats()               - { clicks, pages, buttonTypes }
         //   CFL.achievements.isUnlocked('id')         - Check if unlocked
+        //   CFL.achievements.getTotalXP()             - Get total XP earned
+        //   CFL.achievements.getLevel()               - Get current level info
         //
-        // ACHIEVEMENTS (16 total):
-        //   Progression: first-click, button-10, button-50, button-100
-        //   Special:     rainbow, void-gazer, corrupted, cleansed, all-buttons
+        // ACHIEVEMENTS (~30 total):
+        //   Progression: first-click, button-10, button-50, button-100, explorer
+        //   3D Printing: 3d-curious, filament-fan, slicer-starter, print-pro, layer-legend
+        //   Laser:       beam-beginner, material-master, focus-finder, cut-champion, precision-pro
+        //   CNC:         mill-curious, feeds-speeds, toolpath-trainee, cnc-commander
+        //   Special:     rainbow, void-gazer, corrupted, cleansed, all-buttons, sound-on
         //   Time-based:  night-owl, early-bird
-        //   Secrets:     sound-on, easter-egg, speed-demon, konami, explorer
+        //   Secrets:     easter-egg, speed-demon, konami
+        //
+        // RARITY TIERS (with XP values):
+        //   Common (5 XP)     - Basic interactions
+        //   Uncommon (15 XP)  - Page visits, basic progress
+        //   Rare (30 XP)      - Completing sections
+        //   Epic (50 XP)      - Learning path completion
+        //   Legendary (100 XP) - Master achievements
         //
         // STORAGE:
         //   localStorage.cflAchievements - { id: { time: timestamp }, ... }
@@ -416,23 +1045,308 @@
         // SEE: docs/ACHIEVEMENTS.md for full documentation
         // =====================================================================
         CFL.achievements = (function() {
+            // XP values by rarity
+            var XP_VALUES = {
+                common: 5,
+                uncommon: 15,
+                rare: 30,
+                epic: 50,
+                legendary: 100
+            };
+
+            // Level thresholds
+            var LEVELS = [
+                { level: 1, xp: 0, name: 'Curious Visitor', icon: '👀' },
+                { level: 2, xp: 50, name: 'Apprentice Maker', icon: '🔧' },
+                { level: 3, xp: 150, name: 'Fab Lab Regular', icon: '⚡' },
+                { level: 4, xp: 300, name: 'Workshop Warrior', icon: '🛠️' },
+                { level: 5, xp: 500, name: 'Master Maker', icon: '🎯' },
+                { level: 6, xp: 750, name: 'Fab Lab Legend', icon: '👑' }
+            ];
+
             var achievements = {
-                'first-click': { name: 'First Click', desc: 'Click your first button', icon: '🖱️', sound: 'coin', category: 'progression', progress: { current: 0, target: 1 } },
-                'button-10': { name: 'Button Masher', desc: 'Click 10 buttons', icon: '🔘', sound: 'success', category: 'progression', progress: { current: 0, target: 10 } },
-                'button-50': { name: 'Click Champion', desc: 'Click 50 buttons', icon: '🏆', sound: 'powerup', category: 'progression', progress: { current: 0, target: 50 } },
-                'button-100': { name: 'Button Legend', desc: 'Click 100 buttons', icon: '👑', sound: 'magic', category: 'progression', progress: { current: 0, target: 100 } },
-                'rainbow': { name: 'Taste the Rainbow', desc: 'Click a rainbow button', icon: '🌈', sound: 'magic', category: 'special' },
-                'void-gazer': { name: 'Void Gazer', desc: 'Visit The Void', icon: '👁️', sound: 'eldritch', category: 'special' },
-                'corrupted': { name: 'Corrupted Soul', desc: 'Reach 100% void corruption', icon: '🌀', sound: 'eldritch', category: 'special' },
-                'cleansed': { name: 'Purified', desc: 'Cleanse the void corruption', icon: '✨', sound: 'magic', category: 'special' },
-                'explorer': { name: 'Explorer', desc: 'Visit 5 different pages', icon: '🧭', sound: 'whoosh', category: 'progression', progress: { current: 0, target: 5 } },
-                'night-owl': { name: 'Night Owl', desc: 'Browse after midnight', icon: '🦉', sound: 'pop', category: 'time' },
-                'early-bird': { name: 'Early Bird', desc: 'Browse before 6am', icon: '🐦', sound: 'ding', category: 'time' },
-                'sound-on': { name: 'Audiophile', desc: 'Enable sound effects', icon: '🔊', sound: 'powerup', category: 'special' },
-                'easter-egg': { name: 'Egg Hunter', desc: 'Find a hidden easter egg', icon: '🥚', sound: 'coin', category: 'secret' },
-                'all-buttons': { name: 'Completionist', desc: 'Click every fun button type', icon: '⭐', sound: 'powerup', category: 'special', progress: { current: 0, target: 15 } },
-                'speed-demon': { name: 'Speed Demon', desc: 'Click 5 buttons in 2 seconds', icon: '⚡', sound: 'zap', category: 'secret' },
-                'konami': { name: 'Old School', desc: 'Enter the Konami code', icon: '🎮', sound: 'powerup', category: 'secret' }
+                // ============ PROGRESSION (Site Interaction) ============
+                'first-click': {
+                    name: 'First Click',
+                    desc: 'Click your first button',
+                    icon: '🖱️',
+                    sound: 'coin',
+                    category: 'progression',
+                    rarity: 'common',
+                    progress: { current: 0, target: 1 }
+                },
+                'button-10': {
+                    name: 'Button Masher',
+                    desc: 'Click 10 buttons',
+                    icon: '🔘',
+                    sound: 'success',
+                    category: 'progression',
+                    rarity: 'common',
+                    progress: { current: 0, target: 10 }
+                },
+                'button-50': {
+                    name: 'Click Champion',
+                    desc: 'Click 50 buttons',
+                    icon: '🏆',
+                    sound: 'powerup',
+                    category: 'progression',
+                    rarity: 'uncommon',
+                    progress: { current: 0, target: 50 }
+                },
+                'button-100': {
+                    name: 'Button Legend',
+                    desc: 'Click 100 buttons',
+                    icon: '👑',
+                    sound: 'magic',
+                    category: 'progression',
+                    rarity: 'rare',
+                    progress: { current: 0, target: 100 }
+                },
+                'explorer': {
+                    name: 'Explorer',
+                    desc: 'Visit 5 different pages',
+                    icon: '🧭',
+                    sound: 'whoosh',
+                    category: 'progression',
+                    rarity: 'common',
+                    progress: { current: 0, target: 5 }
+                },
+                'explorer-10': {
+                    name: 'Pathfinder',
+                    desc: 'Visit 10 different pages',
+                    icon: '🗺️',
+                    sound: 'success',
+                    category: 'progression',
+                    rarity: 'uncommon',
+                    progress: { current: 0, target: 10 }
+                },
+
+                // ============ 3D PRINTING PATH ============
+                '3d-curious': {
+                    name: '3D Curious',
+                    desc: 'Visit the 3D Printing wiki page',
+                    icon: '🖨️',
+                    sound: 'pop',
+                    category: '3d-printing',
+                    rarity: 'common'
+                },
+                'filament-fan': {
+                    name: 'Filament Fan',
+                    desc: 'Learn about 3 different filament types',
+                    icon: '🧵',
+                    sound: 'success',
+                    category: '3d-printing',
+                    rarity: 'uncommon',
+                    progress: { current: 0, target: 3 }
+                },
+                'slicer-starter': {
+                    name: 'Slicer Starter',
+                    desc: 'Read about slicing software',
+                    icon: '🔪',
+                    sound: 'pop',
+                    category: '3d-printing',
+                    rarity: 'uncommon'
+                },
+                'print-pro': {
+                    name: 'Print Pro',
+                    desc: 'Complete all 3D printing wiki pages',
+                    icon: '🎓',
+                    sound: 'powerup',
+                    category: '3d-printing',
+                    rarity: 'epic',
+                    progress: { current: 0, target: 5 }
+                },
+                'layer-legend': {
+                    name: 'Layer Legend',
+                    desc: 'Master 3D printing (all achievements)',
+                    icon: '🏅',
+                    sound: 'magic',
+                    category: '3d-printing',
+                    rarity: 'legendary'
+                },
+
+                // ============ LASER CUTTING PATH ============
+                'beam-beginner': {
+                    name: 'Beam Beginner',
+                    desc: 'Visit the Laser Cutting wiki page',
+                    icon: '✂️',
+                    sound: 'pop',
+                    category: 'laser',
+                    rarity: 'common'
+                },
+                'material-master': {
+                    name: 'Material Master',
+                    desc: 'Learn about different laser materials',
+                    icon: '🪵',
+                    sound: 'success',
+                    category: 'laser',
+                    rarity: 'uncommon',
+                    progress: { current: 0, target: 3 }
+                },
+                'focus-finder': {
+                    name: 'Focus Finder',
+                    desc: 'Read about focus calibration',
+                    icon: '🎯',
+                    sound: 'pop',
+                    category: 'laser',
+                    rarity: 'uncommon'
+                },
+                'cut-champion': {
+                    name: 'Cut Champion',
+                    desc: 'Complete all laser cutting wiki pages',
+                    icon: '🏆',
+                    sound: 'powerup',
+                    category: 'laser',
+                    rarity: 'epic',
+                    progress: { current: 0, target: 5 }
+                },
+                'precision-pro': {
+                    name: 'Precision Pro',
+                    desc: 'Master laser cutting (all achievements)',
+                    icon: '💎',
+                    sound: 'magic',
+                    category: 'laser',
+                    rarity: 'legendary'
+                },
+
+                // ============ CNC PATH ============
+                'mill-curious': {
+                    name: 'Mill Curious',
+                    desc: 'Visit the CNC wiki page',
+                    icon: '🔧',
+                    sound: 'pop',
+                    category: 'cnc',
+                    rarity: 'common'
+                },
+                'feeds-speeds': {
+                    name: 'Feeds & Speeds',
+                    desc: 'Read about feeds and speeds',
+                    icon: '⚙️',
+                    sound: 'success',
+                    category: 'cnc',
+                    rarity: 'uncommon'
+                },
+                'toolpath-trainee': {
+                    name: 'Toolpath Trainee',
+                    desc: 'Learn about toolpaths',
+                    icon: '📐',
+                    sound: 'pop',
+                    category: 'cnc',
+                    rarity: 'uncommon'
+                },
+                'cnc-commander': {
+                    name: 'CNC Commander',
+                    desc: 'Complete all CNC wiki pages',
+                    icon: '🎖️',
+                    sound: 'powerup',
+                    category: 'cnc',
+                    rarity: 'epic',
+                    progress: { current: 0, target: 4 }
+                },
+
+                // ============ SPECIAL ============
+                'rainbow': {
+                    name: 'Taste the Rainbow',
+                    desc: 'Click a rainbow button',
+                    icon: '🌈',
+                    sound: 'magic',
+                    category: 'special',
+                    rarity: 'rare'
+                },
+                'void-gazer': {
+                    name: 'Void Gazer',
+                    desc: 'Visit The Void',
+                    icon: '👁️',
+                    sound: 'eldritch',
+                    category: 'special',
+                    rarity: 'rare'
+                },
+                'corrupted': {
+                    name: 'Corrupted Soul',
+                    desc: 'Reach 100% void corruption',
+                    icon: '🌀',
+                    sound: 'eldritch',
+                    category: 'special',
+                    rarity: 'epic'
+                },
+                'cleansed': {
+                    name: 'Purified',
+                    desc: 'Cleanse the void corruption',
+                    icon: '✨',
+                    sound: 'magic',
+                    category: 'special',
+                    rarity: 'rare'
+                },
+                'all-buttons': {
+                    name: 'Completionist',
+                    desc: 'Click every fun button type',
+                    icon: '⭐',
+                    sound: 'powerup',
+                    category: 'special',
+                    rarity: 'epic',
+                    progress: { current: 0, target: 15 }
+                },
+                'sound-on': {
+                    name: 'Audiophile',
+                    desc: 'Enable sound effects',
+                    icon: '🔊',
+                    sound: 'powerup',
+                    category: 'special',
+                    rarity: 'common'
+                },
+
+                // ============ TIME-BASED ============
+                'night-owl': {
+                    name: 'Night Owl',
+                    desc: 'Browse after midnight',
+                    icon: '🦉',
+                    sound: 'pop',
+                    category: 'time',
+                    rarity: 'uncommon'
+                },
+                'early-bird': {
+                    name: 'Early Bird',
+                    desc: 'Browse before 6am',
+                    icon: '🐦',
+                    sound: 'ding',
+                    category: 'time',
+                    rarity: 'uncommon'
+                },
+
+                // ============ SECRETS ============
+                'easter-egg': {
+                    name: 'Egg Hunter',
+                    desc: 'Find a hidden easter egg',
+                    icon: '🥚',
+                    sound: 'coin',
+                    category: 'secret',
+                    rarity: 'rare'
+                },
+                'speed-demon': {
+                    name: 'Speed Demon',
+                    desc: 'Click 5 buttons in 2 seconds',
+                    icon: '⚡',
+                    sound: 'zap',
+                    category: 'secret',
+                    rarity: 'rare'
+                },
+                'konami': {
+                    name: 'Old School',
+                    desc: 'Enter the Konami code',
+                    icon: '🎮',
+                    sound: 'powerup',
+                    category: 'secret',
+                    rarity: 'legendary'
+                },
+                'all-eggs': {
+                    name: 'Master Hunter',
+                    desc: 'Find all 5 hidden easter eggs',
+                    icon: '🏆',
+                    sound: 'magic',
+                    category: 'secret',
+                    rarity: 'legendary',
+                    progress: { current: 0, target: 5 }
+                }
             };
 
             var unlocked = safeParse(safeGet(localStorage, 'cflAchievements', '{}'), {});
@@ -444,30 +1358,106 @@
                 safeSet(localStorage, 'cflStats', JSON.stringify(stats));
             }
 
+            // Track current level before unlock (for level-up detection)
+            var lastKnownLevel = null;
+
+            function getCurrentLevel() {
+                var xp = getTotalXP();
+                for (var i = LEVELS.length - 1; i >= 0; i--) {
+                    if (xp >= LEVELS[i].xp) {
+                        return LEVELS[i];
+                    }
+                }
+                return LEVELS[0];
+            }
+
+            // Initialize last known level
+            lastKnownLevel = getCurrentLevel().level;
+
             function unlock(id) {
                 if (unlocked[id]) return false;
                 if (!achievements[id]) return false;
+
+                // Store level before unlock
+                var levelBefore = getCurrentLevel().level;
 
                 unlocked[id] = { time: Date.now() };
                 save();
 
                 var ach = achievements[id];
-                if (CFL.sounds && ach.sound) CFL.sounds[ach.sound]();
+                var rarity = ach.rarity || 'common';
+                var xpGained = XP_VALUES[rarity] || 0;
 
-                // Show achievement toast
+                // Play sound based on rarity
+                if (CFL.sounds) {
+                    if (rarity === 'legendary') {
+                        CFL.sounds.magic();
+                    } else if (rarity === 'epic') {
+                        CFL.sounds.powerup();
+                    } else if (ach.sound) {
+                        CFL.sounds[ach.sound]();
+                    } else {
+                        CFL.sounds.coin();
+                    }
+                }
+
+                // Show achievement toast with XP
                 if (CFL.toast) {
+                    var rarityLabel = rarity.charAt(0).toUpperCase() + rarity.slice(1);
                     CFL.toast({
                         icon: ach.icon,
                         title: '🏅 Achievement Unlocked!',
-                        message: ach.name + ' - ' + ach.desc,
-                        variant: 'party',
+                        message: ach.name + ' (+' + xpGained + ' XP)',
+                        variant: rarity === 'legendary' ? 'party' : (rarity === 'epic' ? 'success' : 'info'),
                         iconAnim: 'bounce',
                         duration: 5000
                     });
                 }
 
-                console.log('%c🏅 Achievement: ' + ach.name, 'color: gold; font-size: 16px; font-weight: bold;');
+                console.log('%c🏅 Achievement: ' + ach.name + ' (+' + xpGained + ' XP)',
+                    'color: gold; font-size: 16px; font-weight: bold;');
+
+                // Check for level up
+                var levelAfter = getCurrentLevel();
+                if (levelAfter.level > levelBefore) {
+                    lastKnownLevel = levelAfter.level;
+                    triggerLevelUp(levelAfter);
+                }
+
                 return true;
+            }
+
+            // Level up celebration
+            function triggerLevelUp(levelInfo) {
+                // Play level up sound
+                if (CFL.sounds) {
+                    CFL.sounds.powerup();
+                    setTimeout(function() { CFL.sounds.magic(); }, 300);
+                }
+
+                // Show level up toast after a delay
+                setTimeout(function() {
+                    if (CFL.toast) {
+                        CFL.toast({
+                            icon: levelInfo.icon,
+                            title: '⬆️ LEVEL UP!',
+                            message: 'You are now Level ' + levelInfo.level + ': ' + levelInfo.name + '!',
+                            variant: 'party',
+                            iconAnim: 'bounce',
+                            duration: 7000
+                        });
+                    }
+                }, 1500);
+
+                // Add temporary level-up class to body for CSS effects
+                document.body.classList.add('cfl-level-up');
+                setTimeout(function() {
+                    document.body.classList.remove('cfl-level-up');
+                }, 3000);
+
+                // Log to console
+                console.log('%c⬆️ LEVEL UP! Level ' + levelInfo.level + ': ' + levelInfo.name,
+                    'color: #f59e0b; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #f59e0b;');
             }
 
             function trackClick(buttonType) {
@@ -503,9 +1493,134 @@
                 if (stats.pages.indexOf(path) === -1) {
                     stats.pages.push(path);
                     if (stats.pages.length >= 5) unlock('explorer');
+                    if (stats.pages.length >= 10) unlock('explorer-10');
                 }
-                if (path.includes('/void')) unlock('void-gazer');
+
+                // Fab Lab learning path achievements based on page visits
+                var pathLower = path.toLowerCase();
+
+                // 3D Printing path
+                if (pathLower.includes('3d-print') || pathLower.includes('3d_print') || pathLower.includes('printing')) {
+                    unlock('3d-curious');
+                }
+                if (pathLower.includes('filament')) {
+                    // Track filament types learned
+                    if (!stats.filamentTypes) stats.filamentTypes = [];
+                    var filamentMatch = pathLower.match(/pla|abs|petg|tpu|nylon/);
+                    if (filamentMatch && stats.filamentTypes.indexOf(filamentMatch[0]) === -1) {
+                        stats.filamentTypes.push(filamentMatch[0]);
+                        if (achievements['filament-fan']) {
+                            achievements['filament-fan'].progress.current = stats.filamentTypes.length;
+                        }
+                        if (stats.filamentTypes.length >= 3) unlock('filament-fan');
+                    }
+                }
+                if (pathLower.includes('slic') || pathLower.includes('cura') || pathLower.includes('prusaslicer')) {
+                    unlock('slicer-starter');
+                }
+
+                // Laser Cutting path
+                if (pathLower.includes('laser')) {
+                    unlock('beam-beginner');
+                }
+                if (pathLower.includes('material') && pathLower.includes('laser')) {
+                    unlock('material-master');
+                }
+                if (pathLower.includes('focus') || pathLower.includes('calibrat')) {
+                    unlock('focus-finder');
+                }
+
+                // CNC path
+                if (pathLower.includes('cnc') || pathLower.includes('mill')) {
+                    unlock('mill-curious');
+                }
+                if (pathLower.includes('feed') || pathLower.includes('speed')) {
+                    unlock('feeds-speeds');
+                }
+                if (pathLower.includes('toolpath')) {
+                    unlock('toolpath-trainee');
+                }
+
+                // Special pages
+                if (pathLower.includes('/void')) unlock('void-gazer');
+
                 save();
+            }
+
+            // Calculate total XP earned
+            function getTotalXP() {
+                var total = 0;
+                Object.keys(unlocked).forEach(function(id) {
+                    var ach = achievements[id];
+                    if (ach && ach.rarity) {
+                        total += XP_VALUES[ach.rarity] || 0;
+                    }
+                });
+                return total;
+            }
+
+            // Get current level info
+            function getLevel() {
+                var xp = getTotalXP();
+                var currentLevel = LEVELS[0];
+                var nextLevel = LEVELS[1];
+
+                for (var i = LEVELS.length - 1; i >= 0; i--) {
+                    if (xp >= LEVELS[i].xp) {
+                        currentLevel = LEVELS[i];
+                        nextLevel = LEVELS[i + 1] || null;
+                        break;
+                    }
+                }
+
+                var progress = 0;
+                if (nextLevel) {
+                    var xpInLevel = xp - currentLevel.xp;
+                    var xpNeeded = nextLevel.xp - currentLevel.xp;
+                    progress = Math.min((xpInLevel / xpNeeded) * 100, 100);
+                } else {
+                    progress = 100; // Max level
+                }
+
+                return {
+                    level: currentLevel.level,
+                    name: currentLevel.name,
+                    icon: currentLevel.icon,
+                    xp: xp,
+                    xpForCurrentLevel: currentLevel.xp,
+                    xpForNextLevel: nextLevel ? nextLevel.xp : currentLevel.xp,
+                    progress: progress,
+                    isMaxLevel: !nextLevel
+                };
+            }
+
+            // Get XP value for an achievement
+            function getXP(id) {
+                var ach = achievements[id];
+                if (ach && ach.rarity) {
+                    return XP_VALUES[ach.rarity] || 0;
+                }
+                return 0;
+            }
+
+            // Get achievements by learning path
+            function getByPath(path) {
+                return Object.keys(achievements).filter(function(id) {
+                    return achievements[id].category === path;
+                });
+            }
+
+            // Get path progress (completed/total)
+            function getPathProgress(path) {
+                var pathAchievements = getByPath(path);
+                var completed = pathAchievements.filter(function(id) {
+                    return !!unlocked[id];
+                }).length;
+                return {
+                    completed: completed,
+                    total: pathAchievements.length,
+                    percent: pathAchievements.length > 0 ? (completed / pathAchievements.length) * 100 : 0
+                };
             }
 
             // Time-based achievements
@@ -515,6 +1630,14 @@
 
             // Track current page
             trackPage(window.location.pathname);
+
+            // Update explorer progress
+            if (achievements['explorer']) {
+                achievements['explorer'].progress.current = Math.min(stats.pages.length, 5);
+            }
+            if (achievements['explorer-10']) {
+                achievements['explorer-10'].progress.current = Math.min(stats.pages.length, 10);
+            }
 
             return {
                 unlock: unlock,
@@ -530,9 +1653,16 @@
                         return achievements[id].category === category;
                     });
                 },
+                getTotalXP: getTotalXP,
+                getLevel: getLevel,
+                getXP: getXP,
+                getByPath: getByPath,
+                getPathProgress: getPathProgress,
+                getLevels: function() { return LEVELS; },
+                getXPValues: function() { return XP_VALUES; },
                 reset: function() {
                     unlocked = {};
-                    stats = { clicks: 0, pages: [], buttonTypes: [] };
+                    stats = { clicks: 0, pages: [], buttonTypes: [], filamentTypes: [] };
                     // Reset progress
                     Object.keys(achievements).forEach(function(id) {
                         if (achievements[id].progress) {
@@ -697,10 +1827,10 @@
             var itemsContainer = document.createElement('div');
             itemsContainer.className = 'cfl-fab-bar__items';
 
-            // Settings button (⚙️)
+            // Settings button
             var settingsItem = document.createElement('button');
             settingsItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--settings';
-            settingsItem.innerHTML = '⚙️<span class="cfl-fab-bar__label">Settings</span>';
+            settingsItem.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span class="cfl-fab-bar__label">Settings</span>';
             settingsItem.title = 'Site settings';
 
             // Achievements button (🏆)
@@ -755,7 +1885,7 @@
             settingsMenu.id = 'cfl-settings-menu';
             settingsMenu.innerHTML = [
                 '<div class="cfl-settings-menu__header">',
-                '  <span>⚙️</span> Settings',
+                '  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings',
                 '</div>',
                 '<div class="cfl-settings-menu__body">',
                 '  <!-- Font Section -->',
@@ -802,6 +1932,25 @@
                 '        <button class="cfl-settings-menu__swatch" data-theme="plum" title="Plum">',
                 '          <span style="background: #9333ea;"></span>',
                 '        </button>',
+                '      </div>',
+                '    </div>',
+                '  </div>',
+                '  <!-- Appearance Section -->',
+                '  <div class="cfl-settings-menu__section" data-section="appearance">',
+                '    <button class="cfl-settings-menu__section-header" data-toggle="appearance">',
+                '      <span class="cfl-settings-menu__icon">🌓</span>',
+                '      <span class="cfl-settings-menu__label">Appearance</span>',
+                '      <span class="cfl-settings-menu__chevron">▼</span>',
+                '    </button>',
+                '    <div class="cfl-settings-menu__section-content" data-content="appearance">',
+                '      <div class="cfl-settings-menu__dark-mode">',
+                '        <label class="cfl-toggle cfl-toggle--md" id="cfl-settings-menu-dark-mode-toggle">',
+                '          <input type="checkbox" class="cfl-toggle__input" id="cfl-settings-menu-dark-mode-switch">',
+                '          <span class="cfl-toggle__track">',
+                '            <span class="cfl-toggle__thumb"></span>',
+                '          </span>',
+                '          <span class="cfl-toggle__label">Dark Mode</span>',
+                '        </label>',
                 '      </div>',
                 '    </div>',
                 '  </div>',
@@ -870,6 +2019,26 @@
                 });
             });
 
+            // Dark mode toggle - syncs with drawer toggle
+            var menuDarkModeSwitch = settingsMenu.querySelector('#cfl-settings-menu-dark-mode-switch');
+            if (menuDarkModeSwitch) {
+                // Initialize checkbox state from current dark mode state
+                if (window.CFLDarkMode) {
+                    menuDarkModeSwitch.checked = window.CFLDarkMode.isDark();
+                    // Also sync all toggles to ensure consistency
+                    window.CFLDarkMode.syncToggles(window.CFLDarkMode.isDark());
+                }
+
+                // Handle toggle
+                menuDarkModeSwitch.addEventListener('change', function(e) {
+                    e.stopPropagation();
+                    if (window.CFLDarkMode) {
+                        window.CFLDarkMode.setDarkMode(e.target.checked);
+                    }
+                    CFL.sounds.pop();
+                });
+            }
+
             // Quick font buttons - instant change, menu stays open
             settingsMenu.querySelectorAll('[data-action="quick-font"]').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
@@ -917,6 +2086,12 @@
                 // Toggle settings menu
                 settingsMenu.classList.toggle('is-open');
                 fabBar.classList.remove('cfl-fab-bar--open');
+
+                // Sync dark mode toggle when menu opens (ensures it's up to date)
+                if (!isOpen && window.CFLDarkMode) {
+                    window.CFLDarkMode.syncToggles(window.CFLDarkMode.isDark());
+                }
+
                 CFL.sounds.pop();
             });
 
@@ -945,8 +2120,8 @@
             // =================================================================
             // CREATE ACHIEVEMENTS PANEL
             // =================================================================
-            // Enhanced UI with category tabs, progress indicators, and timestamps
-            // Structure: Header (title + close) > Tabs > List > Stats footer
+            // Enhanced UI with level display, category tabs, progress indicators
+            // Structure: Header > Level Bar > Tabs > List > Stats footer
             var panel = document.createElement('div');
             panel.className = 'cfl-achievements-panel';
             panel.innerHTML = [
@@ -960,11 +2135,16 @@
                 '  </div>',
                 '  <button class="close-panel" aria-label="Close">✕</button>',
                 '</div>',
+                '<div class="cfl-achievements-level" id="cfl-achievements-level">',
+                '  <!-- Level display populated by JS -->',
+                '</div>',
                 '<div class="cfl-achievements-tabs">',
                 '  <button class="cfl-achievements-tab active" data-category="all">All</button>',
-                '  <button class="cfl-achievements-tab" data-category="progression">📈 Progression</button>',
+                '  <button class="cfl-achievements-tab" data-category="progression">🧭 Explorer</button>',
+                '  <button class="cfl-achievements-tab" data-category="3d-printing">🖨️ 3D Print</button>',
+                '  <button class="cfl-achievements-tab" data-category="laser">✂️ Laser</button>',
+                '  <button class="cfl-achievements-tab" data-category="cnc">🔧 CNC</button>',
                 '  <button class="cfl-achievements-tab" data-category="special">⭐ Special</button>',
-                '  <button class="cfl-achievements-tab" data-category="time">⏰ Time</button>',
                 '  <button class="cfl-achievements-tab" data-category="secret">🔒 Secrets</button>',
                 '</div>',
                 '<div class="cfl-achievements-list"></div>',
@@ -987,14 +2167,30 @@
             }
 
             // Update the achievements panel with current data
-            // Handles filtering, sorting, progress display, and stats
+            // Handles level display, filtering, sorting, progress, rarity, and stats
             function updatePanel() {
                 var list = panel.querySelector('.cfl-achievements-list');
                 var statsEl = panel.querySelector('.cfl-achievements-stats');
+                var levelEl = panel.querySelector('#cfl-achievements-level');
                 var all = CFL.achievements.getAll();
                 var unlocked = CFL.achievements.getUnlocked();
                 var unlockedData = CFL.achievements.getUnlockedData();
                 var achStats = CFL.achievements.getStats();
+
+                // Update level display
+                var levelInfo = CFL.achievements.getLevel();
+                var xpToNext = levelInfo.isMaxLevel ? '' : ' / ' + levelInfo.xpForNextLevel;
+                levelEl.innerHTML = [
+                    '<div class="cfl-achievements-level__badge">' + levelInfo.icon + '</div>',
+                    '<div class="cfl-achievements-level__info">',
+                    '  <div class="cfl-achievements-level__name">Level ' + levelInfo.level + '</div>',
+                    '  <div class="cfl-achievements-level__title">' + levelInfo.name + '</div>',
+                    '  <div class="cfl-achievements-level__progress">',
+                    '    <div class="cfl-achievements-level__progress-bar" style="width: ' + levelInfo.progress + '%"></div>',
+                    '  </div>',
+                    '  <div class="cfl-achievements-level__xp">' + levelInfo.xp + xpToNext + ' XP</div>',
+                    '</div>'
+                ].join('');
 
                 // Filter achievements by selected category
                 var achievementIds = Object.keys(all);
@@ -1004,13 +2200,18 @@
                     });
                 }
 
-                // Sort: unlocked first, then by unlock time (newest first), then locked
+                // Sort: unlocked first (by rarity desc), then by unlock time (newest first), then locked
+                var rarityOrder = { legendary: 5, epic: 4, rare: 3, uncommon: 2, common: 1 };
                 achievementIds.sort(function(a, b) {
                     var aUnlocked = unlocked.indexOf(a) !== -1;
                     var bUnlocked = unlocked.indexOf(b) !== -1;
                     if (aUnlocked && !bUnlocked) return -1;
                     if (!aUnlocked && bUnlocked) return 1;
                     if (aUnlocked && bUnlocked) {
+                        // Sort by rarity first (higher rarity first), then by time
+                        var aRarity = rarityOrder[all[a].rarity] || 0;
+                        var bRarity = rarityOrder[all[b].rarity] || 0;
+                        if (aRarity !== bRarity) return bRarity - aRarity;
                         return (unlockedData[b].time || 0) - (unlockedData[a].time || 0);
                     }
                     return 0;
@@ -1026,10 +2227,13 @@
                         var unlockTime = unlockedData[id] ? unlockedData[id].time : null;
                         var progress = ach.progress;
                         var progressPercent = progress ? Math.min((progress.current / progress.target) * 100, 100) : 0;
+                        var rarity = ach.rarity || 'common';
+                        var xp = CFL.achievements.getXP(id);
 
                         var div = document.createElement('div');
-                        div.className = 'cfl-achievement ' + (isUnlocked ? 'cfl-achievement--unlocked' : 'cfl-achievement--locked');
+                        div.className = 'cfl-achievement cfl-achievement--' + rarity + ' ' + (isUnlocked ? 'cfl-achievement--unlocked' : 'cfl-achievement--locked');
                         div.setAttribute('data-id', id);
+                        div.setAttribute('data-rarity', rarity);
 
                         var progressBar = '';
                         if (progress && !isUnlocked) {
@@ -1039,10 +2243,18 @@
                         var lockIcon = isUnlocked ? '' : '<div class="cfl-achievement__lock">🔒</div>';
                         var timestamp = isUnlocked && unlockTime ? '<div class="cfl-achievement__time">' + formatTime(unlockTime) + '</div>' : '';
 
+                        // Capitalize rarity for display
+                        var rarityDisplay = rarity.charAt(0).toUpperCase() + rarity.slice(1);
+                        var rarityBadge = '<span class="cfl-achievement__rarity cfl-achievement__rarity--' + rarity + '">' + rarityDisplay + '</span>';
+                        var xpBadge = '<span class="cfl-achievement__xp">+' + xp + ' XP</span>';
+
                         div.innerHTML = [
                             '<div class="cfl-achievement__icon">' + ach.icon + lockIcon + '</div>',
                             '<div class="cfl-achievement__info">',
-                            '  <div class="cfl-achievement__name">' + ach.name + '</div>',
+                            '  <div class="cfl-achievement__header">',
+                            '    <div class="cfl-achievement__name">' + ach.name + '</div>',
+                            '    ' + rarityBadge + xpBadge,
+                            '  </div>',
                             '  <div class="cfl-achievement__desc">' + (isUnlocked ? ach.desc : '???') + '</div>',
                             progressBar,
                             timestamp,
@@ -1055,7 +2267,22 @@
 
                 var categoryCount = currentCategory === 'all' ? achievementIds.length : achievementIds.length;
                 var categoryUnlocked = achievementIds.filter(function(id) { return unlocked.indexOf(id) !== -1; }).length;
-                statsEl.innerHTML = '<div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Category:</span><span>' + categoryUnlocked + '/' + categoryCount + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Total:</span><span>' + unlocked.length + '/' + Object.keys(all).length + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Clicks:</span><span>' + achStats.clicks + '</span></div>';
+                var totalXP = CFL.achievements.getTotalXP();
+
+                statsEl.innerHTML = [
+                    '<div class="cfl-achievements-stats__item">',
+                    '  <span class="cfl-achievements-stats__label">Progress:</span>',
+                    '  <span>' + categoryUnlocked + '/' + categoryCount + '</span>',
+                    '</div>',
+                    '<div class="cfl-achievements-stats__item">',
+                    '  <span class="cfl-achievements-stats__label">Total:</span>',
+                    '  <span>' + unlocked.length + '/' + Object.keys(all).length + '</span>',
+                    '</div>',
+                    '<div class="cfl-achievements-stats__item">',
+                    '  <span class="cfl-achievements-stats__label">XP:</span>',
+                    '  <span>' + totalXP + '</span>',
+                    '</div>'
+                ].join('');
             }
 
             // =================================================================
@@ -1073,47 +2300,125 @@
             });
 
             // =================================================================
-            // SCROLL LOCK MANAGEMENT
+            // SCROLL LOCK MANAGEMENT (Improved for Mobile)
             // =================================================================
-            // Prevent body scrolling when panel is open for better UX
+            // Prevent body scrolling when panel is open
+            // Uses multiple techniques for cross-browser/device support
+            var scrollY = 0;
+            var isScrollLocked = false;
+
             function lockScroll() {
+                if (isScrollLocked) return;
+                isScrollLocked = true;
+                scrollY = window.scrollY;
+
+                // Standard overflow hidden
                 document.body.style.overflow = 'hidden';
+
+                // iOS fix: position fixed with top offset
+                document.body.style.position = 'fixed';
+                document.body.style.top = '-' + scrollY + 'px';
+                document.body.style.width = '100%';
+
+                // Prevent touch scrolling on mobile
+                document.body.style.touchAction = 'none';
             }
 
             function unlockScroll() {
+                if (!isScrollLocked) return;
+                isScrollLocked = false;
+
+                // Remove all scroll lock styles
                 document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.body.style.touchAction = '';
+
+                // Restore scroll position
+                window.scrollTo(0, scrollY);
+            }
+
+            // Close panel helper with safety checks
+            function closePanel() {
+                try {
+                    if (panel && panel.classList.contains('is-open')) {
+                        panel.classList.remove('is-open');
+                        unlockScroll();
+                    }
+                } catch (e) {
+                    console.warn('[CFL] Error closing panel:', e);
+                }
             }
 
             // =================================================================
-            // PANEL TOGGLE HANDLERS
+            // PANEL TOGGLE HANDLERS (Improved Stability)
             // =================================================================
             // Toggle panel visibility and manage scroll lock
             achItem.addEventListener('click', function(e) {
                 e.stopPropagation();
-                var wasOpen = panel.classList.contains('is-open');
-                panel.classList.toggle('is-open');
-                if (panel.classList.contains('is-open')) {
-                    updatePanel();
-                    lockScroll();
-                    CFL.sounds.pop();
-                } else {
-                    unlockScroll();
+                e.preventDefault();
+
+                try {
+                    var wasOpen = panel.classList.contains('is-open');
+
+                    // Close settings menu if open
+                    var settingsMenu = document.getElementById('cfl-settings-menu');
+                    if (settingsMenu && settingsMenu.classList.contains('is-open')) {
+                        settingsMenu.classList.remove('is-open');
+                    }
+
+                    if (wasOpen) {
+                        closePanel();
+                    } else {
+                        panel.classList.add('is-open');
+                        updatePanel();
+                        lockScroll();
+                        if (CFL.sounds) CFL.sounds.pop();
+                    }
+
+                    fabBar.classList.remove('cfl-fab-bar--open');
+                } catch (e) {
+                    console.warn('[CFL] Error toggling achievements panel:', e);
                 }
-                fabBar.classList.remove('cfl-fab-bar--open');
             });
 
-            panel.querySelector('.close-panel').addEventListener('click', function() {
-                panel.classList.remove('is-open');
-                unlockScroll();
+            // Close button with safety
+            panel.querySelector('.close-panel').addEventListener('click', function(e) {
+                e.stopPropagation();
+                closePanel();
+                if (CFL.sounds) CFL.sounds.click();
             });
 
             // Close panel and unlock scroll when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!panel.contains(e.target) &&
-                    !achItem.contains(e.target) &&
-                    panel.classList.contains('is-open')) {
-                    panel.classList.remove('is-open');
-                    unlockScroll();
+            // Improved: checks for all panel-related elements and uses capture phase
+            function handleOutsideClick(e) {
+                try {
+                    // Don't close if click is inside panel or trigger button
+                    if (panel.contains(e.target) || achItem.contains(e.target)) {
+                        return;
+                    }
+
+                    // Don't close if panel isn't open
+                    if (!panel.classList.contains('is-open')) {
+                        return;
+                    }
+
+                    // Close the panel
+                    closePanel();
+                } catch (err) {
+                    console.warn('[CFL] Error in outside click handler:', err);
+                }
+            }
+
+            // Use both click and touchend for better mobile support
+            document.addEventListener('click', handleOutsideClick);
+            document.addEventListener('touchend', handleOutsideClick, { passive: true });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+                    closePanel();
                 }
             });
 
@@ -1453,6 +2758,174 @@
             });
         });
 
+        // =====================================================================
+        // WIKI SEARCH & FILTER SYSTEM
+        // =====================================================================
+        //
+        // PURPOSE: Client-side search and category filtering for wiki pages
+        //
+        // ELEMENTS:
+        //   - Search input (#wiki-search-input)
+        //   - Category pills (.category-pill)
+        //   - Card grid (#wiki-card-grid)
+        //   - Results count (#wiki-results-count)
+        //   - No results message (#wiki-no-results)
+        //
+        // =====================================================================
+        (function initWikiSearch() {
+            var searchInput = document.getElementById('wiki-search-input');
+            var searchClear = document.getElementById('wiki-search-clear');
+            var cardGrid = document.getElementById('wiki-card-grid');
+            var resultsCount = document.getElementById('wiki-results-count');
+            var noResults = document.getElementById('wiki-no-results');
+            var resetBtn = document.getElementById('wiki-reset-filters');
+            var categoryPills = document.querySelectorAll('.category-pill');
+
+            // Exit if not on home page with wiki cards
+            if (!cardGrid || !searchInput) return;
+
+            var cards = cardGrid.querySelectorAll('.wiki-card');
+            var currentCategory = 'all';
+            var currentSearch = '';
+
+            // Filter cards based on search and category
+            function filterCards() {
+                var visibleCount = 0;
+                var searchLower = currentSearch.toLowerCase().trim();
+
+                cards.forEach(function(card) {
+                    var title = card.getAttribute('data-title') || '';
+                    var excerpt = card.getAttribute('data-excerpt') || '';
+                    var category = card.getAttribute('data-category') || '';
+
+                    var matchesSearch = !searchLower ||
+                        title.indexOf(searchLower) !== -1 ||
+                        excerpt.indexOf(searchLower) !== -1;
+
+                    var matchesCategory = currentCategory === 'all' ||
+                        category === currentCategory;
+
+                    var isVisible = matchesSearch && matchesCategory;
+
+                    if (isVisible) {
+                        card.classList.remove('wiki-card--hidden');
+                        card.style.display = '';
+                        visibleCount++;
+                    } else {
+                        card.classList.add('wiki-card--hidden');
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update results count
+                if (resultsCount) {
+                    if (currentSearch || currentCategory !== 'all') {
+                        resultsCount.textContent = 'Showing ' + visibleCount + ' of ' + cards.length + ' pages';
+                    } else {
+                        resultsCount.textContent = 'Showing all ' + cards.length + ' pages';
+                    }
+                }
+
+                // Show/hide no results message
+                if (noResults) {
+                    if (visibleCount === 0) {
+                        noResults.style.display = 'block';
+                        cardGrid.style.display = 'none';
+                    } else {
+                        noResults.style.display = 'none';
+                        cardGrid.style.display = '';
+                    }
+                }
+
+                // Update clear button visibility
+                if (searchClear) {
+                    searchClear.style.opacity = currentSearch ? '1' : '0';
+                    searchClear.style.pointerEvents = currentSearch ? 'auto' : 'none';
+                }
+            }
+
+            // Search input handler with debounce
+            var searchTimeout;
+            searchInput.addEventListener('input', function(e) {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(function() {
+                    currentSearch = e.target.value;
+                    filterCards();
+                }, 150);
+            });
+
+            // Clear search button
+            if (searchClear) {
+                searchClear.addEventListener('click', function() {
+                    searchInput.value = '';
+                    currentSearch = '';
+                    filterCards();
+                    searchInput.focus();
+                    if (CFL.sounds) CFL.sounds.click();
+                });
+            }
+
+            // Category pill click handlers
+            categoryPills.forEach(function(pill) {
+                pill.addEventListener('click', function() {
+                    // Update active state
+                    categoryPills.forEach(function(p) {
+                        p.classList.remove('category-pill--active');
+                    });
+                    pill.classList.add('category-pill--active');
+
+                    // Update filter
+                    currentCategory = pill.getAttribute('data-category');
+                    filterCards();
+
+                    if (CFL.sounds) CFL.sounds.pop();
+                });
+            });
+
+            // Reset filters button
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function() {
+                    searchInput.value = '';
+                    currentSearch = '';
+                    currentCategory = 'all';
+
+                    // Reset active pill
+                    categoryPills.forEach(function(p) {
+                        p.classList.remove('category-pill--active');
+                        if (p.getAttribute('data-category') === 'all') {
+                            p.classList.add('category-pill--active');
+                        }
+                    });
+
+                    filterCards();
+                    if (CFL.sounds) CFL.sounds.success();
+                });
+            }
+
+            // Keyboard shortcut: "/" to focus search
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement !== searchInput) {
+                    // Don't trigger if typing in an input
+                    if (document.activeElement.tagName === 'INPUT' ||
+                        document.activeElement.tagName === 'TEXTAREA') {
+                        return;
+                    }
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+                // ESC to clear and blur search
+                if (e.key === 'Escape' && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    currentSearch = '';
+                    filterCards();
+                    searchInput.blur();
+                }
+            });
+
+            // Initial state
+            filterCards();
+        })();
+
         // Floating settings widget (font switcher + scope)
         (function initSettingsWidget() {
             var settings = document.getElementById('cfl-settings');
@@ -1470,54 +2943,57 @@
             var dismissBtn = document.getElementById('cfl-settings-dismiss');
             var navSettingsBtn = document.getElementById('cfl-nav-settings-btn');
 
-            var STATE_KEYS = {
+            // Load settings from central config (_data/settings.yml)
+            var config = window.CFL_CONFIG || {};
+            var STATE_KEYS = config.state_keys || {
                 scope: 'cflSettingsScope',
                 site: 'cflSettingsSite',
                 pagePrefix: 'cflSettingsPage:',
                 hidden: 'cflSettingsHidden'
             };
 
-            var fonts = {
-                default: { heading: "'Georgia', 'Times New Roman', serif", body: "'Georgia', 'Times New Roman', serif", ui: "'Inter', system-ui, sans-serif" },
-                fraunces: { heading: "'Fraunces', serif", body: "'Fraunces', serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
-                caprasimo: { heading: "'Caprasimo', serif", body: "'Caprasimo', serif", ui: "'Nunito', system-ui, sans-serif" },
-                chonburi: { heading: "'Chonburi', serif", body: "'Chonburi', serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
-                'dm-serif': { heading: "'DM Serif Display', serif", body: "'DM Serif Display', serif", ui: "'Nunito', system-ui, sans-serif" },
-                abril: { heading: "'Abril Fatface', serif", body: "'Abril Fatface', serif", ui: "'Nunito', system-ui, sans-serif" },
-                bricolage: { heading: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif", body: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif", ui: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif" },
-                calistoga: { heading: "'Calistoga', serif", body: "'Calistoga', serif", ui: "'Nunito', system-ui, sans-serif" },
-                varela: { heading: "'Varela Round', 'Inter', system-ui, sans-serif", body: "'Varela Round', 'Inter', system-ui, sans-serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
-                fredoka: { heading: "'Fredoka', 'Nunito', system-ui, sans-serif", body: "'Fredoka', 'Nunito', system-ui, sans-serif", ui: "'Fredoka', 'Nunito', system-ui, sans-serif" },
-                nunito: { heading: "'Nunito', system-ui, sans-serif", body: "'Nunito', system-ui, sans-serif", ui: "'Nunito', system-ui, sans-serif" }
-            };
+            // Build fonts object from config
+            var fonts = {};
+            if (config.fonts) {
+                Object.keys(config.fonts).forEach(function(key) {
+                    fonts[key] = {
+                        heading: config.fonts[key].heading,
+                        body: config.fonts[key].body,
+                        ui: config.fonts[key].ui
+                    };
+                });
+            } else {
+                // Fallback if config not loaded
+                fonts = {
+                    default: { heading: "'Georgia', 'Times New Roman', serif", body: "'Georgia', 'Times New Roman', serif", ui: "'Inter', system-ui, sans-serif" }
+                };
+            }
 
-            var themes = {
-                default: {},
-                teal: {
-                    '--accent': '#0f766e',
-                    '--accent-hover': '#115e59',
-                    '--accent-secondary': '#0ea5e9',
-                    '--accent-secondary-hover': '#0284c7'
-                },
-                amber: {
-                    '--accent': '#d97706',
-                    '--accent-hover': '#b45309',
-                    '--accent-secondary': '#f59e0b',
-                    '--accent-secondary-hover': '#d97706'
-                },
-                plum: {
-                    '--accent': '#9333ea',
-                    '--accent-hover': '#7e22ce',
-                    '--accent-secondary': '#22c55e',
-                    '--accent-secondary-hover': '#16a34a'
-                }
-            };
+            // Build themes object from config
+            var themes = {};
+            if (config.themes) {
+                Object.keys(config.themes).forEach(function(key) {
+                    var theme = config.themes[key];
+                    themes[key] = key === 'default' ? {} : {
+                        '--accent': theme.accent,
+                        '--accent-hover': theme.accent_hover,
+                        '--accent-secondary': theme.accent_secondary,
+                        '--accent-secondary-hover': theme.accent_secondary_hover
+                    };
+                });
+            } else {
+                // Fallback if config not loaded
+                themes = { default: {} };
+            }
 
+            // Initialize state from config defaults
+            var config = window.CFL_CONFIG || {};
+            var defaults = config.defaults || {};
             var state = {
-                scope: 'site',
-                font: 'default',
-                theme: 'default',
-                debug: true,
+                scope: defaults.settings_scope || 'site',
+                font: defaults.font || 'default',
+                theme: defaults.theme || 'default',
+                debug: defaults.settings_debug !== false,
                 openPanel: null
             };
 
@@ -1547,17 +3023,24 @@
             }
 
             function readDebugPreference() {
-                var saved = safeGet(localStorage, 'cflSettingsDebug', null);
-                state.debug = saved === null ? true : saved !== 'false';
+                var config = window.CFL_CONFIG || {};
+                var debugKey = (config.storage_keys && config.storage_keys.settings_debug) || 'cflSettingsDebug';
+                var defaultDebug = (config.defaults && config.defaults.settings_debug !== false) || true;
+                var saved = safeGet(localStorage, debugKey, null);
+                state.debug = saved === null ? defaultDebug : saved !== 'false';
                 if (debugToggle) debugToggle.checked = state.debug;
             }
 
             function readFontPreference() {
+                var config = window.CFL_CONFIG || {};
+                var defaults = config.defaults || {};
+                var defaultFont = defaults.font || 'default';
+                var defaultTheme = defaults.theme || 'default';
                 var storage = storageForScope(state.scope);
                 var key = scopeKey(state.scope);
                 var stored = safeParse(safeGet(storage, key, null), null);
-                state.font = stored && stored.font && fonts[stored.font] ? stored.font : 'default';
-                state.theme = stored && stored.theme && themes[stored.theme] ? stored.theme : 'default';
+                state.font = stored && stored.font && fonts[stored.font] ? stored.font : defaultFont;
+                state.theme = stored && stored.theme && themes[stored.theme] ? stored.theme : defaultTheme;
                 if (fontSelect) fontSelect.value = state.font;
             }
 
@@ -1603,8 +3086,10 @@
             function resetCurrentScope() {
                 var storage = storageForScope(state.scope);
                 safeRemove(storage, scopeKey(state.scope));
-                state.font = 'default';
-                state.theme = 'default';
+                var config = window.CFL_CONFIG || {};
+                var defaults = config.defaults || {};
+                state.font = defaults.font || 'default';
+                state.theme = defaults.theme || 'default';
                 if (fontSelect) fontSelect.value = state.font;
                 applyFont();
                 applyTheme();
@@ -1772,7 +3257,9 @@
             if (debugToggle) {
                 debugToggle.addEventListener('change', function(e) {
                     state.debug = e.target.checked;
-                    safeSet(localStorage, 'cflSettingsDebug', state.debug ? 'true' : 'false');
+                    var config = window.CFL_CONFIG || {};
+                    var debugKey = (config.storage_keys && config.storage_keys.settings_debug) || 'cflSettingsDebug';
+                    safeSet(localStorage, debugKey, state.debug ? 'true' : 'false');
                     if (state.debug) {
                         logger('Debug logging enabled');
                     } else {

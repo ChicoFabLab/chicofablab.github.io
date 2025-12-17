@@ -2,6 +2,8 @@
 title: Meet the Team
 layout: default
 order: 6
+category: community
+icon: "👥"
 ---
 
 # 👥 Meet the Team

@@ -1,0 +1,129 @@
+# CFL Wiki Settings Configuration
+# Central source of truth for all site settings
+# Accessed via site.data.settings in Liquid templates
+
+# LocalStorage Keys
+# All keys used for persisting user preferences
+storage_keys:
+  dark_mode: 'cfl-dark-mode'
+  font: 'cfl-font'
+  theme: 'cfl-theme'
+  sounds_enabled: 'cflSoundsEnabled'
+  sounds_volume: 'cflSoundsVolume'
+  achievements: 'cflAchievements'
+  stats: 'cflStats'
+  found_eggs: 'cflFoundEggs'
+  void_corruption: 'voidCorruption'
+  privacy_accepted: 'cflPrivacyAccepted'
+  settings_scope: 'cflSettingsScope'
+  settings_site: 'cflSettingsSite'
+  settings_page_prefix: 'cflSettingsPage:'
+  settings_hidden: 'cflSettingsHidden'
+  settings_debug: 'cflSettingsDebug'
+
+# Font Definitions
+# Each font defines heading, body, and UI font stacks
+fonts:
+  default:
+    name: 'Default'
+    heading: "'Georgia', 'Times New Roman', serif"
+    body: "'Georgia', 'Times New Roman', serif"
+    ui: "'Inter', system-ui, sans-serif"
+  fraunces:
+    name: 'Fraunces'
+    heading: "'Fraunces', serif"
+    body: "'Fraunces', serif"
+    ui: "'Varela Round', 'Inter', system-ui, sans-serif"
+  caprasimo:
+    name: 'Caprasimo'
+    heading: "'Caprasimo', serif"
+    body: "'Caprasimo', serif"
+    ui: "'Nunito', system-ui, sans-serif"
+  chonburi:
+    name: 'Chonburi'
+    heading: "'Chonburi', serif"
+    body: "'Chonburi', serif"
+    ui: "'Varela Round', 'Inter', system-ui, sans-serif"
+  dm-serif:
+    name: 'DM Serif Display'
+    heading: "'DM Serif Display', serif"
+    body: "'DM Serif Display', serif"
+    ui: "'Nunito', system-ui, sans-serif"
+  abril:
+    name: 'Abril Fatface'
+    heading: "'Abril Fatface', serif"
+    body: "'Abril Fatface', serif"
+    ui: "'Nunito', system-ui, sans-serif"
+  bricolage:
+    name: 'Bricolage Grotesque'
+    heading: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
+    body: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
+    ui: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
+  calistoga:
+    name: 'Calistoga'
+    heading: "'Calistoga', serif"
+    body: "'Calistoga', serif"
+    ui: "'Nunito', system-ui, sans-serif"
+  varela:
+    name: 'Varela Round'
+    heading: "'Varela Round', 'Inter', system-ui, sans-serif"
+    body: "'Varela Round', 'Inter', system-ui, sans-serif"
+    ui: "'Varela Round', 'Inter', system-ui, sans-serif"
+  fredoka:
+    name: 'Fredoka'
+    heading: "'Fredoka', 'Nunito', system-ui, sans-serif"
+    body: "'Fredoka', 'Nunito', system-ui, sans-serif"
+    ui: "'Fredoka', 'Nunito', system-ui, sans-serif"
+  nunito:
+    name: 'Nunito'
+    heading: "'Nunito', system-ui, sans-serif"
+    body: "'Nunito', system-ui, sans-serif"
+    ui: "'Nunito', system-ui, sans-serif"
+
+# Theme/Color Definitions
+# Each theme defines CSS custom properties for accent colors
+themes:
+  default:
+    name: 'Default'
+    accent: '#e63946'
+    accent_hover: '#c85a30'
+    accent_secondary: '#0ea5e9'
+    accent_secondary_hover: '#0284c7'
+  teal:
+    name: 'Teal'
+    accent: '#0f766e'
+    accent_hover: '#115e59'
+    accent_secondary: '#0ea5e9'
+    accent_secondary_hover: '#0284c7'
+  amber:
+    name: 'Amber'
+    accent: '#d97706'
+    accent_hover: '#b45309'
+    accent_secondary: '#f59e0b'
+    accent_secondary_hover: '#d97706'
+  plum:
+    name: 'Plum'
+    accent: '#9333ea'
+    accent_hover: '#7e22ce'
+    accent_secondary: '#22c55e'
+    accent_secondary_hover: '#16a34a'
+
+# Default Values
+# Initial values used when no user preference is set
+defaults:
+  dark_mode: false
+  font: 'default'
+  theme: 'default'
+  sounds_enabled: true
+  sounds_volume: 0.3
+  settings_scope: 'site'  # 'site' or 'page'
+  settings_debug: true
+  privacy_accepted: false
+
+# Settings State Keys
+# Used for organizing localStorage keys
+state_keys:
+  scope: 'cflSettingsScope'
+  site: 'cflSettingsSite'
+  page_prefix: 'cflSettingsPage:'
+  hidden: 'cflSettingsHidden'
