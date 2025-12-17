@@ -1,12 +1,16 @@
 {% assign title = include.title %}
 {% assign body = include.content | default: include.body %}
-{% assign image = include.image %}
-{% assign href = include.href | default: include.url %}
+{% assign image_raw = include.image %}
+{% assign href_raw = include.href | default: include.url %}
 {% assign variant = include.variant | default: 'default' %}
 {% assign badge = include.badge %}
 {% assign badge_variant = include.badge_variant | default: 'neutral' %}
-<{% if href %}a href="{{ href }}"{% else %}div{% endif %} class="cfl-card cfl-card--{{ variant }}{% if href %} cfl-card--clickable{% endif %}">
-  {% if image %}
+{% capture href %}{% if href_raw contains "://" or href_raw contains "#" %}{{ href_raw }}{% elsif href_raw %}{{ site.baseurl }}{{ href_raw }}{% endif %}{% endcapture %}
+{% assign href = href | strip %}
+{% capture image %}{% if image_raw contains "://" %}{{ image_raw }}{% elsif image_raw %}{{ site.baseurl }}{{ image_raw }}{% endif %}{% endcapture %}
+{% assign image = image | strip %}
+<{% if href != "" %}a href="{{ href }}"{% else %}div{% endif %} class="cfl-card cfl-card--{{ variant }}{% if href != "" %} cfl-card--clickable{% endif %}">
+  {% if image != "" %}
   <div class="cfl-card__image">
     <img src="{{ image }}" alt="{{ title | escape }}">
     {% if badge %}<span class="cfl-badge cfl-badge--{{ badge_variant }} cfl-card__badge">{{ badge }}</span>{% endif %}
@@ -16,5 +20,5 @@
     {% if title %}<h3 class="cfl-card__title">{{ title | escape }}</h3>{% endif %}
     {% if body %}<p class="cfl-card__text">{{ body | markdownify | strip_html | truncate: 120 }}</p>{% endif %}
   </div>
-  {% if href %}<span class="cfl-card__arrow">→</span>{% endif %}
-</{% if href %}a{% else %}div{% endif %}>
+  {% if href != "" %}<span class="cfl-card__arrow">→</span>{% endif %}
+</{% if href != "" %}a{% else %}div{% endif %}>

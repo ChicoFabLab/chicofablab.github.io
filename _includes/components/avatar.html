@@ -1,11 +1,13 @@
-{% assign src = include.src | default: include.image %}
+{% assign src_raw = include.src | default: include.image %}
 {% assign alt = include.alt | default: include.name | default: 'Avatar' %}
 {% assign size = include.size | default: 'md' %}
 {% assign initials = include.initials %}
 {% assign status = include.status %}
 {% assign ring = include.ring | default: false %}
+{% capture src %}{% if src_raw contains "://" %}{{ src_raw }}{% elsif src_raw %}{{ site.baseurl }}{{ src_raw }}{% endif %}{% endcapture %}
+{% assign src = src | strip %}
 <div class="cfl-avatar cfl-avatar--{{ size }}{% if ring %} cfl-avatar--ring{% endif %}">
-  {% if src %}
+  {% if src != "" %}
   <img src="{{ src }}" alt="{{ alt | escape }}" class="cfl-avatar__image">
   {% elsif initials %}
   <span class="cfl-avatar__initials">{{ initials | upcase | truncate: 2, '' }}</span>
