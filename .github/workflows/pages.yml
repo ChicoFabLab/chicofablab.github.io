@@ -29,7 +29,7 @@ jobs:
         run: |
           REPO_NAME="${{ github.event.repository.name }}"
           OWNER="${{ github.repository_owner }}"
-          
+
           # If repo name matches owner.github.io, it's a user/org site (no baseurl needed)
           if [[ "$REPO_NAME" == "${OWNER}.github.io" ]] || [[ "$REPO_NAME" == "chicofablab.github.io" && "$OWNER" == "ChicoFabLab" ]]; then
             echo "baseurl=" >> $GITHUB_OUTPUT

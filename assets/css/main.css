@@ -67,9 +67,38 @@
     --danger-border: #4a2a2a;
 }
 
-/* Respect system preference if no explicit theme set */
+/* Explicit light mode (overrides system dark preference) */
+[data-theme="light"] {
+    --bg: #fef9f3;
+    --bg-alt: #f8edd8;
+    --surface: #fffcf8;
+    --text: #2a1f1a;
+    --text-muted: #6b5c52;
+    --accent: #e63946;
+    --accent-hover: #c62d3a;
+    --accent-secondary: #038592;
+    --accent-secondary-hover: #026d78;
+    --border: #e8dcc8;
+    --border-dark: #d4c4a8;
+    --code-bg: #f8f0e6;
+    --shadow: rgba(42, 31, 26, 0.1);
+    --info: #038592;
+    --info-bg: #e8f4f5;
+    --info-border: #b0d8dc;
+    --success: #2d9d5a;
+    --success-bg: #eef8f0;
+    --success-border: #a8dbb8;
+    --warning: #e6940a;
+    --warning-bg: #fef8ec;
+    --warning-border: #f5d88a;
+    --danger: #e63946;
+    --danger-bg: #fef2f2;
+    --danger-border: #f8c4c8;
+}
+
+/* Respect system preference ONLY if no explicit theme set */
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+    :root:not([data-theme]) {
         --bg: #1a1614;
         --bg-alt: #252220;
         --surface: #2a2624;
