@@ -310,16 +310,22 @@
                 },
 
                 syncToggles: function(enabled) {
+                    console.log('[CFL debug] syncToggles called with:', enabled);
+                    
                     // Sync drawer toggle (now uses checkbox input like menu toggle)
                     var drawerSwitch = document.getElementById('cfl-dark-mode-switch');
                     if (drawerSwitch) {
+                        console.log('[CFL debug] Syncing drawer switch to:', enabled);
                         drawerSwitch.checked = enabled;
                     }
 
                     // Sync settings menu toggle (uses checkbox input)
                     var menuSwitch = document.getElementById('cfl-settings-menu-dark-mode-switch');
                     if (menuSwitch) {
+                        console.log('[CFL debug] Syncing menu switch to:', enabled);
                         menuSwitch.checked = enabled;
+                    } else {
+                        console.log('[CFL debug] Menu switch not found yet');
                     }
                 },
 
@@ -1940,8 +1946,8 @@
                 '      </div>',
                 '    </div>',
                 '  </div>',
-                '  <!-- Appearance Section -->',
-                '  <div class="cfl-settings-menu__section" data-section="appearance">',
+                '  <!-- Appearance Section - starts open by default -->',
+                '  <div class="cfl-settings-menu__section is-open" data-section="appearance">',
                 '    <button class="cfl-settings-menu__section-header" data-toggle="appearance">',
                 '      <span class="cfl-settings-menu__icon">🌓</span>',
                 '      <span class="cfl-settings-menu__label">Appearance</span>',
@@ -2026,22 +2032,46 @@
 
             // Dark mode toggle - syncs with drawer toggle
             var menuDarkModeSwitch = settingsMenu.querySelector('#cfl-settings-menu-dark-mode-switch');
+            var menuDarkModeLabel = settingsMenu.querySelector('#cfl-settings-menu-dark-mode-toggle');
+            console.log('[CFL debug] menuDarkModeSwitch found:', !!menuDarkModeSwitch);
+            console.log('[CFL debug] menuDarkModeLabel found:', !!menuDarkModeLabel);
+            console.log('[CFL debug] CFLDarkMode exists:', !!window.CFLDarkMode);
+            
             if (menuDarkModeSwitch) {
                 // Initialize checkbox state from current dark mode state
                 if (window.CFLDarkMode) {
-                    menuDarkModeSwitch.checked = window.CFLDarkMode.isDark();
+                    var isDark = window.CFLDarkMode.isDark();
+                    console.log('[CFL debug] Initial dark mode state:', isDark);
+                    menuDarkModeSwitch.checked = isDark;
                     // Also sync all toggles to ensure consistency
-                    window.CFLDarkMode.syncToggles(window.CFLDarkMode.isDark());
+                    window.CFLDarkMode.syncToggles(isDark);
                 }
 
-                // Handle toggle
+                // Handle toggle - use both change and click for reliability
                 menuDarkModeSwitch.addEventListener('change', function(e) {
+                    console.log('[CFL debug] Menu toggle CHANGE event:', e.target.checked);
                     e.stopPropagation();
                     if (window.CFLDarkMode) {
                         window.CFLDarkMode.setDarkMode(e.target.checked);
+                        console.log('[CFL debug] Theme after change:', document.documentElement.getAttribute('data-theme'));
                     }
-                    CFL.sounds.pop();
+                    if (CFL && CFL.sounds) CFL.sounds.pop();
                 });
+                
+                // Also handle click on the input directly
+                menuDarkModeSwitch.addEventListener('click', function(e) {
+                    console.log('[CFL debug] Menu toggle CLICK event, checked:', e.target.checked);
+                });
+            }
+            
+            // Also handle click on the label for better reliability
+            if (menuDarkModeLabel) {
+                menuDarkModeLabel.addEventListener('click', function(e) {
+                    console.log('[CFL debug] Label CLICK event');
+                    // Don't interfere with native label->checkbox behavior
+                });
+            } else {
+                console.warn('[CFL debug] menuDarkModeSwitch NOT FOUND in settings menu');
             }
 
             // Quick font buttons - instant change, menu stays open
