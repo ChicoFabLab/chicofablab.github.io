@@ -7,6 +7,8 @@ order: 1
 
 New to CFL? This page points you at the basics so you can get moving fast.
 
+![Chico Fab Lab](../assets/img/chicofablab_logo.webp){: width="80px" height="auto"}
+
 ![CFL Kiosk](/assets/img/cfl-kiosk.jpg)
 
 ## Quick Info
