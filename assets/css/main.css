@@ -8360,6 +8360,7 @@ pre code {
     transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    overflow: visible;
 }
 
 .cfl-drawer[data-open="true"] {
@@ -8423,6 +8424,7 @@ pre code {
 .cfl-drawer__body {
     flex: 1;
     overflow-y: auto;
+    overflow-x: visible;
     padding: 1rem 1.25rem;
 }
 
@@ -8478,13 +8480,26 @@ pre code {
     color: var(--text-muted);
 }
 
-/* Toggle switch - uses the component styles from .cfl-toggle__track/.cfl-toggle__thumb */
-/* Old ::after based toggle removed - was causing duplicate circles */
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+}
+
+.dark-mode-toggle__icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+/* Theme-based icon */
+[data-theme="light"] .dark-mode-toggle__icon::before { content: "☀️"; }
+[data-theme="dark"] .dark-mode-toggle__icon::before { content: "🌙"; }
 
 /* Select in drawer */
 .cfl-drawer__select {
     width: 100%;
-    padding: 0.6rem 0.75rem;
+    padding: 0.6rem 2.5rem 0.6rem 0.75rem;
     font-family: var(--font-ui);
     font-size: 0.875rem;
     color: var(--text);
@@ -8493,12 +8508,28 @@ pre code {
     border-radius: 8px;
     cursor: pointer;
     transition: border-color 0.15s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4L6 8L10 4' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px;
+    position: relative;
+    z-index: 10;
 }
 
 .cfl-drawer__select:hover,
 .cfl-drawer__select:focus {
-    border-color: var(--border-dark);
+    border-color: var(--accent);
     outline: none;
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.1);
+    z-index: 1002;
+}
+
+/* Ensure select dropdown can overflow drawer */
+.cfl-drawer__select:focus {
+    position: relative;
 }
 
 /* Highlight nav button when FAB is hidden */
