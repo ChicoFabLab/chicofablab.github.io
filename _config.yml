@@ -1,4 +1,5 @@
 title: CFL Wiki
+version: "0.1.1"
 # For local development: baseurl: ""
 # For GitHub Pages: baseurl: "/chicofablab.github.io"
 baseurl: ""
