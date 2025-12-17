@@ -1540,22 +1540,12 @@
             }
 
             function openPanel(panelId) {
-                // #region agent log
-                console.log('[DEBUG openPanel] called with panelId:', panelId);
-                console.log('[DEBUG openPanel] panels.length:', panels.length);
-                // #endregion
                 state.openPanel = panelId;
                 settings.classList.add('cfl-settings--open');
                 fab.setAttribute('aria-expanded', 'true');
                 panels.forEach(function(panel) {
                     var active = panel.getAttribute('data-panel') === panelId;
-                    // #region agent log
-                    console.log('[DEBUG openPanel] panel data-panel:', panel.getAttribute('data-panel'), 'active:', active, 'hidden before:', panel.hasAttribute('hidden'));
-                    // #endregion
                     panel.toggleAttribute('hidden', !active);
-                    // #region agent log
-                    console.log('[DEBUG openPanel] hidden after:', panel.hasAttribute('hidden'));
-                    // #endregion
                 });
                 settings.setAttribute('data-open-panel', panelId);
                 if (scrim) scrim.removeAttribute('hidden');
@@ -1643,28 +1633,13 @@
             // Wire up the new settings menu items (created in FAB bar)
             var settingsMenuItems = document.querySelectorAll('.cfl-settings-menu__item');
             var settingsMenuEl = document.getElementById('cfl-settings-menu');
-            // #region agent log
-            console.log('[DEBUG] settingsMenuItems count:', settingsMenuItems.length, 'menuEl exists:', !!settingsMenuEl);
-            // #endregion
             settingsMenuItems.forEach(function(item) {
-                // #region agent log
-                console.log('[DEBUG] Attaching click handler to:', item.textContent.trim().substring(0, 20));
-                // #endregion
                 item.addEventListener('click', function(e) {
-                    // #region agent log
-                    console.log('[DEBUG] CLICK FIRED on:', e.currentTarget.textContent.trim().substring(0, 20));
-                    // #endregion
                     var panelId = e.currentTarget.getAttribute('data-panel');
                     var action = e.currentTarget.getAttribute('data-action');
-                    // #region agent log
-                    console.log('[DEBUG] panelId:', panelId, 'action:', action);
-                    // #endregion
 
                     if (action === 'quick-font') {
                         var quickFont = e.currentTarget.getAttribute('data-font');
-                        // #region agent log
-                        console.log('[DEBUG] quick-font:', quickFont, 'fonts[quickFont]:', !!fonts[quickFont]);
-                        // #endregion
                         if (fonts[quickFont]) {
                             state.font = quickFont;
                             if (fontSelect) fontSelect.value = quickFont;
@@ -1679,17 +1654,7 @@
                     }
 
                     if (panelId) {
-                        // #region agent log
-                        console.log('[DEBUG] Opening panel:', panelId);
-                        console.log('[DEBUG] settings element exists:', !!settings);
-                        console.log('[DEBUG] settings classes BEFORE:', settings ? settings.className : 'N/A');
-                        console.log('[DEBUG] settings hidden?:', settings ? settings.classList.contains('cfl-settings--hidden') : 'N/A');
-                        // #endregion
                         openPanel(panelId);
-                        // #region agent log
-                        console.log('[DEBUG] settings classes AFTER:', settings ? settings.className : 'N/A');
-                        console.log('[DEBUG] panel visible check:', document.querySelector('.cfl-settings__panel[data-panel="' + panelId + '"]'));
-                        // #endregion
                         CFL.sounds.pop();
                         // Close the settings menu
                         if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
