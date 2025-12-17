@@ -71,6 +71,7 @@ class SBIPGame {
     }
 
     setupInput() {
+        // Keyboard input
         document.addEventListener('keydown', (e) => {
             this.keys[e.key] = true;
 
@@ -95,6 +96,83 @@ class SBIPGame {
         document.addEventListener('keyup', (e) => {
             this.keys[e.key] = false;
         });
+
+        // Touch/Mobile input
+        this.setupTouchControls();
+    }
+
+    setupTouchControls() {
+        // Touch movement on canvas - drag to move paddle
+        let touchY = null;
+
+        this.canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = this.canvas.getBoundingClientRect();
+            touchY = touch.clientY - rect.top;
+        }, { passive: false });
+
+        this.canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (this.player && this.state === 'playing') {
+                const touch = e.touches[0];
+                const rect = this.canvas.getBoundingClientRect();
+                const scaleY = this.H / rect.height;
+                const canvasY = (touch.clientY - rect.top) * scaleY;
+
+                // Move paddle to touch position
+                this.player.y = canvasY - this.player.height / 2;
+
+                // Keep in bounds
+                this.player.y = Math.max(0, Math.min(this.H - this.player.height, this.player.y));
+            }
+        }, { passive: false });
+
+        this.canvas.addEventListener('touchend', () => {
+            touchY = null;
+        });
+
+        // Mobile button controls
+        this.setupMobileButtons();
+    }
+
+    setupMobileButtons() {
+        // Up button
+        const upBtn = document.getElementById('mobile-up');
+        if (upBtn) {
+            upBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.keys['ArrowUp'] = true;
+            });
+            upBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this.keys['ArrowUp'] = false;
+            });
+        }
+
+        // Down button
+        const downBtn = document.getElementById('mobile-down');
+        if (downBtn) {
+            downBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.keys['ArrowDown'] = true;
+            });
+            downBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this.keys['ArrowDown'] = false;
+            });
+        }
+
+        // Shoot/Action button
+        const shootBtn = document.getElementById('mobile-shoot');
+        if (shootBtn) {
+            shootBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                if (this.player && this.player.hasLaser && this.state === 'playing') {
+                    this.shootPlayerLaser();
+                }
+            });
+        }
     }
 
     // ===========================================

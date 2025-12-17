@@ -68,6 +68,92 @@ order: 99
     justify-content: center;
 }
 
+/* Mobile Controls */
+.sbip-mobile-controls {
+    display: none;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .sbip-mobile-controls {
+        display: flex;
+    }
+}
+
+@media (pointer: coarse) {
+    .sbip-mobile-controls {
+        display: flex;
+    }
+}
+
+.sbip-mobile-dpad {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.sbip-mobile-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #00ff88;
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.1s ease;
+}
+
+.sbip-mobile-btn:active {
+    background: rgba(0, 255, 136, 0.5);
+    transform: scale(0.95);
+}
+
+.sbip-mobile-btn--shoot {
+    width: 80px;
+    height: 80px;
+    border-color: #ff4488;
+    background: rgba(255, 68, 136, 0.2);
+    color: #ff4488;
+    font-size: 2rem;
+}
+
+.sbip-mobile-btn--shoot:active {
+    background: rgba(255, 68, 136, 0.5);
+}
+
+.sbip-mobile-hint {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Touch hint for canvas */
+.sbip-touch-hint {
+    display: none;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+@media (pointer: coarse) {
+    .sbip-touch-hint {
+        display: block;
+    }
+}
+
 .sbip-info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -283,6 +369,8 @@ order: 99
         <p class="sbip-subtitle">Pong + Breakout + Space Invaders = CHAOS</p>
     </div>
 
+    <p class="sbip-touch-hint">👆 Drag on canvas to move paddle, or use buttons below</p>
+
     <div class="sbip-canvas-wrapper">
         <canvas id="sbip-canvas" width="800" height="500"></canvas>
     </div>
@@ -297,6 +385,16 @@ order: 99
         <button class="cfl-btn cfl-btn--ghost cfl-btn--md" id="sbip-reset">
             🔄 Reset
         </button>
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="sbip-mobile-controls">
+        <div class="sbip-mobile-dpad">
+            <button class="sbip-mobile-btn" id="mobile-up" aria-label="Move Up">⬆️</button>
+            <button class="sbip-mobile-btn" id="mobile-down" aria-label="Move Down">⬇️</button>
+        </div>
+        <button class="sbip-mobile-btn sbip-mobile-btn--shoot" id="mobile-shoot" aria-label="Shoot Laser">🔫</button>
+        <p class="sbip-mobile-hint">Use buttons or drag on canvas</p>
     </div>
 
     <div class="sbip-info-grid">
