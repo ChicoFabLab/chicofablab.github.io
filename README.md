@@ -7,6 +7,50 @@ title: README
 
 Repository: [https://github.com/ChicoFabLab/chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
 
+---
+
+## Using the Component Library
+
+This wiki includes a reusable component library for consistent, polished UI elements.
+
+### Quick Start
+
+Add components to any wiki page using Liquid includes:
+
+```liquid
+{% include components/button.html
+   text="Get Started"
+   variant="primary"
+   href="/wiki/getting-started"
+%}
+
+{% include components/alert.html
+   variant="info"
+   title="Welcome"
+   body="Check out our **equipment guide**!"
+%}
+```
+
+### Available Components
+
+| Component | Use For |
+|-----------|---------|
+| **Button** | Links, actions, CTAs |
+| **Alert** | Notifications, status messages |
+| **Badge** | Labels, status indicators |
+| **Callout** | Highlighted tips, warnings |
+| **Progress** | Loading, completion status |
+| **Stat** | Key metrics, numbers |
+| **Avatar** | User/entity representation |
+| **Card** | Clickable content previews |
+
+### Resources
+
+- **[Component Showcase](/wiki/component-showcase)** - Live examples with copy-paste code
+- **[Components Documentation](/wiki/components)** - Full API reference
+
+---
+
 ## If you're in the ChicoFabLab organization
 
 You can directly commit markdown files:

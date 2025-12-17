@@ -3,12 +3,18 @@ baseurl: ""
 url: "https://chicofl.org"
 
 markdown: kramdown
+highlighter: rouge
 permalink: pretty
+
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
 
 collections:
   wiki:
     output: true
-    permalink: /wiki/:name
+    permalink: /wiki/:name/
 
 defaults:
   - scope:
@@ -17,10 +23,8 @@ defaults:
     values:
       layout: "default"
 
-gems:
-  - jekyll-feed
-  - jekyll-sitemap
-
 exclude:
   - Gemfile
   - Gemfile.lock
+  - node_modules
+  - vendor

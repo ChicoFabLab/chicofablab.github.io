@@ -1,0 +1,31 @@
+{% comment %}
+  Quick Navigation Component
+  Usage: {% include quick-nav.html type="components" %}
+  Types: components, css, custom
+
+  For custom: {% include quick-nav.html items=page.sections %}
+
+  Data source: _data/navigation.yml
+{% endcomment %}
+
+{% assign nav_type = include.type %}
+{% assign custom_items = include.items %}
+{% assign title = include.title | default: "Jump to:" %}
+
+<nav class="quick-nav">
+  <strong>{{ title }}</strong>
+
+  {% if nav_type == "components" %}
+    {% for item in site.data.navigation.component_sections %}
+      <a href="#{{ item.anchor }}">{{ item.label }}</a>
+    {% endfor %}
+  {% elsif nav_type == "css" %}
+    {% for item in site.data.navigation.css_sections %}
+      <a href="#{{ item.anchor }}">{{ item.label }}</a>
+    {% endfor %}
+  {% elsif custom_items %}
+    {% for item in custom_items %}
+      <a href="#{{ item.anchor }}">{{ item.label }}</a>
+    {% endfor %}
+  {% endif %}
+</nav>

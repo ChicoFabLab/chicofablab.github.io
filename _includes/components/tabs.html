@@ -1,0 +1,23 @@
+{% assign id = include.id | default: "tabs" %}
+{% assign tabs = include.tabs %}
+{% assign variant = include.variant | default: "default" %}
+<div class="cfl-tabs cfl-tabs--{{ variant }}" data-tabs="{{ id }}">
+  <div class="cfl-tabs__list" role="tablist">
+    {% for tab in tabs %}
+    <button
+      class="cfl-tabs__tab{% if forloop.first %} cfl-tabs__tab--active{% endif %}"
+      role="tab"
+      data-tab="{{ id }}-{{ forloop.index }}"
+      aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+    >{{ tab.label | escape }}</button>
+    {% endfor %}
+  </div>
+  {% for tab in tabs %}
+  <div
+    class="cfl-tabs__panel{% if forloop.first %} cfl-tabs__panel--active{% endif %}"
+    role="tabpanel"
+    data-panel="{{ id }}-{{ forloop.index }}"
+    {% unless forloop.first %}hidden{% endunless %}
+  >{{ tab.content }}</div>
+  {% endfor %}
+</div>

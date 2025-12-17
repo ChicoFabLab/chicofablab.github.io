@@ -1,0 +1,16 @@
+{% assign items = include.items %}
+{% assign separator = include.separator | default: "/" %}
+<nav class="cfl-breadcrumbs" aria-label="Breadcrumb">
+  <ol class="cfl-breadcrumbs__list">
+    {% for item in items %}
+    <li class="cfl-breadcrumbs__item{% if forloop.last %} cfl-breadcrumbs__item--current{% endif %}">
+      {% if forloop.last %}
+        <span aria-current="page">{{ item.label | escape }}</span>
+      {% else %}
+        <a href="{{ item.href }}">{{ item.label | escape }}</a>
+        <span class="cfl-breadcrumbs__separator" aria-hidden="true">{{ separator }}</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</nav>

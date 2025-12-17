@@ -1,19 +1,35 @@
 # Jekyll build output
 _site/
-.jekyll-cache/
 .sass-cache/
-.bundle/
-vendor/bundle/
+.jekyll-cache/
+.jekyll-metadata
 
-# OS/editor cruft
+# macOS
 .DS_Store
-Thumbs.db
-*.log
-*.tmp
+.AppleDouble
+.LSOverride
+._*
+
+# IDE
+.idea/
+.vscode/
 *.swp
 *.swo
-*.bak
-.cursor
+*~
 
-# Misc
-.cache/
+# Dependencies
+node_modules/
+vendor/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp files
+*.tmp
+*.temp

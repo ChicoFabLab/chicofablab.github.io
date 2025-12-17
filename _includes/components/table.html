@@ -1,0 +1,27 @@
+{% assign headers = include.headers %}
+{% assign rows = include.rows %}
+{% assign striped = include.striped | default: false %}
+{% assign hoverable = include.hoverable | default: true %}
+{% assign compact = include.compact | default: false %}
+<div class="cfl-table-wrapper">
+  <table class="cfl-table{% if striped %} cfl-table--striped{% endif %}{% if hoverable %} cfl-table--hoverable{% endif %}{% if compact %} cfl-table--compact{% endif %}">
+    {% if headers %}
+    <thead>
+      <tr>
+        {% for header in headers %}
+        <th>{{ header | escape }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    {% endif %}
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        {% for cell in row %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

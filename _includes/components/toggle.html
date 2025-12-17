@@ -1,0 +1,12 @@
+{% assign id = include.id | default: "toggle" %}
+{% assign label = include.label %}
+{% assign checked = include.checked | default: false %}
+{% assign size = include.size | default: "md" %}
+{% assign disabled = include.disabled | default: false %}
+<label class="cfl-toggle cfl-toggle--{{ size }}{% if disabled %} cfl-toggle--disabled{% endif %}">
+  <input type="checkbox" class="cfl-toggle__input" id="{{ id }}"{% if checked %} checked{% endif %}{% if disabled %} disabled{% endif %}>
+  <span class="cfl-toggle__track">
+    <span class="cfl-toggle__thumb"></span>
+  </span>
+  {% if label %}<span class="cfl-toggle__label">{{ label | escape }}</span>{% endif %}
+</label>

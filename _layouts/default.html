@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Caprasimo&family=Chonburi&family=DM+Serif+Display&family=Abril+Fatface&family=Bricolage+Grotesque:wght@400;600;700&family=Calistoga&family=Varela+Round&family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include marquee.html %}
@@ -15,9 +16,10 @@
     <header>
         <h1><a href="/">CFL Wiki</a></h1>
         <nav>
-            <a href="/">Home</a>
-            <a href="/wiki/getting-started">Get Started</a>
-            <a href="/README">Contribute</a>
+            {% include nav.html type="main" %}
+            <button type="button" class="cfl-nav-settings" id="cfl-nav-settings-btn" aria-label="Site settings" title="Site settings">
+                ⚙️
+            </button>
         </nav>
     </header>
 
@@ -36,15 +38,1709 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/wiki/getting-started">Getting Started</a>
-                <a href="/README">How to Contribute</a>
-                <a href="https://github.com/ChicoFabLab/chicofablab.github.io" target="_blank" rel="noopener">Source Code</a>
+                {% include nav.html type="footer" %}
             </div>
             <p>Chico Fab Lab · 603 Orange Street · Chico, CA</p>
             <p>Open Wednesdays 5-7pm and by arrangement</p>
             <span class="footer-badge">Built with Jekyll · Hosted on GitHub Pages</span>
         </div>
     </footer>
+
+    <div class="cfl-settings" id="cfl-settings" aria-live="polite">
+        <div class="cfl-settings__scrim" data-scrim hidden></div>
+        <button type="button" class="cfl-settings__dismiss" id="cfl-settings-dismiss" aria-label="Hide settings button" title="Hide settings widget">
+            ✕
+        </button>
+        <button type="button" class="cfl-settings__fab" aria-expanded="false" aria-controls="cfl-settings-panel" aria-label="Site settings">
+            <span class="cfl-settings__fab-icon" aria-hidden="true">⚙️</span>
+        </button>
+        <div class="cfl-settings__orbit" aria-hidden="true">
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="fonts" title="Fonts">
+                <span aria-hidden="true">Aa</span>
+                <span class="sr-only">Fonts</span>
+                <span class="cfl-settings__orbit-label">Fonts</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="colors" title="Colors">
+                <span aria-hidden="true">🎨</span>
+                <span class="sr-only">Colors</span>
+                <span class="cfl-settings__orbit-label">Colors</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="fraunces" title="Soft serif">
+                <span aria-hidden="true">🫧</span>
+                <span class="sr-only">Soft serif</span>
+                <span class="cfl-settings__orbit-label">Serif</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-action="quick-font" data-font="bricolage" title="Playful sans">
+                <span aria-hidden="true">✨</span>
+                <span class="sr-only">Playful sans</span>
+                <span class="cfl-settings__orbit-label">Sans</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="scope" title="Scope">
+                <span aria-hidden="true">🌐</span>
+                <span class="sr-only">Scope</span>
+                <span class="cfl-settings__orbit-label">Scope</span>
+            </button>
+            <button type="button" class="cfl-settings__orbit-btn" data-panel="reset" title="Reset">
+                <span aria-hidden="true">↺</span>
+                <span class="sr-only">Reset</span>
+                <span class="cfl-settings__orbit-label">Reset</span>
+            </button>
+        </div>
+
+        <div class="cfl-settings__panel" id="cfl-settings-panel" data-panel="fonts" hidden>
+            <div class="cfl-settings__panel-title">Font switcher</div>
+            <label class="cfl-settings__label" for="cfl-font-select">Pick a style</label>
+            <select id="cfl-font-select" class="cfl-settings__select">
+                <option value="default">Default (Georgia + Inter)</option>
+                <option value="fraunces">Fraunces (soft serif)</option>
+                <option value="caprasimo">Caprasimo (bold & bubbly)</option>
+                <option value="chonburi">Chonburi (retro serif)</option>
+                <option value="dm-serif">DM Serif Display (editorial)</option>
+                <option value="abril">Abril Fatface (dramatic)</option>
+                <option value="bricolage">Bricolage Grotesque (playful sans)</option>
+                <option value="calistoga">Calistoga (friendly retro)</option>
+                <option value="varela">Varela Round (soft sans)</option>
+                <option value="fredoka">Fredoka (bold rounded)</option>
+                <option value="nunito">Nunito (rounded UI)</option>
+            </select>
+            <p class="cfl-settings__note">Headings and body will update instantly. Defaults remain Georgia/Inter if you reset.</p>
+        </div>
+
+        <div class="cfl-settings__panel" data-panel="colors" hidden>
+            <div class="cfl-settings__panel-title">Color theme</div>
+            <p class="cfl-settings__note">Pick an accent vibe. Applies to this device only.</p>
+            <div class="cfl-settings__swatches" role="group" aria-label="Color themes">
+                <button type="button" class="cfl-settings__swatch" data-theme="default">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #e63946; --swatch-bg: #fef9f3;"></span>
+                    Default
+                </button>
+                <button type="button" class="cfl-settings__swatch" data-theme="teal">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #0f766e; --swatch-bg: #f0fdfa;"></span>
+                    Teal
+                </button>
+                <button type="button" class="cfl-settings__swatch" data-theme="amber">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #d97706; --swatch-bg: #fffbeb;"></span>
+                    Amber
+                </button>
+                <button type="button" class="cfl-settings__swatch" data-theme="plum">
+                    <span class="cfl-settings__swatch-dot" style="--swatch-accent: #9333ea; --swatch-bg: #f5f3ff;"></span>
+                    Plum
+                </button>
+            </div>
+            <div class="cfl-settings__legal">Colors are applied with CSS variables only; nothing is sent or stored remotely.</div>
+        </div>
+
+        <div class="cfl-settings__panel" data-panel="scope" hidden>
+            <div class="cfl-settings__panel-title">Scope</div>
+            <label class="cfl-settings__label">Apply where?</label>
+            <label class="cfl-toggle cfl-toggle--md cfl-settings__scope-toggle">
+                <input type="checkbox" class="cfl-toggle__input" id="cfl-settings-scope">
+                <span class="cfl-toggle__track">
+                    <span class="cfl-toggle__thumb"></span>
+                </span>
+                <span class="cfl-toggle__label">Site-wide (this device)</span>
+            </label>
+            <p class="cfl-settings__note">Switch off for “This page only” (clears when you leave). Switch on for “Site-wide” (saves to this browser only).</p>
+            <div class="cfl-settings__legal">Settings stay local on your device (localStorage/sessionStorage). Fonts load from Google Fonts. No tracking or cookies.</div>
+        </div>
+
+        <div class="cfl-settings__panel" data-panel="reset" hidden>
+            <div class="cfl-settings__panel-title">Reset & debug</div>
+            <button type="button" class="cfl-btn cfl-btn--ghost cfl-btn--sm cfl-settings__reset" data-action="reset-scope">Reset current scope</button>
+            <label class="cfl-toggle cfl-toggle--sm cfl-settings__debug-toggle">
+                <input type="checkbox" class="cfl-toggle__input" id="cfl-settings-debug" checked>
+                <span class="cfl-toggle__track">
+                    <span class="cfl-toggle__thumb"></span>
+                </span>
+                <span class="cfl-toggle__label">Debug logging</span>
+            </label>
+            <p class="cfl-settings__note">Debug logs print to the console to help troubleshoot font changes and persistence.</p>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check for eldritch corruption (the void remembers...)
+        (function checkVoidCorruption() {
+            var corruption = parseInt(localStorage.getItem('voidCorruption') || '0');
+            if (corruption > 0) {
+                document.body.classList.add('eldritch-mode');
+                // Whisper to the console...
+                if (corruption >= 50) {
+                    console.log('%c👁️ The void sees you...', 'color: #8b00ff; font-size: 20px; text-shadow: 0 0 10px #8b00ff;');
+                }
+                if (corruption >= 100) {
+                    console.log('%c🌀 FULLY CONSUMED', 'color: #ff00ff; font-size: 24px; font-weight: bold;');
+                }
+            }
+        })();
+
+        // =====================================================================
+        // WEB AUDIO SOUND EFFECTS SYSTEM
+        // =====================================================================
+        //
+        // PURPOSE: Provides synthesized sound effects for UI interactions
+        //
+        // USAGE:
+        //   CFL.sounds.click()      - Quick blip for button clicks
+        //   CFL.sounds.success()    - Ascending tones for positive feedback
+        //   CFL.sounds.magic()      - Arpeggio for special buttons
+        //   CFL.sounds.setEnabled(false)  - Disable all sounds
+        //
+        // HOW IT WORKS:
+        //   Uses Web Audio API to generate tones in real-time via oscillators.
+        //   No audio files needed - all sounds are mathematically synthesized.
+        //
+        // STORAGE:
+        //   localStorage.cflSoundsEnabled - 'true'/'false'
+        //   localStorage.cflSoundsVolume  - float 0.0-1.0
+        //
+        // SEE: docs/SOUND-SYSTEM.md for full documentation
+        // =====================================================================
+        window.CFL = window.CFL || {};
+
+        CFL.sounds = (function() {
+            var audioContext = null;
+            var enabled = localStorage.getItem('cflSoundsEnabled') !== 'false';
+            var volume = parseFloat(localStorage.getItem('cflSoundsVolume') || '0.3');
+
+            function getContext() {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                return audioContext;
+            }
+
+            function playTone(frequency, type, duration, volumeMod) {
+                if (!enabled) return;
+                try {
+                    var ctx = getContext();
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+
+                    osc.type = type || 'sine';
+                    osc.frequency.setValueAtTime(frequency, ctx.currentTime);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    var vol = volume * (volumeMod || 1);
+                    gain.gain.setValueAtTime(vol, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + duration);
+                } catch(e) { console.log('Sound error:', e); }
+            }
+
+            function playNoise(duration, volumeMod) {
+                if (!enabled) return;
+                try {
+                    var ctx = getContext();
+                    var bufferSize = ctx.sampleRate * duration;
+                    var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                    var data = buffer.getChannelData(0);
+                    for (var i = 0; i < bufferSize; i++) {
+                        data[i] = Math.random() * 2 - 1;
+                    }
+                    var noise = ctx.createBufferSource();
+                    noise.buffer = buffer;
+                    var gain = ctx.createGain();
+                    var filter = ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 1000;
+                    noise.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(ctx.destination);
+                    var vol = volume * (volumeMod || 0.3);
+                    gain.gain.setValueAtTime(vol, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+                    noise.start();
+                } catch(e) {}
+            }
+
+            return {
+                // Basic sounds
+                click: function() { playTone(800, 'sine', 0.05, 0.5); },
+                pop: function() { playTone(600, 'sine', 0.08, 0.6); playTone(900, 'sine', 0.04, 0.3); },
+                success: function() {
+                    playTone(523, 'sine', 0.1, 0.4);
+                    setTimeout(function() { playTone(659, 'sine', 0.1, 0.4); }, 100);
+                    setTimeout(function() { playTone(784, 'sine', 0.15, 0.5); }, 200);
+                },
+                error: function() {
+                    playTone(200, 'sawtooth', 0.15, 0.3);
+                    setTimeout(function() { playTone(150, 'sawtooth', 0.2, 0.3); }, 100);
+                },
+                hover: function() { playTone(1200, 'sine', 0.03, 0.2); },
+                whoosh: function() {
+                    playTone(400, 'sine', 0.15, 0.3);
+                    playNoise(0.1, 0.2);
+                },
+                ding: function() { playTone(1047, 'sine', 0.3, 0.4); },
+
+                // Fun sounds
+                boing: function() {
+                    var ctx = getContext();
+                    if (!enabled || !ctx) return;
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(150, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.1);
+                    osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.2);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    gain.gain.setValueAtTime(volume * 0.5, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                },
+                zap: function() {
+                    playTone(2000, 'sawtooth', 0.05, 0.3);
+                    playTone(100, 'sawtooth', 0.1, 0.2);
+                },
+                magic: function() {
+                    [523, 659, 784, 1047, 1319].forEach(function(f, i) {
+                        setTimeout(function() { playTone(f, 'sine', 0.15, 0.3); }, i * 50);
+                    });
+                },
+                coin: function() {
+                    playTone(988, 'square', 0.05, 0.3);
+                    setTimeout(function() { playTone(1319, 'square', 0.15, 0.3); }, 50);
+                },
+                powerup: function() {
+                    [262, 330, 392, 523, 659, 784].forEach(function(f, i) {
+                        setTimeout(function() { playTone(f, 'square', 0.08, 0.25); }, i * 60);
+                    });
+                },
+                glitch: function() {
+                    for (var i = 0; i < 5; i++) {
+                        setTimeout(function() {
+                            playTone(Math.random() * 2000 + 100, 'sawtooth', 0.03, 0.2);
+                        }, i * 30);
+                    }
+                },
+                laser: function() {
+                    var ctx = getContext();
+                    if (!enabled || !ctx) return;
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(1500, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.2);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    gain.gain.setValueAtTime(volume * 0.3, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.2);
+                },
+                explosion: function() {
+                    playNoise(0.3, 0.5);
+                    playTone(80, 'sine', 0.3, 0.4);
+                },
+                eldritch: function() {
+                    playTone(50, 'sine', 0.5, 0.4);
+                    playTone(53, 'sine', 0.5, 0.3);
+                    setTimeout(function() { playTone(47, 'sawtooth', 0.3, 0.2); }, 200);
+                },
+
+                // Settings
+                setEnabled: function(val) { enabled = val; localStorage.setItem('cflSoundsEnabled', val); },
+                setVolume: function(val) { volume = val; localStorage.setItem('cflSoundsVolume', val); },
+                isEnabled: function() { return enabled; },
+                getVolume: function() { return volume; }
+            };
+        })();
+
+        // =====================================================================
+        // ACHIEVEMENT SYSTEM
+        // =====================================================================
+        //
+        // PURPOSE: Gamification layer that tracks user interactions and
+        //          unlocks badges for various accomplishments.
+        //
+        // USAGE:
+        //   CFL.achievements.unlock('achievement-id')  - Manually unlock
+        //   CFL.achievements.trackClick('buttonType')  - Auto-called on clicks
+        //   CFL.achievements.getStats()               - { clicks, pages, buttonTypes }
+        //   CFL.achievements.isUnlocked('id')         - Check if unlocked
+        //
+        // ACHIEVEMENTS (16 total):
+        //   Progression: first-click, button-10, button-50, button-100
+        //   Special:     rainbow, void-gazer, corrupted, cleansed, all-buttons
+        //   Time-based:  night-owl, early-bird
+        //   Secrets:     sound-on, easter-egg, speed-demon, konami, explorer
+        //
+        // STORAGE:
+        //   localStorage.cflAchievements - { id: { time: timestamp }, ... }
+        //   localStorage.cflStats        - { clicks, pages[], buttonTypes[] }
+        //
+        // SEE: docs/ACHIEVEMENTS.md for full documentation
+        // =====================================================================
+        CFL.achievements = (function() {
+            var achievements = {
+                'first-click': { name: 'First Click', desc: 'Click your first button', icon: '🖱️', sound: 'coin', category: 'progression', progress: { current: 0, target: 1 } },
+                'button-10': { name: 'Button Masher', desc: 'Click 10 buttons', icon: '🔘', sound: 'success', category: 'progression', progress: { current: 0, target: 10 } },
+                'button-50': { name: 'Click Champion', desc: 'Click 50 buttons', icon: '🏆', sound: 'powerup', category: 'progression', progress: { current: 0, target: 50 } },
+                'button-100': { name: 'Button Legend', desc: 'Click 100 buttons', icon: '👑', sound: 'magic', category: 'progression', progress: { current: 0, target: 100 } },
+                'rainbow': { name: 'Taste the Rainbow', desc: 'Click a rainbow button', icon: '🌈', sound: 'magic', category: 'special' },
+                'void-gazer': { name: 'Void Gazer', desc: 'Visit The Void', icon: '👁️', sound: 'eldritch', category: 'special' },
+                'corrupted': { name: 'Corrupted Soul', desc: 'Reach 100% void corruption', icon: '🌀', sound: 'eldritch', category: 'special' },
+                'cleansed': { name: 'Purified', desc: 'Cleanse the void corruption', icon: '✨', sound: 'magic', category: 'special' },
+                'explorer': { name: 'Explorer', desc: 'Visit 5 different pages', icon: '🧭', sound: 'whoosh', category: 'progression', progress: { current: 0, target: 5 } },
+                'night-owl': { name: 'Night Owl', desc: 'Browse after midnight', icon: '🦉', sound: 'pop', category: 'time' },
+                'early-bird': { name: 'Early Bird', desc: 'Browse before 6am', icon: '🐦', sound: 'ding', category: 'time' },
+                'sound-on': { name: 'Audiophile', desc: 'Enable sound effects', icon: '🔊', sound: 'powerup', category: 'special' },
+                'easter-egg': { name: 'Egg Hunter', desc: 'Find a hidden easter egg', icon: '🥚', sound: 'coin', category: 'secret' },
+                'all-buttons': { name: 'Completionist', desc: 'Click every fun button type', icon: '⭐', sound: 'powerup', category: 'special', progress: { current: 0, target: 15 } },
+                'speed-demon': { name: 'Speed Demon', desc: 'Click 5 buttons in 2 seconds', icon: '⚡', sound: 'zap', category: 'secret' },
+                'konami': { name: 'Old School', desc: 'Enter the Konami code', icon: '🎮', sound: 'powerup', category: 'secret' }
+            };
+
+            var unlocked = JSON.parse(localStorage.getItem('cflAchievements') || '{}');
+            var stats = JSON.parse(localStorage.getItem('cflStats') || '{"clicks":0,"pages":[],"buttonTypes":[]}');
+            var recentClicks = [];
+
+            function save() {
+                localStorage.setItem('cflAchievements', JSON.stringify(unlocked));
+                localStorage.setItem('cflStats', JSON.stringify(stats));
+            }
+
+            function unlock(id) {
+                if (unlocked[id]) return false;
+                if (!achievements[id]) return false;
+
+                unlocked[id] = { time: Date.now() };
+                save();
+
+                var ach = achievements[id];
+                if (CFL.sounds && ach.sound) CFL.sounds[ach.sound]();
+
+                // Show achievement toast
+                if (CFL.toast) {
+                    CFL.toast({
+                        icon: ach.icon,
+                        title: '🏅 Achievement Unlocked!',
+                        message: ach.name + ' - ' + ach.desc,
+                        variant: 'party',
+                        iconAnim: 'bounce',
+                        duration: 5000
+                    });
+                }
+
+                console.log('%c🏅 Achievement: ' + ach.name, 'color: gold; font-size: 16px; font-weight: bold;');
+                return true;
+            }
+
+            function trackClick(buttonType) {
+                stats.clicks++;
+                recentClicks.push(Date.now());
+                recentClicks = recentClicks.filter(function(t) { return Date.now() - t < 2000; });
+
+                // Update progress for progression achievements
+                if (achievements['first-click']) achievements['first-click'].progress.current = Math.min(stats.clicks, 1);
+                if (achievements['button-10']) achievements['button-10'].progress.current = Math.min(stats.clicks, 10);
+                if (achievements['button-50']) achievements['button-50'].progress.current = Math.min(stats.clicks, 50);
+                if (achievements['button-100']) achievements['button-100'].progress.current = Math.min(stats.clicks, 100);
+                if (achievements['explorer']) achievements['explorer'].progress.current = Math.min(stats.pages.length, 5);
+                if (achievements['all-buttons']) achievements['all-buttons'].progress.current = Math.min(stats.buttonTypes.length, 15);
+
+                if (stats.clicks === 1) unlock('first-click');
+                if (stats.clicks >= 10) unlock('button-10');
+                if (stats.clicks >= 50) unlock('button-50');
+                if (stats.clicks >= 100) unlock('button-100');
+                if (recentClicks.length >= 5) unlock('speed-demon');
+
+                if (buttonType && stats.buttonTypes.indexOf(buttonType) === -1) {
+                    stats.buttonTypes.push(buttonType);
+                    if (buttonType === 'rainbow') unlock('rainbow');
+                    // Check for completionist (15+ unique button types)
+                    if (stats.buttonTypes.length >= 15) unlock('all-buttons');
+                }
+
+                save();
+            }
+
+            function trackPage(path) {
+                if (stats.pages.indexOf(path) === -1) {
+                    stats.pages.push(path);
+                    if (stats.pages.length >= 5) unlock('explorer');
+                }
+                if (path.includes('/void')) unlock('void-gazer');
+                save();
+            }
+
+            // Time-based achievements
+            var hour = new Date().getHours();
+            if (hour >= 0 && hour < 6) unlock('early-bird');
+            if (hour >= 0 && hour < 5) unlock('night-owl');
+
+            // Track current page
+            trackPage(window.location.pathname);
+
+            return {
+                unlock: unlock,
+                trackClick: trackClick,
+                trackPage: trackPage,
+                isUnlocked: function(id) { return !!unlocked[id]; },
+                getUnlocked: function() { return Object.keys(unlocked); },
+                getUnlockedData: function() { return unlocked; },
+                getStats: function() { return stats; },
+                getAll: function() { return achievements; },
+                getByCategory: function(category) {
+                    return Object.keys(achievements).filter(function(id) {
+                        return achievements[id].category === category;
+                    });
+                },
+                reset: function() {
+                    unlocked = {};
+                    stats = { clicks: 0, pages: [], buttonTypes: [] };
+                    // Reset progress
+                    Object.keys(achievements).forEach(function(id) {
+                        if (achievements[id].progress) {
+                            achievements[id].progress.current = 0;
+                        }
+                    });
+                    save();
+                }
+            };
+        })();
+
+        // =====================================================================
+        // KONAMI CODE EASTER EGG
+        // =====================================================================
+        //
+        // PURPOSE: Classic gaming easter egg that triggers rainbow mode
+        //
+        // THE CODE: ↑ ↑ ↓ ↓ ← → ← → B A
+        //
+        // WHAT HAPPENS:
+        //   1. body.konami-mode class added (10 seconds)
+        //   2. CFL.sounds.powerup() plays
+        //   3. Toast notification appears
+        //   4. Unlocks 'konami' and 'easter-egg' achievements
+        //
+        // SEE: docs/EASTER-EGGS.md for full documentation
+        // =====================================================================
+        (function konamiCode() {
+            var pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            var current = 0;
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === pattern[current]) {
+                    current++;
+                    if (current === pattern.length) {
+                        current = 0;
+                        CFL.achievements.unlock('konami');
+                        CFL.achievements.unlock('easter-egg');
+
+                        // Rainbow mode!
+                        document.body.classList.add('konami-mode');
+                        CFL.sounds.powerup();
+
+                        if (CFL.toast) {
+                            CFL.toast({
+                                icon: '🎮',
+                                title: '↑↑↓↓←→←→BA',
+                                message: 'KONAMI CODE ACTIVATED! Rainbow mode enabled!',
+                                variant: 'party',
+                                iconAnim: 'bounce',
+                                duration: 5000
+                            });
+                        }
+
+                        setTimeout(function() {
+                            document.body.classList.remove('konami-mode');
+                        }, 10000);
+                    }
+                } else {
+                    current = 0;
+                }
+            });
+        })();
+
+        // =====================================================================
+        // AUTO-ATTACH SOUNDS TO BUTTONS
+        // =====================================================================
+        //
+        // PURPOSE: Automatically plays contextual sounds when buttons are clicked
+        //
+        // HOW IT WORKS:
+        //   - Listens for clicks on any .cfl-btn element
+        //   - Checks button's CSS classes to determine which sound to play
+        //   - Also tracks button type for achievement system
+        //
+        // SOUND MAPPING:
+        //   --rainbow, --holo, --aurora    → magic()
+        //   --bouncy, --rubber             → boing()
+        //   --neon, --electric             → zap()
+        //   --glitch, --vhs, --static      → glitch()
+        //   --3d, --pixel                  → coin()
+        //   --eldritch                     → eldritch()
+        //   --fire, --lava                 → explosion()
+        //   (default)                      → click()
+        //
+        // SEE: docs/SOUND-SYSTEM.md for full sound list
+        // =====================================================================
+        (function attachButtonSounds() {
+            document.addEventListener('click', function(e) {
+                var btn = e.target.closest('.cfl-btn');
+                if (!btn) return;
+
+                // Track achievement
+                var btnClass = btn.className;
+                var buttonType = null;
+                var match = btnClass.match(/cfl-btn--(\w+)/);
+                if (match) buttonType = match[1];
+                CFL.achievements.trackClick(buttonType);
+
+                // Play appropriate sound
+                if (btnClass.includes('--rainbow')) { CFL.sounds.magic(); }
+                else if (btnClass.includes('--bouncy') || btnClass.includes('--rubber')) { CFL.sounds.boing(); }
+                else if (btnClass.includes('--neon') || btnClass.includes('--electric')) { CFL.sounds.zap(); }
+                else if (btnClass.includes('--glitch') || btnClass.includes('--vhs') || btnClass.includes('--static')) { CFL.sounds.glitch(); }
+                else if (btnClass.includes('--3d') || btnClass.includes('--pixel')) { CFL.sounds.coin(); }
+                else if (btnClass.includes('--eldritch')) { CFL.sounds.eldritch(); }
+                else if (btnClass.includes('--confetti') || btnClass.includes('--party')) { CFL.sounds.powerup(); }
+                else if (btnClass.includes('--holo') || btnClass.includes('--aurora')) { CFL.sounds.magic(); }
+                else if (btnClass.includes('--portal') || btnClass.includes('--spin')) { CFL.sounds.whoosh(); }
+                else if (btnClass.includes('--fire') || btnClass.includes('--lava')) { CFL.sounds.explosion(); }
+                else if (btnClass.includes('--danger')) { CFL.sounds.error(); }
+                else if (btnClass.includes('--success')) { CFL.sounds.success(); }
+                else { CFL.sounds.click(); }
+            });
+
+            // Hover sounds (subtle)
+            document.addEventListener('mouseover', function(e) {
+                var btn = e.target.closest('.cfl-btn');
+                if (btn && CFL.sounds.isEnabled()) {
+                    // Only play hover sound occasionally to avoid annoyance
+                    if (Math.random() > 0.7) CFL.sounds.hover();
+                }
+            });
+        })();
+
+        // =====================================================================
+        // UNIFIED FLOATING ACTION BAR
+        // =====================================================================
+        //
+        // PURPOSE: Single expandable FAB that consolidates all floating buttons
+        //
+        // ELEMENTS:
+        //   - Main FAB (+) - Expands/collapses the bar
+        //   - Settings (⚙️) - Opens font/color settings widget
+        //   - Achievements (🏆) - Opens achievements panel
+        //   - Sound (🔊/🔇) - Toggles sound effects
+        //
+        // LAYOUT: Horizontal bar at bottom-right, expands leftward
+        //
+        // SEE: docs/FAB-BAR.md for full documentation
+        // =====================================================================
+        (function createUnifiedFabBar() {
+            // =================================================================
+            // CREATE DOM STRUCTURE
+            // =================================================================
+
+            // Main container: flex row-reverse layout, fixed bottom-right
+            var fabBar = document.createElement('div');
+            fabBar.className = 'cfl-fab-bar';
+            fabBar.id = 'cfl-fab-bar';
+
+            // Main toggle button: + icon that rotates 45° when open
+            // This is the primary entry point - always visible
+            var mainBtn = document.createElement('button');
+            mainBtn.className = 'cfl-fab-bar__main';
+            mainBtn.innerHTML = '<span class="cfl-fab-bar__main-icon">+</span>';
+            mainBtn.title = 'Quick actions';
+            mainBtn.setAttribute('aria-label', 'Toggle quick actions menu');
+
+            // Container for action buttons: hidden by default, slides in when open
+            // Uses row-reverse so items appear left-to-right: [Settings] [Achievements] [Sound] [+]
+            var itemsContainer = document.createElement('div');
+            itemsContainer.className = 'cfl-fab-bar__items';
+
+            // Settings button (⚙️)
+            var settingsItem = document.createElement('button');
+            settingsItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--settings';
+            settingsItem.innerHTML = '⚙️<span class="cfl-fab-bar__label">Settings</span>';
+            settingsItem.title = 'Site settings';
+
+            // Achievements button (🏆)
+            var achItem = document.createElement('button');
+            achItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--achievements';
+            achItem.innerHTML = '🏆<span class="cfl-fab-bar__label">Achievements</span>';
+            achItem.title = 'Achievements';
+
+            // Sound toggle button (🔊)
+            var soundItem = document.createElement('button');
+            soundItem.className = 'cfl-fab-bar__item cfl-fab-bar__item--sound';
+            soundItem.innerHTML = (CFL.sounds.isEnabled() ? '🔊' : '🔇') + '<span class="cfl-fab-bar__label">Sound</span>';
+            soundItem.setAttribute('data-enabled', CFL.sounds.isEnabled());
+            soundItem.title = 'Toggle sounds';
+
+            // Append items to container (reverse order for row-reverse layout)
+            itemsContainer.appendChild(settingsItem);
+            itemsContainer.appendChild(achItem);
+            itemsContainer.appendChild(soundItem);
+
+            // Append to FAB bar
+            fabBar.appendChild(mainBtn);
+            fabBar.appendChild(itemsContainer);
+            document.body.appendChild(fabBar);
+
+            // =================================================================
+            // EVENT HANDLERS
+            // =================================================================
+
+            // Main toggle: Opens/closes the FAB bar
+            // CSS handles the animation (items slide in, icon rotates)
+            mainBtn.addEventListener('click', function() {
+                fabBar.classList.toggle('cfl-fab-bar--open');
+                CFL.sounds.click();  // Audio feedback
+            });
+
+            // Click outside to close: Standard UX pattern
+            // Prevents accidental clicks from keeping bar open
+            document.addEventListener('click', function(e) {
+                if (!fabBar.contains(e.target) && fabBar.classList.contains('cfl-fab-bar--open')) {
+                    fabBar.classList.remove('cfl-fab-bar--open');
+                }
+            });
+
+            // =================================================================
+            // SETTINGS MENU (replaces orbit)
+            // =================================================================
+
+            // Create the settings menu once
+            var settingsMenu = document.createElement('div');
+            settingsMenu.className = 'cfl-settings-menu';
+            settingsMenu.id = 'cfl-settings-menu';
+            settingsMenu.innerHTML = [
+                '<div class="cfl-settings-menu__header">',
+                '  <span>⚙️</span> Settings',
+                '</div>',
+                '<ul class="cfl-settings-menu__list">',
+                '  <li><button class="cfl-settings-menu__item" data-panel="fonts">',
+                '    <span class="cfl-settings-menu__icon">Aa</span>',
+                '    <span class="cfl-settings-menu__label">Fonts</span>',
+                '  </button></li>',
+                '  <li><button class="cfl-settings-menu__item" data-panel="colors">',
+                '    <span class="cfl-settings-menu__icon">🎨</span>',
+                '    <span class="cfl-settings-menu__label">Colors</span>',
+                '  </button></li>',
+                '  <li class="cfl-settings-menu__divider"></li>',
+                '  <li><button class="cfl-settings-menu__item" data-action="quick-font" data-font="fraunces">',
+                '    <span class="cfl-settings-menu__icon">🫧</span>',
+                '    <span class="cfl-settings-menu__label">Soft Serif</span>',
+                '  </button></li>',
+                '  <li><button class="cfl-settings-menu__item" data-action="quick-font" data-font="bricolage">',
+                '    <span class="cfl-settings-menu__icon">✨</span>',
+                '    <span class="cfl-settings-menu__label">Playful Sans</span>',
+                '  </button></li>',
+                '  <li class="cfl-settings-menu__divider"></li>',
+                '  <li><button class="cfl-settings-menu__item" data-panel="scope">',
+                '    <span class="cfl-settings-menu__icon">🌐</span>',
+                '    <span class="cfl-settings-menu__label">Scope</span>',
+                '  </button></li>',
+                '  <li><button class="cfl-settings-menu__item" data-panel="reset">',
+                '    <span class="cfl-settings-menu__icon">↺</span>',
+                '    <span class="cfl-settings-menu__label">Reset</span>',
+                '  </button></li>',
+                '</ul>'
+            ].join('');
+            document.body.appendChild(settingsMenu);
+
+            // Settings button - toggle the new settings menu
+            settingsItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var isOpen = settingsMenu.classList.contains('is-open');
+
+                // Close achievements panel if open
+                var achPanel = document.querySelector('.cfl-achievements-panel');
+                if (achPanel) achPanel.classList.remove('is-open');
+
+                // Toggle settings menu
+                settingsMenu.classList.toggle('is-open');
+                fabBar.classList.remove('cfl-fab-bar--open');
+                CFL.sounds.pop();
+            });
+
+            // Close settings menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!settingsMenu.contains(e.target) &&
+                    !settingsItem.contains(e.target) &&
+                    settingsMenu.classList.contains('is-open')) {
+                    settingsMenu.classList.remove('is-open');
+                }
+            });
+
+            // Sound toggle
+            soundItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var newState = !CFL.sounds.isEnabled();
+                CFL.sounds.setEnabled(newState);
+                soundItem.innerHTML = (newState ? '🔊' : '🔇') + '<span class="cfl-fab-bar__label">Sound</span>';
+                soundItem.setAttribute('data-enabled', newState);
+                if (newState) {
+                    CFL.sounds.success();
+                    CFL.achievements.unlock('sound-on');
+                }
+            });
+
+            // =================================================================
+            // CREATE ACHIEVEMENTS PANEL
+            // =================================================================
+            // Enhanced UI with category tabs, progress indicators, and timestamps
+            // Structure: Header (title + close) > Tabs > List > Stats footer
+            var panel = document.createElement('div');
+            panel.className = 'cfl-achievements-panel';
+            panel.innerHTML = [
+                '<div class="cfl-achievements-header">',
+                '  <div class="cfl-achievements-header__title">',
+                '    <span>🏆</span>',
+                '    <div>',
+                '      <div class="cfl-achievements-header__main">Achievements</div>',
+                '      <div class="cfl-achievements-header__subtitle">Unlock them all!</div>',
+                '    </div>',
+                '  </div>',
+                '  <button class="close-panel" aria-label="Close">✕</button>',
+                '</div>',
+                '<div class="cfl-achievements-tabs">',
+                '  <button class="cfl-achievements-tab active" data-category="all">All</button>',
+                '  <button class="cfl-achievements-tab" data-category="progression">📈 Progression</button>',
+                '  <button class="cfl-achievements-tab" data-category="special">⭐ Special</button>',
+                '  <button class="cfl-achievements-tab" data-category="time">⏰ Time</button>',
+                '  <button class="cfl-achievements-tab" data-category="secret">🔒 Secrets</button>',
+                '</div>',
+                '<div class="cfl-achievements-list"></div>',
+                '<div class="cfl-achievements-stats"></div>'
+            ].join('');
+            document.body.appendChild(panel);
+
+            var currentCategory = 'all';
+
+            function formatTime(timestamp) {
+                if (!timestamp) return '';
+                var date = new Date(timestamp);
+                var now = new Date();
+                var diff = now - date;
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                if (days === 0) return 'Today';
+                if (days === 1) return 'Yesterday';
+                if (days < 7) return days + ' days ago';
+                return date.toLocaleDateString();
+            }
+
+            // Update the achievements panel with current data
+            // Handles filtering, sorting, progress display, and stats
+            function updatePanel() {
+                var list = panel.querySelector('.cfl-achievements-list');
+                var statsEl = panel.querySelector('.cfl-achievements-stats');
+                var all = CFL.achievements.getAll();
+                var unlocked = CFL.achievements.getUnlocked();
+                var unlockedData = CFL.achievements.getUnlockedData();
+                var achStats = CFL.achievements.getStats();
+
+                // Filter achievements by selected category
+                var achievementIds = Object.keys(all);
+                if (currentCategory !== 'all') {
+                    achievementIds = achievementIds.filter(function(id) {
+                        return all[id].category === currentCategory;
+                    });
+                }
+
+                // Sort: unlocked first, then by unlock time (newest first), then locked
+                achievementIds.sort(function(a, b) {
+                    var aUnlocked = unlocked.indexOf(a) !== -1;
+                    var bUnlocked = unlocked.indexOf(b) !== -1;
+                    if (aUnlocked && !bUnlocked) return -1;
+                    if (!aUnlocked && bUnlocked) return 1;
+                    if (aUnlocked && bUnlocked) {
+                        return (unlockedData[b].time || 0) - (unlockedData[a].time || 0);
+                    }
+                    return 0;
+                });
+
+                list.innerHTML = '';
+                if (achievementIds.length === 0) {
+                    list.innerHTML = '<div class="cfl-achievements-empty">No achievements in this category</div>';
+                } else {
+                    achievementIds.forEach(function(id) {
+                        var ach = all[id];
+                        var isUnlocked = unlocked.indexOf(id) !== -1;
+                        var unlockTime = unlockedData[id] ? unlockedData[id].time : null;
+                        var progress = ach.progress;
+                        var progressPercent = progress ? Math.min((progress.current / progress.target) * 100, 100) : 0;
+
+                        var div = document.createElement('div');
+                        div.className = 'cfl-achievement ' + (isUnlocked ? 'cfl-achievement--unlocked' : 'cfl-achievement--locked');
+                        div.setAttribute('data-id', id);
+
+                        var progressBar = '';
+                        if (progress && !isUnlocked) {
+                            progressBar = '<div class="cfl-achievement__progress"><div class="cfl-achievement__progress-bar" style="width: ' + progressPercent + '%"></div><span class="cfl-achievement__progress-text">' + progress.current + '/' + progress.target + '</span></div>';
+                        }
+
+                        var lockIcon = isUnlocked ? '' : '<div class="cfl-achievement__lock">🔒</div>';
+                        var timestamp = isUnlocked && unlockTime ? '<div class="cfl-achievement__time">' + formatTime(unlockTime) + '</div>' : '';
+
+                        div.innerHTML = [
+                            '<div class="cfl-achievement__icon">' + ach.icon + lockIcon + '</div>',
+                            '<div class="cfl-achievement__info">',
+                            '  <div class="cfl-achievement__name">' + ach.name + '</div>',
+                            '  <div class="cfl-achievement__desc">' + (isUnlocked ? ach.desc : '???') + '</div>',
+                            progressBar,
+                            timestamp,
+                            '</div>'
+                        ].join('');
+
+                        list.appendChild(div);
+                    });
+                }
+
+                var categoryCount = currentCategory === 'all' ? achievementIds.length : achievementIds.length;
+                var categoryUnlocked = achievementIds.filter(function(id) { return unlocked.indexOf(id) !== -1; }).length;
+                statsEl.innerHTML = '<div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Category:</span><span>' + categoryUnlocked + '/' + categoryCount + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Total:</span><span>' + unlocked.length + '/' + Object.keys(all).length + '</span></div><div class="cfl-achievements-stats__item"><span class="cfl-achievements-stats__label">Clicks:</span><span>' + achStats.clicks + '</span></div>';
+            }
+
+            // =================================================================
+            // TAB SWITCHING
+            // =================================================================
+            // Handle category filter tab clicks
+            panel.querySelectorAll('.cfl-achievements-tab').forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    panel.querySelectorAll('.cfl-achievements-tab').forEach(function(t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    currentCategory = tab.getAttribute('data-category');
+                    updatePanel();
+                    CFL.sounds.pop();
+                });
+            });
+
+            // =================================================================
+            // SCROLL LOCK MANAGEMENT
+            // =================================================================
+            // Prevent body scrolling when panel is open for better UX
+            function lockScroll() {
+                document.body.style.overflow = 'hidden';
+            }
+
+            function unlockScroll() {
+                document.body.style.overflow = '';
+            }
+
+            // =================================================================
+            // PANEL TOGGLE HANDLERS
+            // =================================================================
+            // Toggle panel visibility and manage scroll lock
+            achItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var wasOpen = panel.classList.contains('is-open');
+                panel.classList.toggle('is-open');
+                if (panel.classList.contains('is-open')) {
+                    updatePanel();
+                    lockScroll();
+                    CFL.sounds.pop();
+                } else {
+                    unlockScroll();
+                }
+                fabBar.classList.remove('cfl-fab-bar--open');
+            });
+
+            panel.querySelector('.close-panel').addEventListener('click', function() {
+                panel.classList.remove('is-open');
+                unlockScroll();
+            });
+
+            // Close panel and unlock scroll when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!panel.contains(e.target) &&
+                    !achItem.contains(e.target) &&
+                    panel.classList.contains('is-open')) {
+                    panel.classList.remove('is-open');
+                    unlockScroll();
+                }
+            });
+
+            // Check for unlocked achievements and update notification badge
+            function checkNewAchievements() {
+                var unlocked = CFL.achievements.getUnlocked();
+                if (unlocked.length > 0) {
+                    achItem.setAttribute('data-new', 'true');
+                }
+                // Update panel if it's open
+                if (panel.classList.contains('is-open')) {
+                    updatePanel();
+                }
+            }
+            checkNewAchievements();
+
+            // Hook into achievement unlock system to auto-refresh panel
+            // Wraps original unlock function to trigger panel update
+            var originalUnlock = CFL.achievements.unlock;
+            CFL.achievements.unlock = function(id) {
+                var result = originalUnlock.call(this, id);
+                if (result) {
+                    setTimeout(checkNewAchievements, 100);
+                }
+                return result;
+            };
+        })();
+
+        // =====================================================================
+        // EASTER EGG HUNT
+        // =====================================================================
+        //
+        // PURPOSE: Hides collectible emoji around the page for users to find
+        //
+        // HOW IT WORKS:
+        //   - 5 eggs with fixed positions (but only 20% chance to spawn each)
+        //   - Found eggs are tracked in localStorage (don't respawn)
+        //   - Clicking an egg triggers sound, achievement, and toast
+        //
+        // EGGS:
+        //   🥚 (5%, 30%)   🐣 (95%, 60%)   🌟 (10%, 85%)
+        //   🍀 (90%, 15%)  🎁 (50%, 95%)
+        //
+        // STYLING:
+        //   - 10% opacity by default (nearly invisible)
+        //   - 100% opacity + grow + rotate on hover
+        //   - Disappears with animation when clicked
+        //
+        // STORAGE:
+        //   localStorage.cflFoundEggs - JSON array of found indices [0,2,4]
+        //
+        // SEE: docs/EASTER-EGGS.md for full documentation
+        // =====================================================================
+        (function createEasterEggs() {
+            var eggs = [
+                { emoji: '🥚', x: '5%', y: '30%' },
+                { emoji: '🐣', x: '95%', y: '60%' },
+                { emoji: '🌟', x: '10%', y: '85%' },
+                { emoji: '🍀', x: '90%', y: '15%' },
+                { emoji: '🎁', x: '50%', y: '95%' }
+            ];
+
+            var foundEggs = JSON.parse(localStorage.getItem('cflFoundEggs') || '[]');
+
+            eggs.forEach(function(egg, index) {
+                if (foundEggs.indexOf(index) !== -1) return; // Already found
+
+                // Only show egg 20% of the time on page load
+                if (Math.random() > 0.2) return;
+
+                var eggEl = document.createElement('div');
+                eggEl.className = 'easter-egg';
+                eggEl.innerHTML = egg.emoji;
+                eggEl.style.left = egg.x;
+                eggEl.style.top = egg.y;
+                document.body.appendChild(eggEl);
+
+                eggEl.addEventListener('click', function() {
+                    foundEggs.push(index);
+                    localStorage.setItem('cflFoundEggs', JSON.stringify(foundEggs));
+                    eggEl.classList.add('easter-egg--found');
+
+                    CFL.sounds.coin();
+                    CFL.achievements.unlock('easter-egg');
+
+                    if (CFL.toast) {
+                        CFL.toast({
+                            icon: egg.emoji,
+                            title: 'Easter Egg Found!',
+                            message: 'You found a hidden ' + egg.emoji + '! ' + (5 - foundEggs.length) + ' more to find!',
+                            variant: 'party',
+                            iconAnim: 'bounce'
+                        });
+                    }
+
+                    setTimeout(function() { eggEl.remove(); }, 500);
+                });
+            });
+        })();
+
+        // Add copy buttons to code snippets
+        var copyIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        var checkIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+        document.querySelectorAll('.code-snippet__content').forEach(function(content) {
+            var code = content.querySelector('code');
+            if (code && !content.querySelector('.code-snippet__copy')) {
+                var btn = document.createElement('button');
+                btn.className = 'code-snippet__copy';
+                btn.innerHTML = copyIcon + ' Copy';
+                content.appendChild(btn);
+
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(code.textContent.trim()).then(function() {
+                        btn.classList.add('code-snippet__copy--copied');
+                        btn.innerHTML = checkIcon + ' Copied';
+                        setTimeout(function() {
+                            btn.classList.remove('code-snippet__copy--copied');
+                            btn.innerHTML = copyIcon + ' Copy';
+                        }, 2000);
+                    });
+                });
+            }
+        });
+
+        // Search clear button functionality
+        document.querySelectorAll('.cfl-search__clear').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var input = this.parentElement.querySelector('.cfl-search__input');
+                if (input) {
+                    input.value = '';
+                    input.focus();
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            });
+        });
+
+        // Tabs functionality
+        document.querySelectorAll('.cfl-tabs').forEach(function(tabContainer) {
+            var tabs = tabContainer.querySelectorAll('.cfl-tabs__tab');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var targetId = this.getAttribute('data-tab');
+
+                    // Deactivate all tabs and panels
+                    tabContainer.querySelectorAll('.cfl-tabs__tab').forEach(function(t) {
+                        t.classList.remove('cfl-tabs__tab--active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tabContainer.querySelectorAll('.cfl-tabs__panel').forEach(function(p) {
+                        p.classList.remove('cfl-tabs__panel--active');
+                        p.setAttribute('hidden', '');
+                    });
+
+                    // Activate clicked tab and its panel
+                    this.classList.add('cfl-tabs__tab--active');
+                    this.setAttribute('aria-selected', 'true');
+                    var panel = tabContainer.querySelector('[data-panel="' + targetId + '"]');
+                    if (panel) {
+                        panel.classList.add('cfl-tabs__panel--active');
+                        panel.removeAttribute('hidden');
+                    }
+                });
+            });
+        });
+
+        // Toast notification system
+        window.CFL = window.CFL || {};
+
+        // Create toast container if it doesn't exist
+        if (!document.querySelector('.cfl-toast-container')) {
+            var container = document.createElement('div');
+            container.className = 'cfl-toast-container';
+            document.body.appendChild(container);
+        }
+
+        // Toast function
+        window.CFL.toast = function(options) {
+            var container = document.querySelector('.cfl-toast-container');
+            var toast = document.createElement('div');
+            toast.className = 'cfl-toast cfl-toast--' + (options.variant || 'info');
+
+            var iconAnim = options.iconAnim || 'pop';
+            toast.innerHTML =
+                '<span class="cfl-toast__icon cfl-toast__icon--' + iconAnim + '">' + (options.icon || '✨') + '</span>' +
+                '<div class="cfl-toast__content">' +
+                    '<div class="cfl-toast__title">' + (options.title || 'Notification') + '</div>' +
+                    '<div class="cfl-toast__message">' + (options.message || '') + '</div>' +
+                '</div>';
+
+            container.appendChild(toast);
+
+            // Auto remove after duration
+            setTimeout(function() {
+                toast.classList.add('cfl-toast--leaving');
+                setTimeout(function() {
+                    toast.remove();
+                }, 300);
+            }, options.duration || 3000);
+        };
+
+        // Fun toast presets
+        window.CFL.toasts = {
+            primary: function() {
+                CFL.toast({ icon: '🚀', title: 'Blast off!', message: 'Primary action initiated. Ready for launch!', variant: 'info', iconAnim: 'bounce' });
+            },
+            secondary: function() {
+                CFL.toast({ icon: '🎭', title: 'Behind the scenes', message: 'Secondary actions are the unsung heroes.', variant: 'info', iconAnim: 'pop' });
+            },
+            ghost: function() {
+                CFL.toast({ icon: '👻', title: 'Boo!', message: 'Ghost buttons are spooky subtle.', variant: 'info', iconAnim: 'shake' });
+            },
+            danger: function() {
+                CFL.toast({ icon: '🔥', title: 'Danger zone!', message: 'Handle with care. This is serious business.', variant: 'danger', iconAnim: 'shake' });
+            },
+            success: function() {
+                CFL.toast({ icon: '🎉', title: 'Woohoo!', message: 'Everything worked perfectly!', variant: 'success', iconAnim: 'bounce' });
+            },
+            small: function() {
+                CFL.toast({ icon: '🐜', title: 'Small but mighty!', message: 'Size doesn\'t matter, impact does.', variant: 'info', iconAnim: 'pop' });
+            },
+            medium: function() {
+                CFL.toast({ icon: '🎯', title: 'Right on target!', message: 'The Goldilocks zone of buttons.', variant: 'info', iconAnim: 'pop' });
+            },
+            large: function() {
+                CFL.toast({ icon: '🦖', title: 'Go big!', message: 'Large and in charge. No squinting required!', variant: 'info', iconAnim: 'bounce' });
+            },
+            rocket: function() {
+                CFL.toast({ icon: '🚀', title: '3... 2... 1... Liftoff!', message: 'Houston, we have ignition!', variant: 'party', iconAnim: 'bounce' });
+            },
+            pizza: function() {
+                CFL.toast({ icon: '🍕', title: 'Pizza time!', message: 'You deserve a slice. Great work!', variant: 'warning', iconAnim: 'spin' });
+            },
+            unicorn: function() {
+                CFL.toast({ icon: '🦄', title: 'Magical!', message: 'Unicorns approve of this action.', variant: 'party', iconAnim: 'bounce' });
+            },
+            coffee: function() {
+                CFL.toast({ icon: '☕', title: 'Coffee break!', message: 'Refueling creativity levels...', variant: 'warning', iconAnim: 'pop' });
+            },
+            sparkles: function() {
+                CFL.toast({ icon: '✨', title: 'Sparkle sparkle!', message: 'Adding a little magic to your day.', variant: 'party', iconAnim: 'spin' });
+            },
+            music: function() {
+                CFL.toast({ icon: '🎵', title: 'Feel the beat!', message: 'Dancing through the code...', variant: 'info', iconAnim: 'bounce' });
+            },
+            brain: function() {
+                CFL.toast({ icon: '🧠', title: 'Big brain time!', message: '200 IQ play detected.', variant: 'success', iconAnim: 'pop' });
+            },
+            fire: function() {
+                CFL.toast({ icon: '🔥', title: 'This is fire!', message: 'Absolutely blazing performance!', variant: 'danger', iconAnim: 'shake' });
+            },
+            party: function() {
+                CFL.toast({ icon: '🎊', title: 'Party mode!', message: 'Let\'s celebrate! Confetti everywhere!', variant: 'party', iconAnim: 'bounce' });
+            },
+            robot: function() {
+                CFL.toast({ icon: '🤖', title: 'Beep boop!', message: 'Automation activated. Humans optional.', variant: 'info', iconAnim: 'shake' });
+            },
+            heart: function() {
+                CFL.toast({ icon: '❤️', title: 'Sending love!', message: 'You\'re doing amazing!', variant: 'danger', iconAnim: 'pop' });
+            },
+            lightning: function() {
+                CFL.toast({ icon: '⚡', title: 'Lightning fast!', message: 'Speed is your superpower!', variant: 'warning', iconAnim: 'shake' });
+            },
+            cat: function() {
+                CFL.toast({ icon: '🐱', title: 'Meow!', message: 'Cats approve. That\'s the highest honor.', variant: 'info', iconAnim: 'bounce' });
+            },
+            dog: function() {
+                CFL.toast({ icon: '🐕', title: 'Good human!', message: 'Tail wagging intensifies!', variant: 'success', iconAnim: 'shake' });
+            }
+        };
+
+        // Slider value display
+        document.querySelectorAll('.cfl-slider__input').forEach(function(slider) {
+            var valueDisplay = slider.closest('.cfl-slider__wrapper')?.querySelector('.cfl-slider__value');
+            if (valueDisplay) {
+                slider.addEventListener('input', function() {
+                    valueDisplay.textContent = this.value;
+                });
+            }
+        });
+
+        // Segmented control switching
+        document.querySelectorAll('.cfl-segmented').forEach(function(segmented) {
+            segmented.querySelectorAll('.cfl-segmented__btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    segmented.querySelectorAll('.cfl-segmented__btn').forEach(function(b) {
+                        b.classList.remove('cfl-segmented__btn--active');
+                    });
+                    this.classList.add('cfl-segmented__btn--active');
+                });
+            });
+        });
+
+        // Rating stars interaction
+        document.querySelectorAll('.cfl-rating').forEach(function(rating) {
+            var stars = rating.querySelectorAll('.cfl-rating__star');
+            stars.forEach(function(star, index) {
+                star.addEventListener('click', function() {
+                    stars.forEach(function(s, i) {
+                        if (i <= index) {
+                            s.classList.add('cfl-rating__star--filled');
+                        } else {
+                            s.classList.remove('cfl-rating__star--filled');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Color picker value display
+        document.querySelectorAll('.cfl-color-picker__input').forEach(function(picker) {
+            var valueDisplay = picker.closest('.cfl-color-picker')?.querySelector('.cfl-color-picker__value');
+            if (valueDisplay) {
+                picker.addEventListener('input', function() {
+                    valueDisplay.textContent = this.value;
+                });
+            }
+        });
+
+        // File upload drag and drop
+        document.querySelectorAll('.cfl-upload').forEach(function(upload) {
+            upload.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('cfl-upload--dragover');
+            });
+            upload.addEventListener('dragleave', function() {
+                this.classList.remove('cfl-upload--dragover');
+            });
+            upload.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('cfl-upload--dragover');
+                var files = e.dataTransfer.files;
+                if (files.length) {
+                    CFL.toast({ icon: '📁', title: 'Files received!', message: files.length + ' file(s) dropped', variant: 'success', iconAnim: 'bounce' });
+                }
+            });
+        });
+
+        // Floating settings widget (font switcher + scope)
+        (function initSettingsWidget() {
+            var settings = document.getElementById('cfl-settings');
+            if (!settings) return;
+
+            var fab = settings.querySelector('.cfl-settings__fab');
+            var orbitButtons = settings.querySelectorAll('.cfl-settings__orbit-btn');
+            var panels = settings.querySelectorAll('.cfl-settings__panel');
+            var fontSelect = document.getElementById('cfl-font-select');
+            var scopeToggle = document.getElementById('cfl-settings-scope');
+            var debugToggle = document.getElementById('cfl-settings-debug');
+            var resetButton = settings.querySelector('[data-action="reset-scope"]');
+            var scrim = settings.querySelector('[data-scrim]');
+            var swatches = settings.querySelectorAll('.cfl-settings__swatch');
+            var dismissBtn = document.getElementById('cfl-settings-dismiss');
+            var navSettingsBtn = document.getElementById('cfl-nav-settings-btn');
+
+            var STATE_KEYS = {
+                scope: 'cflSettingsScope',
+                site: 'cflSettingsSite',
+                pagePrefix: 'cflSettingsPage:',
+                hidden: 'cflSettingsHidden'
+            };
+
+            var fonts = {
+                default: { heading: "'Georgia', 'Times New Roman', serif", body: "'Georgia', 'Times New Roman', serif", ui: "'Inter', system-ui, sans-serif" },
+                fraunces: { heading: "'Fraunces', serif", body: "'Fraunces', serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
+                caprasimo: { heading: "'Caprasimo', serif", body: "'Caprasimo', serif", ui: "'Nunito', system-ui, sans-serif" },
+                chonburi: { heading: "'Chonburi', serif", body: "'Chonburi', serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
+                'dm-serif': { heading: "'DM Serif Display', serif", body: "'DM Serif Display', serif", ui: "'Nunito', system-ui, sans-serif" },
+                abril: { heading: "'Abril Fatface', serif", body: "'Abril Fatface', serif", ui: "'Nunito', system-ui, sans-serif" },
+                bricolage: { heading: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif", body: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif", ui: "'Bricolage Grotesque', 'Inter', system-ui, sans-serif" },
+                calistoga: { heading: "'Calistoga', serif", body: "'Calistoga', serif", ui: "'Nunito', system-ui, sans-serif" },
+                varela: { heading: "'Varela Round', 'Inter', system-ui, sans-serif", body: "'Varela Round', 'Inter', system-ui, sans-serif", ui: "'Varela Round', 'Inter', system-ui, sans-serif" },
+                fredoka: { heading: "'Fredoka', 'Nunito', system-ui, sans-serif", body: "'Fredoka', 'Nunito', system-ui, sans-serif", ui: "'Fredoka', 'Nunito', system-ui, sans-serif" },
+                nunito: { heading: "'Nunito', system-ui, sans-serif", body: "'Nunito', system-ui, sans-serif", ui: "'Nunito', system-ui, sans-serif" }
+            };
+
+            var themes = {
+                default: {},
+                teal: {
+                    '--accent': '#0f766e',
+                    '--accent-hover': '#115e59',
+                    '--accent-secondary': '#0ea5e9',
+                    '--accent-secondary-hover': '#0284c7'
+                },
+                amber: {
+                    '--accent': '#d97706',
+                    '--accent-hover': '#b45309',
+                    '--accent-secondary': '#f59e0b',
+                    '--accent-secondary-hover': '#d97706'
+                },
+                plum: {
+                    '--accent': '#9333ea',
+                    '--accent-hover': '#7e22ce',
+                    '--accent-secondary': '#22c55e',
+                    '--accent-secondary-hover': '#16a34a'
+                }
+            };
+
+            var state = {
+                scope: 'site',
+                font: 'default',
+                theme: 'default',
+                debug: true,
+                openPanel: null
+            };
+
+            function logger() {
+                if (!state.debug) return;
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift('[CFL settings]');
+                console.info.apply(console, args);
+            }
+
+            function storageForScope(scope) {
+                return scope === 'site' ? localStorage : sessionStorage;
+            }
+
+            function scopeKey(scope) {
+                return scope === 'site' ? STATE_KEYS.site : STATE_KEYS.pagePrefix + window.location.pathname;
+            }
+
+            function readScopePreference() {
+                var savedScope = localStorage.getItem(STATE_KEYS.scope);
+                if (savedScope === 'page' || savedScope === 'site') {
+                    state.scope = savedScope;
+                }
+                if (scopeToggle) {
+                    scopeToggle.checked = state.scope === 'site';
+                }
+            }
+
+            function readDebugPreference() {
+                var saved = localStorage.getItem('cflSettingsDebug');
+                state.debug = saved === null ? true : saved !== 'false';
+                if (debugToggle) debugToggle.checked = state.debug;
+            }
+
+            function readFontPreference() {
+                var storage = storageForScope(state.scope);
+                var key = scopeKey(state.scope);
+                var stored = null;
+                try {
+                    stored = JSON.parse(storage.getItem(key));
+                } catch (e) {
+                    logger('Could not parse stored settings', e);
+                }
+                state.font = stored && stored.font && fonts[stored.font] ? stored.font : 'default';
+                state.theme = stored && stored.theme && themes[stored.theme] ? stored.theme : 'default';
+                if (fontSelect) fontSelect.value = state.font;
+            }
+
+            function applyFont() {
+                var chosen = fonts[state.font] || fonts.default;
+                var root = document.documentElement;
+                root.style.setProperty('--font-heading', chosen.heading);
+                root.style.setProperty('--font-body', chosen.body);
+                root.style.setProperty('--font-ui', chosen.ui);
+                logger('Applied font', state.font, 'scope', state.scope);
+            }
+
+            function updateActiveSwatch() {
+                swatches.forEach(function(swatch) {
+                    var t = swatch.getAttribute('data-theme');
+                    swatch.classList.toggle('is-active', t === state.theme);
+                });
+            }
+
+            function applyTheme() {
+                var root = document.documentElement;
+                // Reset to defaults first
+                root.style.removeProperty('--accent');
+                root.style.removeProperty('--accent-hover');
+                root.style.removeProperty('--accent-secondary');
+                root.style.removeProperty('--accent-secondary-hover');
+                var chosen = themes[state.theme] || themes.default;
+                Object.keys(chosen).forEach(function(key) {
+                    root.style.setProperty(key, chosen[key]);
+                });
+                updateActiveSwatch();
+                logger('Applied theme', state.theme, 'scope', state.scope);
+            }
+
+            function persist() {
+                var storage = storageForScope(state.scope);
+                var key = scopeKey(state.scope);
+                storage.setItem(key, JSON.stringify({ font: state.font, theme: state.theme }));
+                localStorage.setItem(STATE_KEYS.scope, state.scope);
+                logger('Persisted settings', { scope: state.scope, font: state.font, theme: state.theme });
+            }
+
+            function resetCurrentScope() {
+                var storage = storageForScope(state.scope);
+                storage.removeItem(scopeKey(state.scope));
+                state.font = 'default';
+                state.theme = 'default';
+                if (fontSelect) fontSelect.value = state.font;
+                applyFont();
+                applyTheme();
+                persist();
+                logger('Reset settings for scope', state.scope);
+            }
+
+            function dismissSettings() {
+                closePanels();
+                settings.classList.add('cfl-settings--hidden');
+                localStorage.setItem(STATE_KEYS.hidden, 'true');
+                if (navSettingsBtn) {
+                    navSettingsBtn.classList.add('cfl-nav-settings--active');
+                }
+                logger('Settings widget dismissed');
+            }
+
+            function showSettings() {
+                settings.classList.remove('cfl-settings--hidden');
+                localStorage.removeItem(STATE_KEYS.hidden);
+                if (navSettingsBtn) {
+                    navSettingsBtn.classList.remove('cfl-nav-settings--active');
+                }
+                logger('Settings widget shown');
+            }
+
+            function checkHiddenState() {
+                var isHidden = localStorage.getItem(STATE_KEYS.hidden) === 'true';
+                if (isHidden) {
+                    settings.classList.add('cfl-settings--hidden');
+                    if (navSettingsBtn) {
+                        navSettingsBtn.classList.add('cfl-nav-settings--active');
+                    }
+                }
+            }
+
+            function openOrbitOnly() {
+                state.openPanel = null;
+                settings.classList.add('cfl-settings--open');
+                fab.setAttribute('aria-expanded', 'true');
+                panels.forEach(function(panel) { panel.setAttribute('hidden', ''); });
+                settings.removeAttribute('data-open-panel');
+                if (scrim) scrim.setAttribute('hidden', '');
+
+                // Show labels briefly so users learn what icons do
+                settings.classList.add('cfl-settings--labels-visible');
+                setTimeout(function() {
+                    settings.classList.remove('cfl-settings--labels-visible');
+                }, 2000);
+            }
+
+            function openPanel(panelId) {
+                state.openPanel = panelId;
+                settings.classList.add('cfl-settings--open');
+                fab.setAttribute('aria-expanded', 'true');
+                panels.forEach(function(panel) {
+                    var active = panel.getAttribute('data-panel') === panelId;
+                    panel.toggleAttribute('hidden', !active);
+                });
+                settings.setAttribute('data-open-panel', panelId);
+                if (scrim) scrim.removeAttribute('hidden');
+            }
+
+            function closePanels() {
+                state.openPanel = null;
+                settings.classList.remove('cfl-settings--open');
+                fab.setAttribute('aria-expanded', 'false');
+                panels.forEach(function(panel) {
+                    panel.setAttribute('hidden', '');
+                });
+                settings.removeAttribute('data-open-panel');
+                if (scrim) scrim.setAttribute('hidden', '');
+            }
+
+            function togglePanels(panelId) {
+                if (state.openPanel === panelId) {
+                    closePanels();
+                } else {
+                    openPanel(panelId);
+                }
+            }
+
+            // Event wiring
+            if (fab) {
+                fab.addEventListener('click', function() {
+                    if (settings.classList.contains('cfl-settings--open') && !state.openPanel) {
+                        closePanels();
+                    } else if (settings.classList.contains('cfl-settings--open') && state.openPanel) {
+                        openOrbitOnly();
+                    } else {
+                        openOrbitOnly();
+                    }
+                });
+            }
+
+            function positionOrbitButtons() {
+                if (!orbitButtons.length) return;
+                // Read CSS variable for orbit radius, fallback to 90
+                var computedStyle = getComputedStyle(settings);
+                var cssRadius = parseInt(computedStyle.getPropertyValue('--orbit-radius')) || 90;
+                var radius = cssRadius;
+                // Quarter circle from bottom-right: -90° (up) to -180° (left)
+                var startDeg = -90;
+                var endDeg = -180;
+                var steps = orbitButtons.length > 1 ? orbitButtons.length - 1 : 1;
+                orbitButtons.forEach(function(btn, index) {
+                    var angleDeg = startDeg + ((endDeg - startDeg) * (index / steps));
+                    var angleRad = angleDeg * (Math.PI / 180);
+                    var tx = Math.cos(angleRad) * radius;
+                    var ty = Math.sin(angleRad) * radius;
+                    btn.style.setProperty('--tx', tx.toFixed(2) + 'px');
+                    btn.style.setProperty('--ty', ty.toFixed(2) + 'px');
+                });
+            }
+
+            positionOrbitButtons();
+            // Reposition on resize to handle responsive breakpoint changes
+            window.addEventListener('resize', positionOrbitButtons);
+
+            orbitButtons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    var panelId = e.currentTarget.getAttribute('data-panel');
+                    var action = e.currentTarget.getAttribute('data-action');
+
+                    if (action === 'quick-font') {
+                        var quickFont = e.currentTarget.getAttribute('data-font');
+                        if (fonts[quickFont]) {
+                            state.font = quickFont;
+                            if (fontSelect) fontSelect.value = quickFont;
+                            applyFont();
+                            persist();
+                            logger('Quick font applied from orbit', quickFont);
+                        }
+                        return;
+                    }
+
+                    if (panelId) {
+                        openPanel(panelId);
+                    }
+                });
+            });
+
+            // Wire up the new settings menu items (created in FAB bar)
+            var settingsMenuItems = document.querySelectorAll('.cfl-settings-menu__item');
+            var settingsMenuEl = document.getElementById('cfl-settings-menu');
+            settingsMenuItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    var panelId = e.currentTarget.getAttribute('data-panel');
+                    var action = e.currentTarget.getAttribute('data-action');
+
+                    if (action === 'quick-font') {
+                        var quickFont = e.currentTarget.getAttribute('data-font');
+                        if (fonts[quickFont]) {
+                            state.font = quickFont;
+                            if (fontSelect) fontSelect.value = quickFont;
+                            applyFont();
+                            persist();
+                            CFL.sounds.pop();
+                            logger('Quick font applied from settings menu', quickFont);
+                        }
+                        // Close the settings menu
+                        if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
+                        return;
+                    }
+
+                    if (panelId) {
+                        openPanel(panelId);
+                        CFL.sounds.pop();
+                        // Close the settings menu
+                        if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
+                    }
+                });
+            });
+
+            if (fontSelect) {
+                fontSelect.addEventListener('change', function(e) {
+                    state.font = e.target.value;
+                    applyFont();
+                    applyTheme();
+                    persist();
+                });
+            }
+
+            if (scopeToggle) {
+                scopeToggle.addEventListener('change', function(e) {
+                    state.scope = e.target.checked ? 'site' : 'page';
+                    readFontPreference();
+                    applyFont();
+                    applyTheme();
+                    persist();
+                });
+            }
+
+            if (debugToggle) {
+                debugToggle.addEventListener('change', function(e) {
+                    state.debug = e.target.checked;
+                    localStorage.setItem('cflSettingsDebug', state.debug ? 'true' : 'false');
+                    if (state.debug) {
+                        logger('Debug logging enabled');
+                    } else {
+                        console.info('[CFL settings] Debug logging disabled');
+                    }
+                });
+            }
+
+            if (resetButton) {
+                resetButton.addEventListener('click', function() {
+                    resetCurrentScope();
+                });
+            }
+
+            if (scrim) {
+                scrim.addEventListener('click', function() {
+                    closePanels();
+                });
+            }
+
+            if (dismissBtn) {
+                dismissBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dismissSettings();
+                });
+            }
+
+            if (navSettingsBtn) {
+                navSettingsBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (settings.classList.contains('cfl-settings--hidden')) {
+                        showSettings();
+                        // Open the menu after showing
+                        setTimeout(function() {
+                            openOrbitOnly();
+                        }, 100);
+                    } else {
+                        // Toggle the menu
+                        if (settings.classList.contains('cfl-settings--open')) {
+                            closePanels();
+                        } else {
+                            openOrbitOnly();
+                        }
+                    }
+                });
+            }
+
+            swatches.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    var theme = e.currentTarget.getAttribute('data-theme');
+                    if (themes[theme]) {
+                        state.theme = theme;
+                        swatches.forEach(function(s) { s.classList.toggle('is-active', s === btn); });
+                        applyTheme();
+                        persist();
+                        logger('Theme changed', theme);
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!settings.contains(event.target)) {
+                    closePanels();
+                }
+            });
+
+            document.addEventListener('keyup', function(event) {
+                if (event.key === 'Escape') {
+                    closePanels();
+                }
+            });
+
+            window.addEventListener('pagehide', function() {
+                sessionStorage.removeItem(scopeKey('page'));
+            });
+
+            // Init
+            checkHiddenState();
+            readScopePreference();
+            readDebugPreference();
+            readFontPreference();
+            applyFont();
+            applyTheme();
+            persist();
+            logger('Settings widget initialized', state);
+        })();
+    });
+    </script>
 </body>
 </html>
