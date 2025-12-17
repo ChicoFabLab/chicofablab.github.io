@@ -140,57 +140,106 @@ A hidden page at `/wiki/void` contains an interactive corruption mechanic.
 
 See [THE-VOID.md](THE-VOID.md) for full documentation.
 
-## 🏓 Pong Game (Secret Page)
+## 🚀 Super Block Invaders Pong (Secret Page)
 
-A fully playable Pong game hidden in the footer.
+An epic mashup of Pong, Breakout, and Space Invaders hidden in the footer!
 
 ### Access Methods
 
-1. Click the subtle `·` dot after the footer badge
+1. Click the 🏓 Play Pong link in the footer
 2. Direct URL: `/wiki/pong`
 
 ### Game Features
 
-- **Canvas-based** - Pure vanilla JavaScript, no dependencies
-- **AI Opponent** - CPU paddle with adjustable difficulty
-- **Scoring** - First to 5 wins
-- **Controls**:
-  - `W` / `↑` - Move paddle up
-  - `S` / `↓` - Move paddle down
-  - `Space` / `P` - Pause/Resume
-  - `R` - Reset game
+- **Canvas-based** - Pure vanilla JavaScript with modular architecture
+- **Hybrid Gameplay** - Pong + Breakout + Space Invaders combined
+- **Brick Walls** - Each side has brick walls to protect/destroy
+- **Space Invaders** - Aliens float in the middle and shoot lasers at both players
+- **Lives System** - Both player and CPU have 3 lives
+- **Wave System** - 5 waves of increasing difficulty with boss waves
+- **10 Power-ups**:
+  - ❤️ Extra Life
+  - 📏 Big Paddle (15s)
+  - 🛡️ Shield (blocks 1 hit)
+  - 🔫 Laser Gun (10s)
+  - ⚡ Speed Ball
+  - 🌟 Multi-Ball (splits into 3)
+  - 🧲 Magnet (catch ball)
+  - 🔥 Fire Ball (passes through bricks, 5s)
+  - 🐢 Slow Motion (8s)
+  - 💎 +500 Points
+
+### Controls
+
+- `W` / `↑` - Move paddle up
+- `S` / `↓` - Move paddle down
+- `Space` - Shoot laser (when powered up) / Pause
+- `P` - Pause/Resume
+- `R` - Reset game
+
+### Scoring System
+
+| Action | Points |
+|--------|--------|
+| Destroy normal brick | 100 |
+| Destroy strong brick | 200 |
+| Destroy super brick | 300 |
+| Destroy basic invader | 150 |
+| Destroy fast invader | 200 |
+| Destroy tank invader | 400 |
+| Destroy boss | 1000 |
+| Collect powerup | 50 |
+| Clear wave | 1000 |
+| CPU loses life | 500 |
+
+**Combo System**: Rapid hits increase a combo multiplier (25% per combo level)!
 
 ### Leaderboard
 
-- 3-character initials entry on win
+- 3-character initials entry on game over/victory
+- Tracks score, wave reached, and date
 - Top 10 scores stored in localStorage
-- Storage key: `cflPongLeaderboard`
+- Storage keys: `cflSBIPLeaderboard`, `cflSBIPHighScore`
 
 ```javascript
 // Leaderboard format
 [
-  { initials: "ABC", score: 5, date: "2025-12-16" },
-  { initials: "XYZ", score: 5, date: "2025-12-15" }
+  { initials: "ABC", score: 15000, wave: 5, date: "2025-12-17" },
+  { initials: "XYZ", score: 8500, wave: 3, date: "2025-12-16" }
 ]
 ```
 
 ### Reset Leaderboard
 
 ```javascript
-localStorage.removeItem('cflPongLeaderboard');
+localStorage.removeItem('cflSBIPLeaderboard');
+localStorage.removeItem('cflSBIPHighScore');
 location.reload();
+```
+
+### Technical Architecture
+
+The game uses a modular JavaScript architecture:
+
+```
+assets/js/games/
+├── sbip-config.js    # Game constants and settings
+├── sbip-entities.js  # Entity classes (Ball, Brick, Invader, etc.)
+├── sbip-renderer.js  # All drawing and visual effects
+└── sbip-game.js      # Main game logic and state management
 ```
 
 ## 🕹️ Achievement Integration
 
 Easter eggs unlock these achievements:
 
-| Achievement | ID | Trigger |
-|-------------|-----|---------|
-| Egg Hunter | `easter-egg` | Find any hidden egg OR enter Konami code |
-| Old School | `konami` | Enter Konami code |
-| Void Gazer | `void-gazer` | Visit The Void page |
-| Pong Champion | `pong-master` | Win a game of Pong |
+| Achievement | ID | Trigger | Rarity |
+|-------------|-----|---------|--------|
+| Egg Hunter | `easter-egg` | Find any hidden egg OR enter Konami code | Common |
+| Old School | `konami` | Enter Konami code | Rare |
+| Void Gazer | `void-gazer` | Visit The Void page | Epic |
+| Pong Champion | `pong-master` | Win a game of Pong | Rare |
+| Space Defender | `sbip-master` | Beat all 5 waves in Super Block Invaders Pong | Legendary |
 
 ## Adding New Easter Eggs
 

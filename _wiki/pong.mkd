@@ -1,141 +1,207 @@
 ---
-title: "🏓 Pong"
+title: "🚀 Super Block Invaders Pong"
 layout: default
 sitemap: false
 category: fun
-icon: "🏓"
+icon: "🚀"
 order: 99
 ---
 
 <style>
-.pong-container {
+.sbip-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     padding: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.pong-canvas-wrapper {
+.sbip-title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.sbip-title h1 {
+    font-size: 2rem;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: title-glow 3s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+}
+
+.sbip-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.sbip-canvas-wrapper {
     position: relative;
-    background: #000;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: #0a0a1a;
+    border-radius: 12px;
+    box-shadow:
+        0 0 20px rgba(0, 255, 136, 0.3),
+        0 0 40px rgba(255, 68, 136, 0.2),
+        inset 0 0 60px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    border: 2px solid #333;
 }
 
-#pong-canvas {
+#sbip-canvas {
     display: block;
     max-width: 100%;
     height: auto;
 }
 
-.pong-scores {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 600px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
-    color: var(--text-primary);
-}
-
-.pong-score {
-    text-align: center;
-}
-
-.pong-score-label {
-    font-size: 0.875rem;
-    opacity: 0.7;
-    margin-bottom: 0.25rem;
-}
-
-.pong-controls {
+.sbip-controls {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.pong-instructions {
-    background: var(--bg-secondary, #f5f5f5);
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    max-width: 600px;
-    font-size: 0.9rem;
+.sbip-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 800px;
 }
 
-.pong-instructions h3 {
-    margin-top: 0;
+.sbip-card {
+    background: var(--bg-secondary, #1a1a2e);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color, #333);
+}
+
+.sbip-card h3 {
+    margin: 0 0 1rem 0;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.pong-instructions kbd {
-    background: var(--bg-tertiary, #e0e0e0);
+.sbip-instructions {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.sbip-instructions kbd {
+    background: var(--bg-tertiary, #2a2a3e);
+    border: 1px solid var(--border-color, #444);
     border-radius: 4px;
     padding: 0.1rem 0.4rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
+    box-shadow: 0 2px 0 var(--border-color, #333);
 }
 
-.pong-leaderboard {
-    background: var(--bg-secondary, #f5f5f5);
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    max-width: 400px;
+.sbip-powerup-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.sbip-powerup-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sbip-powerup-emoji {
+    font-size: 1.2rem;
+}
+
+.sbip-leaderboard {
     width: 100%;
 }
 
-.pong-leaderboard h3 {
-    margin-top: 0;
-    text-align: center;
-}
-
-.pong-leaderboard-list {
+.sbip-leaderboard-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.pong-leaderboard-item {
+.sbip-leaderboard-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border-color, #ddd);
+    border-bottom: 1px solid var(--border-color, #333);
     font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
 }
 
-.pong-leaderboard-item:last-child {
+.sbip-leaderboard-item:last-child {
     border-bottom: none;
 }
 
-.pong-leaderboard-rank {
-    width: 2rem;
+.sbip-leaderboard-rank {
+    width: 3rem;
     color: var(--text-secondary);
 }
 
-.pong-leaderboard-initials {
+.sbip-leaderboard-initials {
     flex: 1;
     font-weight: bold;
+    color: var(--accent-color, #00ff88);
 }
 
-.pong-leaderboard-score {
-    color: var(--accent-color, #007bff);
+.sbip-leaderboard-score {
+    color: #ffd93d;
+    margin-right: 1rem;
 }
 
-.pong-leaderboard-empty {
+.sbip-leaderboard-wave {
+    color: #4d96ff;
+    font-size: 0.8rem;
+}
+
+.sbip-leaderboard-empty {
     text-align: center;
     opacity: 0.6;
     padding: 1rem;
 }
 
-.pong-modal {
+.sbip-highscore {
+    text-align: center;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(255, 217, 61, 0.1), rgba(255, 107, 107, 0.1));
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.sbip-highscore-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.sbip-highscore-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'JetBrains Mono', monospace;
+    color: #ffd93d;
+}
+
+/* Modal */
+.sbip-modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,679 +211,451 @@ order: 99
     transition: opacity 0.3s ease;
 }
 
-.pong-modal.active {
+.sbip-modal.active {
     opacity: 1;
     pointer-events: auto;
 }
 
-.pong-modal-content {
-    background: var(--bg-primary, #fff);
-    border-radius: 12px;
+.sbip-modal-content {
+    background: var(--bg-primary, #1a1a2e);
+    border-radius: 16px;
     padding: 2rem;
     text-align: center;
     max-width: 400px;
     width: 90%;
+    border: 2px solid var(--border-color, #333);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
 }
 
-.pong-modal h2 {
-    margin-top: 0;
+.sbip-modal h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
 }
 
-.pong-initials-input {
+.sbip-modal-score {
+    font-size: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #ffd93d;
+    margin-bottom: 1rem;
+}
+
+.sbip-initials-input {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
     margin: 1.5rem 0;
 }
 
-.pong-initials-input input {
+.sbip-initials-input input {
     width: 3rem;
     height: 3rem;
     text-align: center;
     font-size: 1.5rem;
     font-family: 'JetBrains Mono', monospace;
     text-transform: uppercase;
-    border: 2px solid var(--border-color, #ddd);
+    border: 2px solid var(--border-color, #444);
     border-radius: 8px;
-    background: var(--bg-secondary, #f5f5f5);
+    background: var(--bg-secondary, #2a2a3e);
+    color: var(--text-primary);
 }
 
-.pong-initials-input input:focus {
-    border-color: var(--accent-color, #007bff);
+.sbip-initials-input input:focus {
+    border-color: var(--accent-color, #00ff88);
     outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
-@media (max-width: 640px) {
-    .pong-scores {
-        font-size: 1.5rem;
+@media (max-width: 840px) {
+    .sbip-canvas-wrapper {
+        width: 100%;
     }
 
-    .pong-canvas-wrapper {
+    #sbip-canvas {
         width: 100%;
+        height: auto;
     }
 }
 </style>
 
-<div class="pong-container">
-    <h1>🏓 Pong</h1>
-    <p>The classic arcade game. First to 5 wins!</p>
-
-    <div class="pong-scores">
-        <div class="pong-score">
-            <div class="pong-score-label">You</div>
-            <div id="player-score">0</div>
-        </div>
-        <div class="pong-score">
-            <div class="pong-score-label">CPU</div>
-            <div id="cpu-score">0</div>
-        </div>
+<div class="sbip-container">
+    <div class="sbip-title">
+        <h1>🚀 Super Block Invaders Pong 🎮</h1>
+        <p class="sbip-subtitle">Pong + Breakout + Space Invaders = CHAOS</p>
     </div>
 
-    <div class="pong-canvas-wrapper">
-        <canvas id="pong-canvas" width="600" height="400"></canvas>
+    <div class="sbip-canvas-wrapper">
+        <canvas id="sbip-canvas" width="800" height="500"></canvas>
     </div>
 
-    <div class="pong-controls">
-        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="pong-start">
+    <div class="sbip-controls">
+        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="sbip-start">
             ▶️ Start Game
         </button>
-        <button class="cfl-btn cfl-btn--secondary cfl-btn--md" id="pong-pause" disabled>
+        <button class="cfl-btn cfl-btn--secondary cfl-btn--md" id="sbip-pause" disabled>
             ⏸️ Pause
         </button>
-        <button class="cfl-btn cfl-btn--ghost cfl-btn--md" id="pong-reset">
+        <button class="cfl-btn cfl-btn--ghost cfl-btn--md" id="sbip-reset">
             🔄 Reset
         </button>
     </div>
 
-    <div class="pong-instructions">
-        <h3>🎮 Controls</h3>
-        <p>
-            <kbd>W</kbd> / <kbd>↑</kbd> Move paddle up<br>
-            <kbd>S</kbd> / <kbd>↓</kbd> Move paddle down<br>
-            <kbd>Space</kbd> / <kbd>P</kbd> Pause/Resume<br>
-            <kbd>R</kbd> Reset game
-        </p>
-    </div>
+    <div class="sbip-info-grid">
+        <div class="sbip-card">
+            <h3>🎮 Controls</h3>
+            <div class="sbip-instructions">
+                <p>
+                    <kbd>W</kbd> / <kbd>↑</kbd> Move paddle up<br>
+                    <kbd>S</kbd> / <kbd>↓</kbd> Move paddle down<br>
+                    <kbd>Space</kbd> Shoot laser (when powered up) / Pause<br>
+                    <kbd>P</kbd> Pause/Resume<br>
+                    <kbd>R</kbd> Reset game
+                </p>
+            </div>
+        </div>
 
-    <div class="pong-leaderboard">
-        <h3>🏆 Leaderboard</h3>
-        <ol class="pong-leaderboard-list" id="pong-leaderboard">
-            <li class="pong-leaderboard-empty">No scores yet. Be the first!</li>
-        </ol>
-        <button class="cfl-btn cfl-btn--ghost cfl-btn--sm" id="pong-clear-scores" style="width: 100%; margin-top: 1rem;">
-            🗑️ Clear Scores
-        </button>
+        <div class="sbip-card">
+            <h3>⚡ Power-ups</h3>
+            <div class="sbip-powerup-list">
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">❤️</span> Extra Life</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">📏</span> Big Paddle</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">🛡️</span> Shield</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">🔫</span> Laser Gun</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">⚡</span> Speed Ball</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">🌟</span> Multi-Ball</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">🧲</span> Magnet</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">🔥</span> Fire Ball</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">🐢</span> Slow Motion</div>
+                <div class="sbip-powerup-item"><span class="sbip-powerup-emoji">💎</span> +500 Points</div>
+            </div>
+        </div>
+
+        <div class="sbip-card">
+            <h3>📋 How to Win</h3>
+            <div class="sbip-instructions">
+                <p>
+                    🎯 <strong>Objective:</strong> Destroy all enemy bricks or deplete their lives!<br><br>
+                    👾 <strong>Invaders:</strong> Float in the middle and shoot lasers at both players<br><br>
+                    💥 <strong>Ball:</strong> Bounces off paddles and destroys bricks/invaders<br><br>
+                    🌟 <strong>Waves:</strong> Clear all enemies to advance. Each wave gets harder!
+                </p>
+            </div>
+        </div>
+
+        <div class="sbip-card sbip-leaderboard">
+            <h3>🏆 Leaderboard</h3>
+            <div class="sbip-highscore">
+                <div class="sbip-highscore-label">HIGH SCORE</div>
+                <div class="sbip-highscore-value" id="sbip-highscore">0</div>
+            </div>
+            <ol class="sbip-leaderboard-list" id="sbip-leaderboard">
+                <li class="sbip-leaderboard-empty">No scores yet. Be the first!</li>
+            </ol>
+            <button class="cfl-btn cfl-btn--ghost cfl-btn--sm" id="sbip-clear-scores" style="width: 100%; margin-top: 1rem;">
+                🗑️ Clear Scores
+            </button>
+        </div>
     </div>
 </div>
 
 <!-- Win Modal -->
-<div class="pong-modal" id="pong-win-modal">
-    <div class="pong-modal-content">
-        <h2>🎉 You Won!</h2>
-        <p>Enter your initials for the leaderboard:</p>
-        <div class="pong-initials-input">
+<div class="sbip-modal" id="sbip-win-modal">
+    <div class="sbip-modal-content">
+        <h2>🎉 Amazing!</h2>
+        <p>You survived the invasion!</p>
+        <div class="sbip-modal-score" id="sbip-final-score">Score: 0</div>
+        <p>Enter your initials:</p>
+        <div class="sbip-initials-input">
             <input type="text" maxlength="1" id="initial-1" autocomplete="off">
             <input type="text" maxlength="1" id="initial-2" autocomplete="off">
             <input type="text" maxlength="1" id="initial-3" autocomplete="off">
         </div>
-        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="pong-submit-score">
+        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="sbip-submit-score">
             Submit Score
         </button>
     </div>
 </div>
 
-<!-- Lose Modal -->
-<div class="pong-modal" id="pong-lose-modal">
-    <div class="pong-modal-content">
-        <h2>😢 Game Over</h2>
-        <p>The CPU won this round. Better luck next time!</p>
-        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="pong-play-again">
+<!-- Game Over Modal -->
+<div class="sbip-modal" id="sbip-gameover-modal">
+    <div class="sbip-modal-content">
+        <h2>💀 Game Over</h2>
+        <p>The invaders won this time...</p>
+        <div class="sbip-modal-score" id="sbip-gameover-score">Score: 0</div>
+        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="sbip-play-again">
             🔄 Play Again
         </button>
     </div>
 </div>
 
+<!-- Import game modules -->
+<script src="{{ '/assets/js/games/sbip-config.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/games/sbip-entities.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/games/sbip-renderer.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/games/sbip-game.js' | relative_url }}"></script>
+
 <script>
 (function() {
     // ===========================================
-    // PONG GAME - Vanilla Canvas Implementation
-    // ===========================================
-    // A complete Pong game with AI opponent,
-    // scoring, and localStorage leaderboard.
-    //
-    // Built for Chico Fab Lab as an easter egg.
+    // SUPER BLOCK INVADERS PONG - Main Controller
     // ===========================================
 
-    // Canvas setup
-    var canvas = document.getElementById('pong-canvas');
-    var ctx = canvas.getContext('2d');
-    var W = canvas.width;
-    var H = canvas.height;
-
-    // Game state
-    var gameRunning = false;
-    var gamePaused = false;
-    var playerScore = 0;
-    var cpuScore = 0;
-    var winScore = 5;
-
-    // Paddle settings
-    var paddleWidth = 10;
-    var paddleHeight = 80;
-    var paddleSpeed = 6;
-
-    // Player paddle (left)
-    var player = {
-        x: 20,
-        y: H / 2 - paddleHeight / 2,
-        width: paddleWidth,
-        height: paddleHeight,
-        dy: 0
-    };
-
-    // CPU paddle (right)
-    var cpu = {
-        x: W - 20 - paddleWidth,
-        y: H / 2 - paddleHeight / 2,
-        width: paddleWidth,
-        height: paddleHeight,
-        speed: 3.5  // AI speed (slightly slower than player for fairness)
-    };
-
-    // Ball
-    var ball = {
-        x: W / 2,
-        y: H / 2,
-        radius: 8,
-        speed: 5,
-        vx: 5,
-        vy: 3
-    };
-
-    // Input state
-    var keys = {};
-
-    // DOM elements
-    var playerScoreEl = document.getElementById('player-score');
-    var cpuScoreEl = document.getElementById('cpu-score');
-    var startBtn = document.getElementById('pong-start');
-    var pauseBtn = document.getElementById('pong-pause');
-    var resetBtn = document.getElementById('pong-reset');
-    var winModal = document.getElementById('pong-win-modal');
-    var loseModal = document.getElementById('pong-lose-modal');
-    var leaderboardEl = document.getElementById('pong-leaderboard');
-    var clearScoresBtn = document.getElementById('pong-clear-scores');
-    var submitScoreBtn = document.getElementById('pong-submit-score');
-    var playAgainBtn = document.getElementById('pong-play-again');
-    var initialInputs = [
-        document.getElementById('initial-1'),
-        document.getElementById('initial-2'),
-        document.getElementById('initial-3')
-    ];
-
-    // ===========================================
-    // DRAWING FUNCTIONS
-    // ===========================================
-
-    function drawRect(x, y, w, h, color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, w, h);
-    }
-
-    function drawCircle(x, y, r, color) {
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    function drawNet() {
-        ctx.setLineDash([10, 10]);
-        ctx.strokeStyle = '#444';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(W / 2, 0);
-        ctx.lineTo(W / 2, H);
-        ctx.stroke();
-        ctx.setLineDash([]);
-    }
-
-    function drawText(text, x, y, size, color) {
-        ctx.fillStyle = color || '#fff';
-        ctx.font = (size || 20) + 'px "JetBrains Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(text, x, y);
-    }
-
-    function render() {
-        // Clear canvas
-        drawRect(0, 0, W, H, '#000');
-
-        // Draw net
-        drawNet();
-
-        // Draw paddles
-        drawRect(player.x, player.y, player.width, player.height, '#fff');
-        drawRect(cpu.x, cpu.y, cpu.width, cpu.height, '#fff');
-
-        // Draw ball
-        drawCircle(ball.x, ball.y, ball.radius, '#fff');
-
-        // Draw center text when not running
-        if (!gameRunning) {
-            drawText('Press START to play', W / 2, H / 2, 20, '#666');
-        } else if (gamePaused) {
-            drawText('PAUSED', W / 2, H / 2, 30, '#fff');
+    // Wait for all scripts to load
+    var checkReady = setInterval(function() {
+        if (window.SBIPGame && window.SBIPRenderer && window.SBIP_Entities && window.SBIP_CONFIG) {
+            clearInterval(checkReady);
+            initGame();
         }
-    }
+    }, 50);
 
-    // ===========================================
-    // GAME LOGIC
-    // ===========================================
+    function initGame() {
+        // Canvas and game instance
+        var canvas = document.getElementById('sbip-canvas');
+        var game = new SBIPGame(canvas);
 
-    function resetBall(direction) {
-        ball.x = W / 2;
-        ball.y = H / 2;
-        ball.speed = 5;
-        ball.vx = direction * ball.speed;
-        ball.vy = (Math.random() * 4 - 2);
-    }
+        // DOM elements
+        var startBtn = document.getElementById('sbip-start');
+        var pauseBtn = document.getElementById('sbip-pause');
+        var resetBtn = document.getElementById('sbip-reset');
+        var winModal = document.getElementById('sbip-win-modal');
+        var gameoverModal = document.getElementById('sbip-gameover-modal');
+        var leaderboardEl = document.getElementById('sbip-leaderboard');
+        var highscoreEl = document.getElementById('sbip-highscore');
+        var clearScoresBtn = document.getElementById('sbip-clear-scores');
+        var submitScoreBtn = document.getElementById('sbip-submit-score');
+        var playAgainBtn = document.getElementById('sbip-play-again');
+        var finalScoreEl = document.getElementById('sbip-final-score');
+        var gameoverScoreEl = document.getElementById('sbip-gameover-score');
+        var initialInputs = [
+            document.getElementById('initial-1'),
+            document.getElementById('initial-2'),
+            document.getElementById('initial-3')
+        ];
 
-    function resetGame() {
-        playerScore = 0;
-        cpuScore = 0;
-        updateScoreDisplay();
-        resetBall(1);
-        player.y = H / 2 - paddleHeight / 2;
-        cpu.y = H / 2 - paddleHeight / 2;
-        gameRunning = false;
-        gamePaused = false;
-        startBtn.disabled = false;
-        pauseBtn.disabled = true;
-        render();
-    }
+        // ===========================================
+        // GAME LOOP
+        // ===========================================
 
-    function updateScoreDisplay() {
-        playerScoreEl.textContent = playerScore;
-        cpuScoreEl.textContent = cpuScore;
-    }
+        var lastTime = 0;
+        var previousState = 'idle';
 
-    function checkWin() {
-        if (playerScore >= winScore) {
-            gameRunning = false;
-            showWinModal();
-            // Unlock achievement
-            if (window.CFL && CFL.achievements) {
-                CFL.achievements.unlock('pong-master');
+        function gameLoop(timestamp) {
+            var deltaTime = timestamp - lastTime;
+            lastTime = timestamp;
+
+            // Cap delta time to prevent huge jumps
+            deltaTime = Math.min(deltaTime, 50);
+
+            game.update(deltaTime);
+            game.render();
+
+            // Check for state changes
+            if (game.state !== previousState) {
+                onStateChange(game.state, previousState);
+                previousState = game.state;
             }
-            if (window.CFL && CFL.sounds) {
-                CFL.sounds.success();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        function onStateChange(newState, oldState) {
+            // Update button states
+            startBtn.disabled = newState === 'playing' || newState === 'paused';
+            pauseBtn.disabled = newState !== 'playing' && newState !== 'paused';
+            pauseBtn.textContent = newState === 'paused' ? '▶️ Resume' : '⏸️ Pause';
+
+            // Show modals
+            if (newState === 'victory') {
+                finalScoreEl.textContent = 'Score: ' + game.score.toLocaleString();
+                winModal.classList.add('active');
+                initialInputs[0].value = '';
+                initialInputs[1].value = '';
+                initialInputs[2].value = '';
+                setTimeout(function() { initialInputs[0].focus(); }, 100);
+            } else if (newState === 'gameOver') {
+                gameoverScoreEl.textContent = 'Score: ' + game.score.toLocaleString();
+                gameoverModal.classList.add('active');
             }
-            return true;
+
+            // Update high score display
+            highscoreEl.textContent = game.highScore.toLocaleString();
         }
-        if (cpuScore >= winScore) {
-            gameRunning = false;
-            showLoseModal();
-            if (window.CFL && CFL.sounds) {
-                CFL.sounds.error();
+
+        // ===========================================
+        // LEADERBOARD
+        // ===========================================
+
+        function renderLeaderboard() {
+            var leaderboard = game.getLeaderboard();
+            highscoreEl.textContent = game.highScore.toLocaleString();
+
+            if (leaderboard.length === 0) {
+                leaderboardEl.innerHTML = '<li class="sbip-leaderboard-empty">No scores yet. Be the first!</li>';
+                return;
             }
-            return true;
-        }
-        return false;
-    }
 
-    function update() {
-        if (!gameRunning || gamePaused) return;
+            var html = '';
+            leaderboard.forEach(function(entry, i) {
+                var medal = '';
+                if (i === 0) medal = '🥇 ';
+                else if (i === 1) medal = '🥈 ';
+                else if (i === 2) medal = '🥉 ';
 
-        // Player movement
-        if (keys['w'] || keys['W'] || keys['ArrowUp']) {
-            player.y -= paddleSpeed;
-        }
-        if (keys['s'] || keys['S'] || keys['ArrowDown']) {
-            player.y += paddleSpeed;
-        }
+                html += '<li class="sbip-leaderboard-item">' +
+                    '<span class="sbip-leaderboard-rank">' + medal + (i + 1) + '.</span>' +
+                    '<span class="sbip-leaderboard-initials">' + entry.initials + '</span>' +
+                    '<span class="sbip-leaderboard-score">' + entry.score.toLocaleString() + '</span>' +
+                    '<span class="sbip-leaderboard-wave">W' + entry.wave + '</span>' +
+                    '</li>';
+            });
 
-        // Keep player paddle in bounds
-        player.y = Math.max(0, Math.min(H - player.height, player.y));
-
-        // CPU AI - follows ball with slight delay
-        var cpuCenter = cpu.y + cpu.height / 2;
-        var targetY = ball.y;
-
-        // Only move if ball is coming toward CPU
-        if (ball.vx > 0) {
-            if (cpuCenter < targetY - 20) {
-                cpu.y += cpu.speed;
-            } else if (cpuCenter > targetY + 20) {
-                cpu.y -= cpu.speed;
-            }
+            leaderboardEl.innerHTML = html;
         }
 
-        // Keep CPU paddle in bounds
-        cpu.y = Math.max(0, Math.min(H - cpu.height, cpu.y));
+        // ===========================================
+        // EVENT LISTENERS
+        // ===========================================
 
-        // Ball movement
-        ball.x += ball.vx;
-        ball.y += ball.vy;
+        startBtn.addEventListener('click', function() {
+            game.start();
+        });
 
-        // Ball collision with top/bottom walls
-        if (ball.y - ball.radius < 0 || ball.y + ball.radius > H) {
-            ball.vy *= -1;
+        pauseBtn.addEventListener('click', function() {
+            game.togglePause();
+        });
+
+        resetBtn.addEventListener('click', function() {
+            winModal.classList.remove('active');
+            gameoverModal.classList.remove('active');
+            game.resetGame();
+            game.state = 'idle';
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
             if (window.CFL && CFL.sounds) CFL.sounds.pop();
-        }
-
-        // Ball collision with player paddle
-        if (ball.x - ball.radius < player.x + player.width &&
-            ball.x + ball.radius > player.x &&
-            ball.y > player.y &&
-            ball.y < player.y + player.height) {
-
-            // Calculate angle based on where ball hit paddle
-            var hitPos = (ball.y - player.y) / player.height;
-            var angle = (hitPos - 0.5) * Math.PI / 3;  // Max 60 degree angle
-
-            ball.speed = Math.min(ball.speed + 0.2, 10);  // Speed up slightly
-            ball.vx = Math.abs(ball.speed * Math.cos(angle));
-            ball.vy = ball.speed * Math.sin(angle);
-            ball.x = player.x + player.width + ball.radius;
-
-            if (window.CFL && CFL.sounds) CFL.sounds.click();
-        }
-
-        // Ball collision with CPU paddle
-        if (ball.x + ball.radius > cpu.x &&
-            ball.x - ball.radius < cpu.x + cpu.width &&
-            ball.y > cpu.y &&
-            ball.y < cpu.y + cpu.height) {
-
-            var hitPos = (ball.y - cpu.y) / cpu.height;
-            var angle = (hitPos - 0.5) * Math.PI / 3;
-
-            ball.speed = Math.min(ball.speed + 0.2, 10);
-            ball.vx = -Math.abs(ball.speed * Math.cos(angle));
-            ball.vy = ball.speed * Math.sin(angle);
-            ball.x = cpu.x - ball.radius;
-
-            if (window.CFL && CFL.sounds) CFL.sounds.click();
-        }
-
-        // Scoring
-        if (ball.x < 0) {
-            cpuScore++;
-            updateScoreDisplay();
-            if (window.CFL && CFL.sounds) CFL.sounds.error();
-            if (!checkWin()) {
-                resetBall(1);
-            }
-        }
-
-        if (ball.x > W) {
-            playerScore++;
-            updateScoreDisplay();
-            if (window.CFL && CFL.sounds) CFL.sounds.coin();
-            if (!checkWin()) {
-                resetBall(-1);
-            }
-        }
-    }
-
-    function gameLoop() {
-        update();
-        render();
-        requestAnimationFrame(gameLoop);
-    }
-
-    // ===========================================
-    // LEADERBOARD
-    // ===========================================
-
-    function getLeaderboard() {
-        try {
-            return JSON.parse(localStorage.getItem('cflPongLeaderboard') || '[]');
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function saveLeaderboard(leaderboard) {
-        try {
-            localStorage.setItem('cflPongLeaderboard', JSON.stringify(leaderboard));
-        } catch (e) {
-            console.warn('Could not save leaderboard');
-        }
-    }
-
-    function addScore(initials, score) {
-        var leaderboard = getLeaderboard();
-        var date = new Date().toISOString().split('T')[0];
-
-        leaderboard.push({
-            initials: initials.toUpperCase(),
-            score: score,
-            date: date
         });
 
-        // Sort by score (wins), keep top 10
-        leaderboard.sort(function(a, b) { return b.score - a.score; });
-        leaderboard = leaderboard.slice(0, 10);
-
-        saveLeaderboard(leaderboard);
-        renderLeaderboard();
-    }
-
-    function renderLeaderboard() {
-        var leaderboard = getLeaderboard();
-
-        if (leaderboard.length === 0) {
-            leaderboardEl.innerHTML = '<li class="pong-leaderboard-empty">No scores yet. Be the first!</li>';
-            return;
-        }
-
-        var html = '';
-        leaderboard.forEach(function(entry, i) {
-            var medal = '';
-            if (i === 0) medal = '🥇 ';
-            else if (i === 1) medal = '🥈 ';
-            else if (i === 2) medal = '🥉 ';
-
-            html += '<li class="pong-leaderboard-item">' +
-                '<span class="pong-leaderboard-rank">' + medal + (i + 1) + '.</span>' +
-                '<span class="pong-leaderboard-initials">' + entry.initials + '</span>' +
-                '<span class="pong-leaderboard-score">' + entry.date + '</span>' +
-                '</li>';
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                if (game.state !== 'playing') {
+                    resetBtn.click();
+                }
+            }
         });
 
-        leaderboardEl.innerHTML = html;
-    }
+        // Initial inputs auto-advance
+        initialInputs.forEach(function(input, i) {
+            input.addEventListener('input', function() {
+                this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+                if (this.value && i < 2) {
+                    initialInputs[i + 1].focus();
+                }
+            });
 
-    // ===========================================
-    // MODALS
-    // ===========================================
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && i > 0) {
+                    initialInputs[i - 1].focus();
+                }
+                if (e.key === 'Enter') {
+                    submitScoreBtn.click();
+                }
+            });
+        });
 
-    function showWinModal() {
-        winModal.classList.add('active');
-        initialInputs[0].value = '';
-        initialInputs[1].value = '';
-        initialInputs[2].value = '';
-        initialInputs[0].focus();
-    }
+        // Submit score
+        submitScoreBtn.addEventListener('click', function() {
+            var initials = initialInputs[0].value + initialInputs[1].value + initialInputs[2].value;
 
-    function hideWinModal() {
-        winModal.classList.remove('active');
-    }
+            if (initials.length < 3) {
+                if (window.CFL && CFL.toast) {
+                    CFL.toast({
+                        icon: '⚠️',
+                        title: 'Enter 3 initials',
+                        message: 'Please enter all 3 initials for the leaderboard.',
+                        variant: 'warning'
+                    });
+                }
+                return;
+            }
 
-    function showLoseModal() {
-        loseModal.classList.add('active');
-    }
+            game.saveToLeaderboard(initials);
+            winModal.classList.remove('active');
+            renderLeaderboard();
 
-    function hideLoseModal() {
-        loseModal.classList.remove('active');
-    }
-
-    // ===========================================
-    // EVENT LISTENERS
-    // ===========================================
-
-    // Keyboard input
-    document.addEventListener('keydown', function(e) {
-        keys[e.key] = true;
-
-        // Pause toggle
-        if ((e.key === ' ' || e.key === 'p' || e.key === 'P') && gameRunning) {
-            e.preventDefault();
-            gamePaused = !gamePaused;
-            pauseBtn.textContent = gamePaused ? '▶️ Resume' : '⏸️ Pause';
-        }
-
-        // Reset
-        if (e.key === 'r' || e.key === 'R') {
-            resetGame();
-        }
-
-        // Prevent arrow key scrolling
-        if (['ArrowUp', 'ArrowDown', ' '].includes(e.key)) {
-            e.preventDefault();
-        }
-    });
-
-    document.addEventListener('keyup', function(e) {
-        keys[e.key] = false;
-    });
-
-    // Button controls
-    startBtn.addEventListener('click', function() {
-        if (!gameRunning) {
-            gameRunning = true;
-            gamePaused = false;
-            resetBall(Math.random() > 0.5 ? 1 : -1);
-            startBtn.disabled = true;
-            pauseBtn.disabled = false;
-            if (window.CFL && CFL.sounds) CFL.sounds.whoosh();
             if (window.CFL && CFL.toast) {
                 CFL.toast({
-                    icon: '🏓',
-                    title: 'Game On!',
-                    message: 'First to 5 wins. Good luck!',
-                    variant: 'info',
+                    icon: '🏆',
+                    title: 'Score Saved!',
+                    message: initials + ' - ' + game.score.toLocaleString() + ' points!',
+                    variant: 'success',
                     iconAnim: 'bounce'
                 });
             }
-        }
-    });
 
-    pauseBtn.addEventListener('click', function() {
-        if (gameRunning) {
-            gamePaused = !gamePaused;
-            pauseBtn.textContent = gamePaused ? '▶️ Resume' : '⏸️ Pause';
-        }
-    });
+            game.resetGame();
+            game.state = 'idle';
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+        });
 
-    resetBtn.addEventListener('click', function() {
-        resetGame();
-        if (window.CFL && CFL.sounds) CFL.sounds.pop();
-    });
+        // Play again
+        playAgainBtn.addEventListener('click', function() {
+            gameoverModal.classList.remove('active');
+            game.resetGame();
+            game.state = 'idle';
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+        });
 
-    // Initial inputs auto-advance
-    initialInputs.forEach(function(input, i) {
-        input.addEventListener('input', function() {
-            this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
-            if (this.value && i < 2) {
-                initialInputs[i + 1].focus();
+        // Clear scores
+        clearScoresBtn.addEventListener('click', function() {
+            if (confirm('Clear all leaderboard scores?')) {
+                game.clearLeaderboard();
+                renderLeaderboard();
+                if (window.CFL && CFL.toast) {
+                    CFL.toast({
+                        icon: '🗑️',
+                        title: 'Leaderboard Cleared',
+                        message: 'All scores have been removed.',
+                        variant: 'info'
+                    });
+                }
             }
         });
 
-        input.addEventListener('keydown', function(e) {
-            if (e.key === 'Backspace' && !this.value && i > 0) {
-                initialInputs[i - 1].focus();
-            }
-            if (e.key === 'Enter') {
-                submitScoreBtn.click();
+        // Close modals on backdrop click
+        winModal.addEventListener('click', function(e) {
+            if (e.target === winModal) {
+                winModal.classList.remove('active');
+                game.resetGame();
+                game.state = 'idle';
+                startBtn.disabled = false;
             }
         });
-    });
 
-    // Submit score
-    submitScoreBtn.addEventListener('click', function() {
-        var initials = initialInputs[0].value + initialInputs[1].value + initialInputs[2].value;
-
-        if (initials.length < 3) {
-            if (window.CFL && CFL.toast) {
-                CFL.toast({
-                    icon: '⚠️',
-                    title: 'Enter 3 initials',
-                    message: 'Please enter all 3 initials for the leaderboard.',
-                    variant: 'warning'
-                });
+        gameoverModal.addEventListener('click', function(e) {
+            if (e.target === gameoverModal) {
+                gameoverModal.classList.remove('active');
+                game.resetGame();
+                game.state = 'idle';
+                startBtn.disabled = false;
             }
-            return;
+        });
+
+        // ===========================================
+        // INITIALIZATION
+        // ===========================================
+
+        renderLeaderboard();
+        requestAnimationFrame(gameLoop);
+
+        // Track page visit for achievements
+        if (window.CFL && CFL.achievements) {
+            CFL.achievements.unlock('easter-egg');
         }
 
-        addScore(initials, playerScore);
-        hideWinModal();
-
-        if (window.CFL && CFL.toast) {
-            CFL.toast({
-                icon: '🏆',
-                title: 'Score Saved!',
-                message: initials + ' added to the leaderboard!',
-                variant: 'success',
-                iconAnim: 'bounce'
-            });
-        }
-
-        resetGame();
-    });
-
-    // Play again (after loss)
-    playAgainBtn.addEventListener('click', function() {
-        hideLoseModal();
-        resetGame();
-    });
-
-    // Clear leaderboard
-    clearScoresBtn.addEventListener('click', function() {
-        if (confirm('Clear all leaderboard scores?')) {
-            saveLeaderboard([]);
-            renderLeaderboard();
-            if (window.CFL && CFL.toast) {
-                CFL.toast({
-                    icon: '🗑️',
-                    title: 'Leaderboard Cleared',
-                    message: 'All scores have been removed.',
-                    variant: 'info'
-                });
-            }
-        }
-    });
-
-    // Close modals on backdrop click
-    winModal.addEventListener('click', function(e) {
-        if (e.target === winModal) {
-            hideWinModal();
-            resetGame();
-        }
-    });
-
-    loseModal.addEventListener('click', function(e) {
-        if (e.target === loseModal) {
-            hideLoseModal();
-            resetGame();
-        }
-    });
-
-    // ===========================================
-    // INITIALIZATION
-    // ===========================================
-
-    renderLeaderboard();
-    render();
-    gameLoop();
-
-    // Track page visit for potential achievements
-    if (window.CFL && CFL.achievements) {
-        CFL.achievements.unlock('easter-egg');
+        console.log('🚀 Super Block Invaders Pong loaded!');
+        console.log('💡 Tip: Destroy enemy bricks while defending your own!');
     }
-
 })();
 </script>
 
