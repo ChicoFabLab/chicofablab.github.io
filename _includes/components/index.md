@@ -10,7 +10,7 @@ A comprehensive set of reusable UI components for the CFL Wiki. All components u
 
 | Resource | Description |
 |----------|-------------|
-| **[Component Showcase](/wiki/component-showcase)** | Live examples with copy-paste code |
+| **[Component Showcase]({{ site.baseurl }}/wiki/component-showcase)** | Live examples with copy-paste code |
 | **Styles** | `assets/css/main.css` (search for "CFL COMPONENT LIBRARY") |
 | **Components** | `_includes/components/*.html` |
 
@@ -45,7 +45,7 @@ For readability, put each parameter on its own line:
 
 ### Component Showcase
 
-The [Component Showcase](/wiki/component-showcase) page provides:
+The [Component Showcase]({{ site.baseurl }}/wiki/component-showcase) page provides:
 
 - **Live previews** of every component
 - **Expandable code snippets** with syntax highlighting

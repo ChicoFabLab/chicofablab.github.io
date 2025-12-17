@@ -14,6 +14,9 @@ main:
   - label: CSS
     url: /wiki/css-library
     icon: 🎨
+  - label: API
+    url: /wiki/api-reference
+    icon: 📖
   - label: Contribute
     url: /README
     icon: 💻
@@ -28,6 +31,8 @@ footer:
     url: /wiki/component-showcase
   - label: CSS Utilities
     url: /wiki/css-library
+  - label: API Reference
+    url: /wiki/api-reference
   - label: How to Contribute
     url: /README
   - label: Source Code
