@@ -191,7 +191,7 @@ Animated, playful button styles for when you want to go **wild**!
 
 <div class="cfl-callout cfl-callout--info" style="margin-bottom: 1rem;">
 <strong>🎨 Try the Button Playground!</strong> Mix and match styles to create your perfect button.
-<a href="/wiki/button-playground" class="cfl-btn cfl-btn--rainbow cfl-btn--sm" style="margin-left: 1rem;">Open Playground →</a>
+<a href="{{ site.baseurl }}/wiki/button-playground" class="cfl-btn cfl-btn--rainbow cfl-btn--sm" style="margin-left: 1rem;">Open Playground →</a>
 </div>
 
 #### Rainbow & Gradient
@@ -292,7 +292,7 @@ Animated, playful button styles for when you want to go **wild**!
 #### ~~Do Not Click~~ 🕳️
 
 <div class="showcase-row" style="flex-wrap: wrap; margin-top: 1rem; background: linear-gradient(135deg, #0a0008, #1a0a1a); padding: 2rem; border-radius: 8px;">
-  <a href="/wiki/void" class="cfl-btn cfl-btn--eldritch cfl-btn--md" data-text="EMBRACE THE VOID">👁️ E̷m̵b̶r̷a̵c̷e̶ ̵t̶h̵e̷ ̶V̵o̶i̴d̷</a>
+  <a href="{{ site.baseurl }}/wiki/void" class="cfl-btn cfl-btn--eldritch cfl-btn--md" data-text="EMBRACE THE VOID">👁️ E̷m̵b̶r̷a̵c̷e̶ ̵t̶h̵e̷ ̶V̵o̶i̴d̷</a>
 </div>
 
 <details class="code-snippet">

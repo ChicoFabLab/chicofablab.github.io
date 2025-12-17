@@ -17,7 +17,7 @@ layout: default
                 <span class="stat-label">5-7pm Open</span>
             </div>
         </div>
-        <a href="/wiki/getting-started" class="hero-cta">Get Started →</a>
+        <a href="{{ site.baseurl }}/wiki/getting-started" class="hero-cta">Get Started →</a>
     </div>
 </section>
 
@@ -32,6 +32,6 @@ layout: default
         {% endfor %}
     </div>
     {% else %}
-    <p class="empty-state">No pages yet — <a href="/README">see how to add one</a></p>
+    <p class="empty-state">No pages yet — <a href="{{ site.baseurl }}/README">see how to add one</a></p>
     {% endif %}
 </section>

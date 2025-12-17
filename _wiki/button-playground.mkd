@@ -272,7 +272,7 @@ You can combine multiple classes for unique effects:
 ---
 
 <div style="text-align: center; margin-top: 2rem;">
-    <a href="/wiki/component-showcase#fun-buttons-gallery" class="cfl-btn cfl-btn--secondary cfl-btn--md">
+    <a href="{{ site.baseurl }}/wiki/component-showcase#fun-buttons-gallery" class="cfl-btn cfl-btn--secondary cfl-btn--md">
         ← Back to Component Showcase
     </a>
 </div>

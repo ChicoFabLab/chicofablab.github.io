@@ -20,7 +20,7 @@
   <h3>{{ title }}</h3>
   <div class="related-pages__grid">
     {% for item in items %}
-    <a href="{{ item.url }}" class="related-pages__item">
+    <a href="{{ site.baseurl }}{{ item.url }}" class="related-pages__item">
       <strong>{{ item.label }}</strong>
       {% if item.description %}<span>{{ item.description }}</span>{% endif %}
     </a>

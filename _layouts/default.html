@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {% endif %}CFL Wiki</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     {% include marquee.html %}
 
     <header>
-        <h1><a href="/">CFL Wiki</a></h1>
+        <h1><a href="{{ site.baseurl }}/">CFL Wiki</a></h1>
         <nav>
             {% include nav.html type="main" %}
             <button type="button" class="cfl-nav-settings" id="cfl-nav-settings-btn" aria-label="Site settings" title="Site settings">
