@@ -932,8 +932,8 @@ class SBIPGame {
         this.lasers.forEach(l => this.renderer.drawLaser(l));
 
         // Paddles
-        this.renderer.drawPaddle(this.player);
-        this.renderer.drawPaddle(this.cpu);
+        if (this.player) this.renderer.drawPaddle(this.player);
+        if (this.cpu) this.renderer.drawPaddle(this.cpu);
 
         // Balls
         this.balls.forEach(b => this.renderer.drawBall(b));
