@@ -749,7 +749,7 @@
             // SETTINGS MENU (replaces orbit)
             // =================================================================
 
-            // Create the settings menu once
+            // Create the settings menu with inline controls (no blur overlay)
             var settingsMenu = document.createElement('div');
             settingsMenu.className = 'cfl-settings-menu';
             settingsMenu.id = 'cfl-settings-menu';
@@ -757,36 +757,153 @@
                 '<div class="cfl-settings-menu__header">',
                 '  <span>⚙️</span> Settings',
                 '</div>',
-                '<ul class="cfl-settings-menu__list">',
-                '  <li><button class="cfl-settings-menu__item" data-panel="fonts">',
-                '    <span class="cfl-settings-menu__icon">Aa</span>',
-                '    <span class="cfl-settings-menu__label">Fonts</span>',
-                '  </button></li>',
-                '  <li><button class="cfl-settings-menu__item" data-panel="colors">',
-                '    <span class="cfl-settings-menu__icon">🎨</span>',
-                '    <span class="cfl-settings-menu__label">Colors</span>',
-                '  </button></li>',
-                '  <li class="cfl-settings-menu__divider"></li>',
-                '  <li><button class="cfl-settings-menu__item" data-action="quick-font" data-font="fraunces">',
+                '<div class="cfl-settings-menu__body">',
+                '  <!-- Font Section -->',
+                '  <div class="cfl-settings-menu__section" data-section="fonts">',
+                '    <button class="cfl-settings-menu__section-header" data-toggle="fonts">',
+                '      <span class="cfl-settings-menu__icon">Aa</span>',
+                '      <span class="cfl-settings-menu__label">Fonts</span>',
+                '      <span class="cfl-settings-menu__chevron">▼</span>',
+                '    </button>',
+                '    <div class="cfl-settings-menu__section-content" data-content="fonts">',
+                '      <select class="cfl-settings-menu__select" id="cfl-inline-font-select">',
+                '        <option value="default">Default (Georgia)</option>',
+                '        <option value="fraunces">Fraunces (soft serif)</option>',
+                '        <option value="caprasimo">Caprasimo (bubbly)</option>',
+                '        <option value="chonburi">Chonburi (retro)</option>',
+                '        <option value="dm-serif">DM Serif (editorial)</option>',
+                '        <option value="abril">Abril Fatface (dramatic)</option>',
+                '        <option value="bricolage">Bricolage (playful)</option>',
+                '        <option value="calistoga">Calistoga (retro)</option>',
+                '        <option value="varela">Varela Round (soft)</option>',
+                '        <option value="fredoka">Fredoka (rounded)</option>',
+                '        <option value="nunito">Nunito (clean)</option>',
+                '      </select>',
+                '    </div>',
+                '  </div>',
+                '  <!-- Colors Section -->',
+                '  <div class="cfl-settings-menu__section" data-section="colors">',
+                '    <button class="cfl-settings-menu__section-header" data-toggle="colors">',
+                '      <span class="cfl-settings-menu__icon">🎨</span>',
+                '      <span class="cfl-settings-menu__label">Colors</span>',
+                '      <span class="cfl-settings-menu__chevron">▼</span>',
+                '    </button>',
+                '    <div class="cfl-settings-menu__section-content" data-content="colors">',
+                '      <div class="cfl-settings-menu__swatches">',
+                '        <button class="cfl-settings-menu__swatch" data-theme="default" title="Default Red">',
+                '          <span style="background: #e63946;"></span>',
+                '        </button>',
+                '        <button class="cfl-settings-menu__swatch" data-theme="teal" title="Teal">',
+                '          <span style="background: #0f766e;"></span>',
+                '        </button>',
+                '        <button class="cfl-settings-menu__swatch" data-theme="amber" title="Amber">',
+                '          <span style="background: #d97706;"></span>',
+                '        </button>',
+                '        <button class="cfl-settings-menu__swatch" data-theme="plum" title="Plum">',
+                '          <span style="background: #9333ea;"></span>',
+                '        </button>',
+                '      </div>',
+                '    </div>',
+                '  </div>',
+                '  <div class="cfl-settings-menu__divider"></div>',
+                '  <!-- Quick Actions -->',
+                '  <button class="cfl-settings-menu__item" data-action="quick-font" data-font="fraunces">',
                 '    <span class="cfl-settings-menu__icon">🫧</span>',
                 '    <span class="cfl-settings-menu__label">Soft Serif</span>',
-                '  </button></li>',
-                '  <li><button class="cfl-settings-menu__item" data-action="quick-font" data-font="bricolage">',
+                '  </button>',
+                '  <button class="cfl-settings-menu__item" data-action="quick-font" data-font="bricolage">',
                 '    <span class="cfl-settings-menu__icon">✨</span>',
                 '    <span class="cfl-settings-menu__label">Playful Sans</span>',
-                '  </button></li>',
-                '  <li class="cfl-settings-menu__divider"></li>',
-                '  <li><button class="cfl-settings-menu__item" data-panel="scope">',
-                '    <span class="cfl-settings-menu__icon">🌐</span>',
-                '    <span class="cfl-settings-menu__label">Scope</span>',
-                '  </button></li>',
-                '  <li><button class="cfl-settings-menu__item" data-panel="reset">',
+                '  </button>',
+                '  <div class="cfl-settings-menu__divider"></div>',
+                '  <button class="cfl-settings-menu__item" data-action="reset">',
                 '    <span class="cfl-settings-menu__icon">↺</span>',
-                '    <span class="cfl-settings-menu__label">Reset</span>',
-                '  </button></li>',
-                '</ul>'
+                '    <span class="cfl-settings-menu__label">Reset to Default</span>',
+                '  </button>',
+                '</div>'
             ].join('');
             document.body.appendChild(settingsMenu);
+
+            // =================================================================
+            // INLINE SETTINGS HANDLERS (menu stays open, live preview)
+            // =================================================================
+
+            // Toggle accordion sections
+            settingsMenu.querySelectorAll('.cfl-settings-menu__section-header').forEach(function(header) {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var section = header.closest('.cfl-settings-menu__section');
+                    section.classList.toggle('is-open');
+                    CFL.sounds.click();
+                });
+            });
+
+            // Inline font select - changes apply instantly via CFL API, menu stays open
+            var inlineFontSelect = settingsMenu.querySelector('#cfl-inline-font-select');
+            if (inlineFontSelect) {
+                inlineFontSelect.addEventListener('change', function(e) {
+                    e.stopPropagation();
+                    var newFont = e.target.value;
+                    // Use CFL API if available (set up by initSettingsWidget)
+                    if (window.CFL && window.CFL.setFont) {
+                        window.CFL.setFont(newFont);
+                    }
+                    CFL.sounds.pop();
+                });
+            }
+
+            // Inline color swatches - changes apply instantly via CFL API, menu stays open
+            settingsMenu.querySelectorAll('.cfl-settings-menu__swatch').forEach(function(swatch) {
+                swatch.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var theme = swatch.getAttribute('data-theme');
+                    // Use CFL API if available
+                    if (window.CFL && window.CFL.setTheme) {
+                        window.CFL.setTheme(theme);
+                    }
+                    // Update active state in this menu
+                    settingsMenu.querySelectorAll('.cfl-settings-menu__swatch').forEach(function(s) {
+                        s.classList.remove('is-active');
+                    });
+                    swatch.classList.add('is-active');
+                    CFL.sounds.pop();
+                });
+            });
+
+            // Quick font buttons - instant change, menu stays open
+            settingsMenu.querySelectorAll('[data-action="quick-font"]').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var font = btn.getAttribute('data-font');
+                    if (window.CFL && window.CFL.setFont) {
+                        window.CFL.setFont(font);
+                    }
+                    if (inlineFontSelect) {
+                        inlineFontSelect.value = font;
+                    }
+                    CFL.sounds.pop();
+                });
+            });
+
+            // Reset button
+            var resetBtn = settingsMenu.querySelector('[data-action="reset"]');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // Use CFL API if available
+                    if (window.CFL && window.CFL.resetSettings) {
+                        window.CFL.resetSettings();
+                    }
+                    // Update UI
+                    if (inlineFontSelect) {
+                        inlineFontSelect.value = 'default';
+                    }
+                    settingsMenu.querySelectorAll('.cfl-settings-menu__swatch').forEach(function(s) {
+                        s.classList.toggle('is-active', s.getAttribute('data-theme') === 'default');
+                    });
+                    CFL.sounds.success();
+                });
+            }
 
             // Settings button - toggle the new settings menu
             settingsItem.addEventListener('click', function(e) {
@@ -1630,37 +1747,8 @@
                 });
             });
 
-            // Wire up the new settings menu items (created in FAB bar)
-            var settingsMenuItems = document.querySelectorAll('.cfl-settings-menu__item');
-            var settingsMenuEl = document.getElementById('cfl-settings-menu');
-            settingsMenuItems.forEach(function(item) {
-                item.addEventListener('click', function(e) {
-                    var panelId = e.currentTarget.getAttribute('data-panel');
-                    var action = e.currentTarget.getAttribute('data-action');
-
-                    if (action === 'quick-font') {
-                        var quickFont = e.currentTarget.getAttribute('data-font');
-                        if (fonts[quickFont]) {
-                            state.font = quickFont;
-                            if (fontSelect) fontSelect.value = quickFont;
-                            applyFont();
-                            persist();
-                            CFL.sounds.pop();
-                            logger('Quick font applied from settings menu', quickFont);
-                        }
-                        // Close the settings menu
-                        if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
-                        return;
-                    }
-
-                    if (panelId) {
-                        openPanel(panelId);
-                        CFL.sounds.pop();
-                        // Close the settings menu
-                        if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
-                    }
-                });
-            });
+            // Old settings menu items handler removed - now using inline controls
+            // that keep the menu open for live preview (see createUnifiedFabBar)
 
             if (fontSelect) {
                 fontSelect.addEventListener('change', function(e) {
@@ -1764,6 +1852,29 @@
                 safeRemove(sessionStorage, scopeKey('page'));
             });
 
+            // Expose global API for inline settings menu
+            window.CFL = window.CFL || {};
+            window.CFL.setFont = function(fontKey) {
+                if (fonts[fontKey]) {
+                    state.font = fontKey;
+                    if (fontSelect) fontSelect.value = fontKey;
+                    applyFont();
+                    persist();
+                    logger('Font set via API:', fontKey);
+                }
+            };
+            window.CFL.setTheme = function(themeKey) {
+                if (themes[themeKey]) {
+                    state.theme = themeKey;
+                    applyTheme();
+                    persist();
+                    logger('Theme set via API:', themeKey);
+                }
+            };
+            window.CFL.resetSettings = function() {
+                resetCurrentScope();
+            };
+
             // Init
             checkHiddenState();
             readScopePreference();
@@ -1773,6 +1884,12 @@
             applyTheme();
             persist();
             logger('Settings widget initialized', state);
+
+            // Sync inline font select with current state
+            var inlineFontSelect = document.getElementById('cfl-inline-font-select');
+            if (inlineFontSelect) {
+                inlineFontSelect.value = state.font;
+            }
         })();
     });
     </script>
