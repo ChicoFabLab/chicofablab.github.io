@@ -165,7 +165,7 @@ body {
     display: inline-flex;
     align-items: center;
     padding: 0.4rem 1.5rem;
-    color: var(--bg);
+    color: #f5f0eb; /* Fixed light color - stays same in all themes */
     text-decoration: none;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
@@ -177,7 +177,7 @@ body {
 
 .marquee-dot {
     margin-right: 0.5rem;
-    color: var(--accent);
+    color: #cc785c; /* Fixed accent - stays same in all themes */
 }
 
 @keyframes marquee {
