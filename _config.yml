@@ -1,6 +1,6 @@
 title: CFL Wiki
-baseurl: ""
-url: "https://chicofl.org"
+baseurl: "/chicofablab.github.io"
+url: "https://ctavolazzi.github.io"
 
 markdown: kramdown
 highlighter: rouge
