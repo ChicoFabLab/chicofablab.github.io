@@ -180,11 +180,11 @@ settingsMenu.className = 'cfl-settings-menu';
 
 settingsItem.addEventListener('click', function(e) {
     e.stopPropagation();
-    
+
     // Close achievements panel if open
     var achPanel = document.querySelector('.cfl-achievements-panel');
     if (achPanel) achPanel.classList.remove('is-open');
-    
+
     // Toggle settings menu
     settingsMenu.classList.toggle('is-open');
     fabBar.classList.remove('cfl-fab-bar--open');

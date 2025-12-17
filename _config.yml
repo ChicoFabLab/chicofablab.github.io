@@ -14,7 +14,7 @@ kramdown:
 collections:
   wiki:
     output: true
-    permalink: /wiki/:name
+    permalink: /wiki/:name/
 
 defaults:
   - scope:
