@@ -351,6 +351,7 @@
         // SETTINGS DRAWER
         // =====================
         (function initDrawer() {
+            console.log('[CFL DRAWER] initDrawer starting...');
             var drawer = document.getElementById('cfl-drawer');
             var backdrop = document.getElementById('cfl-drawer-backdrop');
             var openBtn = document.getElementById('cfl-nav-settings-btn');
@@ -360,7 +361,18 @@
             var fontSelect = document.getElementById('cfl-drawer-font-select');
             var resetBtn = document.getElementById('cfl-reset-settings');
 
-            if (!drawer || !backdrop) return;
+            console.log('[CFL DRAWER] Elements found:', {
+                drawer: !!drawer,
+                backdrop: !!backdrop,
+                darkModeToggle: !!darkModeToggle,
+                darkModeSwitch: !!darkModeSwitch,
+                CFLDarkMode: !!window.CFLDarkMode
+            });
+
+            if (!drawer || !backdrop) {
+                console.warn('[CFL DRAWER] Missing drawer or backdrop, exiting');
+                return;
+            }
 
             function openDrawer() {
                 drawer.setAttribute('data-open', 'true');
@@ -397,18 +409,29 @@
             // Dark mode toggle - uses shared manager
             // Initialize drawer toggle state and ensure all toggles are synced
             if (window.CFLDarkMode) {
-                // Sync all toggles to current state (ensures consistency)
-                window.CFLDarkMode.syncToggles(window.CFLDarkMode.isDark());
+                var isDark = window.CFLDarkMode.isDark();
+                console.log('[CFL DRAWER] Syncing toggle, isDark:', isDark);
+                window.CFLDarkMode.syncToggles(isDark);
+            } else {
+                console.warn('[CFL DRAWER] CFLDarkMode not available!');
             }
 
             // Handle drawer toggle - uses checkbox change event
             // The label will handle clicks automatically, so we just need the change event
             if (darkModeSwitch) {
+                console.log('[CFL DRAWER] Adding change listener to darkModeSwitch');
                 darkModeSwitch.addEventListener('change', function(e) {
+                    console.log('[CFL DRAWER] Toggle CHANGED! checked:', e.target.checked);
                     if (window.CFLDarkMode) {
+                        console.log('[CFL DRAWER] Calling setDarkMode with:', e.target.checked);
                         window.CFLDarkMode.setDarkMode(e.target.checked);
+                        console.log('[CFL DRAWER] Theme is now:', document.documentElement.getAttribute('data-theme'));
+                    } else {
+                        console.error('[CFL DRAWER] CFLDarkMode not available during toggle!');
                     }
                 });
+            } else {
+                console.warn('[CFL DRAWER] darkModeSwitch not found!');
             }
 
             // Also allow clicking the container div to toggle (for better UX)
