@@ -2411,7 +2411,7 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
   <div class="cfl-timeline__item">
     <div class="cfl-timeline__marker cfl-timeline__marker--success"></div>
     <div class="cfl-timeline__content">
-      <div class="cfl-timeline__title">🚀 v1.0 Released</div>
+      <div class="cfl-timeline__title">🚀 v0.0.1 Released</div>
       <div class="cfl-timeline__time">Dec 10, 2025</div>
       <div class="cfl-timeline__body">First stable version shipped to production.</div>
     </div>
