@@ -1782,7 +1782,9 @@
             });
 
             document.addEventListener('click', function(event) {
-                if (!settings.contains(event.target)) {
+                // Don't close if click was inside the old settings widget OR the new dropdown menu
+                var newSettingsMenu = document.getElementById('cfl-settings-menu');
+                if (!settings.contains(event.target) && (!newSettingsMenu || !newSettingsMenu.contains(event.target))) {
                     closePanels();
                 }
             });
