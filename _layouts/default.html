@@ -1540,12 +1540,22 @@
             }
 
             function openPanel(panelId) {
+                // #region agent log
+                console.log('[DEBUG openPanel] called with panelId:', panelId);
+                console.log('[DEBUG openPanel] panels.length:', panels.length);
+                // #endregion
                 state.openPanel = panelId;
                 settings.classList.add('cfl-settings--open');
                 fab.setAttribute('aria-expanded', 'true');
                 panels.forEach(function(panel) {
                     var active = panel.getAttribute('data-panel') === panelId;
+                    // #region agent log
+                    console.log('[DEBUG openPanel] panel data-panel:', panel.getAttribute('data-panel'), 'active:', active, 'hidden before:', panel.hasAttribute('hidden'));
+                    // #endregion
                     panel.toggleAttribute('hidden', !active);
+                    // #region agent log
+                    console.log('[DEBUG openPanel] hidden after:', panel.hasAttribute('hidden'));
+                    // #endregion
                 });
                 settings.setAttribute('data-open-panel', panelId);
                 if (scrim) scrim.removeAttribute('hidden');
