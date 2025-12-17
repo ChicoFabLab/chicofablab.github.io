@@ -469,10 +469,10 @@ Apply holographic overlay to images. Use wrapper approach (class goes on contain
 
 <div class="showcase-row" style="gap: 1rem; flex-wrap: wrap;">
   <figure class="cfl-holo-img" style="margin: 0; width: 150px;">
-    <img src="/assets/images/makerspace.png" alt="Demo image" style="border-radius: 8px;">
+    <img src="{{ site.baseurl }}/assets/img/cfl-logo.png" alt="Demo image" style="border-radius: 8px;">
   </figure>
   <figure class="cfl-holo-img cfl-holo--fast" style="margin: 0; width: 150px;">
-    <img src="/assets/images/makerspace.png" alt="Demo image fast" style="border-radius: 8px;">
+    <img src="{{ site.baseurl }}/assets/img/cfl-logo.png" alt="Demo image fast" style="border-radius: 8px;">
   </figure>
 </div>
 

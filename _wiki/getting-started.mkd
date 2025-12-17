@@ -7,9 +7,9 @@ order: 1
 
 New to CFL? This page points you at the basics so you can get moving fast.
 
-![Chico Fab Lab](../assets/img/chicofablab_logo.webp){: width="80px" height="auto"}
+![Chico Fab Lab]({{ site.baseurl }}/assets/img/chicofablab_logo.webp){: width="80px" height="auto"}
 
-![CFL Kiosk](/assets/img/cfl-kiosk.jpg)
+![CFL Kiosk]({{ site.baseurl }}/assets/img/cfl-kiosk.jpg)
 
 ## Quick Info
 - Location: 603 Orange Street, Chico, CA
@@ -27,7 +27,7 @@ Visitor hours are Wednesdays 5-7 and by arrangement. Stop by during open hours t
 ## Resources
 - Main site repo: [chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
 - Task dashboard project: [tasksdashboard](https://github.com/ChicoFabLab/tasksdashboard)
-- Kiosk notes: [CFL Kiosk](/wiki/cfl-kiosk)
+- Kiosk notes: [CFL Kiosk]({{ site.baseurl }}/wiki/cfl-kiosk)
 
 ## Get Involved
 - Ask about current volunteer tasks on the task dashboard or Discord
