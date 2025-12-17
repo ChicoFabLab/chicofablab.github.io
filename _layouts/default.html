@@ -311,7 +311,7 @@
 
                 syncToggles: function(enabled) {
                     console.log('[CFL debug] syncToggles called with:', enabled);
-                    
+
                     // Sync drawer toggle (now uses checkbox input like menu toggle)
                     var drawerSwitch = document.getElementById('cfl-dark-mode-switch');
                     if (drawerSwitch) {
@@ -2036,7 +2036,7 @@
             console.log('[CFL debug] menuDarkModeSwitch found:', !!menuDarkModeSwitch);
             console.log('[CFL debug] menuDarkModeLabel found:', !!menuDarkModeLabel);
             console.log('[CFL debug] CFLDarkMode exists:', !!window.CFLDarkMode);
-            
+
             if (menuDarkModeSwitch) {
                 // Initialize checkbox state from current dark mode state
                 if (window.CFLDarkMode) {
@@ -2057,13 +2057,13 @@
                     }
                     if (CFL && CFL.sounds) CFL.sounds.pop();
                 });
-                
+
                 // Also handle click on the input directly
                 menuDarkModeSwitch.addEventListener('click', function(e) {
                     console.log('[CFL debug] Menu toggle CLICK event, checked:', e.target.checked);
                 });
             }
-            
+
             // Also handle click on the label for better reliability
             if (menuDarkModeLabel) {
                 menuDarkModeLabel.addEventListener('click', function(e) {

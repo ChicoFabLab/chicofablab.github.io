@@ -127,3 +127,4 @@ state_keys:
   site: 'cflSettingsSite'
   page_prefix: 'cflSettingsPage:'
   hidden: 'cflSettingsHidden'
+
