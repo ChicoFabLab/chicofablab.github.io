@@ -750,6 +750,10 @@
                 '</ul>'
             ].join('');
             document.body.appendChild(settingsMenu);
+            // #region agent log
+            var menuItemsAfterAppend = settingsMenu.querySelectorAll('.cfl-settings-menu__item');
+            fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:752',message:'settings menu appended to body',data:{menuInDOM:document.body.contains(settingsMenu),itemCount:menuItemsAfterAppend.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(function(){});
+            // #endregion
 
             // Settings button - toggle the new settings menu
             settingsItem.addEventListener('click', function(e) {
@@ -1601,13 +1605,33 @@
             // Wire up the new settings menu items (created in FAB bar)
             var settingsMenuItems = document.querySelectorAll('.cfl-settings-menu__item');
             var settingsMenuEl = document.getElementById('cfl-settings-menu');
+            // #region agent log
+            console.log('[DEBUG H1] settingsMenuItems query:', {count: settingsMenuItems.length, menuElExists: !!settingsMenuEl});
+            fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1602',message:'settingsMenuItems query result',data:{count:settingsMenuItems.length,menuElExists:!!settingsMenuEl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(function(){});
+            // #endregion
             settingsMenuItems.forEach(function(item) {
+                // #region agent log
+                console.log('[DEBUG H1] attaching click handler to:', item.textContent.trim().substring(0,30));
+                fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1604',message:'attaching click handler to item',data:{itemText:item.textContent.trim().substring(0,30),dataPanel:item.getAttribute('data-panel'),dataAction:item.getAttribute('data-action')},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(function(){});
+                // #endregion
                 item.addEventListener('click', function(e) {
+                    // #region agent log
+                    console.log('[DEBUG H2] menu item CLICKED:', e.currentTarget.textContent.trim().substring(0,30));
+                    fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1605',message:'menu item clicked',data:{itemText:e.currentTarget.textContent.trim().substring(0,30)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(function(){});
+                    // #endregion
                     var panelId = e.currentTarget.getAttribute('data-panel');
                     var action = e.currentTarget.getAttribute('data-action');
+                    // #region agent log
+                    console.log('[DEBUG H2] extracted attrs:', {panelId: panelId, action: action});
+                    fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1607',message:'extracted attributes',data:{panelId:panelId,action:action},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(function(){});
+                    // #endregion
 
                     if (action === 'quick-font') {
                         var quickFont = e.currentTarget.getAttribute('data-font');
+                        // #region agent log
+                        console.log('[DEBUG H3] quick-font action:', {quickFont: quickFont, fontsHasKey: !!fonts[quickFont]});
+                        fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1610',message:'quick-font action',data:{quickFont:quickFont,fontsHasKey:!!fonts[quickFont]},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3'})}).catch(function(){});
+                        // #endregion
                         if (fonts[quickFont]) {
                             state.font = quickFont;
                             if (fontSelect) fontSelect.value = quickFont;
@@ -1615,6 +1639,10 @@
                             persist();
                             CFL.sounds.pop();
                             logger('Quick font applied from settings menu', quickFont);
+                            // #region agent log
+                            console.log('[DEBUG H3] quick-font applied successfully:', quickFont);
+                            fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1617',message:'quick-font applied successfully',data:{font:quickFont},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3'})}).catch(function(){});
+                            // #endregion
                         }
                         // Close the settings menu
                         if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
@@ -1622,6 +1650,10 @@
                     }
 
                     if (panelId) {
+                        // #region agent log
+                        console.log('[DEBUG H2] opening panel:', {panelId: panelId, settingsExists: !!settings, settingsHidden: settings?settings.classList.contains('cfl-settings--hidden'):null});
+                        fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1625',message:'opening panel',data:{panelId:panelId,settingsWidgetExists:!!settings,settingsHidden:settings?settings.classList.contains('cfl-settings--hidden'):null},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(function(){});
+                        // #endregion
                         openPanel(panelId);
                         CFL.sounds.pop();
                         // Close the settings menu
