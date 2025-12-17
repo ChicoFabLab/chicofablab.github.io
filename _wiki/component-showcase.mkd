@@ -2948,5 +2948,5 @@ A comprehensive collection of sliders, selectors, and interactive form elements.
 </div>
 
 <div style="text-align: center; margin-top: 2rem;">
-  {% include components/button.html text="📚 Full API Reference" variant="primary" href="/wiki/components" %}
+  {% include components/button.html text="📚 CSS Utility Reference" variant="primary" href="/wiki/css-library" %}
 </div>
