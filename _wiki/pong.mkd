@@ -1,0 +1,833 @@
+---
+title: "🏓 Pong"
+layout: default
+sitemap: false
+category: fun
+icon: "🏓"
+order: 99
+---
+
+<style>
+.pong-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.pong-canvas-wrapper {
+    position: relative;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+#pong-canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.pong-scores {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.pong-score {
+    text-align: center;
+}
+
+.pong-score-label {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    margin-bottom: 0.25rem;
+}
+
+.pong-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pong-instructions {
+    background: var(--bg-secondary, #f5f5f5);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    max-width: 600px;
+    font-size: 0.9rem;
+}
+
+.pong-instructions h3 {
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.pong-instructions kbd {
+    background: var(--bg-tertiary, #e0e0e0);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.pong-leaderboard {
+    background: var(--bg-secondary, #f5f5f5);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    max-width: 400px;
+    width: 100%;
+}
+
+.pong-leaderboard h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.pong-leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pong-leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color, #ddd);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.pong-leaderboard-item:last-child {
+    border-bottom: none;
+}
+
+.pong-leaderboard-rank {
+    width: 2rem;
+    color: var(--text-secondary);
+}
+
+.pong-leaderboard-initials {
+    flex: 1;
+    font-weight: bold;
+}
+
+.pong-leaderboard-score {
+    color: var(--accent-color, #007bff);
+}
+
+.pong-leaderboard-empty {
+    text-align: center;
+    opacity: 0.6;
+    padding: 1rem;
+}
+
+.pong-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.pong-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pong-modal-content {
+    background: var(--bg-primary, #fff);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.pong-modal h2 {
+    margin-top: 0;
+}
+
+.pong-initials-input {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.pong-initials-input input {
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    border: 2px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    background: var(--bg-secondary, #f5f5f5);
+}
+
+.pong-initials-input input:focus {
+    border-color: var(--accent-color, #007bff);
+    outline: none;
+}
+
+@media (max-width: 640px) {
+    .pong-scores {
+        font-size: 1.5rem;
+    }
+
+    .pong-canvas-wrapper {
+        width: 100%;
+    }
+}
+</style>
+
+<div class="pong-container">
+    <h1>🏓 Pong</h1>
+    <p>The classic arcade game. First to 5 wins!</p>
+
+    <div class="pong-scores">
+        <div class="pong-score">
+            <div class="pong-score-label">You</div>
+            <div id="player-score">0</div>
+        </div>
+        <div class="pong-score">
+            <div class="pong-score-label">CPU</div>
+            <div id="cpu-score">0</div>
+        </div>
+    </div>
+
+    <div class="pong-canvas-wrapper">
+        <canvas id="pong-canvas" width="600" height="400"></canvas>
+    </div>
+
+    <div class="pong-controls">
+        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="pong-start">
+            ▶️ Start Game
+        </button>
+        <button class="cfl-btn cfl-btn--secondary cfl-btn--md" id="pong-pause" disabled>
+            ⏸️ Pause
+        </button>
+        <button class="cfl-btn cfl-btn--ghost cfl-btn--md" id="pong-reset">
+            🔄 Reset
+        </button>
+    </div>
+
+    <div class="pong-instructions">
+        <h3>🎮 Controls</h3>
+        <p>
+            <kbd>W</kbd> / <kbd>↑</kbd> Move paddle up<br>
+            <kbd>S</kbd> / <kbd>↓</kbd> Move paddle down<br>
+            <kbd>Space</kbd> / <kbd>P</kbd> Pause/Resume<br>
+            <kbd>R</kbd> Reset game
+        </p>
+    </div>
+
+    <div class="pong-leaderboard">
+        <h3>🏆 Leaderboard</h3>
+        <ol class="pong-leaderboard-list" id="pong-leaderboard">
+            <li class="pong-leaderboard-empty">No scores yet. Be the first!</li>
+        </ol>
+        <button class="cfl-btn cfl-btn--ghost cfl-btn--sm" id="pong-clear-scores" style="width: 100%; margin-top: 1rem;">
+            🗑️ Clear Scores
+        </button>
+    </div>
+</div>
+
+<!-- Win Modal -->
+<div class="pong-modal" id="pong-win-modal">
+    <div class="pong-modal-content">
+        <h2>🎉 You Won!</h2>
+        <p>Enter your initials for the leaderboard:</p>
+        <div class="pong-initials-input">
+            <input type="text" maxlength="1" id="initial-1" autocomplete="off">
+            <input type="text" maxlength="1" id="initial-2" autocomplete="off">
+            <input type="text" maxlength="1" id="initial-3" autocomplete="off">
+        </div>
+        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="pong-submit-score">
+            Submit Score
+        </button>
+    </div>
+</div>
+
+<!-- Lose Modal -->
+<div class="pong-modal" id="pong-lose-modal">
+    <div class="pong-modal-content">
+        <h2>😢 Game Over</h2>
+        <p>The CPU won this round. Better luck next time!</p>
+        <button class="cfl-btn cfl-btn--primary cfl-btn--md" id="pong-play-again">
+            🔄 Play Again
+        </button>
+    </div>
+</div>
+
+<script>
+(function() {
+    // ===========================================
+    // PONG GAME - Vanilla Canvas Implementation
+    // ===========================================
+    // A complete Pong game with AI opponent,
+    // scoring, and localStorage leaderboard.
+    //
+    // Built for Chico Fab Lab as an easter egg.
+    // ===========================================
+
+    // Canvas setup
+    var canvas = document.getElementById('pong-canvas');
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width;
+    var H = canvas.height;
+
+    // Game state
+    var gameRunning = false;
+    var gamePaused = false;
+    var playerScore = 0;
+    var cpuScore = 0;
+    var winScore = 5;
+
+    // Paddle settings
+    var paddleWidth = 10;
+    var paddleHeight = 80;
+    var paddleSpeed = 6;
+
+    // Player paddle (left)
+    var player = {
+        x: 20,
+        y: H / 2 - paddleHeight / 2,
+        width: paddleWidth,
+        height: paddleHeight,
+        dy: 0
+    };
+
+    // CPU paddle (right)
+    var cpu = {
+        x: W - 20 - paddleWidth,
+        y: H / 2 - paddleHeight / 2,
+        width: paddleWidth,
+        height: paddleHeight,
+        speed: 3.5  // AI speed (slightly slower than player for fairness)
+    };
+
+    // Ball
+    var ball = {
+        x: W / 2,
+        y: H / 2,
+        radius: 8,
+        speed: 5,
+        vx: 5,
+        vy: 3
+    };
+
+    // Input state
+    var keys = {};
+
+    // DOM elements
+    var playerScoreEl = document.getElementById('player-score');
+    var cpuScoreEl = document.getElementById('cpu-score');
+    var startBtn = document.getElementById('pong-start');
+    var pauseBtn = document.getElementById('pong-pause');
+    var resetBtn = document.getElementById('pong-reset');
+    var winModal = document.getElementById('pong-win-modal');
+    var loseModal = document.getElementById('pong-lose-modal');
+    var leaderboardEl = document.getElementById('pong-leaderboard');
+    var clearScoresBtn = document.getElementById('pong-clear-scores');
+    var submitScoreBtn = document.getElementById('pong-submit-score');
+    var playAgainBtn = document.getElementById('pong-play-again');
+    var initialInputs = [
+        document.getElementById('initial-1'),
+        document.getElementById('initial-2'),
+        document.getElementById('initial-3')
+    ];
+
+    // ===========================================
+    // DRAWING FUNCTIONS
+    // ===========================================
+
+    function drawRect(x, y, w, h, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, r, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawNet() {
+        ctx.setLineDash([10, 10]);
+        ctx.strokeStyle = '#444';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(W / 2, 0);
+        ctx.lineTo(W / 2, H);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    function drawText(text, x, y, size, color) {
+        ctx.fillStyle = color || '#fff';
+        ctx.font = (size || 20) + 'px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(text, x, y);
+    }
+
+    function render() {
+        // Clear canvas
+        drawRect(0, 0, W, H, '#000');
+
+        // Draw net
+        drawNet();
+
+        // Draw paddles
+        drawRect(player.x, player.y, player.width, player.height, '#fff');
+        drawRect(cpu.x, cpu.y, cpu.width, cpu.height, '#fff');
+
+        // Draw ball
+        drawCircle(ball.x, ball.y, ball.radius, '#fff');
+
+        // Draw center text when not running
+        if (!gameRunning) {
+            drawText('Press START to play', W / 2, H / 2, 20, '#666');
+        } else if (gamePaused) {
+            drawText('PAUSED', W / 2, H / 2, 30, '#fff');
+        }
+    }
+
+    // ===========================================
+    // GAME LOGIC
+    // ===========================================
+
+    function resetBall(direction) {
+        ball.x = W / 2;
+        ball.y = H / 2;
+        ball.speed = 5;
+        ball.vx = direction * ball.speed;
+        ball.vy = (Math.random() * 4 - 2);
+    }
+
+    function resetGame() {
+        playerScore = 0;
+        cpuScore = 0;
+        updateScoreDisplay();
+        resetBall(1);
+        player.y = H / 2 - paddleHeight / 2;
+        cpu.y = H / 2 - paddleHeight / 2;
+        gameRunning = false;
+        gamePaused = false;
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+        render();
+    }
+
+    function updateScoreDisplay() {
+        playerScoreEl.textContent = playerScore;
+        cpuScoreEl.textContent = cpuScore;
+    }
+
+    function checkWin() {
+        if (playerScore >= winScore) {
+            gameRunning = false;
+            showWinModal();
+            // Unlock achievement
+            if (window.CFL && CFL.achievements) {
+                CFL.achievements.unlock('pong-master');
+            }
+            if (window.CFL && CFL.sounds) {
+                CFL.sounds.success();
+            }
+            return true;
+        }
+        if (cpuScore >= winScore) {
+            gameRunning = false;
+            showLoseModal();
+            if (window.CFL && CFL.sounds) {
+                CFL.sounds.error();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    function update() {
+        if (!gameRunning || gamePaused) return;
+
+        // Player movement
+        if (keys['w'] || keys['W'] || keys['ArrowUp']) {
+            player.y -= paddleSpeed;
+        }
+        if (keys['s'] || keys['S'] || keys['ArrowDown']) {
+            player.y += paddleSpeed;
+        }
+
+        // Keep player paddle in bounds
+        player.y = Math.max(0, Math.min(H - player.height, player.y));
+
+        // CPU AI - follows ball with slight delay
+        var cpuCenter = cpu.y + cpu.height / 2;
+        var targetY = ball.y;
+
+        // Only move if ball is coming toward CPU
+        if (ball.vx > 0) {
+            if (cpuCenter < targetY - 20) {
+                cpu.y += cpu.speed;
+            } else if (cpuCenter > targetY + 20) {
+                cpu.y -= cpu.speed;
+            }
+        }
+
+        // Keep CPU paddle in bounds
+        cpu.y = Math.max(0, Math.min(H - cpu.height, cpu.y));
+
+        // Ball movement
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        // Ball collision with top/bottom walls
+        if (ball.y - ball.radius < 0 || ball.y + ball.radius > H) {
+            ball.vy *= -1;
+            if (window.CFL && CFL.sounds) CFL.sounds.pop();
+        }
+
+        // Ball collision with player paddle
+        if (ball.x - ball.radius < player.x + player.width &&
+            ball.x + ball.radius > player.x &&
+            ball.y > player.y &&
+            ball.y < player.y + player.height) {
+
+            // Calculate angle based on where ball hit paddle
+            var hitPos = (ball.y - player.y) / player.height;
+            var angle = (hitPos - 0.5) * Math.PI / 3;  // Max 60 degree angle
+
+            ball.speed = Math.min(ball.speed + 0.2, 10);  // Speed up slightly
+            ball.vx = Math.abs(ball.speed * Math.cos(angle));
+            ball.vy = ball.speed * Math.sin(angle);
+            ball.x = player.x + player.width + ball.radius;
+
+            if (window.CFL && CFL.sounds) CFL.sounds.click();
+        }
+
+        // Ball collision with CPU paddle
+        if (ball.x + ball.radius > cpu.x &&
+            ball.x - ball.radius < cpu.x + cpu.width &&
+            ball.y > cpu.y &&
+            ball.y < cpu.y + cpu.height) {
+
+            var hitPos = (ball.y - cpu.y) / cpu.height;
+            var angle = (hitPos - 0.5) * Math.PI / 3;
+
+            ball.speed = Math.min(ball.speed + 0.2, 10);
+            ball.vx = -Math.abs(ball.speed * Math.cos(angle));
+            ball.vy = ball.speed * Math.sin(angle);
+            ball.x = cpu.x - ball.radius;
+
+            if (window.CFL && CFL.sounds) CFL.sounds.click();
+        }
+
+        // Scoring
+        if (ball.x < 0) {
+            cpuScore++;
+            updateScoreDisplay();
+            if (window.CFL && CFL.sounds) CFL.sounds.error();
+            if (!checkWin()) {
+                resetBall(1);
+            }
+        }
+
+        if (ball.x > W) {
+            playerScore++;
+            updateScoreDisplay();
+            if (window.CFL && CFL.sounds) CFL.sounds.coin();
+            if (!checkWin()) {
+                resetBall(-1);
+            }
+        }
+    }
+
+    function gameLoop() {
+        update();
+        render();
+        requestAnimationFrame(gameLoop);
+    }
+
+    // ===========================================
+    // LEADERBOARD
+    // ===========================================
+
+    function getLeaderboard() {
+        try {
+            return JSON.parse(localStorage.getItem('cflPongLeaderboard') || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveLeaderboard(leaderboard) {
+        try {
+            localStorage.setItem('cflPongLeaderboard', JSON.stringify(leaderboard));
+        } catch (e) {
+            console.warn('Could not save leaderboard');
+        }
+    }
+
+    function addScore(initials, score) {
+        var leaderboard = getLeaderboard();
+        var date = new Date().toISOString().split('T')[0];
+
+        leaderboard.push({
+            initials: initials.toUpperCase(),
+            score: score,
+            date: date
+        });
+
+        // Sort by score (wins), keep top 10
+        leaderboard.sort(function(a, b) { return b.score - a.score; });
+        leaderboard = leaderboard.slice(0, 10);
+
+        saveLeaderboard(leaderboard);
+        renderLeaderboard();
+    }
+
+    function renderLeaderboard() {
+        var leaderboard = getLeaderboard();
+
+        if (leaderboard.length === 0) {
+            leaderboardEl.innerHTML = '<li class="pong-leaderboard-empty">No scores yet. Be the first!</li>';
+            return;
+        }
+
+        var html = '';
+        leaderboard.forEach(function(entry, i) {
+            var medal = '';
+            if (i === 0) medal = '🥇 ';
+            else if (i === 1) medal = '🥈 ';
+            else if (i === 2) medal = '🥉 ';
+
+            html += '<li class="pong-leaderboard-item">' +
+                '<span class="pong-leaderboard-rank">' + medal + (i + 1) + '.</span>' +
+                '<span class="pong-leaderboard-initials">' + entry.initials + '</span>' +
+                '<span class="pong-leaderboard-score">' + entry.date + '</span>' +
+                '</li>';
+        });
+
+        leaderboardEl.innerHTML = html;
+    }
+
+    // ===========================================
+    // MODALS
+    // ===========================================
+
+    function showWinModal() {
+        winModal.classList.add('active');
+        initialInputs[0].value = '';
+        initialInputs[1].value = '';
+        initialInputs[2].value = '';
+        initialInputs[0].focus();
+    }
+
+    function hideWinModal() {
+        winModal.classList.remove('active');
+    }
+
+    function showLoseModal() {
+        loseModal.classList.add('active');
+    }
+
+    function hideLoseModal() {
+        loseModal.classList.remove('active');
+    }
+
+    // ===========================================
+    // EVENT LISTENERS
+    // ===========================================
+
+    // Keyboard input
+    document.addEventListener('keydown', function(e) {
+        keys[e.key] = true;
+
+        // Pause toggle
+        if ((e.key === ' ' || e.key === 'p' || e.key === 'P') && gameRunning) {
+            e.preventDefault();
+            gamePaused = !gamePaused;
+            pauseBtn.textContent = gamePaused ? '▶️ Resume' : '⏸️ Pause';
+        }
+
+        // Reset
+        if (e.key === 'r' || e.key === 'R') {
+            resetGame();
+        }
+
+        // Prevent arrow key scrolling
+        if (['ArrowUp', 'ArrowDown', ' '].includes(e.key)) {
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('keyup', function(e) {
+        keys[e.key] = false;
+    });
+
+    // Button controls
+    startBtn.addEventListener('click', function() {
+        if (!gameRunning) {
+            gameRunning = true;
+            gamePaused = false;
+            resetBall(Math.random() > 0.5 ? 1 : -1);
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+            if (window.CFL && CFL.sounds) CFL.sounds.whoosh();
+            if (window.CFL && CFL.toast) {
+                CFL.toast({
+                    icon: '🏓',
+                    title: 'Game On!',
+                    message: 'First to 5 wins. Good luck!',
+                    variant: 'info',
+                    iconAnim: 'bounce'
+                });
+            }
+        }
+    });
+
+    pauseBtn.addEventListener('click', function() {
+        if (gameRunning) {
+            gamePaused = !gamePaused;
+            pauseBtn.textContent = gamePaused ? '▶️ Resume' : '⏸️ Pause';
+        }
+    });
+
+    resetBtn.addEventListener('click', function() {
+        resetGame();
+        if (window.CFL && CFL.sounds) CFL.sounds.pop();
+    });
+
+    // Initial inputs auto-advance
+    initialInputs.forEach(function(input, i) {
+        input.addEventListener('input', function() {
+            this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+            if (this.value && i < 2) {
+                initialInputs[i + 1].focus();
+            }
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !this.value && i > 0) {
+                initialInputs[i - 1].focus();
+            }
+            if (e.key === 'Enter') {
+                submitScoreBtn.click();
+            }
+        });
+    });
+
+    // Submit score
+    submitScoreBtn.addEventListener('click', function() {
+        var initials = initialInputs[0].value + initialInputs[1].value + initialInputs[2].value;
+
+        if (initials.length < 3) {
+            if (window.CFL && CFL.toast) {
+                CFL.toast({
+                    icon: '⚠️',
+                    title: 'Enter 3 initials',
+                    message: 'Please enter all 3 initials for the leaderboard.',
+                    variant: 'warning'
+                });
+            }
+            return;
+        }
+
+        addScore(initials, playerScore);
+        hideWinModal();
+
+        if (window.CFL && CFL.toast) {
+            CFL.toast({
+                icon: '🏆',
+                title: 'Score Saved!',
+                message: initials + ' added to the leaderboard!',
+                variant: 'success',
+                iconAnim: 'bounce'
+            });
+        }
+
+        resetGame();
+    });
+
+    // Play again (after loss)
+    playAgainBtn.addEventListener('click', function() {
+        hideLoseModal();
+        resetGame();
+    });
+
+    // Clear leaderboard
+    clearScoresBtn.addEventListener('click', function() {
+        if (confirm('Clear all leaderboard scores?')) {
+            saveLeaderboard([]);
+            renderLeaderboard();
+            if (window.CFL && CFL.toast) {
+                CFL.toast({
+                    icon: '🗑️',
+                    title: 'Leaderboard Cleared',
+                    message: 'All scores have been removed.',
+                    variant: 'info'
+                });
+            }
+        }
+    });
+
+    // Close modals on backdrop click
+    winModal.addEventListener('click', function(e) {
+        if (e.target === winModal) {
+            hideWinModal();
+            resetGame();
+        }
+    });
+
+    loseModal.addEventListener('click', function(e) {
+        if (e.target === loseModal) {
+            hideLoseModal();
+            resetGame();
+        }
+    });
+
+    // ===========================================
+    // INITIALIZATION
+    // ===========================================
+
+    renderLeaderboard();
+    render();
+    gameLoop();
+
+    // Track page visit for potential achievements
+    if (window.CFL && CFL.achievements) {
+        CFL.achievements.unlock('easter-egg');
+    }
+
+})();
+</script>
+
+---
+
+<div style="text-align: center; margin-top: 2rem;">
+    <p style="opacity: 0.6; font-size: 0.9rem;">
+        🥚 You found a secret! This is an easter egg page.
+    </p>
+    <a href="{{ site.baseurl }}/" class="cfl-btn cfl-btn--ghost cfl-btn--sm">
+        ← Back to Home
+    </a>
+</div>

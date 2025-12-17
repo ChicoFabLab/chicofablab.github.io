@@ -7,8 +7,8 @@ The CFL site contains hidden secrets, interactive surprises, and classic gaming 
 | Feature | Description |
 |---------|-------------|
 | **Location** | `_layouts/default.html` (Konami: ~450-485, Eggs: ~600-650) |
-| **Storage Keys** | `cflFoundEggs` |
-| **Total Eggs** | 5 hidden + Konami code + Void page |
+| **Storage Keys** | `cflFoundEggs`, `cflPongLeaderboard` |
+| **Total Eggs** | 5 hidden + Konami code + Void page + Pong game |
 
 ## 🎮 Konami Code
 
@@ -140,6 +140,47 @@ A hidden page at `/wiki/void` contains an interactive corruption mechanic.
 
 See [THE-VOID.md](THE-VOID.md) for full documentation.
 
+## 🏓 Pong Game (Secret Page)
+
+A fully playable Pong game hidden in the footer.
+
+### Access Methods
+
+1. Click the subtle `·` dot after the footer badge
+2. Direct URL: `/wiki/pong`
+
+### Game Features
+
+- **Canvas-based** - Pure vanilla JavaScript, no dependencies
+- **AI Opponent** - CPU paddle with adjustable difficulty
+- **Scoring** - First to 5 wins
+- **Controls**:
+  - `W` / `↑` - Move paddle up
+  - `S` / `↓` - Move paddle down
+  - `Space` / `P` - Pause/Resume
+  - `R` - Reset game
+
+### Leaderboard
+
+- 3-character initials entry on win
+- Top 10 scores stored in localStorage
+- Storage key: `cflPongLeaderboard`
+
+```javascript
+// Leaderboard format
+[
+  { initials: "ABC", score: 5, date: "2025-12-16" },
+  { initials: "XYZ", score: 5, date: "2025-12-15" }
+]
+```
+
+### Reset Leaderboard
+
+```javascript
+localStorage.removeItem('cflPongLeaderboard');
+location.reload();
+```
+
 ## 🕹️ Achievement Integration
 
 Easter eggs unlock these achievements:
@@ -149,6 +190,7 @@ Easter eggs unlock these achievements:
 | Egg Hunter | `easter-egg` | Find any hidden egg OR enter Konami code |
 | Old School | `konami` | Enter Konami code |
 | Void Gazer | `void-gazer` | Visit The Void page |
+| Pong Champion | `pong-master` | Win a game of Pong |
 
 ## Adding New Easter Eggs
 

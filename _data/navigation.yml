@@ -38,6 +38,8 @@ footer:
   - label: Source Code
     url: https://github.com/ChicoFabLab/chicofablab.github.io
     external: true
+  - label: 🏓 Pong
+    url: /wiki/pong
 
 # Related pages for cross-linking
 related:
