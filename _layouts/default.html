@@ -161,9 +161,45 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        function safeGet(storage, key, fallback) {
+            try {
+                var value = storage.getItem(key);
+                return value === null ? fallback : value;
+            } catch (e) {
+                console.warn('[CFL] Storage get failed', key, e && e.message ? e.message : e);
+                return fallback;
+            }
+        }
+
+        function safeSet(storage, key, value) {
+            try {
+                storage.setItem(key, value);
+            } catch (e) {
+                console.warn('[CFL] Storage set failed', key, e && e.message ? e.message : e);
+            }
+        }
+
+        function safeRemove(storage, key) {
+            try {
+                storage.removeItem(key);
+            } catch (e) {
+                console.warn('[CFL] Storage remove failed', key, e && e.message ? e.message : e);
+            }
+        }
+
+        function safeParse(value, fallback) {
+            if (value === null || typeof value === 'undefined') return fallback;
+            try {
+                return JSON.parse(value);
+            } catch (e) {
+                console.warn('[CFL] JSON parse failed', e && e.message ? e.message : e);
+                return fallback;
+            }
+        }
+
         // Check for eldritch corruption (the void remembers...)
         (function checkVoidCorruption() {
-            var corruption = parseInt(localStorage.getItem('voidCorruption') || '0');
+            var corruption = parseInt(safeGet(localStorage, 'voidCorruption', '0'), 10) || 0;
             if (corruption > 0) {
                 document.body.classList.add('eldritch-mode');
                 // Whisper to the console...
@@ -202,8 +238,8 @@
 
         CFL.sounds = (function() {
             var audioContext = null;
-            var enabled = localStorage.getItem('cflSoundsEnabled') !== 'false';
-            var volume = parseFloat(localStorage.getItem('cflSoundsVolume') || '0.3');
+            var enabled = safeGet(localStorage, 'cflSoundsEnabled', 'true') !== 'false';
+            var volume = parseFloat(safeGet(localStorage, 'cflSoundsVolume', '0.3')) || 0.3;
 
             function getContext() {
                 if (!audioContext) {
@@ -347,8 +383,8 @@
                 },
 
                 // Settings
-                setEnabled: function(val) { enabled = val; localStorage.setItem('cflSoundsEnabled', val); },
-                setVolume: function(val) { volume = val; localStorage.setItem('cflSoundsVolume', val); },
+                setEnabled: function(val) { enabled = val; safeSet(localStorage, 'cflSoundsEnabled', val); },
+                setVolume: function(val) { volume = val; safeSet(localStorage, 'cflSoundsVolume', val); },
                 isEnabled: function() { return enabled; },
                 getVolume: function() { return volume; }
             };
@@ -399,13 +435,13 @@
                 'konami': { name: 'Old School', desc: 'Enter the Konami code', icon: '🎮', sound: 'powerup', category: 'secret' }
             };
 
-            var unlocked = JSON.parse(localStorage.getItem('cflAchievements') || '{}');
-            var stats = JSON.parse(localStorage.getItem('cflStats') || '{"clicks":0,"pages":[],"buttonTypes":[]}');
+            var unlocked = safeParse(safeGet(localStorage, 'cflAchievements', '{}'), {});
+            var stats = safeParse(safeGet(localStorage, 'cflStats', '{"clicks":0,"pages":[],"buttonTypes":[]}'), { clicks: 0, pages: [], buttonTypes: [] });
             var recentClicks = [];
 
             function save() {
-                localStorage.setItem('cflAchievements', JSON.stringify(unlocked));
-                localStorage.setItem('cflStats', JSON.stringify(stats));
+                safeSet(localStorage, 'cflAchievements', JSON.stringify(unlocked));
+                safeSet(localStorage, 'cflStats', JSON.stringify(stats));
             }
 
             function unlock(id) {
@@ -751,10 +787,6 @@
                 '</ul>'
             ].join('');
             document.body.appendChild(settingsMenu);
-            // #region agent log
-            var menuItemsAfterAppend = settingsMenu.querySelectorAll('.cfl-settings-menu__item');
-            fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:752',message:'settings menu appended to body',data:{menuInDOM:document.body.contains(settingsMenu),itemCount:menuItemsAfterAppend.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(function(){});
-            // #endregion
 
             // Settings button - toggle the new settings menu
             settingsItem.addEventListener('click', function(e) {
@@ -1027,7 +1059,7 @@
                 { emoji: '🎁', x: '50%', y: '95%' }
             ];
 
-            var foundEggs = JSON.parse(localStorage.getItem('cflFoundEggs') || '[]');
+            var foundEggs = safeParse(safeGet(localStorage, 'cflFoundEggs', '[]'), []);
 
             eggs.forEach(function(egg, index) {
                 if (foundEggs.indexOf(index) !== -1) return; // Already found
@@ -1044,7 +1076,7 @@
 
                 eggEl.addEventListener('click', function() {
                     foundEggs.push(index);
-                    localStorage.setItem('cflFoundEggs', JSON.stringify(foundEggs));
+                    safeSet(localStorage, 'cflFoundEggs', JSON.stringify(foundEggs));
                     eggEl.classList.add('easter-egg--found');
 
                     CFL.sounds.coin();
@@ -1388,7 +1420,7 @@
             }
 
             function readScopePreference() {
-                var savedScope = localStorage.getItem(STATE_KEYS.scope);
+                var savedScope = safeGet(localStorage, STATE_KEYS.scope, null);
                 if (savedScope === 'page' || savedScope === 'site') {
                     state.scope = savedScope;
                 }
@@ -1398,7 +1430,7 @@
             }
 
             function readDebugPreference() {
-                var saved = localStorage.getItem('cflSettingsDebug');
+                var saved = safeGet(localStorage, 'cflSettingsDebug', null);
                 state.debug = saved === null ? true : saved !== 'false';
                 if (debugToggle) debugToggle.checked = state.debug;
             }
@@ -1406,12 +1438,7 @@
             function readFontPreference() {
                 var storage = storageForScope(state.scope);
                 var key = scopeKey(state.scope);
-                var stored = null;
-                try {
-                    stored = JSON.parse(storage.getItem(key));
-                } catch (e) {
-                    logger('Could not parse stored settings', e);
-                }
+                var stored = safeParse(safeGet(storage, key, null), null);
                 state.font = stored && stored.font && fonts[stored.font] ? stored.font : 'default';
                 state.theme = stored && stored.theme && themes[stored.theme] ? stored.theme : 'default';
                 if (fontSelect) fontSelect.value = state.font;
@@ -1451,14 +1478,14 @@
             function persist() {
                 var storage = storageForScope(state.scope);
                 var key = scopeKey(state.scope);
-                storage.setItem(key, JSON.stringify({ font: state.font, theme: state.theme }));
-                localStorage.setItem(STATE_KEYS.scope, state.scope);
+                safeSet(storage, key, JSON.stringify({ font: state.font, theme: state.theme }));
+                safeSet(localStorage, STATE_KEYS.scope, state.scope);
                 logger('Persisted settings', { scope: state.scope, font: state.font, theme: state.theme });
             }
 
             function resetCurrentScope() {
                 var storage = storageForScope(state.scope);
-                storage.removeItem(scopeKey(state.scope));
+                safeRemove(storage, scopeKey(state.scope));
                 state.font = 'default';
                 state.theme = 'default';
                 if (fontSelect) fontSelect.value = state.font;
@@ -1471,7 +1498,7 @@
             function dismissSettings() {
                 closePanels();
                 settings.classList.add('cfl-settings--hidden');
-                localStorage.setItem(STATE_KEYS.hidden, 'true');
+                safeSet(localStorage, STATE_KEYS.hidden, 'true');
                 if (navSettingsBtn) {
                     navSettingsBtn.classList.add('cfl-nav-settings--active');
                 }
@@ -1480,7 +1507,7 @@
 
             function showSettings() {
                 settings.classList.remove('cfl-settings--hidden');
-                localStorage.removeItem(STATE_KEYS.hidden);
+                safeRemove(localStorage, STATE_KEYS.hidden);
                 if (navSettingsBtn) {
                     navSettingsBtn.classList.remove('cfl-nav-settings--active');
                 }
@@ -1488,7 +1515,7 @@
             }
 
             function checkHiddenState() {
-                var isHidden = localStorage.getItem(STATE_KEYS.hidden) === 'true';
+                var isHidden = safeGet(localStorage, STATE_KEYS.hidden, 'false') === 'true';
                 if (isHidden) {
                     settings.classList.add('cfl-settings--hidden');
                     if (navSettingsBtn) {
@@ -1606,33 +1633,13 @@
             // Wire up the new settings menu items (created in FAB bar)
             var settingsMenuItems = document.querySelectorAll('.cfl-settings-menu__item');
             var settingsMenuEl = document.getElementById('cfl-settings-menu');
-            // #region agent log
-            console.log('[DEBUG H1] settingsMenuItems query:', {count: settingsMenuItems.length, menuElExists: !!settingsMenuEl});
-            fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1602',message:'settingsMenuItems query result',data:{count:settingsMenuItems.length,menuElExists:!!settingsMenuEl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(function(){});
-            // #endregion
             settingsMenuItems.forEach(function(item) {
-                // #region agent log
-                console.log('[DEBUG H1] attaching click handler to:', item.textContent.trim().substring(0,30));
-                fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1604',message:'attaching click handler to item',data:{itemText:item.textContent.trim().substring(0,30),dataPanel:item.getAttribute('data-panel'),dataAction:item.getAttribute('data-action')},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H1'})}).catch(function(){});
-                // #endregion
                 item.addEventListener('click', function(e) {
-                    // #region agent log
-                    console.log('[DEBUG H2] menu item CLICKED:', e.currentTarget.textContent.trim().substring(0,30));
-                    fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1605',message:'menu item clicked',data:{itemText:e.currentTarget.textContent.trim().substring(0,30)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(function(){});
-                    // #endregion
                     var panelId = e.currentTarget.getAttribute('data-panel');
                     var action = e.currentTarget.getAttribute('data-action');
-                    // #region agent log
-                    console.log('[DEBUG H2] extracted attrs:', {panelId: panelId, action: action});
-                    fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1607',message:'extracted attributes',data:{panelId:panelId,action:action},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(function(){});
-                    // #endregion
 
                     if (action === 'quick-font') {
                         var quickFont = e.currentTarget.getAttribute('data-font');
-                        // #region agent log
-                        console.log('[DEBUG H3] quick-font action:', {quickFont: quickFont, fontsHasKey: !!fonts[quickFont]});
-                        fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1610',message:'quick-font action',data:{quickFont:quickFont,fontsHasKey:!!fonts[quickFont]},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3'})}).catch(function(){});
-                        // #endregion
                         if (fonts[quickFont]) {
                             state.font = quickFont;
                             if (fontSelect) fontSelect.value = quickFont;
@@ -1640,10 +1647,6 @@
                             persist();
                             CFL.sounds.pop();
                             logger('Quick font applied from settings menu', quickFont);
-                            // #region agent log
-                            console.log('[DEBUG H3] quick-font applied successfully:', quickFont);
-                            fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1617',message:'quick-font applied successfully',data:{font:quickFont},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H3'})}).catch(function(){});
-                            // #endregion
                         }
                         // Close the settings menu
                         if (settingsMenuEl) settingsMenuEl.classList.remove('is-open');
@@ -1651,10 +1654,6 @@
                     }
 
                     if (panelId) {
-                        // #region agent log
-                        console.log('[DEBUG H2] opening panel:', {panelId: panelId, settingsExists: !!settings, settingsHidden: settings?settings.classList.contains('cfl-settings--hidden'):null});
-                        fetch('http://127.0.0.1:7243/ingest/be2fd539-9dd5-4f7c-a67b-acf6436f8aa4',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'default.html:1625',message:'opening panel',data:{panelId:panelId,settingsWidgetExists:!!settings,settingsHidden:settings?settings.classList.contains('cfl-settings--hidden'):null},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H2'})}).catch(function(){});
-                        // #endregion
                         openPanel(panelId);
                         CFL.sounds.pop();
                         // Close the settings menu
@@ -1685,7 +1684,7 @@
             if (debugToggle) {
                 debugToggle.addEventListener('change', function(e) {
                     state.debug = e.target.checked;
-                    localStorage.setItem('cflSettingsDebug', state.debug ? 'true' : 'false');
+                    safeSet(localStorage, 'cflSettingsDebug', state.debug ? 'true' : 'false');
                     if (state.debug) {
                         logger('Debug logging enabled');
                     } else {
@@ -1760,7 +1759,7 @@
             });
 
             window.addEventListener('pagehide', function() {
-                sessionStorage.removeItem(scopeKey('page'));
+                safeRemove(sessionStorage, scopeKey('page'));
             });
 
             // Init
