@@ -1,6 +1,8 @@
 title: CFL Wiki
-baseurl: "/chicofablab.github.io"
-url: "https://ctavolazzi.github.io"
+# For local development: baseurl: ""
+# For GitHub Pages: baseurl: "/chicofablab.github.io"
+baseurl: ""
+url: "http://localhost:4000"
 
 markdown: kramdown
 highlighter: rouge
