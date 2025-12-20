@@ -1161,6 +1161,42 @@
     color: var(--bg);
 }
 
+@media (max-width: 900px) {
+    .quick-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 0.5rem;
+        padding: 0.7rem 0.85rem;
+        border-radius: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .quick-nav strong {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        white-space: nowrap;
+    }
+
+    .quick-nav a {
+        flex: 0 0 auto;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        white-space: nowrap;
+    }
+
+    .quick-nav a:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--bg);
+    }
+}
+
 /* Smooth scrolling anchor highlights */
 :target {
     animation: target-highlight 1s ease;
@@ -1217,5 +1253,4 @@
 
 
 /* MOVED: CSS Utility Library (1,192 lines) → utilities/_utility-classes.scss */
-
 

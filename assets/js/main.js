@@ -182,6 +182,19 @@
         })();
 
         // =====================
+        // TOC DEFAULT (MOBILE)
+        // =====================
+        (function initTocCollapse() {
+            var tocDetails = document.querySelectorAll('.cfl-toc__details');
+            if (!tocDetails.length) return;
+            if (window.matchMedia('(max-width: 900px)').matches) {
+                for (var i = 0; i < tocDetails.length; i++) {
+                    tocDetails[i].removeAttribute('open');
+                }
+            }
+        })();
+
+        // =====================
         // DAILY TIP DISMISS
         // =====================
         (function initDailyTip() {
