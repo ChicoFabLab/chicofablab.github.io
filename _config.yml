@@ -1,5 +1,6 @@
 title: CFL Wiki
 version: "0.1.2"
+description: "Community makerspace wiki for Chico Fab Lab - tools, projects, and resources"
 # For local development: baseurl: ""
 # For GitHub Pages: baseurl: "/chicofablab.github.io"
 baseurl: ""
