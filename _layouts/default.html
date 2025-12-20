@@ -14,6 +14,9 @@
     <!-- Optional fonts: Lazy loaded via assets/js/fonts.js when user opens settings -->
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Settings Drawer -->
     <div class="cfl-drawer__backdrop" id="cfl-drawer-backdrop" data-open="false"></div>
     <div class="cfl-drawer" id="cfl-drawer" data-open="false" role="dialog" aria-label="Settings">
@@ -80,9 +83,9 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         {% if page.collection == 'wiki' and page.title %}
-        <div style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+        <div class="wiki-meta">
             {% include reading-time.html %}
         </div>
         {% endif %}

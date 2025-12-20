@@ -241,7 +241,81 @@
                         document.body.style.overflow = isOpen ? '' : 'hidden';
                     }
                 }
+
+                // "?" shows keyboard shortcuts help
+                if (e.key === '?' && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    CFL.showKeyboardHelp();
+                }
             });
+        })();
+
+        // Keyboard shortcuts help modal
+        (function initKeyboardHelp() {
+            window.CFL = window.CFL || {};
+
+            var helpModal = null;
+
+            function createHelpModal() {
+                var modal = document.createElement('div');
+                modal.className = 'keyboard-help-modal';
+                modal.id = 'keyboard-help-modal';
+                modal.innerHTML = [
+                    '<div class="keyboard-help-modal__backdrop"></div>',
+                    '<div class="keyboard-help-modal__content">',
+                    '  <div class="keyboard-help-modal__header">',
+                    '    <h2>Keyboard Shortcuts</h2>',
+                    '    <button class="keyboard-help-modal__close" aria-label="Close">&times;</button>',
+                    '  </div>',
+                    '  <div class="keyboard-help-modal__body">',
+                    '    <div class="keyboard-help-modal__section">',
+                    '      <h3>Navigation</h3>',
+                    '      <div class="keyboard-help-modal__row"><kbd>/</kbd><span>Focus search</span></div>',
+                    '      <div class="keyboard-help-modal__row"><kbd>Esc</kbd><span>Clear search / close panels</span></div>',
+                    '    </div>',
+                    '    <div class="keyboard-help-modal__section">',
+                    '      <h3>Appearance</h3>',
+                    '      <div class="keyboard-help-modal__row"><kbd>d</kbd><span>Toggle dark mode</span></div>',
+                    '      <div class="keyboard-help-modal__row"><kbd>,</kbd><span>Open settings</span></div>',
+                    '    </div>',
+                    '    <div class="keyboard-help-modal__section">',
+                    '      <h3>Help</h3>',
+                    '      <div class="keyboard-help-modal__row"><kbd>?</kbd><span>Show this help</span></div>',
+                    '    </div>',
+                    '  </div>',
+                    '</div>'
+                ].join('');
+                document.body.appendChild(modal);
+                return modal;
+            }
+
+            function showHelp() {
+                if (!helpModal) {
+                    helpModal = createHelpModal();
+                    helpModal.querySelector('.keyboard-help-modal__backdrop').addEventListener('click', hideHelp);
+                    helpModal.querySelector('.keyboard-help-modal__close').addEventListener('click', hideHelp);
+                }
+                helpModal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+                CFL.sounds.pop();
+            }
+
+            function hideHelp() {
+                if (helpModal) {
+                    helpModal.classList.remove('is-open');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            // Close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && helpModal && helpModal.classList.contains('is-open')) {
+                    hideHelp();
+                }
+            });
+
+            CFL.showKeyboardHelp = showHelp;
+            CFL.hideKeyboardHelp = hideHelp;
         })();
 
         // Check for eldritch corruption (the void remembers...)
@@ -2216,29 +2290,60 @@
             });
         })();
 
-        // Add copy buttons to code snippets
+        // Add copy buttons to code snippets and all code blocks
         var copyIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
         var checkIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
-        document.querySelectorAll('.code-snippet__content').forEach(function(content) {
-            var code = content.querySelector('code');
-            if (code && !content.querySelector('.code-snippet__copy')) {
-                var btn = document.createElement('button');
-                btn.className = 'code-snippet__copy';
-                btn.innerHTML = copyIcon + ' Copy';
-                content.appendChild(btn);
+        // Add copy button helper
+        function addCopyButton(container, codeElement, className) {
+            if (!codeElement || container.querySelector('.' + className)) return;
+            var btn = document.createElement('button');
+            btn.className = className;
+            btn.innerHTML = copyIcon + ' Copy';
+            btn.title = 'Copy to clipboard';
+            container.style.position = 'relative';
+            container.appendChild(btn);
 
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(code.textContent.trim()).then(function() {
-                        btn.classList.add('code-snippet__copy--copied');
-                        btn.innerHTML = checkIcon + ' Copied';
-                        setTimeout(function() {
-                            btn.classList.remove('code-snippet__copy--copied');
-                            btn.innerHTML = copyIcon + ' Copy';
-                        }, 2000);
-                    });
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigator.clipboard.writeText(codeElement.textContent.trim()).then(function() {
+                    btn.classList.add(className + '--copied');
+                    btn.innerHTML = checkIcon + ' Copied';
+                    CFL.sounds.pop();
+                    setTimeout(function() {
+                        btn.classList.remove(className + '--copied');
+                        btn.innerHTML = copyIcon + ' Copy';
+                    }, 2000);
+                }).catch(function() {
+                    // Fallback for older browsers
+                    var textarea = document.createElement('textarea');
+                    textarea.value = codeElement.textContent.trim();
+                    textarea.style.position = 'fixed';
+                    textarea.style.left = '-9999px';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    btn.classList.add(className + '--copied');
+                    btn.innerHTML = checkIcon + ' Copied';
+                    setTimeout(function() {
+                        btn.classList.remove(className + '--copied');
+                        btn.innerHTML = copyIcon + ' Copy';
+                    }, 2000);
                 });
+            });
+        }
+
+        // Code snippet content (existing)
+        document.querySelectorAll('.code-snippet__content').forEach(function(content) {
+            addCopyButton(content, content.querySelector('code'), 'code-snippet__copy');
+        });
+
+        // All pre > code blocks (syntax highlighted code)
+        document.querySelectorAll('pre code, .highlight pre').forEach(function(code) {
+            var pre = code.closest('pre');
+            if (pre && !pre.querySelector('.code-copy-btn')) {
+                addCopyButton(pre, code, 'code-copy-btn');
             }
         });
 

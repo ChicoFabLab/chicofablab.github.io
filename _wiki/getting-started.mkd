@@ -7,19 +7,89 @@ icon: "🚀"
 
 # Welcome to Chico Fab Lab
 
-New to CFL? This page points you at the basics so you can get moving fast.
+New to CFL? This page is the launchpad and living reference for tours, tools, and community knowledge.
 
 ![Chico Fab Lab]({{ site.baseurl }}/assets/img/chicofablab_logo.webp){: width="80px" height="auto"}
 
+<div class="showcase-row">
+{% include components/badge.html text="603 Orange Street, Chico, CA" variant="info" %}
+{% include components/badge.html text="Open Wednesdays 5-7 PM" variant="success-solid" %}
+{% include components/badge.html text="By arrangement other times" variant="neutral" %}
+</div>
+
+{% include components/callout.html variant="note" icon="🕐" title="Visitor Hours" body="Wednesdays 5-7 PM and by arrangement. Join Discord for updates, tours, and pop-up workshops." cta_url="https://discord.gg/chicofablab" cta_label="Join Discord" %}
+
 ![CFL Kiosk]({{ site.baseurl }}/assets/img/cfl-kiosk.jpg)
 
-## Quick Info
-- Location: 603 Orange Street, Chico, CA
-- Visitor hours: Wednesdays 5-7 and by arrangement
+## On This Page
+- [Quick Start](#quick-start)
+- [Safety and Certification](#safety-and-certification)
+- [Tool Zones and Capabilities](#tool-zones-and-capabilities)
+- [Community and Learning](#community-and-learning)
+- [Stay in the Loop](#stay-in-the-loop)
+- [Contribute to This Page](#contribute-to-this-page)
+- [What to Bring](#what-to-bring)
+- [Resources](#resources)
 
-## How to Visit
+## Quick Start
+1. Say hello on Discord and tell us what you want to build.
+2. Stop by during open hours for a tour.
+3. Get certified on the tools you want to use.
+4. Start a project and share progress with the community.
 
-Visitor hours are Wednesdays 5-7 and by arrangement. Stop by during open hours to take a tour and see the space.
+<div class="showcase-row">
+{% include components/button.html text="Join Discord" variant="primary" icon="💬" href="https://discord.gg/chicofablab" %}
+{% include components/button.html text="Equipment Guide" variant="secondary" icon="🛠️" href="/wiki/equipment-guide" %}
+{% include components/button.html text="Lab Status" variant="ghost" icon="📊" href="/wiki/lab-status" %}
+</div>
+
+## Safety and Certification
+{% include components/alert.html variant="danger" icon="⚠️" title="Certification Required" body="Most equipment requires certification before use. Ask a volunteer or follow training announcements on Discord." %}
+
+## Tool Zones and Capabilities
+<div class="showcase-cards">
+{% include components/card.html title="Wood Shop" body="Saws, sanders, and hand tools for furniture, props, and prototypes." badge="Core" badge_variant="success" %}
+{% include components/card.html title="Metal Shop" body="Fabrication tools for brackets, frames, and custom hardware." badge="New" badge_variant="info" %}
+{% include components/card.html title="CNC Wood" body="Computer-controlled routing for precise cuts and joinery." badge="CNC" badge_variant="warning" %}
+{% include components/card.html title="CNC Metal (Plasma)" body="CNC plasma cutting for steel and aluminum." badge="CNC" badge_variant="warning" %}
+{% include components/card.html title="Sand Blaster" body="Surface prep and finishing for metal and wood projects." badge="New" badge_variant="info" %}
+{% include components/card.html title="Electronics + Software" body="Soldering, microcontrollers, automation, and custom software." badge="Expertise" badge_variant="neutral" %}
+</div>
+
+### Other shop favorites
+- 3D printing and laser cutting
+- Project workstations, hand tools, and shared materials
+- Members with deep experience in hardware, software, and systems
+
+## Community and Learning
+We share knowledge openly and help each other build better. Whether you are brand new or an experienced maker, you will find people willing to collaborate and teach.
+
+<div class="showcase-row">
+{% include components/badge.html text="Workshops" variant="success" %}
+{% include components/badge.html text="Project Help" variant="info" %}
+{% include components/badge.html text="Mentorship" variant="neutral" %}
+</div>
+
+## Stay in the Loop
+- Discord is our main hub for questions, updates, and events.
+- YouTube channel is in progress for project walkthroughs and tutorials.
+- Share your work so we can feature it on the kiosk and in updates.
+
+<div class="showcase-row">
+{% include components/button.html text="Join Discord" variant="primary" icon="💬" href="https://discord.gg/chicofablab" %}
+{% include components/button.html text="Task Dashboard" variant="secondary" icon="🧭" href="https://github.com/ChicoFabLab/tasksdashboard" %}
+{% include components/button.html text="Main Site Repo" variant="ghost" icon="🔗" href="https://github.com/ChicoFabLab/chicofablab.github.io" %}
+</div>
+
+## Contribute to This Page
+This is a living reference page. Add your zone, events, and tips so newcomers can find what they need.
+
+{% include components/callout.html variant="tip" icon="🧩" title="Use the Component Library" body="Developers can keep pages consistent by using our UI components. Start with the live gallery and API reference for copy-paste examples." cta_url="/wiki/component-showcase" cta_label="Component Showcase" %}
+
+<div class="showcase-row">
+{% include components/button.html text="API Reference" variant="secondary" icon="📚" href="/wiki/api-reference" %}
+{% include components/button.html text="How to Contribute" variant="ghost" icon="💻" href="/README" %}
+</div>
 
 ## What to Bring
 - A project idea (or just curiosity)
@@ -27,11 +97,8 @@ Visitor hours are Wednesdays 5-7 and by arrangement. Stop by during open hours t
 - Closed-toe shoes for shop areas
 
 ## Resources
-- Main site repo: [chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
+- Equipment guide: [Equipment Guide]({{ site.baseurl }}/wiki/equipment-guide)
+- Lab status: [Lab Status Dashboard]({{ site.baseurl }}/wiki/lab-status)
 - Task dashboard project: [tasksdashboard](https://github.com/ChicoFabLab/tasksdashboard)
 - Kiosk notes: [CFL Kiosk]({{ site.baseurl }}/wiki/cfl-kiosk)
-
-## Get Involved
-- Ask about current volunteer tasks on the task dashboard or Discord
-- Share what you’re working on so we can showcase it on the kiosk
-- Add or edit wiki pages right here in `_wiki/` (see README)
+- Main site repo: [chicofablab.github.io](https://github.com/ChicoFabLab/chicofablab.github.io)
