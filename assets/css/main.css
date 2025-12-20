@@ -190,8 +190,8 @@ body {
    =================== */
 
 header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #3d2c29 0%, #2a1f1a 100%); /* Fixed dark - matches marquee */
+    border-bottom: 1px solid #4a3d38; /* Fixed dark border */
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -209,12 +209,12 @@ header h1 {
 }
 
 header h1 a {
-    color: var(--text);
+    color: #f5f0eb; /* Fixed light text - stays same in all themes */
     text-decoration: none;
 }
 
 header h1 a:hover {
-    color: var(--accent);
+    color: #cc785c; /* Fixed accent - matches marquee */
 }
 
 nav {
@@ -223,7 +223,7 @@ nav {
 }
 
 nav a {
-    color: var(--text-muted);
+    color: rgba(245, 240, 235, 0.8); /* Fixed light text, slightly muted */
     text-decoration: none;
     font-family: system-ui, sans-serif;
     font-size: 0.85rem;
@@ -233,8 +233,8 @@ nav a {
 }
 
 nav a:hover {
-    color: var(--text);
-    background: var(--bg-alt);
+    color: #f5f0eb; /* Fixed light text - full opacity on hover */
+    background: rgba(255, 255, 255, 0.1); /* Subtle light overlay */
 }
 
 /* ===================
@@ -1086,6 +1086,30 @@ footer p {
     padding: 0.3rem 0.6rem;
     background: var(--bg-alt);
     border-radius: 3px;
+}
+
+/* Footer Pong Link */
+.footer-pong-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: var(--bg-alt);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-pong-link:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ===================
@@ -8321,19 +8345,19 @@ pre code {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.1); /* Fixed subtle light overlay */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Fixed light border */
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 8px;
     transition: all 0.15s ease;
-    color: var(--text-muted);
+    color: rgba(245, 240, 235, 0.8); /* Fixed light text */
 }
 
 .cfl-nav-settings:hover {
-    background: var(--bg-alt);
-    border-color: var(--border-dark);
-    color: var(--text);
+    background: rgba(255, 255, 255, 0.15); /* Fixed light overlay on hover */
+    border-color: rgba(255, 255, 255, 0.25); /* Fixed light border on hover */
+    color: #f5f0eb; /* Fixed light text */
     transform: translateX(-2px);
 }
 
@@ -8534,9 +8558,9 @@ pre code {
 
 /* Highlight nav button when FAB is hidden */
 .cfl-nav-settings--active {
-    background: var(--bg-alt);
-    border-color: var(--accent);
-    color: var(--accent);
+    background: rgba(255, 255, 255, 0.15); /* Fixed light overlay */
+    border-color: #cc785c; /* Fixed accent - matches marquee */
+    color: #cc785c; /* Fixed accent */
 }
 
 .cfl-settings__scrim {
