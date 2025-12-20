@@ -95,7 +95,15 @@
         {% assign api_page = true %}
     {% endif %}
 
-    <main id="main-content"{% if toc_enabled or api_page %} class="{% if toc_enabled %}has-toc{% endif %}{% if toc_enabled and api_page %} {% endif %}{% if api_page %}api-reference{% endif %}"{% endif %}>
+    {% assign main_classes = '' %}
+    {% if toc_enabled %}
+        {% assign main_classes = main_classes | append: ' has-toc' %}
+    {% endif %}
+    {% if api_page %}
+        {% assign main_classes = main_classes | append: ' api-reference' %}
+    {% endif %}
+
+    <main id="main-content"{% if main_classes != '' %} class="{{ main_classes | strip }}"{% endif %}>
         {% if page.collection == 'wiki' and page.title %}
         {% include auto-breadcrumbs.html %}
         <div class="wiki-meta">
