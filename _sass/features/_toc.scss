@@ -142,10 +142,45 @@
 // Mobile: Collapsible, full width
 @media (max-width: 1099px) {
     .cfl-toc {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .cfl-toc__details:not([open]) .cfl-toc__list {
         display: none;
+    }
+}
+
+// Small mobile: Even more compact
+@media (max-width: 600px) {
+    .cfl-toc {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .cfl-toc__toggle {
+        padding: 0.6rem 0.75rem;
+    }
+
+    .cfl-toc__title {
+        font-size: 0.8rem;
+    }
+
+    .cfl-toc__link {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .cfl-toc__item--h3 .cfl-toc__link {
+        padding-left: 1.25rem;
+        font-size: 0.8rem;
+    }
+
+    // Start collapsed on small mobile
+    .cfl-toc__details {
+        &:not([open]) {
+            .cfl-toc__list {
+                display: none;
+            }
+        }
     }
 }
