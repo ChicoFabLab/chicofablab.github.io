@@ -1118,6 +1118,17 @@
     color: var(--text-muted);
 }
 
+/* Mobile breadcrumbs */
+@media (max-width: 600px) {
+    .cfl-breadcrumbs {
+        font-size: 0.75rem;
+    }
+
+    .cfl-breadcrumbs__separator {
+        margin: 0 0.15rem;
+    }
+}
+
 /* Quick navigation index */
 .quick-nav {
     display: flex;
