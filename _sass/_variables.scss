@@ -1,0 +1,40 @@
+// ===================
+// CSS Custom Properties (Variables)
+// ===================
+
+:root {
+    /* Warm palette — Cream + Coral/Red + Teal accent */
+    --bg: #fef9f3;              /* Warm off-white */
+    --bg-alt: #f8edd8;          /* Warm cream/tan from logo */
+    --surface: #fffcf8;         /* Warm white cards */
+    --text: #2a1f1a;            /* Warm dark brown */
+    --text-muted: #6b5c52;      /* Warm brown-gray */
+    --accent: #e63946;          /* Warm coral-red (PRIMARY) */
+    --accent-hover: #c62d3a;    /* Darker coral */
+    --accent-secondary: #038592; /* Teal (SECONDARY - for info) */
+    --accent-secondary-hover: #026d78;
+    --border: #e8dcc8;          /* Warm cream border */
+    --border-dark: #d4c4a8;     /* Darker warm border */
+    --code-bg: #f8f0e6;         /* Warm cream code bg */
+    --shadow: rgba(42, 31, 26, 0.1); /* Warm brown shadow */
+
+    /* Component colors - warm harmonized */
+    --info: #038592;            /* Teal for info (cool contrast) */
+    --info-bg: #e8f4f5;
+    --info-border: #b0d8dc;
+    --success: #2d9d5a;         /* Warm forest green */
+    --success-bg: #eef8f0;
+    --success-border: #a8dbb8;
+    --warning: #e6940a;         /* Warm amber-orange */
+    --warning-bg: #fef8ec;
+    --warning-border: #f5d88a;
+    --danger: #e63946;          /* Coral-red (same as accent) */
+    --danger-bg: #fef2f2;
+    --danger-border: #f8c4c8;
+
+    /* Typography tokens (override via settings widget) */
+    --font-heading: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Georgia', 'Times New Roman', serif;
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}

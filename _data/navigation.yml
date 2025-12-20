@@ -57,6 +57,16 @@ related:
     - label: Brand Standards
       url: /wiki/brand-standards
       description: Design tokens and color palette
+  api:
+    - label: Component Library
+      url: /wiki/component-showcase
+      description: Live previews and copy-ready code
+    - label: CSS Utility Library
+      url: /wiki/css-library
+      description: Utility classes and token references
+    - label: Brand Standards
+      url: /wiki/brand-standards
+      description: Visual guidelines and palette
 
 # Quick navigation sections (for component showcase page)
 component_sections:
@@ -114,3 +124,42 @@ css_sections:
     anchor: layout
   - label: Animations
     anchor: animations
+
+# Quick navigation sections (for API reference page)
+api_sections:
+  - label: Quick Start
+    anchor: quick-start
+  - label: Versioning
+    anchor: versioning-and-changelog
+  - label: Lifecycle
+    anchor: load-timing-and-lifecycle
+  - label: Error Handling
+    anchor: error-handling-and-safety
+  - label: Global Namespace
+    anchor: global-namespace
+  - label: Configuration
+    anchor: configuration
+  - label: Persistence
+    anchor: persistence-and-storage
+  - label: Types
+    anchor: types-and-return-shapes
+  - label: Theme + Font
+    anchor: theme-and-font-settings
+  - label: Fonts API
+    anchor: fonts-api
+  - label: Sounds API
+    anchor: sounds-api
+  - label: Achievements API
+    anchor: achievements-api
+  - label: Toast API
+    anchor: toast-api
+  - label: Privacy API
+    anchor: privacy-api
+  - label: Keyboard Help
+    anchor: keyboard-help
+  - label: Events + Hooks
+    anchor: events-and-hooks
+  - label: Browser Support
+    anchor: browser-support
+  - label: Security + Privacy
+    anchor: security-and-privacy-notes

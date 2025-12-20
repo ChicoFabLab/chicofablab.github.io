@@ -23,6 +23,10 @@
     {% for item in site.data.navigation.css_sections %}
       <a href="#{{ item.anchor }}">{{ item.label }}</a>
     {% endfor %}
+  {% elsif nav_type == "api" %}
+    {% for item in site.data.navigation.api_sections %}
+      <a href="#{{ item.anchor }}">{{ item.label }}</a>
+    {% endfor %}
   {% elsif custom_items %}
     {% for item in custom_items %}
       <a href="#{{ item.anchor }}">{{ item.label }}</a>

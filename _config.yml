@@ -27,6 +27,11 @@ defaults:
     values:
       layout: "default"
 
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 exclude:
   - Gemfile
   - Gemfile.lock

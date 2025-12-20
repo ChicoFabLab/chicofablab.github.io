@@ -144,14 +144,14 @@
 
                 fontSelect.addEventListener('change', function() {
                     var font = fontSelect.value;
-                    var config = window.CFL_CONFIG || {};
-                    var fontKey = (config.storage_keys && config.storage_keys.font) || 'cfl-font';
-                    safeSet(localStorage, fontKey, font);
-                    // Trigger the existing font system if available
-                    if (window.CFLSettings && window.CFLSettings.setFont) {
-                        window.CFLSettings.setFont(font);
+                    // Use the CFL API to apply font (handles loading, CSS vars, and persistence)
+                    if (window.CFL && window.CFL.setFont) {
+                        window.CFL.setFont(font);
                     } else {
-                        // Fallback: dispatch event for settings widget
+                        // Fallback if CFL API not ready: save to localStorage and dispatch event
+                        var config = window.CFL_CONFIG || {};
+                        var fontKey = (config.storage_keys && config.storage_keys.font) || 'cfl-font';
+                        safeSet(localStorage, fontKey, font);
                         document.dispatchEvent(new CustomEvent('cfl-font-change', { detail: { font: font } }));
                     }
                 });
@@ -2359,6 +2359,27 @@
             });
         });
 
+        // Theme toggle syncing
+        function syncThemeToggles() {
+            var isDark = document.documentElement.dataset.theme === 'dark';
+            document.querySelectorAll('.cfl-theme-toggle__input').forEach(function(input) {
+                input.checked = isDark;
+            });
+        }
+
+        syncThemeToggles();
+
+        document.querySelectorAll('.cfl-theme-toggle__input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (typeof window.toggleDarkMode === 'function') {
+                    window.toggleDarkMode();
+                } else {
+                    document.documentElement.dataset.theme = input.checked ? 'dark' : 'light';
+                }
+                syncThemeToggles();
+            });
+        });
+
         // Tabs functionality
         document.querySelectorAll('.cfl-tabs').forEach(function(tabContainer) {
             var tabs = tabContainer.querySelectorAll('.cfl-tabs__tab');
@@ -3157,7 +3178,12 @@
             window.CFL.setFont = function(fontKey) {
                 if (fonts[fontKey]) {
                     state.font = fontKey;
+                    // Sync all font selects
                     if (fontSelect) fontSelect.value = fontKey;
+                    var inlineFontSelect = document.getElementById('cfl-inline-font-select');
+                    if (inlineFontSelect) inlineFontSelect.value = fontKey;
+                    var drawerFontSelect = document.getElementById('cfl-drawer-font-select');
+                    if (drawerFontSelect) drawerFontSelect.value = fontKey;
                     applyFont();
                     persist();
                     logger('Font set via API:', fontKey);
@@ -3185,11 +3211,14 @@
             persist();
             logger('Settings widget initialized', state);
 
-            // Sync inline font select with current state
+            // Sync all font selects with current state
             var inlineFontSelect = document.getElementById('cfl-inline-font-select');
             if (inlineFontSelect) {
                 inlineFontSelect.value = state.font;
             }
+            var drawerFontSelect = document.getElementById('cfl-drawer-font-select');
+            if (drawerFontSelect) {
+                drawerFontSelect.value = state.font;
+            }
         })();
     });
-

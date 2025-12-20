@@ -83,14 +83,38 @@
         </nav>
     </header>
 
-    <main id="main-content">
+    {% assign toc_enabled = false %}
+    {% if page.collection == 'wiki' and page.title %}
+        {% assign headings_count = content | split: '<h2' | size | minus: 1 %}
+        {% if page.toc != false and headings_count >= 2 %}
+            {% assign toc_enabled = true %}
+        {% endif %}
+    {% endif %}
+    {% assign api_page = false %}
+    {% if page.url and page.url contains '/wiki/api-reference' %}
+        {% assign api_page = true %}
+    {% endif %}
+
+    <main id="main-content"{% if toc_enabled or api_page %} class="{% if toc_enabled %}has-toc{% endif %}{% if toc_enabled and api_page %} {% endif %}{% if api_page %}api-reference{% endif %}"{% endif %}>
         {% if page.collection == 'wiki' and page.title %}
+        {% include auto-breadcrumbs.html %}
         <div class="wiki-meta">
             {% include reading-time.html %}
             {% include last-updated.html %}
         </div>
+        {% if toc_enabled %}
+        <div class="toc-layout">
+            {% include toc.html %}
+            <div class="toc-content">
+                {{ content }}
+            </div>
+        </div>
+        {% else %}
+            {{ content }}
         {% endif %}
-        {{ content }}
+        {% else %}
+            {{ content }}
+        {% endif %}
     </main>
 
     <footer>

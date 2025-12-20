@@ -1,0 +1,42 @@
+// ===================
+// MARQUEE — Subtle ticker
+// ===================
+
+.marquee-container {
+    background: linear-gradient(135deg, #3d2c29 0%, #2a1f1a 100%);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: marquee 40s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 1.5rem;
+    color: #f5f0eb; /* Fixed light color - stays same in all themes */
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    opacity: 0.9;
+}
+
+.marquee-item:hover { opacity: 1; }
+
+.marquee-dot {
+    margin-right: 0.5rem;
+    color: #cc785c; /* Fixed accent - stays same in all themes */
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

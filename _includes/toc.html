@@ -1,0 +1,82 @@
+{% comment %}
+  Table of Contents Component
+  Auto-generates a TOC from h2 and h3 headings in the page content.
+
+  Usage: {% include toc.html %}
+
+  Features:
+  - Extracts h2/h3 headings from content
+  - Generates anchor links
+  - Collapsible on mobile
+  - Sticky on desktop
+
+  Disable per-page with front matter: toc: false
+{% endcomment %}
+
+{% unless page.toc == false %}
+{% assign headings_count = content | split: '<h2' | size | minus: 1 %}
+{% if headings_count >= 2 %}
+<nav class="cfl-toc" aria-label="Table of Contents">
+  <details class="cfl-toc__details" open>
+    <summary class="cfl-toc__toggle">
+      <span class="cfl-toc__title">
+        <svg class="cfl-toc__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="15" y2="12"></line>
+          <line x1="3" y1="18" x2="18" y2="18"></line>
+        </svg>
+        On this page
+      </span>
+      <svg class="cfl-toc__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </summary>
+    <ol class="cfl-toc__list">
+      {% assign h2_regex = '<h2[^>]*id="([^"]*)"[^>]*>([^<]*)</h2>' %}
+      {% assign h3_regex = '<h3[^>]*id="([^"]*)"[^>]*>([^<]*)</h3>' %}
+
+      {% comment %} Parse headings from content {% endcomment %}
+      {% assign content_lines = content | split: '<h2' %}
+      {% for section in content_lines %}
+        {% if forloop.first == false %}
+          {% assign h2_parts = section | split: '</h2>' | first %}
+          {% if h2_parts contains 'id="' %}
+            {% assign id_start = h2_parts | split: 'id="' | last %}
+            {% assign heading_id = id_start | split: '"' | first %}
+            {% assign text_start = h2_parts | split: '>' | last %}
+            {% assign heading_text = text_start | strip_html | strip %}
+            {% if heading_text != '' %}
+      <li class="cfl-toc__item cfl-toc__item--h2">
+        <a href="#{{ heading_id }}" class="cfl-toc__link">{{ heading_text }}</a>
+        {% comment %} Find h3 headings within this section {% endcomment %}
+        {% assign h3_sections = section | split: '<h3' %}
+        {% if h3_sections.size > 1 %}
+        <ol class="cfl-toc__sublist">
+          {% for h3_section in h3_sections %}
+            {% if forloop.first == false %}
+              {% assign h3_parts = h3_section | split: '</h3>' | first %}
+              {% if h3_parts contains 'id="' %}
+                {% assign h3_id_start = h3_parts | split: 'id="' | last %}
+                {% assign h3_id = h3_id_start | split: '"' | first %}
+                {% assign h3_text_start = h3_parts | split: '>' | last %}
+                {% assign h3_text = h3_text_start | strip_html | strip %}
+                {% if h3_text != '' %}
+          <li class="cfl-toc__item cfl-toc__item--h3">
+            <a href="#{{ h3_id }}" class="cfl-toc__link">{{ h3_text }}</a>
+          </li>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ol>
+        {% endif %}
+      </li>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </details>
+</nav>
+{% endif %}
+{% endunless %}

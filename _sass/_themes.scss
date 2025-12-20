@@ -1,0 +1,92 @@
+// ===================
+// Dark/Light Mode Themes
+// ===================
+
+/* Dark mode theme */
+[data-theme="dark"] {
+    --bg: #1a1614;
+    --bg-alt: #252220;
+    --surface: #2a2624;
+    --text: #f5f0eb;
+    --text-muted: #a89c94;
+    --accent: #ff6b6b;
+    --accent-hover: #ff5252;
+    --accent-secondary: #4ecdc4;
+    --accent-secondary-hover: #3dbdb5;
+    --border: #3a3532;
+    --border-dark: #4a4540;
+    --code-bg: #2a2624;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --info: #4ecdc4;
+    --info-bg: #1a2a29;
+    --info-border: #2a4a48;
+    --success: #4ade80;
+    --success-bg: #1a2a1f;
+    --success-border: #2a4a35;
+    --warning: #fbbf24;
+    --warning-bg: #2a2515;
+    --warning-border: #4a4020;
+    --danger: #ff6b6b;
+    --danger-bg: #2a1a1a;
+    --danger-border: #4a2a2a;
+}
+
+/* Explicit light mode (overrides system dark preference) */
+[data-theme="light"] {
+    --bg: #fef9f3;
+    --bg-alt: #f8edd8;
+    --surface: #fffcf8;
+    --text: #2a1f1a;
+    --text-muted: #6b5c52;
+    --accent: #e63946;
+    --accent-hover: #c62d3a;
+    --accent-secondary: #038592;
+    --accent-secondary-hover: #026d78;
+    --border: #e8dcc8;
+    --border-dark: #d4c4a8;
+    --code-bg: #f8f0e6;
+    --shadow: rgba(42, 31, 26, 0.1);
+    --info: #038592;
+    --info-bg: #e8f4f5;
+    --info-border: #b0d8dc;
+    --success: #2d9d5a;
+    --success-bg: #eef8f0;
+    --success-border: #a8dbb8;
+    --warning: #e6940a;
+    --warning-bg: #fef8ec;
+    --warning-border: #f5d88a;
+    --danger: #e63946;
+    --danger-bg: #fef2f2;
+    --danger-border: #f8c4c8;
+}
+
+/* Respect system preference ONLY if no explicit theme set */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --bg: #1a1614;
+        --bg-alt: #252220;
+        --surface: #2a2624;
+        --text: #f5f0eb;
+        --text-muted: #a89c94;
+        --accent: #ff6b6b;
+        --accent-hover: #ff5252;
+        --accent-secondary: #4ecdc4;
+        --accent-secondary-hover: #3dbdb5;
+        --border: #3a3532;
+        --border-dark: #4a4540;
+        --code-bg: #2a2624;
+        --shadow: rgba(0, 0, 0, 0.3);
+        --info: #4ecdc4;
+        --info-bg: #1a2a29;
+        --info-border: #2a4a48;
+        --success: #4ade80;
+        --success-bg: #1a2a1f;
+        --success-border: #2a4a35;
+        --warning: #fbbf24;
+        --warning-bg: #2a2515;
+        --warning-border: #4a4020;
+        --danger: #ff6b6b;
+        --danger-bg: #2a1a1a;
+        --danger-border: #4a2a2a;
+    }
+}
