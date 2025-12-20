@@ -1,0 +1,17 @@
+{% comment %}
+Reading Time Include
+Calculates and displays estimated reading time for content
+Assumes average reading speed: 200 words per minute
+{% endcomment %}
+
+{% if page.content %}
+  {% assign words = page.content | number_of_words %}
+  {% if words > 0 %}
+    {% assign reading_time = words | divided_by: 200.0 | ceil %}
+    {% if reading_time < 1 %}
+      <span class="reading-time">Less than 1 min read</span>
+    {% else %}
+      <span class="reading-time">~{{ reading_time }} min read</span>
+    {% endif %}
+  {% endif %}
+{% endif %}

@@ -1,0 +1,168 @@
+// ===================
+// Base Styles - Reset, Typography, Elements
+// ===================
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+// ===================
+// Typography
+// ===================
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text);
+}
+
+h2 {
+    font-size: 1.35rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--text);
+}
+
+// Links — Classic underline
+a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+// Lists
+ul, ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+li {
+    margin: 0.4rem 0;
+    color: var(--text);
+}
+
+li::marker {
+    color: var(--accent);
+}
+
+// Code — Subtle monospace
+pre {
+    background: var(--code-bg);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+code {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    background: var(--code-bg);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: var(--text);
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+// Images
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+}
+
+// Tables
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: var(--bg-alt);
+    font-weight: 600;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+// ===================
+// Typography Overrides (settings-aware)
+// ===================
+
+.hero-title,
+.card-header h3,
+.section-title,
+.stat-number,
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+.hero-subtitle,
+nav a,
+.hero-cta,
+.card-link,
+.stat-label,
+.footer-links a,
+.footer-badge,
+.cfl-btn,
+.cfl-badge,
+.cfl-alert__title,
+.cfl-toast__title,
+.cfl-toast__message,
+.cfl-settings,
+.cfl-settings__note,
+.cfl-settings__panel-title,
+.cfl-settings__fab-label {
+    font-family: var(--font-ui);
+}
+
+code,
+pre code {
+    font-family: var(--font-mono);
+}

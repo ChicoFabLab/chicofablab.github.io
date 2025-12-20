@@ -1,0 +1,241 @@
+/* ============================================
+   ACHIEVEMENT RARITY SYSTEM
+   ============================================
+
+   PURPOSE: Visual distinction for achievement tiers
+
+   TIERS:
+     - Common (gray)      - Basic interactions
+     - Uncommon (green)   - Page visits, basic progress
+     - Rare (blue)        - Completing sections
+     - Epic (purple)      - Learning path completion
+     - Legendary (gold)   - Master achievements
+
+   SEE: Plan Phase 4.2 for XP values
+   ============================================ */
+
+/* Rarity Border Colors */
+.cfl-achievement--common {
+    border-left: 4px solid #9ca3af;
+}
+
+.cfl-achievement--uncommon {
+    border-left: 4px solid #22c55e;
+}
+
+.cfl-achievement--rare {
+    border-left: 4px solid #3b82f6;
+}
+
+.cfl-achievement--epic {
+    border-left: 4px solid #9333ea;
+}
+
+.cfl-achievement--legendary {
+    border-left: 4px solid #f59e0b;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(255, 215, 0, 0.05));
+}
+
+.cfl-achievement--legendary.cfl-achievement--unlocked {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(255, 215, 0, 0.1));
+    border-color: #fbbf24;
+}
+
+/* Achievement Header (name + rarity + xp) */
+.cfl-achievement__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+}
+
+.cfl-achievement__header .cfl-achievement__name {
+    margin-bottom: 0;
+}
+
+/* Rarity Badge */
+.cfl-achievement__rarity {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.cfl-achievement__rarity--common {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.cfl-achievement__rarity--uncommon {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.cfl-achievement__rarity--rare {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.cfl-achievement__rarity--epic {
+    background: #f3e8ff;
+    color: #7c3aed;
+}
+
+.cfl-achievement__rarity--legendary {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #b45309;
+    animation: legendaryPulse 2s ease-in-out infinite;
+}
+
+@keyframes legendaryPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+    }
+    50% {
+        box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+    }
+}
+
+/* XP Badge */
+.cfl-achievement__xp {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--bg);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+}
+
+/* Level Progress Bar in Panel Header */
+.cfl-achievements-level {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+}
+
+.cfl-achievements-level__badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover, #c85a30));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.cfl-achievements-level__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cfl-achievements-level__title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cfl-achievements-level__name {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+}
+
+.cfl-achievements-level__progress {
+    height: 8px;
+    background: var(--bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cfl-achievements-level__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #f59e0b);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.cfl-achievements-level__xp {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Achievement Category Paths */
+.cfl-achievement__category-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* Learning Path Progress */
+.cfl-path-progress {
+    background: var(--bg-alt);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cfl-path-progress__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.cfl-path-progress__title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cfl-path-progress__count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.cfl-path-progress__bar {
+    height: 10px;
+    background: var(--bg);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.cfl-path-progress__fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.cfl-path-progress__fill--3d {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.cfl-path-progress__fill--laser {
+    background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.cfl-path-progress__fill--cnc {
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+.cfl-path-progress__fill--explorer {
+    background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
+

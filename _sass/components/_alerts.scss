@@ -1,0 +1,108 @@
+// ===================
+// ALERT COMPONENT
+// ===================
+// Used for notices, warnings, success messages, etc.
+// Variants: info, success, warning, danger
+
+.cfl-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--border);
+    background: var(--bg-alt);
+    margin: 1rem 0;
+}
+
+.cfl-alert__icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.cfl-alert__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.cfl-alert__title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+}
+
+.cfl-alert__body {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.cfl-alert__body p {
+    margin: 0;
+}
+
+.cfl-alert__body p + p {
+    margin-top: 0.5rem;
+}
+
+// Variants
+.cfl-alert--info {
+    background: var(--info-bg);
+    border-left-color: var(--info);
+}
+
+.cfl-alert--info .cfl-alert__title {
+    color: var(--info);
+}
+
+.cfl-alert--success {
+    background: var(--success-bg);
+    border-left-color: var(--success);
+}
+
+.cfl-alert--success .cfl-alert__title {
+    color: var(--success);
+}
+
+.cfl-alert--warning {
+    background: var(--warning-bg);
+    border-left-color: var(--warning);
+}
+
+.cfl-alert--warning .cfl-alert__title {
+    color: var(--warning);
+}
+
+.cfl-alert--danger {
+    background: var(--danger-bg);
+    border-left-color: var(--danger);
+}
+
+.cfl-alert--danger .cfl-alert__title {
+    color: var(--danger);
+}
+
+// Alert enhancements - dismissable
+.cfl-alert--dismissable {
+    padding-right: 2.5rem;
+    position: relative;
+}
+
+.cfl-alert__dismiss {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+
+.cfl-alert__dismiss:hover {
+    opacity: 1;
+}

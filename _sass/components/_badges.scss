@@ -1,0 +1,103 @@
+// ===================
+// BADGE COMPONENT
+// ===================
+// Status indicators, labels, tags
+// Variants: default, info, success, warning, danger
+// Sizes: sm, md, lg
+
+.cfl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+// Sizes
+.cfl-badge--sm {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.35rem;
+}
+
+.cfl-badge--lg {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.65rem;
+}
+
+// Variants
+.cfl-badge--info {
+    background: var(--info-bg);
+    color: var(--info);
+}
+
+.cfl-badge--success {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.cfl-badge--warning {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.cfl-badge--danger {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.cfl-badge--primary {
+    background: var(--accent);
+    color: white;
+}
+
+// Pill variant (fully rounded)
+.cfl-badge--pill {
+    border-radius: 50px;
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+}
+
+// Outline variants
+.cfl-badge--outline {
+    background: transparent;
+    border: 1px solid var(--border);
+}
+
+.cfl-badge--outline-info {
+    background: transparent;
+    border: 1px solid var(--info);
+    color: var(--info);
+}
+
+.cfl-badge--outline-success {
+    background: transparent;
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.cfl-badge--outline-warning {
+    background: transparent;
+    border: 1px solid var(--warning);
+    color: var(--warning);
+}
+
+.cfl-badge--outline-danger {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+// Badge with dot
+.cfl-badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}

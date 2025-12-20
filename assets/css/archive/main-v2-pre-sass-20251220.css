@@ -1,6 +1,190 @@
 /* CFL Wiki — Warm Logo-Inspired Theme */
 /* Archived: assets/css/archive/main-v1-warm-paper-20251216.css */
 
+/* Skip to main content link - accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent, #e63946);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 10000;
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--accent-secondary, #038592);
+    outline-offset: 2px;
+}
+
+/* Reading time display */
+.reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-ui);
+}
+.reading-time::before {
+    content: '📖';
+    font-size: 1rem;
+}
+
+/* Wiki page metadata */
+.wiki-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Last updated display */
+.last-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-ui);
+}
+.last-updated::before {
+    content: '📅';
+    font-size: 1rem;
+}
+
+/* Code block copy button */
+.code-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-family: var(--font-ui);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s, background 0.15s, color 0.15s;
+}
+pre:hover .code-copy-btn,
+.highlight:hover .code-copy-btn {
+    opacity: 1;
+}
+.code-copy-btn:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+.code-copy-btn--copied {
+    background: var(--success-bg);
+    border-color: var(--success-border);
+    color: var(--success);
+}
+
+/* Keyboard shortcuts help modal */
+.keyboard-help-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+}
+.keyboard-help-modal.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.keyboard-help-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+.keyboard-help-modal__content {
+    position: relative;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px var(--shadow);
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: auto;
+}
+.keyboard-help-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+.keyboard-help-modal__header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text);
+}
+.keyboard-help-modal__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 0.15s;
+}
+.keyboard-help-modal__close:hover {
+    color: var(--text);
+}
+.keyboard-help-modal__body {
+    padding: 1.5rem;
+}
+.keyboard-help-modal__section {
+    margin-bottom: 1.5rem;
+}
+.keyboard-help-modal__section:last-child {
+    margin-bottom: 0;
+}
+.keyboard-help-modal__section h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem 0;
+}
+.keyboard-help-modal__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+.keyboard-help-modal__row kbd {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text);
+    min-width: 2rem;
+    text-align: center;
+}
+.keyboard-help-modal__row span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
 :root {
     /* Warm palette — Cream + Coral/Red + Teal accent */
     --bg: #fef9f3;              /* Warm off-white */
@@ -9837,5 +10021,118 @@ body.cfl-level-up::after {
 
     .cfl-achievement-card--legendary.cfl-achievement-card--unlocked {
         animation: none;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    /* Hide non-essential elements */
+    .skip-link,
+    header nav,
+    .cfl-nav-settings,
+    .cfl-drawer,
+    .cfl-drawer__backdrop,
+    .cfl-settings,
+    .cfl-fab-bar,
+    .daily-tip,
+    .marquee,
+    .code-copy-btn,
+    .code-snippet__copy,
+    .keyboard-help-modal,
+    .cfl-toast-container,
+    .cfl-achievements-panel,
+    footer .footer-social,
+    footer .footer-pong-link,
+    footer .footer-badge,
+    .wiki-search,
+    .wiki-categories,
+    .hero-cta,
+    #pong-easter-egg {
+        display: none !important;
+    }
+
+    /* Reset backgrounds */
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    main {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* Typography adjustments */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        color: black !important;
+    }
+
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Links */
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    a[href^="/"]::after,
+    a[href^="#"]::after {
+        content: "";
+    }
+
+    /* Code blocks */
+    pre, code {
+        background: #f5f5f5 !important;
+        border: 1px solid #ddd !important;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse !important;
+    }
+
+    th, td {
+        border: 1px solid #ddd !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Cards */
+    .cfl-card {
+        break-inside: avoid;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+    }
+
+    /* Page breaks */
+    .page-break {
+        page-break-before: always;
+    }
+
+    /* Footer minimal */
+    footer {
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
+        margin-top: 2rem;
     }
 }

@@ -1,0 +1,264 @@
+// ===================
+// Layout - Header, Footer, Main, Grid
+// ===================
+
+// ===================
+// HEADER — Simple & Classic
+// ===================
+
+header {
+    background: linear-gradient(135deg, #3d2c29 0%, #2a1f1a 100%); /* Fixed dark - matches marquee */
+    border-bottom: 1px solid #4a3d38; /* Fixed dark border */
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+header h1 a {
+    color: #f5f0eb; /* Fixed light text - stays same in all themes */
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    color: #cc785c; /* Fixed accent - matches marquee */
+}
+
+nav {
+    display: flex;
+    gap: 0.25rem;
+}
+
+nav a {
+    color: rgba(245, 240, 235, 0.8); /* Fixed light text, slightly muted */
+    text-decoration: none;
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+nav a:hover {
+    color: #f5f0eb; /* Fixed light text - full opacity on hover */
+    background: rgba(255, 255, 255, 0.1); /* Subtle light overlay */
+}
+
+// ===================
+// MAIN CONTENT
+// ===================
+
+main {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+main:has(.hero) {
+    max-width: none;
+    padding: 0;
+}
+
+@media (min-width: 1100px) {
+    main:has(.cfl-toc),
+    main.has-toc {
+        max-width: 980px;
+    }
+}
+
+main > h1:first-child,
+h1#welcome-to-chico-fab-lab {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+}
+
+// Prevent list styling on component labels
+main label.cfl-toggle,
+main .cfl-toggle {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main label.cfl-toggle::before,
+main .cfl-toggle::before {
+    content: none;
+    display: none;
+}
+
+// ===================
+// FOOTER — Community Focus
+// ===================
+
+footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.social-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+footer p {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0.25rem 0;
+}
+
+.footer-badge {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    padding: 0.3rem 0.6rem;
+    background: var(--bg-alt);
+    border-radius: 3px;
+}
+
+// Footer Pong Link
+.footer-pong-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: var(--bg-alt);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-pong-link:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+// ===================
+// RESPONSIVE
+// ===================
+
+@media (min-width: 600px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .wiki-search__container {
+        max-width: 450px;
+    }
+
+    .category-pill {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero {
+        padding: 4rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.75rem;
+    }
+
+    .wiki-section {
+        padding: 3rem 2rem;
+    }
+
+    .wiki-search__container {
+        max-width: 500px;
+    }
+
+    .wiki-categories {
+        gap: 0.625rem;
+    }
+}
+
+// ===================
+// EMPTY STATE
+// ===================
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+}

@@ -1,0 +1,4232 @@
+/* CFL Wiki — Warm Logo-Inspired Theme */
+/* Archived: assets/css/archive/main-v1-warm-paper-20251216.css */
+
+/* MOVED: skip-link → utilities/_accessibility.scss */
+/* MOVED: reading-time, wiki-meta, last-updated → features/_wiki.scss */
+
+/* Code block copy button */
+.code-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-family: var(--font-ui);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s, background 0.15s, color 0.15s;
+}
+pre:hover .code-copy-btn,
+.highlight:hover .code-copy-btn {
+    opacity: 1;
+}
+.code-copy-btn:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+.code-copy-btn--copied {
+    background: var(--success-bg);
+    border-color: var(--success-border);
+    color: var(--success);
+}
+
+/* Keyboard shortcuts help modal */
+.keyboard-help-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+}
+.keyboard-help-modal.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.keyboard-help-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+.keyboard-help-modal__content {
+    position: relative;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px var(--shadow);
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: auto;
+}
+.keyboard-help-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+.keyboard-help-modal__header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text);
+}
+.keyboard-help-modal__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 0.15s;
+}
+.keyboard-help-modal__close:hover {
+    color: var(--text);
+}
+.keyboard-help-modal__body {
+    padding: 1.5rem;
+}
+.keyboard-help-modal__section {
+    margin-bottom: 1.5rem;
+}
+.keyboard-help-modal__section:last-child {
+    margin-bottom: 0;
+}
+.keyboard-help-modal__section h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem 0;
+}
+.keyboard-help-modal__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+.keyboard-help-modal__row kbd {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text);
+    min-width: 2rem;
+    text-align: center;
+}
+.keyboard-help-modal__row span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* MOVED: :root variables → _variables.scss */
+/* MOVED: [data-theme] themes → _themes.scss */
+/* MOVED: *, html, body reset → _base.scss */
+/* MOVED: marquee → features/_marquee.scss */
+/* MOVED: header, nav → _layout.scss */
+/* MOVED: hero, stat → features/_wiki.scss */
+
+/* ===================
+   DAILY TIP BANNER
+   =================== */
+.daily-tip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+    background: var(--info-bg);
+    border: 1px solid var(--info-border);
+    border-radius: 8px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+
+.daily-tip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--info);
+    flex-shrink: 0;
+}
+
+.daily-tip__label {
+    font-weight: 600;
+    color: var(--info);
+    flex-shrink: 0;
+}
+
+.daily-tip__text {
+    flex: 1;
+    color: var(--text-muted);
+}
+
+.daily-tip__text kbd {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 var(--border-dark);
+}
+
+.daily-tip__dismiss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0.6;
+    transition: all 0.1s ease;
+    flex-shrink: 0;
+}
+
+.daily-tip__dismiss:hover {
+    background: var(--surface);
+    opacity: 1;
+}
+
+.daily-tip[hidden] {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .daily-tip {
+        margin: 0 1rem 1rem;
+        flex-wrap: wrap;
+    }
+
+    .daily-tip__text {
+        order: 3;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+/* MOVED: wiki-section, section-title → features/_wiki.scss */
+/* MOVED: wiki-search → features/_search.scss */
+/* MOVED: wiki-categories, category-pill → features/_wiki.scss */
+/* MOVED: wiki-results, wiki-no-results → features/_wiki.scss */
+/* MOVED: card-grid, wiki-card, card-* → components/_cards.scss */
+
+/* ===================
+   MAIN CONTENT — Classic Wiki Typography
+   =================== */
+
+main {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+main:has(.hero) {
+    max-width: none;
+    padding: 0;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text);
+}
+
+main > h1:first-child,
+h1#welcome-to-chico-fab-lab {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+}
+
+h2 {
+    font-size: 1.35rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin: 1rem 0;
+    color: var(--text);
+}
+
+/* Links — Classic underline */
+a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+/* Prevent list styling on component labels */
+main label.cfl-toggle,
+main .cfl-toggle {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main label.cfl-toggle::before,
+main .cfl-toggle::before {
+    content: none;
+    display: none;
+}
+
+li {
+    margin: 0.4rem 0;
+    color: var(--text);
+}
+
+li::marker {
+    color: var(--accent);
+}
+
+/* Code — Subtle monospace */
+pre {
+    background: var(--code-bg);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+code {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    background: var(--code-bg);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: var(--text);
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background: var(--bg-alt);
+    font-weight: 600;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+/* ===================
+   FOOTER — Community Focus
+   =================== */
+
+footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.social-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+footer p {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0.25rem 0;
+}
+
+.footer-badge {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    padding: 0.3rem 0.6rem;
+    background: var(--bg-alt);
+    border-radius: 3px;
+}
+
+/* Footer Pong Link */
+.footer-pong-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: var(--bg-alt);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-pong-link:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================
+   RESPONSIVE
+   =================== */
+
+@media (min-width: 600px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .wiki-search__container {
+        max-width: 450px;
+    }
+
+    .category-pill {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero {
+        padding: 4rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.75rem;
+    }
+
+    .wiki-section {
+        padding: 3rem 2rem;
+    }
+
+    .wiki-search__container {
+        max-width: 500px;
+    }
+
+    .wiki-categories {
+        gap: 0.625rem;
+    }
+}
+
+/* ===================
+   EMPTY STATE
+   =================== */
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+}
+
+/* MOVED: cfl-btn base component → components/_buttons.scss */
+/* MOVED: cfl-alert → components/_alerts.scss */
+/* MOVED: cfl-badge → components/_badges.scss */
+
+
+/* MOVED: Fun Button Variants (1,501 lines) → features/_fun-buttons.scss */
+
+
+/* MOVED: Eldritch Corruption Mode (102 lines) → features/_eldritch.scss */
+
+/* =====================================================================
+   KONAMI CODE RAINBOW MODE
+   =====================================================================
+
+   PURPOSE: Visual effects for when user enters ↑↑↓↓←→←→BA
+
+   TRIGGERED BY: JavaScript adds body.konami-mode class
+
+   EFFECTS:
+     - Entire page cycles through hue-rotate filter (0.5s loop)
+     - All elements gently pulse scale
+     - Buttons wiggle left/right
+
+   DURATION: 10 seconds (removed by JavaScript timer)
+
+   SEE: docs/EASTER-EGGS.md
+   ===================================================================== */
+
+body.konami-mode {
+    animation: konami-rainbow 0.5s linear infinite;
+}
+
+body.konami-mode * {
+    animation: konami-elements 2s ease-in-out infinite;
+}
+
+body.konami-mode .cfl-btn {
+    animation: konami-buttons 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes konami-rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes konami-elements {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes konami-buttons {
+    0% { transform: translateY(0) rotate(-2deg); }
+    100% { transform: translateY(-3px) rotate(2deg); }
+}
+
+/* =====================================================================
+   ACHIEVEMENT PANEL
+   =====================================================================
+
+   PURPOSE: Enhanced floating UI for displaying user achievements with
+            categories, progress tracking, and improved visual design
+
+   COMPONENTS:
+     .cfl-achievements-panel              - Main sliding panel container
+     .cfl-achievements-header             - Header with title and close button
+     .cfl-achievements-tabs               - Category filter tabs
+     .cfl-achievements-list               - Scrollable achievement list
+     .cfl-achievement                     - Individual achievement card
+     .cfl-achievement--locked             - Locked state (grayed, lock icon)
+     .cfl-achievement--unlocked           - Unlocked state (gold highlight)
+     .cfl-achievement__progress           - Progress bar for progression achievements
+     .cfl-achievement__time               - Unlock timestamp display
+     .cfl-achievements-stats               - Footer with statistics
+
+   FEATURES:
+     - Category filtering (All, Progression, Special, Time, Secrets)
+     - Progress indicators for progression achievements
+     - Unlock timestamps with relative time formatting
+     - Scroll lock when panel is open
+     - Real-time updates when achievements unlock
+     - Responsive mobile design
+
+   POSITIONING:
+     Panel: fixed, bottom: 80px, right: 1rem
+     Width: 400px (desktop), auto (mobile)
+     Max height: 70vh
+
+   ANIMATIONS:
+     - Panel slide-in/scale animation
+     - Achievement glow effect for unlocked items
+     - Tab hover transitions
+     - Progress bar width transitions
+     - Panel slides up with opacity transition
+     - New achievement dot pulses
+
+   RESPONSIVE: Panel goes full-width on mobile (< 768px)
+
+   SEE: docs/ACHIEVEMENTS.md
+   ===================================================================== */
+
+/* =====================================================================
+   UNIFIED FLOATING ACTION BAR
+   =====================================================================
+
+   Consolidates all floating buttons into one expandable horizontal bar.
+   Main FAB (+) expands to show: Settings, Achievements, Sound toggle
+
+   ===================================================================== */
+
+.cfl-fab-bar {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cfl-fab-bar__main {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent, #e63946), #c62d3a);
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cfl-fab-bar__main:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+}
+
+.cfl-fab-bar__main-icon {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: block;
+}
+
+.cfl-fab-bar--open .cfl-fab-bar__main-icon {
+    transform: rotate(45deg);
+}
+
+.cfl-fab-bar__items {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cfl-fab-bar--open .cfl-fab-bar__items {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.cfl-fab-bar__item {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cfl-fab-bar__item:hover {
+    transform: scale(1.1);
+    border-color: var(--accent);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+.cfl-fab-bar__item--achievements {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border: none;
+}
+
+.cfl-fab-bar__item--achievements:hover {
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+}
+
+.cfl-fab-bar__item--sound[data-enabled="false"] {
+    opacity: 0.5;
+}
+
+.cfl-fab-bar__item[data-new]::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 12px;
+    height: 12px;
+    background: #e63946;
+    border-radius: 50%;
+    animation: pulse-dot 1s ease-in-out infinite;
+}
+
+/* Stagger animation for items */
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(1) { transition-delay: 0s; }
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(2) { transition-delay: 0.05s; }
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(3) { transition-delay: 0.1s; }
+.cfl-fab-bar--open .cfl-fab-bar__item:nth-child(4) { transition-delay: 0.15s; }
+
+/* Tooltip labels */
+.cfl-fab-bar__label {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-ui);
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.cfl-fab-bar__item:hover .cfl-fab-bar__label {
+    opacity: 1;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* Hide old standalone buttons - they're now in the FAB bar */
+.cfl-achievements-btn,
+.cfl-sound-toggle {
+    display: none !important;
+}
+
+/* Hide the old settings FAB - now triggered from unified FAB bar */
+.cfl-settings__fab,
+.cfl-settings__dismiss {
+    display: none !important;
+}
+
+/* Reposition settings widget to work with unified FAB bar */
+.cfl-settings {
+    bottom: 80px !important;
+    right: 1rem !important;
+}
+
+/* Hide old orbit - replaced by settings menu */
+.cfl-settings__orbit {
+    display: none !important;
+}
+
+/* =====================================================================
+   SETTINGS MENU (replaces orbit)
+   =====================================================================
+   A clean vertical dropdown that appears above the FAB bar.
+   Triggered by the settings button in the FAB bar.
+   ===================================================================== */
+
+.cfl-settings-menu {
+    position: fixed;
+    bottom: 80px;
+    right: 1rem;
+    width: 200px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--shadow);
+    z-index: 9992;
+    overflow: hidden;
+    transform: translateY(10px) scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cfl-settings-menu.is-open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.cfl-settings-menu__header {
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark, #c85a30));
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cfl-settings-menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.cfl-settings-menu__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cfl-settings-menu__item:hover {
+    background: var(--bg-alt);
+    color: var(--accent);
+}
+
+.cfl-settings-menu__item:active {
+    background: var(--border);
+}
+
+.cfl-settings-menu__icon {
+    font-size: 1.1rem;
+    width: 1.5rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.cfl-settings-menu__label {
+    flex: 1;
+}
+
+.cfl-settings-menu__divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0.5rem 0;
+}
+
+/* Inline settings menu body */
+.cfl-settings-menu__body {
+    padding: 0.5rem 0;
+}
+
+/* Accordion sections */
+.cfl-settings-menu__section {
+    border-bottom: 1px solid var(--border);
+}
+
+.cfl-settings-menu__section:last-of-type {
+    border-bottom: none;
+}
+
+.cfl-settings-menu__section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    width: 100%;
+    font-size: 0.9rem;
+    font-family: var(--font-ui);
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.cfl-settings-menu__section-header:hover {
+    background: var(--bg-alt);
+}
+
+.cfl-settings-menu__chevron {
+    margin-left: auto;
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+    opacity: 0.5;
+}
+
+.cfl-settings-menu__section.is-open .cfl-settings-menu__chevron {
+    transform: rotate(180deg);
+}
+
+.cfl-settings-menu__section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease, padding 0.25s ease;
+    padding: 0 1rem;
+}
+
+.cfl-settings-menu__section.is-open .cfl-settings-menu__section-content {
+    max-height: 200px;
+    padding: 0.5rem 1rem 1rem;
+}
+
+/* Inline select dropdown */
+.cfl-settings-menu__select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-family: var(--font-ui);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.cfl-settings-menu__select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
+
+/* Inline color swatches */
+.cfl-settings-menu__swatches {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.cfl-settings-menu__swatch {
+    width: 32px;
+    height: 32px;
+    padding: 3px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.cfl-settings-menu__swatch:hover {
+    transform: scale(1.1);
+}
+
+.cfl-settings-menu__swatch.is-active {
+    border-color: var(--accent);
+}
+
+/* Dark mode toggle in settings menu */
+.cfl-settings-menu__dark-mode {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.cfl-settings-menu__dark-mode .cfl-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.cfl-settings-menu__swatch span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+/* Item buttons in body */
+.cfl-settings-menu__body > .cfl-settings-menu__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    width: 100%;
+    font-size: 0.9rem;
+    font-family: var(--font-ui);
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.cfl-settings-menu__body > .cfl-settings-menu__item:hover {
+    background: var(--bg-alt);
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .cfl-settings-menu {
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+}
+
+.cfl-achievements-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 1rem;
+    width: 400px;
+    max-height: 70vh;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--shadow);
+    z-index: 9991;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.cfl-achievements-panel.is-open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Prevent body scroll when achievements panel is open */
+body:has(.cfl-achievements-panel.is-open) {
+    overflow: hidden;
+}
+
+.cfl-achievements-header {
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.cfl-achievements-header__title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cfl-achievements-header__title > span {
+    font-size: 1.8rem;
+}
+
+.cfl-achievements-header__main {
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.cfl-achievements-header__subtitle {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.cfl-achievements-header button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.cfl-achievements-header button:hover {
+    opacity: 1;
+}
+
+.cfl-achievements-tabs {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.cfl-achievements-tab {
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    font-family: var(--font-ui);
+}
+
+.cfl-achievements-tab:hover {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.cfl-achievements-tab.active {
+    background: var(--accent);
+    color: white;
+}
+
+.cfl-achievements-list {
+    padding: 1rem;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.cfl-achievements-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.cfl-achievement {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    background: var(--bg-alt);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.cfl-achievement:hover {
+    background: var(--bg);
+    transform: translateX(2px);
+}
+
+.cfl-achievement--locked {
+    opacity: 0.6;
+    filter: grayscale(0.7);
+}
+
+.cfl-achievement--unlocked {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 140, 0, 0.05));
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.cfl-achievement--unlocked:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 140, 0, 0.08));
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.cfl-achievement__icon {
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.cfl-achievement--unlocked .cfl-achievement__icon {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    animation: achievement-glow 2s ease-in-out infinite;
+}
+
+.cfl-achievement__lock {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    font-size: 0.9rem;
+    background: var(--bg);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border);
+    opacity: 0.8;
+}
+
+.cfl-achievement__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cfl-achievement__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+}
+
+.cfl-achievement__desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.cfl-achievement__progress {
+    position: relative;
+    height: 20px;
+    background: var(--bg);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.cfl-achievement__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark, #c85a30));
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.cfl-achievement__progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.cfl-achievement__time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+.cfl-achievements-stats {
+    padding: 0.75rem 1rem;
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.cfl-achievements-stats__item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.cfl-achievements-stats__label {
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.cfl-achievements-stats__item span:last-child {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+@keyframes achievement-glow {
+    0%, 100% {
+        box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 2px 15px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+}
+
+/* =====================================================================
+   SOUND TOGGLE BUTTON
+   =====================================================================
+
+   PURPOSE: Floating button to enable/disable sound effects
+
+   POSITIONING: Fixed, bottom: 100px, right: 80px (left of trophy button)
+
+   STATES:
+     data-enabled="true"  - Full opacity, 🔊 icon
+     data-enabled="false" - 50% opacity, 🔇 icon
+
+   SEE: docs/SOUND-SYSTEM.md
+   ===================================================================== */
+
+.cfl-sound-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 80px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 9990;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cfl-sound-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--accent);
+}
+
+.cfl-sound-toggle[data-enabled="false"] {
+    opacity: 0.5;
+}
+
+/* =====================================================================
+   EASTER EGG HIDDEN BUTTONS
+   =====================================================================
+
+   PURPOSE: Styles for collectible hidden emoji around the page
+
+   BEHAVIOR:
+     - Nearly invisible (10% opacity) by default
+     - Become visible on hover (100% opacity + scale + rotate)
+     - Animate away when clicked
+
+   POSITIONING: Fixed position, coordinates set by JavaScript
+
+   ELEMENTS: Created dynamically by createEasterEggs() function
+
+   SEE: docs/EASTER-EGGS.md
+   ===================================================================== */
+
+.easter-egg {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    opacity: 0.1;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.easter-egg:hover {
+    opacity: 1;
+    transform: scale(1.5) rotate(360deg);
+}
+
+.easter-egg--found {
+    animation: egg-found 0.5s ease forwards;
+}
+
+@keyframes egg-found {
+    0% { transform: scale(1); }
+    50% { transform: scale(2); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* =====================================================================
+   BUTTON PLAYGROUND STYLES
+   =====================================================================
+
+   PURPOSE: Styles for the interactive button builder page
+
+   PAGE: /wiki/button-playground
+
+   LAYOUT:
+     .playground-container - CSS Grid: 300px sidebar + 1fr canvas
+     .playground-palette   - Left: options for style, size, icon, etc.
+     .playground-canvas    - Right: live preview + code output
+
+   COMPONENTS:
+     .playground-option       - Clickable option button
+     .playground-option.is-selected - Currently selected option
+     .playground-preview      - Card containing the preview button
+     .playground-code         - Dark code output area
+
+   RESPONSIVE: Single column below 768px
+
+   SEE: docs/BUTTON-PLAYGROUND.md
+   ===================================================================== */
+
+.playground-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    min-height: 500px;
+}
+
+.playground-palette {
+    background: var(--bg-alt);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+.playground-palette h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+}
+
+.playground-palette-section {
+    margin-bottom: 1.5rem;
+}
+
+.playground-palette-section label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+.playground-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.playground-option {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.playground-option:hover {
+    border-color: var(--accent);
+}
+
+.playground-option.is-selected {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.playground-canvas {
+    background: var(--bg-alt);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 2px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    min-height: 400px;
+}
+
+.playground-preview {
+    padding: 3rem;
+    background: var(--bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px var(--shadow);
+}
+
+.playground-code {
+    width: 100%;
+    background: #1a1a2e;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.playground-code code {
+    color: #0ff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.playground-copy-btn {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .playground-container {
+        grid-template-columns: 1fr;
+    }
+
+    .cfl-achievements-panel {
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: calc(100vw - 20px);
+    }
+
+    .cfl-achievements-tabs {
+        gap: 0.125rem;
+        padding: 0.375rem;
+    }
+
+    .cfl-achievements-tab {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .cfl-achievements-header {
+        padding: 0.875rem 1rem;
+    }
+
+    .cfl-achievements-header__main {
+        font-size: 1rem;
+    }
+
+    .cfl-achievements-header__subtitle {
+        font-size: 0.7rem;
+    }
+
+    .cfl-achievements-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* =====================================================================
+   END FUN BUTTON VARIANTS
+   ===================================================================== */
+
+/* ----- ALERT COMPONENT -----
+   Notification boxes with left border accent
+   Variants: info (blue), success (green), warning (yellow), danger (red)
+   Elements: __title (optional), __body (supports markdown)
+*/
+.cfl-alert {
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    border-left: 4px solid;
+    margin: 1rem 0;
+}
+
+.cfl-alert__title {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+}
+
+.cfl-alert__body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cfl-alert__body p {
+    margin: 0;
+}
+
+.cfl-alert__body p + p {
+    margin-top: 0.5rem;
+}
+
+/* Alert Variants */
+.cfl-alert--info {
+    background: var(--info-bg);
+    border-color: var(--info);
+    color: #1e40af;
+}
+
+.cfl-alert--info .cfl-alert__title {
+    color: #1e3a8a;
+}
+
+.cfl-alert--success {
+    background: var(--success-bg);
+    border-color: var(--success);
+    color: #166534;
+}
+
+.cfl-alert--success .cfl-alert__title {
+    color: #14532d;
+}
+
+.cfl-alert--warning {
+    background: var(--warning-bg);
+    border-color: var(--warning);
+    color: #92400e;
+}
+
+.cfl-alert--warning .cfl-alert__title {
+    color: #78350f;
+}
+
+.cfl-alert--danger {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+    color: #991b1b;
+}
+
+.cfl-alert--danger .cfl-alert__title {
+    color: #7f1d1d;
+}
+
+/* ----- BADGE COMPONENT -----
+   Small pill-shaped status indicators
+   Variants: neutral, info, success, warning, danger
+   Solid variants: --info-solid, --success-solid, --warning-solid, --danger-solid
+*/
+.cfl-badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Badge Variants */
+.cfl-badge--neutral {
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.cfl-badge--info {
+    background: var(--info-bg);
+    color: #1e40af;
+    border: 1px solid var(--info-border);
+}
+
+.cfl-badge--success {
+    background: var(--success-bg);
+    color: #166534;
+    border: 1px solid var(--success-border);
+}
+
+.cfl-badge--warning {
+    background: var(--warning-bg);
+    color: #92400e;
+    border: 1px solid var(--warning-border);
+}
+
+.cfl-badge--danger {
+    background: var(--danger-bg);
+    color: #991b1b;
+    border: 1px solid var(--danger-border);
+}
+
+/* Solid Badge Variants */
+.cfl-badge--info-solid {
+    background: var(--info);
+    color: white;
+    border: none;
+}
+
+.cfl-badge--success-solid {
+    background: var(--success);
+    color: white;
+    border: none;
+}
+
+.cfl-badge--warning-solid {
+    background: var(--warning);
+    color: white;
+    border: none;
+}
+
+.cfl-badge--danger-solid {
+    background: var(--danger);
+    color: white;
+    border: none;
+}
+
+/* ----- CALLOUT COMPONENT -----
+   Card-style highlight boxes with optional CTA
+   Variants: note (blue), tip (green), warning (yellow bg), danger (red bg)
+   Elements: __title, __body (supports markdown), __cta (optional button area)
+*/
+.cfl-callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.cfl-callout__title {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.cfl-callout__body {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.cfl-callout__body p {
+    margin: 0;
+}
+
+.cfl-callout__body p + p {
+    margin-top: 0.75rem;
+}
+
+.cfl-callout__cta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Callout Variants */
+.cfl-callout--note {
+    border-left: 4px solid var(--info);
+}
+
+.cfl-callout--note .cfl-callout__title {
+    color: #1e40af;
+}
+
+.cfl-callout--tip {
+    border-left: 4px solid var(--success);
+}
+
+.cfl-callout--tip .cfl-callout__title {
+    color: #166534;
+}
+
+.cfl-callout--warning {
+    border-left: 4px solid var(--warning);
+    background: var(--warning-bg);
+}
+
+.cfl-callout--warning .cfl-callout__title {
+    color: #92400e;
+}
+
+.cfl-callout--danger {
+    border-left: 4px solid var(--danger);
+    background: var(--danger-bg);
+}
+
+.cfl-callout--danger .cfl-callout__title {
+    color: #991b1b;
+}
+
+/* ----- ENHANCED CALLOUT WITH ICON -----
+   Optional icon placement for callouts
+*/
+.cfl-callout:has(.cfl-callout__icon) {
+    display: flex;
+    gap: 1rem;
+}
+
+.cfl-callout__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.cfl-callout__content {
+    flex: 1;
+}
+
+/* ----- PROGRESS BAR COMPONENT -----
+   Visual progress indicator with animations
+   Variants: primary, info, success, warning, danger
+   Sizes: sm, md, lg
+   Modifiers: --striped, --animated
+*/
+.cfl-progress {
+    margin: 1rem 0;
+}
+
+.cfl-progress__label {
+    display: flex;
+    justify-content: space-between;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.cfl-progress__value {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.cfl-progress__track {
+    background: var(--bg-alt);
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.cfl-progress--sm .cfl-progress__track { height: 6px; }
+.cfl-progress--md .cfl-progress__track { height: 10px; }
+.cfl-progress--lg .cfl-progress__track { height: 16px; }
+
+.cfl-progress__bar {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cfl-progress__bar--primary { background: var(--accent); }
+.cfl-progress__bar--info { background: var(--info); }
+.cfl-progress__bar--success { background: var(--success); }
+.cfl-progress__bar--warning { background: var(--warning); }
+.cfl-progress__bar--danger { background: var(--danger); }
+
+/* Striped progress bar */
+.cfl-progress__bar--striped {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255,255,255,0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,0.15) 50%,
+        rgba(255,255,255,0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+/* Animated striped bar */
+.cfl-progress__bar--animated {
+    animation: progress-stripes 1s linear infinite;
+}
+
+@keyframes progress-stripes {
+    from { background-position: 1rem 0; }
+    to { background-position: 0 0; }
+}
+
+/* Cycling fill animation for demo/showcase */
+.cfl-progress--demo .cfl-progress__bar {
+    width: 0% !important;
+    animation: progress-fill-cycle 4s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+}
+
+.cfl-progress--demo:nth-child(2) .cfl-progress__bar {
+    animation-delay: 0.8s !important;
+}
+
+.cfl-progress--demo:nth-child(3) .cfl-progress__bar {
+    animation-delay: 1.6s !important;
+}
+
+.cfl-progress--demo:nth-child(4) .cfl-progress__bar {
+    animation-delay: 2.4s !important;
+}
+
+@keyframes progress-fill-cycle {
+    0% {
+        width: 0% !important;
+        box-shadow: none;
+    }
+    5% {
+        width: 5% !important;
+    }
+    15% {
+        width: 20% !important;
+    }
+    30% {
+        width: 45% !important;
+    }
+    50% {
+        width: 70% !important;
+        box-shadow: 0 0 20px currentColor;
+    }
+    70% {
+        width: 90% !important;
+    }
+    80% {
+        width: 100% !important;
+        box-shadow: 0 0 30px currentColor;
+    }
+    90% {
+        width: 100% !important;
+        box-shadow: 0 0 10px currentColor;
+    }
+    95% {
+        width: 100% !important;
+        opacity: 0.5;
+    }
+    100% {
+        width: 0% !important;
+        opacity: 1;
+        box-shadow: none;
+    }
+}
+
+/* ----- SEARCH COMPONENT -----
+   Search input with icon and clear button
+*/
+.cfl-search {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.cfl-search__icon {
+    position: absolute;
+    left: 0.875rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color 0.15s ease;
+}
+
+.cfl-search__input {
+    width: 100%;
+    padding: 0.625rem 2.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.cfl-search__input::placeholder {
+    color: var(--text-muted);
+}
+
+.cfl-search__input:hover {
+    border-color: var(--accent);
+}
+
+.cfl-search__input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(196, 93, 53, 0.15);
+    background: var(--bg);
+}
+
+.cfl-search__input:focus + .cfl-search__icon,
+.cfl-search:focus-within .cfl-search__icon {
+    color: var(--accent);
+}
+
+.cfl-search__clear {
+    position: absolute;
+    right: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.cfl-search__input:not(:placeholder-shown) ~ .cfl-search__clear {
+    opacity: 1;
+}
+
+.cfl-search__clear:hover {
+    background: var(--bg-alt);
+    color: var(--text);
+}
+
+/* Search sizes */
+.cfl-search--sm .cfl-search__input {
+    padding: 0.4rem 2rem;
+    font-size: 0.85rem;
+}
+
+.cfl-search--sm .cfl-search__icon {
+    left: 0.625rem;
+    width: 14px;
+    height: 14px;
+}
+
+.cfl-search--sm .cfl-search__clear {
+    right: 0.4rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.cfl-search--lg .cfl-search__input {
+    padding: 0.875rem 3rem;
+    font-size: 1.1rem;
+}
+
+.cfl-search--lg .cfl-search__icon {
+    left: 1rem;
+    width: 22px;
+    height: 22px;
+}
+
+.cfl-search--lg .cfl-search__clear {
+    right: 0.875rem;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+/* Search variants */
+.cfl-search--filled .cfl-search__input {
+    background: var(--bg-alt);
+    border-color: transparent;
+}
+
+.cfl-search--filled .cfl-search__input:focus {
+    background: var(--surface);
+    border-color: var(--accent);
+}
+
+/* ----- STAT COMPONENT -----
+   Display key metrics with optional trends
+*/
+.cfl-stat {
+    text-align: center;
+    padding: 1rem;
+}
+
+.cfl-stat__value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+.cfl-stat__prefix,
+.cfl-stat__suffix {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.cfl-stat__label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+}
+
+.cfl-stat__trend {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.cfl-stat__trend--up {
+    color: #166534;
+    background: var(--success-bg);
+}
+
+.cfl-stat__trend--down {
+    color: #991b1b;
+    background: var(--danger-bg);
+}
+
+/* ----- AVATAR COMPONENT -----
+   User/entity representation
+   Sizes: sm, md, lg, xl
+   Status: online, away, busy, offline
+*/
+.cfl-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, #c62d3a 50%, #8b2332 100%);
+    color: white;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+}
+
+.cfl-avatar__initials {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cfl-avatar--sm { width: 32px; height: 32px; font-size: 0.75rem; }
+.cfl-avatar--md { width: 44px; height: 44px; font-size: 0.9rem; }
+.cfl-avatar--lg { width: 56px; height: 56px; font-size: 1.1rem; }
+.cfl-avatar--xl { width: 72px; height: 72px; font-size: 1.4rem; }
+
+.cfl-avatar__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cfl-avatar__initials {
+    text-transform: uppercase;
+}
+
+.cfl-avatar__placeholder {
+    font-size: 1.2em;
+}
+
+.cfl-avatar--ring {
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent);
+}
+
+.cfl-avatar__status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--surface);
+}
+
+.cfl-avatar--sm .cfl-avatar__status { width: 8px; height: 8px; bottom: 0; right: 0; }
+.cfl-avatar--lg .cfl-avatar__status { width: 14px; height: 14px; }
+.cfl-avatar--xl .cfl-avatar__status { width: 16px; height: 16px; bottom: 4px; right: 4px; }
+
+.cfl-avatar__status--online { background: var(--success); }
+.cfl-avatar__status--away { background: var(--warning); }
+.cfl-avatar__status--busy { background: var(--danger); }
+.cfl-avatar__status--offline { background: var(--text-muted); }
+
+/* ----- ENHANCED CARD COMPONENT -----
+   Clickable cards with hover effects
+*/
+.cfl-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.cfl-card--clickable {
+    cursor: pointer;
+}
+
+.cfl-card--clickable:hover {
+    border-color: var(--border-dark);
+    box-shadow: 0 8px 24px var(--shadow), 0 4px 8px var(--shadow);
+    transform: translateY(-2px);
+}
+
+.cfl-card__image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg-alt);
+}
+
+.cfl-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    transition: transform 0.3s ease;
+}
+
+.cfl-card--clickable:hover .cfl-card__image img {
+    transform: scale(1.05);
+}
+
+.cfl-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.cfl-card__body {
+    padding: 1.25rem;
+    flex: 1;
+}
+
+.cfl-card__title {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.5rem 0;
+    transition: color 0.15s;
+}
+
+.cfl-card--clickable:hover .cfl-card__title {
+    color: var(--accent);
+}
+
+.cfl-card__text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.cfl-card__arrow {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    font-size: 1.25rem;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.2s ease;
+}
+
+.cfl-card--clickable:hover .cfl-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ----- BADGE ENHANCEMENTS -----
+   Dot indicator and pulse animation
+*/
+.cfl-badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 0.4rem;
+    flex-shrink: 0;
+}
+
+.cfl-badge--pulse .cfl-badge__dot {
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.cfl-badge--pulse {
+    position: relative;
+    animation: badge-glow 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes badge-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 currentColor;
+    }
+    50% {
+        box-shadow: 0 0 8px 2px currentColor;
+    }
+}
+
+/* ----- ALERT ENHANCEMENTS -----
+   Icon support and dismissible alerts
+*/
+.cfl-alert:has(.cfl-alert__icon) {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.cfl-alert__icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.cfl-alert__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.cfl-alert--dismissible {
+    padding-right: 3rem;
+    position: relative;
+}
+
+.cfl-alert__dismiss {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: inherit;
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: opacity 0.15s;
+}
+
+.cfl-alert__dismiss:hover {
+    opacity: 1;
+}
+
+/* ----- BUTTON ICON SUPPORT ----- */
+.cfl-btn__icon {
+    display: inline-flex;
+    font-size: 1em;
+}
+
+.cfl-btn__icon--right {
+    margin-left: 0.25rem;
+}
+
+
+/* MOVED: Showcase Page Styles (88 lines) → features/_showcase.scss */
+
+/* ===================
+   CODE SNIPPETS - Expandable
+   =================== */
+
+.code-snippet {
+    margin: 1rem 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.code-snippet summary {
+    padding: 0.6rem 1rem;
+    background: var(--bg-alt);
+    cursor: pointer;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.15s ease;
+    list-style: none;
+}
+
+.code-snippet summary::-webkit-details-marker {
+    display: none;
+}
+
+.code-snippet summary::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid var(--text-muted);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transition: transform 0.2s ease;
+}
+
+.code-snippet[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.code-snippet summary:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+.code-snippet__content {
+    padding: 0;
+    position: relative;
+    border-top: 1px solid var(--border);
+}
+
+.code-snippet__content pre {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: var(--code-bg);
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 300px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.code-snippet__content code {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    padding-right: 1.5rem;
+    background: none;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--text);
+    tab-size: 2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Syntax Highlighting - Warm Theme */
+.code-snippet__content .highlight,
+.code-snippet__content pre.highlight {
+    background: var(--code-bg);
+}
+
+/* Liquid/Jekyll Tags */
+.code-snippet__content .p,
+.code-snippet__content .err { color: #b35900; }  /* Punctuation - warm orange */
+
+.code-snippet__content .k,
+.code-snippet__content .kd,
+.code-snippet__content .kn { color: #c62d3a; font-weight: 600; }  /* Keywords - coral red */
+
+.code-snippet__content .nv,
+.code-snippet__content .vi,
+.code-snippet__content .na { color: #0e7490; }  /* Variables/Attributes - teal */
+
+.code-snippet__content .s,
+.code-snippet__content .s1,
+.code-snippet__content .s2 { color: #2d9d5a; }  /* Strings - green */
+
+.code-snippet__content .n,
+.code-snippet__content .nn,
+.code-snippet__content .nc { color: #9333ea; }  /* Names - purple */
+
+.code-snippet__content .nt { color: #c62d3a; }  /* HTML Tags - coral */
+.code-snippet__content .nb { color: #b35900; }  /* Builtins - orange */
+
+.code-snippet__content .c,
+.code-snippet__content .c1,
+.code-snippet__content .cm { color: #6b5c52; font-style: italic; }  /* Comments - muted */
+
+.code-snippet__content .o,
+.code-snippet__content .ow { color: #c62d3a; }  /* Operators */
+
+.code-snippet__content .m,
+.code-snippet__content .mi,
+.code-snippet__content .mf { color: #0e7490; }  /* Numbers - teal */
+
+.code-snippet__copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.7rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.15s ease;
+    color: var(--text-muted);
+}
+
+.code-snippet__copy:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.code-snippet__copy--copied {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+}
+
+/* =====================================================================
+   MICRO-INTERACTIONS & ANIMATIONS
+   ===================================================================== */
+
+/* Smooth focus transitions */
+*:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    transition: outline-offset 0.15s ease;
+}
+
+/* Button hover lift */
+.cfl-btn {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cfl-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.cfl-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Alert entrance animation */
+.cfl-alert {
+    animation: alert-enter 0.3s ease-out;
+}
+
+@keyframes alert-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Callout subtle hover */
+.cfl-callout {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cfl-callout:hover {
+    box-shadow: 0 4px 16px var(--shadow);
+    border-color: var(--border-dark);
+}
+
+/* Badge hover scale */
+.cfl-badge {
+    transition: transform 0.15s ease;
+}
+
+.cfl-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Stat number animation trigger (for JS) */
+.cfl-stat__number {
+    transition: color 0.3s ease;
+}
+
+.cfl-stat:hover .cfl-stat__number {
+    color: var(--accent);
+}
+
+/* Avatar ring pulse on hover */
+.cfl-avatar--ring {
+    transition: box-shadow 0.2s ease;
+}
+
+.cfl-avatar--ring:hover {
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 6px var(--accent), 0 0 20px rgba(196, 93, 53, 0.3);
+}
+
+/* Progress bar glow */
+.cfl-progress__bar {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.cfl-progress:hover .cfl-progress__bar {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 8px currentColor;
+}
+
+/* ----- TOGGLE/SWITCH COMPONENT -----
+   On/off toggle switch - iOS-style
+*/
+label.cfl-toggle,
+.cfl-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+label.cfl-toggle::before,
+.cfl-toggle::before {
+    content: none !important;
+    display: none !important;
+}
+
+.cfl-toggle__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.cfl-toggle__track {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    background-color: #d4c4a8;
+    border: 2px solid #c4b498;
+    border-radius: 9999px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+/* Base size for track (default = medium) */
+.cfl-toggle .cfl-toggle__track {
+    width: 48px !important;
+    height: 26px !important;
+}
+
+/* Explicit sizes for track - DRAMATICALLY DIFFERENT */
+.cfl-toggle--sm .cfl-toggle__track {
+    width: 28px !important;
+    height: 16px !important;
+}
+
+.cfl-toggle--md .cfl-toggle__track {
+    width: 48px !important;
+    height: 26px !important;
+}
+
+.cfl-toggle--lg .cfl-toggle__track {
+    width: 72px !important;
+    height: 38px !important;
+}
+
+.cfl-toggle__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Base size for thumb (default = medium) */
+.cfl-toggle .cfl-toggle__thumb {
+    width: 20px !important;
+    height: 20px !important;
+    top: 3px !important;
+    left: 3px !important;
+}
+
+/* Explicit sizes for thumb - DRAMATICALLY DIFFERENT */
+.cfl-toggle--sm .cfl-toggle__thumb {
+    width: 12px !important;
+    height: 12px !important;
+    top: 2px !important;
+    left: 2px !important;
+}
+
+.cfl-toggle--md .cfl-toggle__thumb {
+    width: 20px !important;
+    height: 20px !important;
+    top: 3px !important;
+    left: 3px !important;
+}
+
+.cfl-toggle--lg .cfl-toggle__thumb {
+    width: 32px !important;
+    height: 32px !important;
+    top: 3px !important;
+    left: 3px !important;
+}
+
+/* Checked state - green/accent background */
+.cfl-toggle__input:checked + .cfl-toggle__track {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Base checked state (default = medium) */
+.cfl-toggle .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+    transform: translateX(22px) !important;
+}
+
+/* Move thumb to right when checked - matches new sizes */
+.cfl-toggle--sm .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+    transform: translateX(12px) !important;
+}
+
+.cfl-toggle--md .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+    transform: translateX(22px) !important;
+}
+
+.cfl-toggle--lg .cfl-toggle__input:checked + .cfl-toggle__track .cfl-toggle__thumb {
+    transform: translateX(34px) !important;
+}
+
+/* Hover state */
+.cfl-toggle:hover .cfl-toggle__track {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.1);
+}
+
+/* Focus state */
+.cfl-toggle__input:focus-visible + .cfl-toggle__track {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.3);
+}
+
+/* Label text */
+.cfl-toggle__label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+/* Disabled state */
+.cfl-toggle--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.cfl-toggle--disabled .cfl-toggle__track {
+    background-color: #e8dcc8;
+}
+
+/* ----- THEME TOGGLE (Sun/Moon) -----
+   Animated dark/light mode toggle with icons
+*/
+.cfl-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cfl-theme-toggle__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.cfl-theme-toggle__track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+    background: linear-gradient(135deg, #87CEEB 0%, #FFE4B5 100%);
+    border-radius: 9999px;
+    transition: background 0.4s ease;
+}
+
+.cfl-theme-toggle--sm .cfl-theme-toggle__track { width: 52px; height: 28px; }
+.cfl-theme-toggle--md .cfl-theme-toggle__track { width: 64px; height: 34px; }
+.cfl-theme-toggle--lg .cfl-theme-toggle__track { width: 80px; height: 42px; }
+
+.cfl-theme-toggle__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(255, 165, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cfl-theme-toggle--sm .cfl-theme-toggle__thumb { width: 22px; height: 22px; }
+.cfl-theme-toggle--md .cfl-theme-toggle__thumb { width: 28px; height: 28px; }
+.cfl-theme-toggle--lg .cfl-theme-toggle__thumb { width: 36px; height: 36px; }
+
+.cfl-theme-toggle__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.cfl-theme-toggle--sm .cfl-theme-toggle__icon svg { width: 14px; height: 14px; }
+.cfl-theme-toggle--md .cfl-theme-toggle__icon svg { width: 16px; height: 16px; }
+.cfl-theme-toggle--lg .cfl-theme-toggle__icon svg { width: 20px; height: 20px; }
+
+.cfl-theme-toggle__icon--sun {
+    color: #FFA500;
+    margin-left: 2px;
+}
+
+.cfl-theme-toggle__icon--moon {
+    color: #6366F1;
+    margin-right: 2px;
+    opacity: 0.5;
+}
+
+/* Checked state (Dark mode) */
+.cfl-theme-toggle__input:checked + .cfl-theme-toggle__track {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+}
+
+.cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    background: linear-gradient(135deg, #E0E7FF 0%, #A5B4FC 100%);
+    box-shadow: 0 2px 8px rgba(165, 180, 252, 0.5);
+}
+
+.cfl-theme-toggle--sm .cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    transform: translateX(24px);
+}
+
+.cfl-theme-toggle--md .cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    transform: translateX(30px);
+}
+
+.cfl-theme-toggle--lg .cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    transform: translateX(38px);
+}
+
+.cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__icon--sun {
+    opacity: 0.5;
+    color: #A5B4FC;
+}
+
+.cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__icon--moon {
+    opacity: 1;
+    color: #E0E7FF;
+}
+
+/* Hover effects */
+.cfl-theme-toggle:hover .cfl-theme-toggle__track {
+    box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.2);
+}
+
+.cfl-theme-toggle:hover .cfl-theme-toggle__input:checked + .cfl-theme-toggle__track {
+    box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.3);
+}
+
+/* Focus state */
+.cfl-theme-toggle__input:focus-visible + .cfl-theme-toggle__track {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Thumb rotation animation */
+.cfl-theme-toggle__thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 50%);
+}
+
+.cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    transform: translateX(30px) rotate(360deg);
+}
+
+.cfl-theme-toggle--sm .cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    transform: translateX(24px) rotate(360deg);
+}
+
+.cfl-theme-toggle--lg .cfl-theme-toggle__input:checked + .cfl-theme-toggle__track .cfl-theme-toggle__thumb {
+    transform: translateX(38px) rotate(360deg);
+}
+
+/* ----- TABS COMPONENT -----
+   Tabbed content sections
+*/
+.cfl-tabs {
+    width: 100%;
+}
+
+.cfl-tabs__list {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.cfl-tabs__tab {
+    padding: 0.75rem 1.25rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.cfl-tabs__tab:hover {
+    color: var(--text);
+}
+
+.cfl-tabs__tab--active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.cfl-tabs__panel {
+    display: none;
+    animation: tab-fade-in 0.2s ease;
+}
+
+.cfl-tabs__panel--active {
+    display: block;
+}
+
+@keyframes tab-fade-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tabs pill variant */
+.cfl-tabs--pills .cfl-tabs__list {
+    border-bottom: none;
+    gap: 0.5rem;
+}
+
+.cfl-tabs--pills .cfl-tabs__tab {
+    border-radius: 9999px;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.cfl-tabs--pills .cfl-tabs__tab--active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Vertical tabs variant */
+.cfl-tabs--vertical {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.cfl-tabs--vertical .cfl-tabs__list {
+    flex-direction: column;
+    border-bottom: none;
+    border-right: 2px solid var(--border);
+    margin-bottom: 0;
+    padding-right: 1rem;
+    min-width: 160px;
+    gap: 0.25rem;
+}
+
+.cfl-tabs--vertical .cfl-tabs__tab {
+    text-align: left;
+    border-bottom: none;
+    border-right: 2px solid transparent;
+    margin-bottom: 0;
+    margin-right: -2px;
+    padding: 0.6rem 1rem;
+    border-radius: 6px 0 0 6px;
+    white-space: nowrap;
+}
+
+.cfl-tabs--vertical .cfl-tabs__tab:hover {
+    background: var(--bg-alt);
+}
+
+.cfl-tabs--vertical .cfl-tabs__tab--active {
+    color: var(--accent);
+    border-right-color: var(--accent);
+    background: var(--bg);
+}
+
+.cfl-tabs--vertical .cfl-tabs__panel {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+/* Tab panel content enhancements */
+.cfl-tabs__panel h4 {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.75rem 0;
+}
+
+.cfl-tabs__panel p {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.cfl-tabs__panel ul {
+    margin: 0.5rem 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.cfl-tabs__panel li {
+    padding: 0.4rem 0;
+    color: var(--text);
+}
+
+/* ----- TABLE COMPONENT -----
+   Styled data tables
+*/
+.cfl-table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.cfl-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+}
+
+.cfl-table th,
+.cfl-table td {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.cfl-table th {
+    font-weight: 600;
+    color: var(--text);
+    background: var(--bg-alt);
+    white-space: nowrap;
+}
+
+.cfl-table td {
+    color: var(--text);
+}
+
+.cfl-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cfl-table--striped tbody tr:nth-child(even) {
+    background: var(--bg-alt);
+}
+
+.cfl-table--hoverable tbody tr:hover {
+    background: var(--surface);
+}
+
+.cfl-table--compact th,
+.cfl-table--compact td {
+    padding: 0.5rem 0.75rem;
+}
+
+/* ----- TOOLTIP COMPONENT -----
+   Hover hints and help text
+*/
+.cfl-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.cfl-tooltip__text {
+    position: absolute;
+    z-index: 100;
+    padding: 0.5rem 0.75rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+    background: var(--text);
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+}
+
+.cfl-tooltip__text::after {
+    content: '';
+    position: absolute;
+    border: 5px solid transparent;
+}
+
+/* Top position (default) */
+.cfl-tooltip--top .cfl-tooltip__text {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    margin-bottom: 8px;
+}
+
+.cfl-tooltip--top .cfl-tooltip__text::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: var(--text);
+}
+
+/* Bottom position */
+.cfl-tooltip--bottom .cfl-tooltip__text {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    margin-top: 8px;
+}
+
+.cfl-tooltip--bottom .cfl-tooltip__text::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: var(--text);
+}
+
+/* Left position */
+.cfl-tooltip--left .cfl-tooltip__text {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+    margin-right: 8px;
+}
+
+.cfl-tooltip--left .cfl-tooltip__text::after {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: var(--text);
+}
+
+/* Right position */
+.cfl-tooltip--right .cfl-tooltip__text {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
+    margin-left: 8px;
+}
+
+.cfl-tooltip--right .cfl-tooltip__text::after {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: var(--text);
+}
+
+.cfl-tooltip:hover .cfl-tooltip__text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cfl-tooltip--top:hover .cfl-tooltip__text { transform: translateX(-50%) translateY(0); }
+.cfl-tooltip--bottom:hover .cfl-tooltip__text { transform: translateX(-50%) translateY(0); }
+.cfl-tooltip--left:hover .cfl-tooltip__text { transform: translateY(-50%) translateX(0); }
+.cfl-tooltip--right:hover .cfl-tooltip__text { transform: translateY(-50%) translateX(0); }
+
+/* ----- SPINNER COMPONENT -----
+   Loading indicator
+*/
+.cfl-spinner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cfl-spinner__icon {
+    animation: spinner-rotate 1s linear infinite;
+}
+
+.cfl-spinner--sm .cfl-spinner__icon { width: 16px; height: 16px; }
+.cfl-spinner--md .cfl-spinner__icon { width: 24px; height: 24px; }
+.cfl-spinner--lg .cfl-spinner__icon { width: 36px; height: 36px; }
+.cfl-spinner--xl .cfl-spinner__icon { width: 48px; height: 48px; }
+
+.cfl-spinner--primary { color: var(--accent); }
+.cfl-spinner--secondary { color: var(--text-muted); }
+.cfl-spinner--success { color: var(--success); }
+.cfl-spinner--danger { color: var(--danger); }
+
+.cfl-spinner__label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+@keyframes spinner-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+/* MOVED: Loading Animations Library (781 lines) → features/_loaders.scss */
+
+
+/* MOVED: Form Components (1,210 lines) → components/_forms.scss */
+
+/* ============================================
+   GLOSSARY COMPONENT
+   ============================================
+
+   PURPOSE: Displays a grid of term definitions with examples
+
+   USAGE: Used in component-showcase.mkd to explain terminology
+
+   STRUCTURE:
+     .cfl-glossary              - Container
+       h3                       - Section heading (e.g., "Component Terms")
+       .cfl-glossary__grid      - CSS Grid container
+         .cfl-glossary__term    - Individual term card
+           .cfl-glossary__title - Term name (accent color)
+           .cfl-glossary__def   - Definition text
+           .cfl-glossary__example - Live component examples
+
+   LAYOUT:
+     - Responsive grid: auto-fill, minmax(280px, 1fr)
+     - Single column on mobile (< 600px)
+     - Cards have hover lift effect
+
+   SEE: _wiki/component-showcase.mkd for usage example
+   ============================================ */
+
+.cfl-glossary {
+    margin-top: 1rem;
+}
+
+.cfl-glossary h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.cfl-glossary__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.cfl-glossary__term {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cfl-glossary__term:hover {
+    box-shadow: 0 4px 16px var(--shadow);
+    transform: translateY(-2px);
+}
+
+.cfl-glossary__title {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.cfl-glossary__def {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.cfl-glossary__def code {
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: var(--font-mono);
+}
+
+.cfl-glossary__example {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .cfl-glossary__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   PRIVACY DISCLAIMER & DATA MANAGEMENT
+   ============================================
+
+   PURPOSE: Floating privacy banner and data management modals
+            for the achievements/gamification system
+
+   COMPONENTS:
+     .cfl-privacy-disclaimer     - Floating bottom banner
+     .cfl-data-modal            - Data management modal
+     .cfl-confirm-modal         - Confirmation dialog
+
+   BEHAVIOR:
+     - Banner appears on first visit
+     - Dismisses and stores consent in localStorage
+     - Modal provides export and clear data options
+
+   SEE: _includes/privacy-disclaimer.html
+   ============================================ */
+
+/* Privacy Disclaimer Banner */
+.cfl-privacy-disclaimer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9995;
+    padding: 0 1rem 1rem;
+    pointer-events: none;
+}
+
+.cfl-privacy-disclaimer__content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 -4px 30px var(--shadow);
+    padding: 1rem 2.5rem 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    pointer-events: auto;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cfl-privacy-disclaimer__icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.cfl-privacy-disclaimer__text {
+    flex: 1;
+    min-width: 0;
+}
+
+.cfl-privacy-disclaimer__title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+}
+
+.cfl-privacy-disclaimer__body {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.cfl-privacy-disclaimer__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.cfl-privacy-disclaimer__close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.cfl-privacy-disclaimer__close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .cfl-privacy-disclaimer__content {
+        flex-direction: column;
+        text-align: center;
+        padding-right: 2.5rem;
+    }
+
+    .cfl-privacy-disclaimer__actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Data Management Modal */
+.cfl-data-modal,
+.cfl-confirm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Ensure hidden attribute works */
+.cfl-data-modal[hidden],
+.cfl-confirm-modal[hidden],
+.cfl-privacy-disclaimer[hidden] {
+    display: none !important;
+}
+
+.cfl-data-modal__backdrop,
+.cfl-confirm-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.cfl-data-modal__content {
+    position: relative;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--shadow);
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-20px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.cfl-data-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+}
+
+.cfl-data-modal__header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.cfl-data-modal__close {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.cfl-data-modal__close:hover {
+    opacity: 1;
+}
+
+.cfl-data-modal__body {
+    padding: 1.25rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.cfl-data-modal__section {
+    margin-bottom: 1.5rem;
+}
+
+.cfl-data-modal__section:last-child {
+    margin-bottom: 0;
+}
+
+.cfl-data-modal__section h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.cfl-data-modal__list {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.cfl-data-modal__list li {
+    margin-bottom: 0.35rem;
+}
+
+.cfl-data-modal__note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: var(--bg-alt);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+}
+
+.cfl-data-modal__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.cfl-data-modal__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+}
+
+.cfl-data-modal__stat {
+    background: var(--bg-alt);
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.cfl-data-modal__stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+}
+
+.cfl-data-modal__stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+.cfl-data-modal__footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-alt);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Confirmation Modal */
+.cfl-confirm-modal__content {
+    position: relative;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--shadow);
+    padding: 2rem;
+    text-align: center;
+    max-width: 400px;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.cfl-confirm-modal__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cfl-confirm-modal__content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.cfl-confirm-modal__content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.cfl-confirm-modal__actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+
+/* MOVED: Achievement System (241 lines) → features/_achievements.scss */
+
+/* ============================================
+   LEVEL UP CELEBRATION
+   ============================================
+
+   PURPOSE: Visual celebration when user levels up
+
+   TRIGGERED BY: body.cfl-level-up class added by JS
+
+   EFFECTS:
+     - Golden glow pulse on page
+     - Confetti particles (CSS-only)
+     - Subtle scale pulse
+
+   SEE: CFL.achievements triggerLevelUp()
+   ============================================ */
+
+body.cfl-level-up {
+    animation: levelUpPulse 0.5s ease-out;
+}
+
+body.cfl-level-up::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9990;
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.2), transparent 70%);
+    animation: levelUpGlow 3s ease-out forwards;
+}
+
+@keyframes levelUpPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.005); }
+    100% { transform: scale(1); }
+}
+
+@keyframes levelUpGlow {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Confetti particles for level up */
+body.cfl-level-up::after {
+    content: '🎉✨🌟⭐🎊';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    pointer-events: none;
+    z-index: 9991;
+    animation: levelUpConfetti 2s ease-out forwards;
+    letter-spacing: 1rem;
+}
+
+@keyframes levelUpConfetti {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100%) scale(2);
+    }
+}
+
+/* Legendary achievement shimmer effect */
+.cfl-achievement--legendary.cfl-achievement--unlocked .cfl-achievement__icon {
+    position: relative;
+    overflow: hidden;
+}
+
+.cfl-achievement--legendary.cfl-achievement--unlocked .cfl-achievement__icon::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 60%
+    );
+    animation: legendaryShimmer 3s ease-in-out infinite;
+}
+
+@keyframes legendaryShimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Epic achievement glow */
+.cfl-achievement--epic.cfl-achievement--unlocked {
+    box-shadow: 0 0 0 1px rgba(147, 51, 234, 0.2);
+}
+
+.cfl-achievement--epic.cfl-achievement--unlocked:hover {
+    box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+}
+
+/* Rare achievement subtle shine */
+.cfl-achievement--rare.cfl-achievement--unlocked {
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.cfl-achievement--rare.cfl-achievement--unlocked:hover {
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+}
+
+/* Holographic legendary badge in panel */
+.cfl-achievement__rarity--legendary {
+    background: linear-gradient(
+        135deg,
+        #fef3c7 0%,
+        #fde68a 25%,
+        #fbbf24 50%,
+        #fde68a 75%,
+        #fef3c7 100%
+    );
+    background-size: 200% 200%;
+    animation: legendaryBadgeShine 3s ease-in-out infinite;
+}
+
+@keyframes legendaryBadgeShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Achievement unlock animation */
+.cfl-achievement--unlocked {
+    animation: achievementUnlock 0.5s ease-out;
+}
+
+@keyframes achievementUnlock {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Toast enhancements for achievements */
+.cfl-toast--party {
+    border-left: 4px solid #f59e0b;
+    background: linear-gradient(135deg, var(--bg), rgba(245, 158, 11, 0.05));
+}
+
+.cfl-toast--party .cfl-toast__icon {
+    animation: partyBounce 0.6s ease-out;
+}
+
+@keyframes partyBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.2) rotate(-10deg); }
+    50% { transform: scale(1.1) rotate(10deg); }
+    75% { transform: scale(1.15) rotate(-5deg); }
+}
+
+/* Achievement panel open animation */
+.cfl-achievements-panel.is-open {
+    animation: panelSlideIn 0.3s ease-out;
+}
+
+@keyframes panelSlideIn {
+    from {
+        transform: translateY(20px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Level progress bar animation */
+.cfl-achievements-level__progress-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.cfl-achievements-level__progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Category icon colors */
+.cfl-achievement[data-category="3d-printing"] .cfl-achievement__category-icon { color: #3b82f6; }
+.cfl-achievement[data-category="laser"] .cfl-achievement__category-icon { color: #ef4444; }
+.cfl-achievement[data-category="cnc"] .cfl-achievement__category-icon { color: #22c55e; }
+.cfl-achievement[data-category="progression"] .cfl-achievement__category-icon { color: #8b5cf6; }
+.cfl-achievement[data-category="special"] .cfl-achievement__category-icon { color: #f59e0b; }
+.cfl-achievement[data-category="secret"] .cfl-achievement__category-icon { color: #64748b; }
+
+/* New achievement notification dot on FAB */
+.cfl-fab-bar__item--achievements[data-new="true"]::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: newAchievementPulse 2s ease-in-out infinite;
+}
+
+@keyframes newAchievementPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0);
+    }
+}
+
+/* Tab active indicator animation */
+.cfl-achievements-tab.active {
+    position: relative;
+}
+
+.cfl-achievements-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: white;
+    animation: tabIndicator 0.3s ease-out forwards;
+}
+
+@keyframes tabIndicator {
+    to { width: 60%; }
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    body.cfl-level-up,
+    body.cfl-level-up::before,
+    body.cfl-level-up::after,
+    .cfl-achievement--legendary.cfl-achievement--unlocked .cfl-achievement__icon::after {
+        animation: none;
+    }
+
+    .cfl-achievement__rarity--legendary {
+        animation: none;
+    }
+
+    .cfl-achievement-card--legendary.cfl-achievement-card--unlocked {
+        animation: none;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    /* Hide non-essential elements */
+    .skip-link,
+    header nav,
+    .cfl-nav-settings,
+    .cfl-drawer,
+    .cfl-drawer__backdrop,
+    .cfl-settings,
+    .cfl-fab-bar,
+    .daily-tip,
+    .marquee,
+    .code-copy-btn,
+    .code-snippet__copy,
+    .keyboard-help-modal,
+    .cfl-toast-container,
+    .cfl-achievements-panel,
+    footer .footer-social,
+    footer .footer-pong-link,
+    footer .footer-badge,
+    .wiki-search,
+    .wiki-categories,
+    .hero-cta,
+    #pong-easter-egg {
+        display: none !important;
+    }
+
+    /* Reset backgrounds */
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    main {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* Typography adjustments */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        color: black !important;
+    }
+
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Links */
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    a[href^="/"]::after,
+    a[href^="#"]::after {
+        content: "";
+    }
+
+    /* Code blocks */
+    pre, code {
+        background: #f5f5f5 !important;
+        border: 1px solid #ddd !important;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse !important;
+    }
+
+    th, td {
+        border: 1px solid #ddd !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Cards */
+    .cfl-card {
+        break-inside: avoid;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+    }
+
+    /* Page breaks */
+    .page-break {
+        page-break-before: always;
+    }
+
+    /* Footer minimal */
+    footer {
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
+        margin-top: 2rem;
+    }
+}
+// ===================
+// TABLE OF CONTENTS COMPONENT
+// ===================
+
+.cfl-toc {
+    margin-bottom: 1.5rem;
+    font-family: var(--font-ui);
+}
+
+.cfl-toc__details {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cfl-toc__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none; // Remove default marker
+    transition: background 0.15s ease;
+}
+
+.cfl-toc__toggle::-webkit-details-marker {
+    display: none;
+}
+
+.cfl-toc__toggle:hover {
+    background: var(--surface);
+}
+
+.cfl-toc__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cfl-toc__icon {
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.cfl-toc__chevron {
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+.cfl-toc__details[open] .cfl-toc__chevron {
+    transform: rotate(180deg);
+}
+
+.cfl-toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.cfl-toc__item {
+    margin: 0;
+    padding: 0;
+}
+
+.cfl-toc__item--h2 {
+    font-weight: 500;
+}
+
+.cfl-toc__item--h3 {
+    font-size: 0.85rem;
+}
+
+.cfl-toc__link {
+    display: block;
+    padding: 0.4rem 1rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+    border-left: 2px solid transparent;
+}
+
+.cfl-toc__item--h3 .cfl-toc__link {
+    padding-left: 1.75rem;
+}
+
+.cfl-toc__link:hover {
+    color: var(--accent);
+    background: var(--surface);
+    border-left-color: var(--accent);
+}
+
+.cfl-toc__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+// Desktop: Sticky sidebar
+@media (min-width: 1100px) {
+    .cfl-toc {
+        position: sticky;
+        top: 5rem;
+        float: right;
+        width: 220px;
+        max-height: calc(100vh - 6rem);
+        overflow-y: auto;
+        margin-left: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .cfl-toc__details {
+        max-height: calc(100vh - 8rem);
+        overflow-y: auto;
+    }
+}
+
+// Mobile: Collapsible, full width
+@media (max-width: 1099px) {
+    .cfl-toc {
+        margin-bottom: 2rem;
+    }
+
+    .cfl-toc__details:not([open]) .cfl-toc__list {
+        display: none;
+    }
+}

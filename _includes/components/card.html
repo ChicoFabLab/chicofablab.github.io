@@ -12,7 +12,7 @@
 <{% if href != "" %}a href="{{ href }}"{% else %}div{% endif %} class="cfl-card cfl-card--{{ variant }}{% if href != "" %} cfl-card--clickable{% endif %}">
   {% if image != "" %}
   <div class="cfl-card__image">
-    <img src="{{ image }}" alt="{{ title | escape }}">
+    <img src="{{ image }}" alt="{{ title | escape }}" loading="lazy">
     {% if badge %}<span class="cfl-badge cfl-badge--{{ badge_variant }} cfl-card__badge">{{ badge }}</span>{% endif %}
   </div>
   {% endif %}

@@ -8,7 +8,7 @@
 {% assign src = src | strip %}
 <div class="cfl-avatar cfl-avatar--{{ size }}{% if ring %} cfl-avatar--ring{% endif %}">
   {% if src != "" %}
-  <img src="{{ src }}" alt="{{ alt | escape }}" class="cfl-avatar__image">
+  <img src="{{ src }}" alt="{{ alt | escape }}" class="cfl-avatar__image" loading="lazy">
   {% elsif initials %}
   <span class="cfl-avatar__initials">{{ initials | upcase | truncate: 2, '' }}</span>
   {% else %}

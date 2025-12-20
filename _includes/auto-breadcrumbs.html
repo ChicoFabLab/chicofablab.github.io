@@ -1,0 +1,40 @@
+{% comment %}
+  Auto Breadcrumbs Component
+  Automatically generates breadcrumbs for wiki pages based on front matter.
+
+  Structure: Home > Category > Page Title
+
+  Usage: {% include auto-breadcrumbs.html %}
+
+  Requires page.category or page.collection in front matter.
+  Disable per-page with front matter: breadcrumbs: false
+{% endcomment %}
+
+{% unless page.breadcrumbs == false %}
+{% if page.collection == 'wiki' and page.title %}
+{% assign category_label = page.category | default: "Wiki" | capitalize %}
+{% assign category_slug = page.category | default: "wiki" | downcase | replace: " ", "-" %}
+
+<nav class="cfl-breadcrumbs" aria-label="Breadcrumb">
+  <ol class="cfl-breadcrumbs__list">
+    <li class="cfl-breadcrumbs__item">
+      <a href="{{ site.baseurl }}/">Home</a>
+      <span class="cfl-breadcrumbs__separator" aria-hidden="true">/</span>
+    </li>
+    <li class="cfl-breadcrumbs__item">
+      <a href="{{ site.baseurl }}/#wiki-pages">Wiki</a>
+      <span class="cfl-breadcrumbs__separator" aria-hidden="true">/</span>
+    </li>
+    {% if page.category %}
+    <li class="cfl-breadcrumbs__item">
+      <a href="{{ site.baseurl }}/?category={{ category_slug }}">{{ category_label }}</a>
+      <span class="cfl-breadcrumbs__separator" aria-hidden="true">/</span>
+    </li>
+    {% endif %}
+    <li class="cfl-breadcrumbs__item cfl-breadcrumbs__item--current">
+      <span aria-current="page">{{ page.title | escape }}</span>
+    </li>
+  </ol>
+</nav>
+{% endif %}
+{% endunless %}

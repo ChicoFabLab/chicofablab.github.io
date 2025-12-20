@@ -13,6 +13,8 @@
   {% assign items = site.data.navigation.related.components %}
 {% elsif rel_type == "css" %}
   {% assign items = site.data.navigation.related.css %}
+{% elsif rel_type == "api" %}
+  {% assign items = site.data.navigation.related.api %}
 {% endif %}
 
 {% if items %}

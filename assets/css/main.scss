@@ -1,0 +1,75 @@
+---
+# Jekyll front matter required for Sass processing
+---
+// ===========================================
+// CFL Wiki — Main Stylesheet Entry Point
+// ===========================================
+// This file imports all Sass partials and compiles to main.css
+//
+// Structure:
+// 1. Variables & Themes (design tokens)
+// 2. Base styles (reset, typography)
+// 3. Layout (header, footer, main)
+// 4. Components (buttons, cards, alerts, badges)
+// 5. Features (wiki-specific, search, marquee, toc)
+// 6. Utilities (accessibility, print)
+// 7. Legacy (remaining styles being migrated)
+//
+// Migration Status: Phase 6 - Deduplication
+// ===========================================
+
+// ===========================================
+// DESIGN TOKENS
+// ===========================================
+@import "variables";
+@import "themes";
+
+// ===========================================
+// BASE STYLES
+// ===========================================
+@import "base";
+
+// ===========================================
+// LAYOUT
+// ===========================================
+@import "layout";
+
+// ===========================================
+// COMPONENTS
+// ===========================================
+@import "components/buttons";
+@import "components/alerts";
+@import "components/badges";
+@import "components/cards";
+
+// ===========================================
+// COMPONENTS (additional)
+// ===========================================
+@import "components/forms";
+
+// ===========================================
+// FEATURES
+// ===========================================
+@import "features/wiki";
+@import "features/search";
+@import "features/marquee";
+@import "features/toc";
+@import "features/fun-buttons";
+@import "features/loaders";
+@import "features/achievements";
+@import "features/eldritch";
+@import "features/showcase";
+
+// ===========================================
+// UTILITIES
+// ===========================================
+@import "utilities/accessibility";
+@import "utilities/print";
+@import "utilities/utility-classes";
+
+// ===========================================
+// LEGACY (remaining un-extracted styles)
+// ===========================================
+// This contains styles not yet migrated to partials.
+// As migration progresses, this file will shrink.
+@import "legacy";

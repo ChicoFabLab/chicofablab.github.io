@@ -1,0 +1,65 @@
+// ===================
+// WIKI SEARCH BAR
+// ===================
+
+.wiki-search {
+    margin-bottom: 1.5rem;
+}
+
+.wiki-search__container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.wiki-search__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.wiki-search__input {
+    width: 100%;
+    padding: 0.875rem 2.75rem;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.wiki-search__input::placeholder {
+    color: var(--text-muted);
+}
+
+.wiki-search__input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);
+}
+
+.wiki-search__clear {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.15s;
+    border-radius: 50%;
+}
+
+.wiki-search__clear:hover {
+    color: var(--text);
+    background: var(--bg-alt);
+}
