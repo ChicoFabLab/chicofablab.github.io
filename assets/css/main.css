@@ -38,9 +38,27 @@
 
 /* Wiki page metadata */
 .wiki-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
+}
+
+/* Last updated display */
+.last-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-ui);
+}
+.last-updated::before {
+    content: '📅';
+    font-size: 1rem;
 }
 
 /* Code block copy button */
@@ -10003,5 +10021,118 @@ body.cfl-level-up::after {
 
     .cfl-achievement-card--legendary.cfl-achievement-card--unlocked {
         animation: none;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    /* Hide non-essential elements */
+    .skip-link,
+    header nav,
+    .cfl-nav-settings,
+    .cfl-drawer,
+    .cfl-drawer__backdrop,
+    .cfl-settings,
+    .cfl-fab-bar,
+    .daily-tip,
+    .marquee,
+    .code-copy-btn,
+    .code-snippet__copy,
+    .keyboard-help-modal,
+    .cfl-toast-container,
+    .cfl-achievements-panel,
+    footer .footer-social,
+    footer .footer-pong-link,
+    footer .footer-badge,
+    .wiki-search,
+    .wiki-categories,
+    .hero-cta,
+    #pong-easter-egg {
+        display: none !important;
+    }
+
+    /* Reset backgrounds */
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    main {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* Typography adjustments */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        color: black !important;
+    }
+
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Links */
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    a[href^="/"]::after,
+    a[href^="#"]::after {
+        content: "";
+    }
+
+    /* Code blocks */
+    pre, code {
+        background: #f5f5f5 !important;
+        border: 1px solid #ddd !important;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse !important;
+    }
+
+    th, td {
+        border: 1px solid #ddd !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Cards */
+    .cfl-card {
+        break-inside: avoid;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+    }
+
+    /* Page breaks */
+    .page-break {
+        page-break-before: always;
+    }
+
+    /* Footer minimal */
+    footer {
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
+        margin-top: 2rem;
     }
 }

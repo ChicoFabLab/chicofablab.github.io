@@ -1,0 +1,11 @@
+{% comment %}
+Last Updated Include
+Shows when the page was last updated
+Uses page.last_updated from front matter, or page.date as fallback
+{% endcomment %}
+
+{% if page.last_updated %}
+  <span class="last-updated">Updated {{ page.last_updated | date: "%b %d, %Y" }}</span>
+{% elsif page.date %}
+  <span class="last-updated">{{ page.date | date: "%b %d, %Y" }}</span>
+{% endif %}

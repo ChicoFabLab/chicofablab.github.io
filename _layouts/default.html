@@ -87,6 +87,7 @@
         {% if page.collection == 'wiki' and page.title %}
         <div class="wiki-meta">
             {% include reading-time.html %}
+            {% include last-updated.html %}
         </div>
         {% endif %}
         {{ content }}
