@@ -4,7 +4,7 @@ description: "Community makerspace wiki for Chico Fab Lab - tools, projects, and
 # For local development: baseurl: ""
 # For GitHub Pages: baseurl: "/chicofablab.github.io"
 baseurl: ""
-url: "http://localhost:4000"
+url: "https://chicofl.org"
 
 markdown: kramdown
 highlighter: rouge
