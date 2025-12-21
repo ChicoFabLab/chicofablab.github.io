@@ -73,6 +73,55 @@
         })();
 
         // =====================
+        // MOBILE NAVIGATION MENU
+        // =====================
+        (function initMobileNav() {
+            var toggle = document.getElementById('mobile-menu-toggle');
+            var nav = document.getElementById('main-nav');
+
+            if (!toggle || !nav) return;
+
+            toggle.addEventListener('click', function() {
+                var isOpen = nav.classList.contains('is-open');
+
+                if (isOpen) {
+                    nav.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                } else {
+                    nav.classList.add('is-open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            // Close menu when clicking a nav link
+            nav.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+                    nav.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.focus();
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (nav.classList.contains('is-open') &&
+                    !nav.contains(e.target) &&
+                    !toggle.contains(e.target)) {
+                    nav.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
+
+        // =====================
         // SETTINGS DRAWER
         // =====================
         (function initDrawer() {
@@ -2760,6 +2809,134 @@
 
             // Initial state
             filterCards();
+        })();
+
+        // =====================================================================
+        // OPPORTUNITIES FILTER SYSTEM
+        // =====================================================================
+        (function initOpportunitiesFilter() {
+            var list = document.getElementById('opportunity-list');
+            var filters = document.getElementById('opportunity-filters');
+            var resultsCount = document.getElementById('opportunity-results-count');
+            var noResults = document.getElementById('opportunity-no-results');
+            var resetBtn = document.getElementById('opportunity-reset-filters');
+
+            if (!list || !filters) return;
+
+            var items = list.querySelectorAll('.opportunity-card');
+            var pills = filters.querySelectorAll('.category-pill');
+            var currentCategory = 'all';
+
+            function filterItems() {
+                var visibleCount = 0;
+
+                items.forEach(function(item) {
+                    var category = item.getAttribute('data-category') || '';
+                    var matchesCategory = currentCategory === 'all' || category === currentCategory;
+
+                    if (matchesCategory) {
+                        item.classList.remove('opportunity-card--hidden');
+                        item.style.display = '';
+                        visibleCount++;
+                    } else {
+                        item.classList.add('opportunity-card--hidden');
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (resultsCount) {
+                    if (currentCategory === 'all') {
+                        resultsCount.textContent = 'Showing all ' + items.length + ' opportunities';
+                    } else {
+                        resultsCount.textContent = 'Showing ' + visibleCount + ' of ' + items.length + ' opportunities';
+                    }
+                }
+
+                if (noResults) {
+                    if (visibleCount === 0) {
+                        noResults.style.display = 'block';
+                        list.style.display = 'none';
+                    } else {
+                        noResults.style.display = 'none';
+                        list.style.display = '';
+                    }
+                }
+            }
+
+            pills.forEach(function(pill) {
+                pill.addEventListener('click', function() {
+                    pills.forEach(function(p) {
+                        p.classList.remove('category-pill--active');
+                    });
+                    pill.classList.add('category-pill--active');
+                    currentCategory = pill.getAttribute('data-category') || 'all';
+                    filterItems();
+                    if (CFL.sounds) CFL.sounds.pop();
+
+                    // Scroll active pill into view on mobile (horizontal scroll)
+                    if (window.innerWidth < 720) {
+                        pill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }
+                });
+            });
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function() {
+                    currentCategory = 'all';
+                    pills.forEach(function(p) {
+                        p.classList.remove('category-pill--active');
+                        if (p.getAttribute('data-category') === 'all') {
+                            p.classList.add('category-pill--active');
+                        }
+                    });
+                    filterItems();
+                    if (CFL.sounds) CFL.sounds.success();
+                });
+            }
+
+            // Sticky filter shadow on scroll (mobile)
+            if (window.innerWidth < 720) {
+                var lastScrollY = 0;
+                var ticking = false;
+
+                function updateFilterShadow() {
+                    if (window.scrollY > 10) {
+                        filters.classList.add('is-scrolled');
+                    } else {
+                        filters.classList.remove('is-scrolled');
+                    }
+                    ticking = false;
+                }
+
+                window.addEventListener('scroll', function() {
+                    lastScrollY = window.scrollY;
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateFilterShadow);
+                        ticking = true;
+                    }
+                }, { passive: true });
+            }
+
+            // Requirements expand/collapse on mobile
+            var requirements = list.querySelectorAll('.opportunity-card__requirements');
+            requirements.forEach(function(req) {
+                var items = req.querySelectorAll('li');
+                if (items.length > 2 && window.innerWidth < 720) {
+                    req.setAttribute('data-has-more', 'true');
+                    req.setAttribute('data-more-text', '+ ' + (items.length - 2) + ' more');
+
+                    req.addEventListener('click', function() {
+                        req.classList.toggle('is-expanded');
+                        if (req.classList.contains('is-expanded')) {
+                            req.setAttribute('data-more-text', 'Show less');
+                        } else {
+                            req.setAttribute('data-more-text', '+ ' + (items.length - 2) + ' more');
+                        }
+                    });
+                }
+            });
+
+            filterItems();
         })();
 
         // Floating settings widget (font switcher + scope)

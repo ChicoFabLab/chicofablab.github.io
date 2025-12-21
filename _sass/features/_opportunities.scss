@@ -1,0 +1,613 @@
+// ===================
+// OPPORTUNITIES MENU
+// Mobile-first design with enhanced UX
+// ===================
+
+// ---- HERO SECTION ----
+.opportunities-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.08) 0%, rgba(3, 133, 146, 0.08) 100%);
+
+    // Compact hero on mobile
+    @media (max-width: 719px) {
+        .hero-title {
+            font-size: 1.35rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-description {
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-stats {
+            gap: 1.5rem;
+            padding: 0.75rem 0;
+            margin-bottom: 0;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+        }
+    }
+}
+
+.opportunities-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(230, 57, 70, 0.12), transparent 55%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.opportunities-hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+// ---- MAIN SECTION ----
+.opportunities-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 0.75rem 2rem; // Tighter mobile padding
+
+    @media (min-width: 720px) {
+        padding: 2.5rem 1.5rem 3rem;
+    }
+}
+
+.opportunities-intro {
+    text-align: center;
+    margin-bottom: 0.75rem; // Reduced
+    color: var(--text-muted);
+    font-size: 0.8rem; // Smaller on mobile
+    padding: 0 0.5rem;
+
+    @media (min-width: 720px) {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+// ---- FILTER PILLS - MOBILE SCROLL ----
+.opportunities-filters {
+    display: flex;
+    gap: 0.375rem; // Tighter gap
+    margin-bottom: 0.75rem;
+    padding: 0.625rem 0;
+
+    // Mobile: horizontal scroll
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // Fade edges on mobile to hint at scroll
+    mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+
+    @media (min-width: 720px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+        mask-image: none;
+        -webkit-mask-image: none;
+        margin-bottom: 1.5rem;
+    }
+}
+
+// Larger touch targets on mobile with better visual weight
+.opportunities-filters .category-pill {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-width: 2px; // Bolder border
+
+    @media (min-width: 720px) {
+        min-height: auto;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.8rem;
+        border-width: 1px;
+    }
+}
+
+.opportunities-filters .category-pill__icon {
+    font-size: 0.9rem;
+    line-height: 1;
+
+    @media (min-width: 720px) {
+        font-size: 0.95rem;
+    }
+}
+
+.opportunities-filters .category-pill__count {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.125rem 0.375rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 1.25rem;
+    text-align: center;
+}
+
+// Category dot colors
+.category-pill__dot[data-category="volunteer"] { background: var(--success); }
+.category-pill__dot[data-category="membership"] { background: var(--info); }
+.category-pill__dot[data-category="classes"] { background: var(--warning); }
+.category-pill__dot[data-category="jobs"] { background: var(--accent); }
+.category-pill__dot[data-category="projects"] { background: var(--text-muted); }
+.category-pill__dot[data-category="services"] { background: var(--info); }
+
+// (Results count styles moved to sticky filters section)
+
+// ---- CARD LIST ----
+.opportunity-list {
+    display: grid;
+    gap: 0.625rem; // Tighter gap on mobile
+
+    @media (min-width: 720px) {
+        gap: 1.25rem;
+    }
+}
+
+// ---- OPPORTUNITY CARD ----
+.opportunity-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; // Slightly smaller radius
+    padding: 0.75rem; // Compact padding
+    display: grid;
+    gap: 0.5rem; // Tighter internal gap
+    transition: all 0.2s ease;
+
+    // Bold left accent border for visual hierarchy
+    border-left: 4px solid var(--border);
+
+    @media (min-width: 720px) {
+        padding: 1.5rem;
+        border-radius: 14px;
+        gap: 0.85rem;
+        border-left-width: 3px;
+    }
+
+    &:hover {
+        border-color: var(--border-dark);
+        box-shadow: 0 4px 12px rgba(42, 31, 26, 0.08);
+
+        @media (min-width: 720px) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(42, 31, 26, 0.08);
+        }
+    }
+
+    // Category-colored left border - more saturated for mobile visibility
+    &[data-category="volunteer"] { border-left-color: var(--success); }
+    &[data-category="membership"] { border-left-color: var(--info); }
+    &[data-category="classes"] { border-left-color: var(--warning); }
+    &[data-category="jobs"] { border-left-color: var(--accent); }
+    &[data-category="projects"] { border-left-color: var(--text-muted); }
+    &[data-category="services"] { border-left-color: var(--info); }
+}
+
+.opportunity-card--hidden {
+    display: none !important;
+}
+
+// ---- CARD HEADER ----
+.opportunity-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem; // Tighter gap
+}
+
+.opportunity-card__badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    order: 1; // Badges come after title on mobile for scanability
+
+    @media (max-width: 719px) {
+        order: 0; // Actually keep badges first - they indicate status quickly
+    }
+}
+
+// Status badge enhancement - MUCH MORE PROMINENT
+.opportunity-status {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.5rem !important; // Override badge defaults
+    border-radius: 4px !important;
+
+    // Larger on mobile for tap & scan
+    @media (max-width: 719px) {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem !important;
+    }
+}
+
+// Status-specific styling for maximum visibility
+.opportunity-status.cfl-badge--success {
+    background: var(--success) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.opportunity-status.cfl-badge--danger {
+    background: var(--danger) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.opportunity-status.cfl-badge--warning {
+    background: var(--warning) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.opportunity-category {
+    border: 1px solid transparent;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.45rem;
+
+    @media (max-width: 719px) {
+        font-size: 0.6rem;
+        padding: 0.175rem 0.4rem;
+    }
+}
+
+.opportunity-category__icon {
+    font-size: 0.75rem;
+
+    @media (max-width: 719px) {
+        font-size: 0.7rem;
+    }
+}
+
+.opportunity-category--success {
+    background: var(--success-bg);
+    color: var(--success);
+    border-color: var(--success-border);
+}
+
+.opportunity-category--info {
+    background: var(--info-bg);
+    color: var(--info);
+    border-color: var(--info-border);
+}
+
+.opportunity-category--info-solid {
+    background: var(--info-bg);
+    color: var(--info);
+    border-color: var(--info-border);
+}
+
+.opportunity-category--warning {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border-color: var(--warning-border);
+}
+
+.opportunity-category--accent {
+    background: rgba(230, 57, 70, 0.12);
+    color: var(--accent);
+    border-color: rgba(230, 57, 70, 0.35);
+}
+
+.opportunity-category--neutral {
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    border-color: var(--border);
+}
+
+// ---- CARD TITLE ----
+.opportunity-card__title {
+    font-family: var(--font-heading);
+    font-size: 1rem; // Smaller on mobile
+    line-height: 1.25;
+    margin: 0;
+    color: var(--text);
+    font-weight: 700;
+
+    @media (min-width: 720px) {
+        font-size: 1.35rem;
+        line-height: 1.3;
+    }
+}
+
+// ---- CARD META (Commitment + Contact) - More compact ----
+.opportunity-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem; // Tighter
+    font-family: var(--font-ui);
+    font-size: 0.75rem; // Smaller
+    color: var(--text-muted);
+    padding: 0.35rem 0; // Less padding
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    @media (min-width: 720px) {
+        font-size: 0.85rem;
+        gap: 0.75rem 1.5rem;
+        padding: 0.5rem 0;
+    }
+}
+
+.opportunity-card__meta-item {
+    display: flex;
+    align-items: center; // Better vertical alignment
+    gap: 0.25rem;
+}
+
+.opportunity-card__meta-label {
+    font-size: 0.9em; // Relative to parent
+    opacity: 0.8;
+}
+
+.opportunity-card__meta-value,
+.opportunity-card__meta-link {
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.opportunity-card__meta-link {
+    color: var(--accent);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// ---- CARD DESCRIPTION ----
+.opportunity-card__description {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.45; // Tighter
+    font-size: 0.8rem; // Smaller on mobile
+
+    // Clamp to 2 lines on mobile for scannability
+    @media (max-width: 719px) {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    @media (min-width: 720px) {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+// ---- CARD REQUIREMENTS - Collapsible on mobile ----
+.opportunity-card__requirements {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--text-muted);
+    font-size: 0.75rem; // Smaller
+    display: grid;
+    gap: 0.125rem; // Tighter
+
+    li {
+        line-height: 1.35;
+
+        &::marker {
+            color: var(--border-dark);
+        }
+    }
+
+    // Hide on mobile by default - show only 2 items
+    @media (max-width: 719px) {
+        li:nth-child(n+3) {
+            display: none;
+        }
+
+        // Show "and X more" indicator
+        &[data-has-more="true"]::after {
+            content: attr(data-more-text);
+            display: block;
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 0.25rem;
+            cursor: pointer;
+        }
+    }
+
+    @media (min-width: 720px) {
+        font-size: 0.85rem;
+        gap: 0.25rem;
+    }
+}
+
+// Expanded state for requirements
+.opportunity-card__requirements.is-expanded {
+    li:nth-child(n+3) {
+        display: list-item;
+    }
+
+    &::after {
+        content: "Show less" !important;
+    }
+}
+
+// ---- CARD ACTIONS ----
+.opportunity-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.125rem; // Less padding
+
+    // Compact button on mobile
+    .cfl-btn {
+        @media (max-width: 719px) {
+            width: 100%;
+            justify-content: center;
+            padding: 0.625rem 0.875rem; // Slightly smaller
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+    }
+}
+
+.opportunity-card__closed {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    padding: 0.4rem 0.75rem;
+    border-radius: 5px;
+    text-align: center;
+
+    @media (max-width: 719px) {
+        width: 100%;
+    }
+}
+
+// ---- NO RESULTS STATE ----
+.opportunity-no-results {
+    text-align: center;
+    padding: 2.5rem 1.25rem;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+
+    @media (min-width: 720px) {
+        padding: 3rem 1.5rem;
+    }
+}
+
+.opportunity-no-results__icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.5;
+}
+
+.opportunity-no-results__title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text);
+
+    @media (min-width: 720px) {
+        font-size: 1.2rem;
+    }
+}
+
+.opportunity-no-results__message {
+    color: var(--text-muted);
+    margin: 0 0 1.25rem 0;
+    font-size: 0.9rem;
+}
+
+.opportunity-no-results__reset {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 44px; // Touch target
+
+    &:hover {
+        background: var(--accent-hover);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// ---- ANIMATION FOR CARD FILTERING ----
+@keyframes opportunity-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.opportunity-card {
+    animation: opportunity-fade-in 0.25s ease-out;
+}
+
+// ---- STICKY FILTERS ON MOBILE ----
+@media (max-width: 719px) {
+    .opportunities-filters {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--bg);
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.2s ease, backdrop-filter 0.2s ease;
+
+        // When scrolled - add shadow for depth
+        &.is-scrolled {
+            box-shadow: 0 2px 8px rgba(42, 31, 26, 0.1);
+            backdrop-filter: blur(8px);
+            background: rgba(254, 249, 243, 0.95);
+        }
+    }
+}
+
+// Results count - more compact
+.opportunities-results {
+    text-align: center;
+    margin-bottom: 0.625rem;
+    padding: 0;
+
+    @media (min-width: 720px) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.opportunities-results__count {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    padding: 0.25rem 0.625rem;
+    border-radius: 12px;
+    display: inline-block;
+
+    @media (min-width: 720px) {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.75rem;
+    }
+}

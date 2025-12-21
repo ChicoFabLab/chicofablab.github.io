@@ -15,7 +15,7 @@
 // 6. Utilities (accessibility, print)
 // 7. Legacy (remaining styles being migrated)
 //
-// Migration Status: Phase 6 - Deduplication
+// Migration Status: Phase 7 - FAB Bar, Settings Menu Extraction
 // ===========================================
 
 // ===========================================
@@ -46,11 +46,13 @@
 // COMPONENTS (additional)
 // ===========================================
 @import "components/forms";
+@import "components/settings-menu";
 
 // ===========================================
 // FEATURES
 // ===========================================
 @import "features/wiki";
+@import "features/opportunities";
 @import "features/search";
 @import "features/marquee";
 @import "features/toc";
@@ -59,6 +61,8 @@
 @import "features/achievements";
 @import "features/eldritch";
 @import "features/showcase";
+@import "features/fab-bar";
+@import "features/mobile-nav";
 
 // ===========================================
 // UTILITIES

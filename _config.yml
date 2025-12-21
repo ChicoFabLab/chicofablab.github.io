@@ -19,6 +19,8 @@ collections:
   wiki:
     output: true
     permalink: /wiki/:name/
+  opportunities:
+    output: false
 
 defaults:
   - scope:

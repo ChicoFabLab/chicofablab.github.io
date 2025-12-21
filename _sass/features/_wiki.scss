@@ -1,77 +1,124 @@
 // ===================
 // WIKI-SPECIFIC STYLES
+// Mobile-optimized for scanning
 // ===================
 
-// Wiki page metadata
+// Wiki page metadata - Compact on mobile
 .wiki-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
+    gap: 0.5rem 0.75rem; // Tighter
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
+
+    @media (min-width: 600px) {
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+    }
 }
 
-// Reading time display
+// Reading time display - Smaller on mobile
 .reading-time {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.25rem;
     color: var(--text-muted);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-family: var(--font-ui);
+
+    @media (min-width: 600px) {
+        font-size: 0.875rem;
+        gap: 0.35rem;
+    }
 }
 .reading-time::before {
     content: '📖';
-    font-size: 1rem;
+    font-size: 0.85rem;
+
+    @media (min-width: 600px) {
+        font-size: 1rem;
+    }
 }
 
 // Last updated display
 .last-updated {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.25rem;
     color: var(--text-muted);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-family: var(--font-ui);
+
+    @media (min-width: 600px) {
+        font-size: 0.875rem;
+        gap: 0.35rem;
+    }
 }
 .last-updated::before {
     content: '📅';
-    font-size: 1rem;
+    font-size: 0.85rem;
+
+    @media (min-width: 600px) {
+        font-size: 1rem;
+    }
 }
 
 // ===================
-// WIKI SECTION
+// WIKI SECTION - Tight on mobile
 // ===================
 
 .wiki-section {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem;
+    padding: 1.25rem 0.75rem; // Much tighter on mobile
+
+    @media (min-width: 600px) {
+        padding: 2rem 1.25rem;
+    }
+
+    @media (min-width: 900px) {
+        padding: 2.5rem 1.5rem;
+    }
 }
 
 .section-title {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--border);
+
+    @media (min-width: 600px) {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+    }
 }
 
 // ===================
-// HERO
+// HERO - Compact on mobile
 // ===================
 
 .hero {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 3rem 1.5rem;
+    padding: 1.5rem 1rem; // Much smaller on mobile
     text-align: center;
+
+    @media (min-width: 600px) {
+        padding: 2.25rem 1.25rem;
+    }
+
+    @media (min-width: 900px) {
+        padding: 3rem 1.5rem;
+    }
 }
 
 .hero-content {
@@ -81,37 +128,78 @@
 
 .hero-title {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
+    font-size: 1.5rem; // Smaller on mobile
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     letter-spacing: -0.03em;
+
+    @media (min-width: 600px) {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 900px) {
+        font-size: 2rem;
+    }
 }
 
 .hero-subtitle {
     font-family: system-ui, sans-serif;
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: var(--accent);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.625rem;
+
+    @media (min-width: 600px) {
+        font-size: 0.85rem;
+        margin-bottom: 0.875rem;
+    }
+
+    @media (min-width: 900px) {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
 }
 
 .hero-description {
     color: var(--text-muted);
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+
+    @media (min-width: 600px) {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    @media (min-width: 900px) {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-    padding: 1rem 0;
+    gap: 1.5rem; // Tighter
+    margin-bottom: 1rem;
+    padding: 0.75rem 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+
+    @media (min-width: 600px) {
+        gap: 2rem;
+        margin-bottom: 1.25rem;
+        padding: 0.875rem 0;
+    }
+
+    @media (min-width: 900px) {
+        margin-bottom: 1.5rem;
+        padding: 1rem 0;
+    }
 }
 
 .stat {
@@ -120,30 +208,54 @@
 
 .stat-number {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--text);
+
+    @media (min-width: 600px) {
+        font-size: 1.375rem;
+    }
+
+    @media (min-width: 900px) {
+        font-size: 1.5rem;
+    }
 }
 
 .stat-label {
     font-family: system-ui, sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+
+    @media (min-width: 600px) {
+        font-size: 0.7rem;
+    }
+
+    @media (min-width: 900px) {
+        font-size: 0.75rem;
+    }
 }
 
 .hero-cta {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.625rem 1.25rem;
     background: var(--accent);
     color: white;
     font-family: system-ui, sans-serif;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.15s;
+    min-height: 44px; // Touch target
+    display: inline-flex;
+    align-items: center;
+
+    @media (min-width: 600px) {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 .hero-cta:hover {
@@ -152,38 +264,78 @@
 }
 
 // ===================
-// CATEGORY PILLS
+// CATEGORY PILLS - Mobile scroll
 // ===================
 
 .wiki-categories {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    padding: 0 0.5rem;
+    gap: 0.375rem;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+
+    // Mobile: horizontal scroll
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // Fade edges to hint scroll
+    mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 8px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 8px), transparent 100%);
+
+    @media (min-width: 600px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        overflow-x: visible;
+        mask-image: none;
+        -webkit-mask-image: none;
+        padding: 0 0.5rem;
+    }
 }
 
 .category-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    padding: 0.5rem 0.875rem;
+    gap: 0.3rem;
+    padding: 0.4rem 0.65rem;
     font-family: var(--font-ui);
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-muted);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    min-height: 36px; // Touch target
+
+    @media (min-width: 600px) {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.85rem;
+        gap: 0.375rem;
+        min-height: auto;
+    }
 }
 
 .category-pill:hover {
     border-color: var(--border-dark);
     color: var(--text);
-    transform: translateY(-1px);
+
+    @media (min-width: 600px) {
+        transform: translateY(-1px);
+    }
+}
+
+.category-pill:active {
+    transform: scale(0.97);
 }
 
 .category-pill--active {
@@ -392,70 +544,116 @@
 // MOBILE ADJUSTMENTS
 // ===================
 
+// Most mobile styles now integrated above with @media queries
+// Keeping API reference specific overrides here
+
 @media (max-width: 600px) {
-    .wiki-meta {
-        gap: 0.5rem;
-        margin-bottom: 0.75rem;
-        padding-bottom: 0.5rem;
-    }
-
-    .reading-time,
-    .last-updated {
-        font-size: 0.75rem;
-    }
-
-    .reading-time::before,
-    .last-updated::before {
-        font-size: 0.85rem;
-    }
-
-    .wiki-section {
-        padding: 1.5rem 1rem;
-    }
-
-    .hero {
-        padding: 2rem 1rem;
-    }
-
-    .hero-title {
-        font-size: 1.5rem;
-    }
-
-    .hero-description {
-        font-size: 0.95rem;
-    }
-
-    .hero-stats {
-        gap: 1rem;
-    }
-
-    .stat-number {
-        font-size: 1.25rem;
-    }
-
-    .wiki-categories {
-        gap: 0.375rem;
-    }
-
-    .category-pill {
-        padding: 0.375rem 0.625rem;
-        font-size: 0.75rem;
-    }
-
     .api-reference h2 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        margin-top: 1.5rem;
     }
 
     .api-reference h3 {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-top: 1rem;
     }
 
     .api-reference pre {
-        font-size: 0.75rem;
-        padding: 0.75rem;
+        font-size: 0.7rem;
+        padding: 0.625rem;
+        border-radius: 6px;
     }
 
     .api-reference table {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .api-reference th,
+    .api-reference td {
+        padding: 0.35rem 0.5rem;
+    }
+}
+
+// ===================
+// WIKI SEARCH - Mobile
+// ===================
+
+.wiki-search {
+    margin-bottom: 0.875rem;
+
+    @media (min-width: 600px) {
+        margin-bottom: 1.25rem;
+    }
+}
+
+.wiki-search__container {
+    position: relative;
+    max-width: 100%;
+
+    @media (min-width: 600px) {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+.wiki-search__input {
+    width: 100%;
+    padding: 0.625rem 2.5rem 0.625rem 2.25rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    min-height: 44px; // Touch target
+
+    &:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    }
+
+    @media (min-width: 600px) {
+        padding: 0.75rem 2.75rem 0.75rem 2.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+.wiki-search__icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+    width: 18px;
+    height: 18px;
+
+    @media (min-width: 600px) {
+        left: 0.875rem;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.wiki-search__clear {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.375rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: var(--bg-alt);
+        color: var(--text);
     }
 }
