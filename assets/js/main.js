@@ -2894,6 +2894,48 @@
                 });
             }
 
+            // Sticky filter shadow on scroll (mobile)
+            if (window.innerWidth < 720) {
+                var lastScrollY = 0;
+                var ticking = false;
+
+                function updateFilterShadow() {
+                    if (window.scrollY > 10) {
+                        filters.classList.add('is-scrolled');
+                    } else {
+                        filters.classList.remove('is-scrolled');
+                    }
+                    ticking = false;
+                }
+
+                window.addEventListener('scroll', function() {
+                    lastScrollY = window.scrollY;
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateFilterShadow);
+                        ticking = true;
+                    }
+                }, { passive: true });
+            }
+
+            // Requirements expand/collapse on mobile
+            var requirements = list.querySelectorAll('.opportunity-card__requirements');
+            requirements.forEach(function(req) {
+                var items = req.querySelectorAll('li');
+                if (items.length > 2 && window.innerWidth < 720) {
+                    req.setAttribute('data-has-more', 'true');
+                    req.setAttribute('data-more-text', '+ ' + (items.length - 2) + ' more');
+
+                    req.addEventListener('click', function() {
+                        req.classList.toggle('is-expanded');
+                        if (req.classList.contains('is-expanded')) {
+                            req.setAttribute('data-more-text', 'Show less');
+                        } else {
+                            req.setAttribute('data-more-text', '+ ' + (items.length - 2) + ' more');
+                        }
+                    });
+                }
+            });
+
             filterItems();
         })();
 
