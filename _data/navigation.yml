@@ -5,6 +5,9 @@ main:
   - label: Home
     url: /
     icon: 🏠
+  - label: Opportunities
+    url: /opportunities
+    icon: 🤝
   - label: Get Started
     url: /wiki/getting-started
     icon: 🚀
